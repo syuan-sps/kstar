@@ -13,7 +13,7 @@
       ],
       "popularity": 93,
       "followers": 25000000,
-      "image_url": null,
+      "image_url": "/idols/jungkook.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -112,7 +112,8 @@
           ],
           "summary": "舞台上是主唱兼領舞兼center的「黃金么弟」，現場穩定度堪比錄音室；舞台下是Weverse深夜煮拉麵、隨口翻唱就破千萬觀看的鄰家男孩。黑白簡約的時尚品味、對健身與遊戲的熱愛，加上永遠在練習的努力哲學，構成這位全能偶像毫無偶像包袱的反差魅力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "bts-v",
@@ -126,7 +127,7 @@
       ],
       "popularity": 91,
       "followers": 22000000,
-      "image_url": null,
+      "image_url": "/idols/bts-v.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -242,7 +243,8 @@
           "summary": "K-pop中極罕見的深沉男中音，《Singularity》一個眼神就能讓全場噤聲；鏡頭外則是以「Vante」名義發布攝影作品、分享爵士歌單的浪漫主義者。復古文藝的審美、四次元的言行與隨性到凌晨開直播不說話的自由感，讓他成為最難被定義的偶像。"
         }
       },
-      "instagram": "thv"
+      "instagram": "thv",
+      "image_focus": 0.3
     },
     {
       "id": "jimin",
@@ -256,7 +258,7 @@
       ],
       "popularity": 91,
       "followers": 20000000,
-      "image_url": null,
+      "image_url": "/idols/jimin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -355,7 +357,8 @@
           "summary": "以現代舞底子詮釋偶像舞台，《Filter》與《Lie》直拍每次重上熱搜，能在三分鐘內從甜美切換到危險。直播裡卻是認真讀粉絲留言、坦承自己不安與成長的深夜談心電台。極致的舞台掌控與毫無保留的真誠，是他最強的反差組合。"
         }
       },
-      "instagram": "j.m"
+      "instagram": "j.m",
+      "image_focus": 0.3
     },
     {
       "id": "rm",
@@ -370,7 +373,7 @@
       ],
       "popularity": 87,
       "followers": 15000000,
-      "image_url": null,
+      "image_url": "/idols/rm.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -467,7 +470,8 @@
           "summary": "BTS的隊長與頭腦，饒舌是文學朗讀，《Mono》讓主流媒體以「藝術家」定義他。Instagram是K-pop圈最高質感的美術館打卡帳號，推薦過的書屢次斷貨；聯合國「Speak Yourself」演講更讓他的影響力超出音樂，成為一代人的自我認同教材。"
         }
       },
-      "instagram": "rkive"
+      "instagram": "rkive",
+      "image_focus": 0.3
     },
     {
       "id": "lisa",
@@ -482,7 +486,7 @@
       ],
       "popularity": 94,
       "followers": 28000000,
-      "image_url": null,
+      "image_url": "/idols/lisa.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -584,7 +588,8 @@
           "summary": "BLACKPINK無爭議的舞蹈核心，《LALISA》直拍48小時破千萬，LILI's FILM被全球舞室翻跳。Instagram追蹤數最高的K-pop藝人，內容在高級時裝週與被五隻貓使喚的貓奴日常間自由切換。霸氣舞台與率真個性的反差是她的全球通行證。"
         }
       },
-      "instagram": "lalalalisa_m"
+      "instagram": "lalalalisa_m",
+      "image_focus": 0.13
     },
     {
       "id": "jennie",
@@ -599,7 +604,7 @@
       ],
       "popularity": 92,
       "followers": 20000000,
-      "image_url": null,
+      "image_url": "/idols/jennie.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -696,7 +701,8 @@
           "summary": "舞台上以最少動作製造最大張力的慵懶控場大師，唱跳饒舌俱佳；舞台下是被時尚媒體稱為「最會經營氛圍感」的Instagram帳號主人。從Chanel全球大使到自創廠牌ODD ATELIER，她把個人風格做成了一門生意，是K-pop最完整的個人品牌。"
         }
       },
-      "instagram": "jennierubyjane"
+      "instagram": "jennierubyjane",
+      "image_focus": 0.3
     },
     {
       "id": "rose",
@@ -710,7 +716,7 @@
       ],
       "popularity": 90,
       "followers": 18000000,
-      "image_url": null,
+      "image_url": "/idols/rose.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -806,7 +812,8 @@
           "summary": "細薄卻穿透的「情感裂縫音」是她的註冊商標，《Gone》現場彈唱讓她從偶像轉型為藝術家，《APT.》更登上全球榜單。內容招牌是隨手拿起吉他就唱的原聲片段，受訪坦言創作孤獨的真誠，讓歌迷看見舞台下完整的她。"
         }
       },
-      "instagram": "roses_are_rosie"
+      "instagram": "roses_are_rosie",
+      "image_focus": 0.3
     },
     {
       "id": "jisoo",
@@ -820,7 +827,7 @@
       ],
       "popularity": 89,
       "followers": 17000000,
-      "image_url": null,
+      "image_url": "/idols/jisoo.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -917,7 +924,8 @@
           "summary": "以古典女聲詮釋偶像歌曲，《FLOWER》個人出道展現多年累積的功力；私下卻是講冷笑話自己先笑場、和愛犬Dalgom膩在一起的居家系大姐。優雅畫報臉與四次元性格的反差，讓她成為BLACKPINK最讓人意外的存在。"
         }
       },
-      "instagram": "sooyaaa__"
+      "instagram": "sooyaaa__",
+      "image_focus": 0.3
     },
     {
       "id": "wonyoung",
@@ -930,7 +938,7 @@
       ],
       "popularity": 89,
       "followers": 11000000,
-      "image_url": null,
+      "image_url": "/idols/wonyoung.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1034,7 +1042,8 @@
           "summary": "甜美的洋娃娃美學、教科書級的表情管理、正能量爆棚的Wonyoungism——張元英把自信活成了一種風格，閃閃發光地感染所有人。"
         }
       },
-      "instagram": "for_everyoung10"
+      "instagram": "for_everyoung10",
+      "image_focus": 0.1
     },
     {
       "id": "karina",
@@ -1047,7 +1056,7 @@
       ],
       "popularity": 88,
       "followers": 10000000,
-      "image_url": null,
+      "image_url": "/idols/karina.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1171,7 +1180,8 @@
           "summary": "舞台上是無懈可擊的未來戰士，舞台下是寫長信、玩遊戲的暖心領導者——Karina用「人間AI」的完美與真實的溫度，定義aespa的雙面宇宙。"
         }
       },
-      "instagram": "katarinabluu"
+      "instagram": "katarinabluu",
+      "image_focus": 0.3
     },
     {
       "id": "hanni",
@@ -1184,7 +1194,7 @@
       ],
       "popularity": 87,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/hanni.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1280,7 +1290,8 @@
           ],
           "summary": "NewJeans「自然勝於刻意」哲學最具說服力的示範者，《Attention》直拍的細微表情被稱為不費力卻致命。Phoning直播以英韓越三語自然切換，無濾鏡的鄰家感是真實系內容的代表；翻唱《Blue & Black》帶動原曲回榜更是教科書案例。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "nayeon",
@@ -1294,7 +1305,7 @@
       ],
       "popularity": 86,
       "followers": 13000000,
-      "image_url": null,
+      "image_url": "/idols/nayeon.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1392,7 +1403,8 @@
           "summary": "TWICE的門面與主唱，演唱會高音從不保留，《POP!》個人出道證明初代女團主唱的爆發力。自拍角度被粉絲稱為教科書，元氣滿滿的直播與綜藝感讓她的能量會傳染。出道近十年依然是團隊內容輸出的第一引擎。"
         }
       },
-      "instagram": "nayeonyny"
+      "instagram": "nayeonyny",
+      "image_focus": 0.3
     },
     {
       "id": "minji",
@@ -1405,7 +1417,7 @@
       ],
       "popularity": 86,
       "followers": 8500000,
-      "image_url": null,
+      "image_url": "/idols/minji.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1506,7 +1518,8 @@
           ],
           "summary": "藍白色系的乾淨美學、鬆弛自然的舞台魅力、少而精的內容品味——Minji以安靜而堅定的方式，成為NewJeans最令人安心的存在。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "winter",
@@ -1519,7 +1532,7 @@
       ],
       "popularity": 86,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/winter.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1635,7 +1648,8 @@
           "summary": "空靈如冰雪公主的視覺、穿透人心的主唱實力，加上開麥就藏不住的4D真性情——Winter的魅力正是這份極致反差。"
         }
       },
-      "instagram": "imwinter"
+      "instagram": "imwinter",
+      "image_focus": 0.3
     },
     {
       "id": "hyunjin",
@@ -1649,7 +1663,7 @@
       ],
       "popularity": 87,
       "followers": 10000000,
-      "image_url": null,
+      "image_url": "/idols/hyunjin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1746,7 +1760,8 @@
           ],
           "summary": "Stray Kids編舞的核心靈感來源，「MIROH」「神메뉴」的複雜群舞以他的身體極限為基準，Versace秀場被時尚圈形容為行走的藝術品。私下是安靜畫畫、寫深夜隨筆的美學少年，舞台爆發力與居家文藝感的反差是STAY最愛的組合。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "taeyeon",
@@ -1761,7 +1776,7 @@
       ],
       "popularity": 85,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/taeyeon.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1860,7 +1875,8 @@
           "summary": "被業界公認的「女偶像現場天花板」，17年演唱生涯無翻車紀錄，《Fine》舞台讓觀眾與攝影師同時流淚。Instagram限動比通訊軟體還勤、탱구TV吃播是綜藝等級，更以公開談論憂鬱症治療讓心理健康在韓國成為可被討論的話題。"
         }
       },
-      "instagram": "taeyeon_ss"
+      "instagram": "taeyeon_ss",
+      "image_focus": 0.3
     },
     {
       "id": "sakura",
@@ -1873,7 +1889,7 @@
       ],
       "popularity": 85,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/sakura.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -1970,7 +1986,8 @@
           "summary": "從AKB48劇場到LE SSERAFIM大型舞台，擁有任何新人無法習得的歷練感，「ANTIFRAGILE」現場的眼神控制被評為全隊最鎮場。同時是公認的重度遊戲玩家，凌晨還在LoL排位；延續十多年的部落格長文習慣，讓內容始終像職人寫給粉絲的信。"
         }
       },
-      "instagram": "39saku_chan"
+      "instagram": "39saku_chan",
+      "image_focus": 0.3
     },
     {
       "id": "tzuyu",
@@ -1983,7 +2000,7 @@
       ],
       "popularity": 85,
       "followers": 12000000,
-      "image_url": null,
+      "image_url": "/idols/tzuyu.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2079,7 +2096,8 @@
           "summary": "170cm的骨架讓舞蹈線條成為教科書示範，偶像運動會射箭命中紅心至今仍是韓網經典畫面。內容輸出量是TWICE最少的，但提到家鄉台南和家人時的真誠，讓「話少但真」成為她最深入人心的形象。"
         }
       },
-      "instagram": "thinkaboutzu"
+      "instagram": "thinkaboutzu",
+      "image_focus": 0.3
     },
     {
       "id": "felix",
@@ -2093,7 +2111,7 @@
       ],
       "popularity": 86,
       "followers": 9500000,
-      "image_url": null,
+      "image_url": "/idols/felix.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2212,7 +2230,8 @@
           "summary": "舞台上是「MIROH」popping動作被截成gif廣傳的爆發型舞者，開口卻是低到出乎意料的嗓音——晚安語錄被做成ASMR合輯。親手烘焙布朗尼送給工作人員的「Felix brownies」已是粉絲圈專有名詞，甜度與爆發力的反差無人能複製。"
         }
       },
-      "instagram": "yong.lixx"
+      "instagram": "yong.lixx",
+      "image_focus": 0.3
     },
     {
       "id": "soyeon",
@@ -2337,7 +2356,7 @@
       ],
       "popularity": 84,
       "followers": 11000000,
-      "image_url": null,
+      "image_url": "/idols/sana.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2432,7 +2451,8 @@
           "summary": "「Shy Shy Shy」讓撒嬌成為她的代名詞，「Feel Special」橋段的眼神被截成心跳停止系列。但粉絲更愛她直播裡突然認真感謝ONCE的反差真心；甜美氛圍與真誠告白的黃金比例，讓她成為TWICE最能讓觀眾忘記呼吸的存在。"
         }
       },
-      "instagram": "m.by__sana"
+      "instagram": "m.by__sana",
+      "image_focus": 0.3
     },
     {
       "id": "jeonghan",
@@ -2445,7 +2465,7 @@
       ],
       "popularity": 84,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/jeonghan.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2560,7 +2580,8 @@
           "summary": "嗓音被形容為「聽一秒就知道是他」的天使音色，《Don't Wanna Cry》現場以他的情感爆發成為剪輯高潮。《GOING SEVENTEEN》裡卻是用天使臉孔行騙的名場面製造機，TTT狼人殺被封為韓綜等級。天使外表與狡猾玩法的反差是CARAT的快樂源泉。"
         }
       },
-      "instagram": "jeonghaniyoo_n"
+      "instagram": "jeonghaniyoo_n",
+      "image_focus": 0.3
     },
     {
       "id": "yeonjun",
@@ -2573,7 +2594,7 @@
       ],
       "popularity": 84,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/yeonjun.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2671,7 +2692,8 @@
           "summary": "唱跳饒舌三個維度都能勝任主力的TXT王牌，「0X1=LOVESONG」的無縫切換讓樂評稱TXT為後BTS世代最值得期待的表演型男團。練習生時期連續月末評價第一的紀錄被反覆引用，時裝週前排與TikTok翻跳是他的內容雙引擎。"
         }
       },
-      "instagram": "yawnzzn"
+      "instagram": "yawnzzn",
+      "image_focus": 0.3
     },
     {
       "id": "iu",
@@ -2686,7 +2708,7 @@
       ],
       "popularity": 90,
       "followers": 13000000,
-      "image_url": null,
+      "image_url": "/idols/iu.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2783,7 +2805,8 @@
           "summary": "出道逾16年的「現場信仰」，PALETTE演唱會建立起開口即現場的神話，每場巡迴售票系統仍會崩潰。《IU's Palette》讓內容兼具專業與閨蜜閒聊感，生日固定大額捐款十餘年的「捐款天使」稱號，讓好感度跨出粉圈成為國民級。"
         }
       },
-      "instagram": "dlwlrma"
+      "instagram": "dlwlrma",
+      "image_focus": 0.3
     },
     {
       "id": "yeji",
@@ -2796,7 +2819,7 @@
       ],
       "popularity": 82,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/yeji.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -2891,7 +2914,8 @@
           ],
           "summary": "舞台上是《DALLA DALLA》貓眼直拍爆紅、動作精準如尺量的ITZY隊長兼主舞；私下卻輕聲細語、練習到最晚、被稱讚就害羞搗臉。銳利與溫柔的反差加上從不間斷的努力，讓她成為第四代最具說服力的隊長範本。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "ahyeon",
@@ -3012,7 +3036,7 @@
       ],
       "popularity": 81,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/seulgi.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3106,7 +3130,8 @@
           "summary": "七年練習生熬成的Red Velvet主舞，唱跳平衡是SM女團頂級，《28 Reasons》的暗黑solo被樂評稱為等了太久的出道。舞台殺氣與收集熊玩偶、安靜畫畫的私下性格反差鮮明，單眼皮高級臉更重新定義了K-pop審美。"
         }
       },
-      "instagram": "hi_sseulgi"
+      "instagram": "hi_sseulgi",
+      "image_focus": 0.3
     },
     {
       "id": "sullyoon",
@@ -3119,7 +3144,7 @@
       ],
       "popularity": 76,
       "followers": 4000000,
-      "image_url": null,
+      "image_url": "/idols/sullyoon.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3213,7 +3238,8 @@
           ],
           "summary": "被韓網封為「第四代奇蹟臉蛋」的NMIXX門面，黑髮紅唇的古典美在辣妹時代獨樹一格；高音穩定度卻長期被臉蛋光環掩蓋，是被聲樂頻道平反的實力派。端正優雅與大口吃飯的反差，是她最圈粉的內容公式。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "natty",
@@ -3333,7 +3359,7 @@
       ],
       "popularity": 83,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/niki.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3428,7 +3454,8 @@
           ],
           "summary": "六歲習舞、SHINee伴舞出身、《I-LAND》舞蹈評價第一出道的ENHYPEN么弟，MAMA solo dance break讓Taemin親自認證「神童長成怪物」。舞台上是暗黑概念的銳利剪影，舞台下是毒舌冷笑話不斷的四次元，反差感正是他的圈粉公式。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "wonbin",
@@ -3441,7 +3468,7 @@
       ],
       "popularity": 79,
       "followers": 5000000,
-      "image_url": null,
+      "image_url": "/idols/wonbin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3536,7 +3563,8 @@
           ],
           "summary": "出道即引爆「SM世紀美顏」討論的RIIZE門面，飯拍像膠片電影截圖；《Get A Guitar》center的律動讓編舞師認證「身體比臉更會說話」。話少行動派的溫柔與被稱讚就耳朵變紅的害羞，是清冷外表下最圈粉的反差。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sung-hanbin",
@@ -3549,7 +3577,7 @@
       ],
       "popularity": 77,
       "followers": 4000000,
-      "image_url": null,
+      "image_url": "/idols/sung-hanbin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3643,7 +3671,8 @@
           ],
           "summary": "Boys Planet以斷層人氣1位出道的ZEROBASEONE隊長，比落選選手哭得更傷心的共感力是他的人設原點。絲滑主舞實力配上記得住粉絲ID的服務精神，把「溫柔也是一種領導力」演成了第五代的隊長範本。"
         }
-      }
+      },
+      "image_focus": 0.18
     },
     {
       "id": "san",
@@ -3656,7 +3685,7 @@
       ],
       "popularity": 81,
       "followers": 6000000,
-      "image_url": null,
+      "image_url": "/idols/san.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3751,7 +3780,8 @@
           ],
           "summary": "ATEEZ「表演系男團」名聲的核心，每個killing part都用全身演戲，Coachella 2024後fancam登上全球趨勢。舞台下卻是抱著玩偶Shiber、演唱會感言必哭的軟萌大男孩——「上台像換了靈魂」的反差正是他的代名詞。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "mark",
@@ -3764,7 +3794,7 @@
       ],
       "popularity": 82,
       "followers": 7000000,
-      "image_url": null,
+      "image_url": "/idols/mark.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3860,7 +3890,8 @@
           "summary": "NCT 127、Dream、SuperM三組全勤還包辦作詞的「SM永動機」，《Kick It》說唱與年末舞台體力輸出從不掉鏈子。講話激動就語無倫次的真誠過載與每三句一次的「真的很感恩」，讓這位王牌成為粉圈公認「無法討厭的人」。"
         }
       },
-      "instagram": "onyourm__ark"
+      "instagram": "onyourm__ark",
+      "image_focus": 0.3
     },
     {
       "id": "ningning",
@@ -3873,7 +3904,7 @@
       ],
       "popularity": 84,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/ningning.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3968,7 +3999,8 @@
           "summary": "aespa現場穩定度的下限保證，《Armageddon》尾音被聲樂頻道當教材，年末大賞從不修音直接開麥。舞台下一開口就是豪爽東北話的吃貨體質與直球發言，讓這位00後主唱在中韓兩網都自帶迷因傳播力。"
         }
       },
-      "instagram": "imnotningning"
+      "instagram": "imnotningning",
+      "image_focus": 0.3
     },
     {
       "id": "haerin",
@@ -3981,7 +4013,7 @@
       ],
       "popularity": 84,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/haerin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4075,7 +4107,8 @@
           ],
           "summary": "NewJeans天然系美學的最佳載體，《Ditto》裡望向鏡頭的眼神成為Y2K懷舊的代表畫面。平時安靜如觀察中的貓，開口卻是讓成員愣住的四次元語錄；不費力卻精準踩點的表演智商，讓她成為靜中帶刺的氛圍中心。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "an-yujin",
@@ -4088,7 +4121,7 @@
       ],
       "popularity": 85,
       "followers": 9000000,
-      "image_url": null,
+      "image_url": "/idols/an-yujin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4183,7 +4216,8 @@
           "summary": "IVE最年輕的隊長卻是「自信敘事」的能量輸出端，《I AM》的開闊唱腔守住團隊現場下限。《地球娛樂室》的綜藝感收穫大量團外粉，像太陽一樣會傳染的爽朗大笑，讓「健康大方的自信」成為她的世代標籤。"
         }
       },
-      "instagram": "_yujin_an"
+      "instagram": "_yujin_an",
+      "image_focus": 0.3
     },
     {
       "id": "kim-chaewon",
@@ -4196,7 +4230,7 @@
       ],
       "popularity": 83,
       "followers": 7000000,
-      "image_url": null,
+      "image_url": "/idols/kim-chaewon.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4292,7 +4326,8 @@
           "summary": "IZ*ONE妹妹蛻變成LE SSERAFIM隊長的代表案例，《UNFORGIVEN》短髮把「小隻」翻譯成「精悍」，眼神氣場屠版直拍評論區。私下是冷面吐槽配遊戲宅的慵懶體質，「看起來慵懶但每個決定都很準」是成員給她的隊長認證。"
         }
       },
-      "instagram": "_chaechae_1"
+      "instagram": "_chaechae_1",
+      "image_focus": 0.3
     },
     {
       "id": "momo",
@@ -4305,7 +4340,7 @@
       ],
       "popularity": 85,
       "followers": 11000000,
-      "image_url": null,
+      "image_url": "/idols/momo.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4400,7 +4435,8 @@
           "summary": "SIXTEEN被淘汰又被朴軫永親自召回的傳奇主舞，年末「Momo的舞蹈時間」是TWICE現場的固定高潮。舞台殺氣與「比起跳舞更愛吃」的呆萌吃貨靈魂反差極大——開關只裝在舞台上的人，是她最準確的註解。"
         }
       },
-      "instagram": "momo"
+      "instagram": "momo",
+      "image_focus": 0.3
     },
     {
       "id": "j-hope",
@@ -4414,7 +4450,7 @@
       ],
       "popularity": 90,
       "followers": 20000000,
-      "image_url": null,
+      "image_url": "/idols/j-hope.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4510,7 +4546,8 @@
           "summary": "BTS的舞蹈隊長與氣氛核心，2022年以韓國藝人首次headline Lollapalooza，《Jack In The Box》的暗黑轉型證明「希望」之下還有藝術家的深度。把「I'm your hope」活成日常的正能量與練習室裡最嚴格的自律，是他二十年如一日的雙面引擎。"
         }
       },
-      "instagram": "uarmyhope"
+      "instagram": "uarmyhope",
+      "image_focus": 0.3
     },
     {
       "id": "jin",
@@ -4524,7 +4561,7 @@
       ],
       "popularity": 90,
       "followers": 20000000,
-      "image_url": null,
+      "image_url": "/idols/jin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4638,7 +4675,8 @@
           "summary": "自封「Worldwide Handsome」卻真的屢次因側臉登上全球熱搜的BTS最年長成員，《Epiphany》讓他從visual徹底翻身為實力派，《The Astronaut》阿根廷首唱的萬人合唱是歌手生涯定格。冷笑話講完自己先笑的迷因體質與關鍵時刻的年長者餘裕，是他的一體兩面。"
         }
       },
-      "instagram": "jin"
+      "instagram": "jin",
+      "image_focus": 0.3
     },
     {
       "id": "bang-chan",
@@ -4651,7 +4689,7 @@
       ],
       "popularity": 86,
       "followers": 12000000,
-      "image_url": null,
+      "image_url": "/idols/bang-chan.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4747,7 +4785,8 @@
           ],
           "summary": "JYP練習七年、親手把Stray Kids保到出道的隊長兼3RACHA製作核心，《God's Menu》的暴烈聲響出自他手。每週日雷打不動的Chan's Room直播累積數百集，用三種語言安慰各國粉絲——STAY說他不只做音樂，還做了一個家。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hoshi",
@@ -4760,7 +4799,7 @@
       ],
       "popularity": 83,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/hoshi.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4856,7 +4895,8 @@
           "summary": "SEVENTEEN「刀群舞」神話的第一功臣，統帥十三人編舞的表演組隊長，個人曲《TIGER》把自創的老虎人設炸成舞台實體。綜藝裡是Horanghae能量過載體，練習室裡卻是逐拍摳動作、被稱「舞台之神附身時不會笑」的指揮官。"
         }
       },
-      "instagram": "ho5hi_kwon"
+      "instagram": "ho5hi_kwon",
+      "image_focus": 0.3
     },
     {
       "id": "soobin",
@@ -4869,7 +4909,7 @@
       ],
       "popularity": 82,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/soobin.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -4983,7 +5023,8 @@
           "summary": "185cm卻把「軟萌」穿在身上的TXT兔系隊長，長肢線條讓編舞視覺張力翻倍，《0X1=LOVESONG》的細膩處理是被低估的實力。罕見承認社恐卻用Weverse千字長文剖白心境的笨拙真誠，被粉絲翻譯成十幾種語言——內向也能當隊長，他就是證明。"
         }
       },
-      "instagram": "page.soobin"
+      "instagram": "page.soobin",
+      "image_focus": 0.3
     }
   ],
   "tracks": []
