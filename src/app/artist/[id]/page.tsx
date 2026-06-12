@@ -23,7 +23,25 @@ export default async function ArtistPage({
           <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" />
         </div>
         <div className="flex-1">
-          <div className="font-orbitron text-3xl font-black text-white">{artist.name}</div>
+          <div className="flex items-center gap-3">
+            <span className="font-orbitron text-3xl font-black text-white">{artist.name}</span>
+            {artist.instagram && (
+              <a
+                href={`https://instagram.com/${artist.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`@${artist.instagram}`}
+                aria-label={`Instagram @${artist.instagram}`}
+                className="text-white/40 transition hover:text-[#ff00cc]"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            )}
+          </div>
           {artist.name_zh && artist.name_zh !== artist.name && (
             <div className="mt-1 text-white/60">{artist.name_zh}</div>
           )}

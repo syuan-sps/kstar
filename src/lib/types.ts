@@ -39,6 +39,7 @@ export interface Artist {
   popularity: number;
   followers?: number | null;
   image_url?: string | null;
+  instagram?: string | null;  // IG handle without @ (only confidently-verified accounts)
   profile?: IdolProfile;  // optional — old entries without profile still valid
 }
 
