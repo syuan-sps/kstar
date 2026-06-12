@@ -2,247 +2,1839 @@
   "_note": "Individual K-pop artists. group field = which group they belong to (null for soloists). profile = 4-layer similarity data.",
   "artists": [
     {
-      "id": "jungkook", "name": "Jungkook", "name_zh": "田柾國", "group": "BTS",
-      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 93, "followers": 25000000, "image_url": null,
+      "id": "jungkook",
+      "name": "Jungkook",
+      "name_zh": "田柾國",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-pop solo"
+      ],
+      "popularity": 93,
+      "followers": 25000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["暗黑系","吸血鬼感","奢華簡約","刺青感","痞帥"], "color_palette": ["黑","白","金","深紅"], "vibe": "暗黑奢華的痞帥少年" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFP" },
-        "performance": { "dance_style": "powerful", "vocal_type": "main vocalist", "stage_persona": "killing part king", "roles": ["main vocalist","lead dancer","center","killing part specialist"] },
-        "content":     { "topics": ["fitness","cooking","gaming","art","apartment aesthetic"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "暗黑系",
+            "吸血鬼感",
+            "奢華簡約",
+            "刺青感",
+            "痞帥"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "金",
+            "深紅"
+          ],
+          "vibe": "暗黑奢華的痞帥少年"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFP",
+          "vibe": "從內向到耀眼的完美主義者",
+          "trait_tags": [
+            "完美主義",
+            "內向成長",
+            "勤奮執著",
+            "有擔當",
+            "溫柔體貼"
+          ],
+          "analysis": "練習生時期因害羞幾乎無法在舞台開口，卻靠鋼鐵意志逆襲成「黃金么弟」。倫敦演唱會因腿傷邊哭邊堅持表演，J-Hope事後勸他「要控制節奏」，是他對舞台極致執念的最好寫照。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main vocalist",
+          "stage_persona": "killing part king",
+          "roles": [
+            "main vocalist",
+            "lead dancer",
+            "center",
+            "killing part specialist"
+          ]
+        },
+        "content": {
+          "topics": [
+            "fitness",
+            "cooking",
+            "gaming",
+            "art",
+            "apartment aesthetic"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "TikTok"
+          ],
+          "content_tone": "intimate"
+        }
       }
     },
     {
-      "id": "bts-v", "name": "V", "name_zh": "金泰亨", "group": "BTS",
-      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 91, "followers": 22000000, "image_url": null,
+      "id": "bts-v",
+      "name": "V",
+      "name_zh": "金泰亨",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-pop solo"
+      ],
+      "popularity": 91,
+      "followers": 22000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["復古奢華","藝術感","浪漫","時尚前衛","文青"], "color_palette": ["棕","米","酒紅","黑"], "vibe": "復古浪漫的藝術家" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "parasocial-close", "mbti": "INFP" },
-        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "visual dark prince", "roles": ["vocalist","visual","center"] },
-        "content":     { "topics": ["art","photography","fashion","travel","film"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+        "aesthetic": {
+          "style_tags": [
+            "復古奢華",
+            "藝術感",
+            "浪漫",
+            "時尚前衛",
+            "文青"
+          ],
+          "color_palette": [
+            "棕",
+            "米",
+            "酒紅",
+            "黑"
+          ],
+          "vibe": "復古浪漫的藝術家"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFP",
+          "vibe": "四維怪才的暖心藝術家",
+          "trait_tags": [
+            "4D古怪",
+            "溫暖體貼",
+            "藝術氣質",
+            "幽默深度",
+            "細膩同理"
+          ],
+          "analysis": "粉絲簽名會上發現粉絲牙齒沾到唇膏，默默用身體遮擋四周視線讓她能悄悄處理——這份細膩同理心正是他「4D人格」的真相：看似古怪，實則是全場最溫柔的人。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "visual dark prince",
+          "roles": [
+            "vocalist",
+            "visual",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "art",
+            "photography",
+            "fashion",
+            "travel",
+            "film"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse"
+          ],
+          "content_tone": "aesthetic"
+        }
       }
     },
     {
-      "id": "jimin", "name": "Jimin", "name_zh": "朴智旻", "group": "BTS",
-      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 91, "followers": 20000000, "image_url": null,
+      "id": "jimin",
+      "name": "Jimin",
+      "name_zh": "朴智旻",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-pop solo"
+      ],
+      "popularity": 91,
+      "followers": 20000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["流線剪裁","柔美魅惑","中性風","氛圍感","仙氣"], "color_palette": ["裸粉","白","金","透膚黑"], "vibe": "縹緲仙氣的現代舞者" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFJ" },
-        "performance": { "dance_style": "fluid", "vocal_type": "main dancer-vocalist", "stage_persona": "killing part manufacturer", "roles": ["main dancer","lead vocalist","center","killing part specialist"] },
-        "content":     { "topics": ["dance","fashion","food","artistic process","daily life"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "流線剪裁",
+            "柔美魅惑",
+            "中性風",
+            "氛圍感",
+            "仙氣"
+          ],
+          "color_palette": [
+            "裸粉",
+            "白",
+            "金",
+            "透膚黑"
+          ],
+          "vibe": "縹緲仙氣的現代舞者"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFJ",
+          "vibe": "用淚水與汗水築起的同理心之王",
+          "trait_tags": [
+            "高情商",
+            "超努力",
+            "照顧他人",
+            "完美主義",
+            "敏感深情"
+          ],
+          "analysis": "練習生時期每天凌晨4點才入睡，Suga形容他「不知道放棄是何物」。倫敦演唱會看到受傷的Jungkook落淚，立刻衝過去用燦爛笑容陪伴——感知他人情緒並立刻行動，是他最動人的特質。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "killing part manufacturer",
+          "roles": [
+            "main dancer",
+            "lead vocalist",
+            "center",
+            "killing part specialist"
+          ]
+        },
+        "content": {
+          "topics": [
+            "dance",
+            "fashion",
+            "food",
+            "artistic process",
+            "daily life"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "TikTok"
+          ],
+          "content_tone": "intimate"
+        }
       }
     },
     {
-      "id": "rm", "name": "RM", "name_zh": "金南俊", "group": "BTS",
-      "genres": ["k-pop", "k-pop boy group", "k-rap", "k-pop solo"], "popularity": 87, "followers": 15000000, "image_url": null,
+      "id": "rm",
+      "name": "RM",
+      "name_zh": "金南俊",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-rap",
+        "k-pop solo"
+      ],
+      "popularity": 87,
+      "followers": 15000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["知性","文青","oversize","策展人風","沉穩"], "color_palette": ["大地色","白","黑","森林綠"], "vibe": "哲思系藝術策展人" },
-        "personality": { "energy_type": "calm", "fan_interaction": "formal", "mbti": "INFJ" },
-        "performance": { "dance_style": "rhythmic", "vocal_type": "rapper", "stage_persona": "philosophical leader", "roles": ["leader","main rapper","lyricist"] },
-        "content":     { "topics": ["contemporary art","literature","travel","mental health","museum visits"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+        "aesthetic": {
+          "style_tags": [
+            "知性",
+            "文青",
+            "oversize",
+            "策展人風",
+            "沉穩"
+          ],
+          "color_palette": [
+            "大地色",
+            "白",
+            "黑",
+            "森林綠"
+          ],
+          "vibe": "哲思系藝術策展人"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INFJ",
+          "vibe": "孤獨思考者的藝術朝聖之路",
+          "trait_tags": [
+            "知性深思",
+            "藝術品味",
+            "獨立探索",
+            "反思自省",
+            "策展人氣質"
+          ],
+          "analysis": "一次芝加哥之行「無心插柳」邂逅Seurat與Monet原作，從此點燃對藝術的熱情，開啟「南俊遊博物館」(Namjooning)風潮，更與SFMOMA合辦個展，展現知識分子對美的極致追求。"
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "rapper",
+          "stage_persona": "philosophical leader",
+          "roles": [
+            "leader",
+            "main rapper",
+            "lyricist"
+          ]
+        },
+        "content": {
+          "topics": [
+            "contemporary art",
+            "literature",
+            "travel",
+            "mental health",
+            "museum visits"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse"
+          ],
+          "content_tone": "aesthetic"
+        }
       }
     },
     {
-      "id": "lisa", "name": "Lisa", "name_zh": "羅讚", "group": "BLACKPINK",
-      "genres": ["k-pop", "k-pop girl group", "k-pop solo", "k-rap"], "popularity": 94, "followers": 28000000, "image_url": null,
+      "id": "lisa",
+      "name": "Lisa",
+      "name_zh": "羅讚",
+      "group": "BLACKPINK",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-pop solo",
+        "k-rap"
+      ],
+      "popularity": 94,
+      "followers": 28000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["性感","辣","girl crush","高級感","暗黑優雅","結構剪裁","大膽前衛","紳士風"], "color_palette": ["黑","金","銀","酒紅"], "vibe": "暗黑優雅的颯爽女王", "analysis": "Lisa的美學建立在大膽黑色系與結構剪裁上，性感卻不失高貴，將透視與建築感融合。從Met Gala的鏤空corset到紅毯的透膚層次，是對傳統女性氣質的叛逆詮釋。" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ESFP" },
-        "performance": { "dance_style": "powerful", "vocal_type": "main rapper-dancer", "stage_persona": "charismatic dance queen", "roles": ["main dancer","lead rapper","center"] },
-        "content":     { "topics": ["fashion","dance tutorials","beauty","travel","Thailand culture"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "hype" }
+        "aesthetic": {
+          "style_tags": [
+            "性感",
+            "辣",
+            "girl crush",
+            "高級感",
+            "暗黑優雅",
+            "結構剪裁",
+            "大膽前衛",
+            "紳士風"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "銀",
+            "酒紅"
+          ],
+          "vibe": "暗黑優雅的颯爽女王",
+          "analysis": "Lisa的美學建立在大膽黑色系與結構剪裁上，性感卻不失高貴，將透視與建築感融合。從Met Gala的鏤空corset到紅毯的透膚層次，是對傳統女性氣質的叛逆詮釋。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "陽光外表下的舞蹈野獸",
+          "trait_tags": [
+            "競技心強",
+            "練習狂",
+            "陽光活力",
+            "逗趣幽默",
+            "天賦型天后"
+          ],
+          "analysis": "Hot Ones節目上與Rosé比吃辣椒，Rosé警告「超辣」她卻笑著全力迎戰，不服輸精神一覽無遺。出身泰國舞蹈競賽選手的她訓練量超越所有成員，陽光笑容背後是鋼鐵意志。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper-dancer",
+          "stage_persona": "charismatic dance queen",
+          "roles": [
+            "main dancer",
+            "lead rapper",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "dance tutorials",
+            "beauty",
+            "travel",
+            "Thailand culture"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "YouTube"
+          ],
+          "content_tone": "hype"
+        }
       }
     },
     {
-      "id": "jennie", "name": "Jennie", "name_zh": "金珍妮", "group": "BLACKPINK",
-      "genres": ["k-pop", "k-pop girl group", "k-pop solo", "k-rap"], "popularity": 92, "followers": 20000000, "image_url": null,
+      "id": "jennie",
+      "name": "Jennie",
+      "name_zh": "金珍妮",
+      "group": "BLACKPINK",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-pop solo",
+        "k-rap"
+      ],
+      "popularity": 92,
+      "followers": 20000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["人間香奈兒","暗黑甜酷","Y2K奢華","隨性高級","氛圍感"], "color_palette": ["黑","白","嫩粉","金屬色"], "vibe": "隨性高級的人間香奈兒" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "playful", "mbti": "ISTP" },
-        "performance": { "dance_style": "precise", "vocal_type": "rapper-vocalist", "stage_persona": "nonchalant icon", "roles": ["main rapper","lead vocalist","center"] },
-        "content":     { "topics": ["fashion","beauty","food","luxury brand collaborations"], "sns_platform": ["Instagram","YouTube"], "content_tone": "aesthetic" }
+        "aesthetic": {
+          "style_tags": [
+            "人間香奈兒",
+            "暗黑甜酷",
+            "Y2K奢華",
+            "隨性高級",
+            "氛圍感"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "嫩粉",
+            "金屬色"
+          ],
+          "vibe": "隨性高級的人間香奈兒"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "playful",
+          "mbti": "ISTP",
+          "vibe": "貓系首爾女孩的自信法則",
+          "trait_tags": [
+            "高度自信",
+            "機智毒舌",
+            "天生領袖",
+            "世故品味",
+            "外冷內萌"
+          ],
+          "analysis": "被粉絲稱「人間Chanel」，綜藝節目上不按牌理出牌的毒舌與冷靜自信讓人印象深刻，輕描淡寫就說出最犀利的話。貓系高冷只是表象，圈內外都公認她有天生的主場感。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "rapper-vocalist",
+          "stage_persona": "nonchalant icon",
+          "roles": [
+            "main rapper",
+            "lead vocalist",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "beauty",
+            "food",
+            "luxury brand collaborations"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic"
+        }
       }
     },
     {
-      "id": "rose", "name": "Rosé", "name_zh": "朴彩英", "group": "BLACKPINK",
-      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 90, "followers": 18000000, "image_url": null,
+      "id": "rose",
+      "name": "Rosé",
+      "name_zh": "朴彩英",
+      "group": "BLACKPINK",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-pop solo"
+      ],
+      "popularity": 90,
+      "followers": 18000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["暗黑浪漫","復古indie","夢幻","波希米亞","文青"], "color_palette": ["玫瑰粉","奶油色","森林綠","透白"], "vibe": "暗黑浪漫的indie繆思" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFP" },
-        "performance": { "dance_style": "fluid", "vocal_type": "golden voice soprano", "stage_persona": "emotional storyteller", "roles": ["main vocalist","lead dancer"] },
-        "content":     { "topics": ["songwriting","food","fashion","emotional music","daily life"], "sns_platform": ["Instagram","YouTube","TikTok"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "暗黑浪漫",
+            "復古indie",
+            "夢幻",
+            "波希米亞",
+            "文青"
+          ],
+          "color_palette": [
+            "玫瑰粉",
+            "奶油色",
+            "森林綠",
+            "透白"
+          ],
+          "vibe": "暗黑浪漫的indie繆思"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFP",
+          "vibe": "溫柔淚人的真情詞曲作者",
+          "trait_tags": [
+            "感性易哭",
+            "真誠溫暖",
+            "思鄉情深",
+            "音樂驅動",
+            "體貼細膩"
+          ],
+          "analysis": "澳洲長大的她常在鏡頭前不掩鄉愁，《R》專輯每首歌都是真實情感的出口。錄影時總是第一個衝去抱住哭泣成員的人，圈內公認是BLACKPINK最感性也最真誠的心靈。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "golden voice soprano",
+          "stage_persona": "emotional storyteller",
+          "roles": [
+            "main vocalist",
+            "lead dancer"
+          ]
+        },
+        "content": {
+          "topics": [
+            "songwriting",
+            "food",
+            "fashion",
+            "emotional music",
+            "daily life"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "intimate"
+        }
       }
     },
     {
-      "id": "jisoo", "name": "Jisoo", "name_zh": "金知秀", "group": "BLACKPINK",
-      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 89, "followers": 17000000, "image_url": null,
+      "id": "jisoo",
+      "name": "Jisoo",
+      "name_zh": "金知秀",
+      "group": "BLACKPINK",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-pop solo"
+      ],
+      "popularity": 89,
+      "followers": 17000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["經典美人","古典女人味","優雅","少女感","4D"], "color_palette": ["紅","粉","白","薰衣草"], "vibe": "古典優雅的韓系美人" },
-        "personality": { "energy_type": "warm", "fan_interaction": "4D-quirky", "mbti": "ISFP" },
-        "performance": { "dance_style": "precise", "vocal_type": "lead vocalist", "stage_persona": "graceful centerpiece", "roles": ["lead vocalist","visual","center"] },
-        "content":     { "topics": ["acting","fashion","food","pets","gaming","quirky moments"], "sns_platform": ["Instagram","Weverse"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "經典美人",
+            "古典女人味",
+            "優雅",
+            "少女感",
+            "4D"
+          ],
+          "color_palette": [
+            "紅",
+            "粉",
+            "白",
+            "薰衣草"
+          ],
+          "vibe": "古典優雅的韓系美人"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ISFP",
+          "vibe": "扮酷失敗的4D滑稽大姊",
+          "trait_tags": [
+            "4D無厘頭",
+            "好勝心強",
+            "遊戲狂熱",
+            "反差萌",
+            "開朗搞笑"
+          ],
+          "analysis": "平時擺出大姊架勢，一打遊戲立刻原形畢露：輸了大聲抗議、贏了誇張慶祝。隨時插播孫悟空歌謠的她被成員爆料「根本停不下來」，酷姐人設在她的4D能量面前毫無招架之力。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "graceful centerpiece",
+          "roles": [
+            "lead vocalist",
+            "visual",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "acting",
+            "fashion",
+            "food",
+            "pets",
+            "gaming",
+            "quirky moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "wonyoung", "name": "Wonyoung", "name_zh": "張元英", "group": "IVE",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 89, "followers": 11000000, "image_url": null,
+      "id": "wonyoung",
+      "name": "Wonyoung",
+      "name_zh": "張元英",
+      "group": "IVE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 89,
+      "followers": 11000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["少女感","甜美","清純","洋娃娃感","芭蕾感","極簡優雅","純欲","學院風"], "color_palette": ["粉紅","白","薄紫","天藍"], "vibe": "粉色系的甜美少女精靈", "analysis": "Wonyoung以『Wonyoungism』粉色系甜美美學為核心，融合芭蕾感、洋娃娃臉與極簡優雅，既純欲又少女。身為Miu Miu美妝大使，雜誌封面與街拍不斷強化優雅少女人設。" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "playful", "mbti": "ESFJ", "vibe": "閃耀自信的正能量公主", "trait_tags": ["極度自信","正向思維","完美主義","閃亮存在感","自我疼愛","從容優雅","努力派"], "analysis": "她的「原英主義」：把小事往好的方向想，下雨淋濕了就說「幸好頭髮好看」，積極的自我疼愛哲學感染了無數粉絲。" },
-        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "flawless center goddess", "roles": ["center","vocalist","visual"], "vibe": "表情管理教科書的舞台精靈", "trait_tags": ["表情管理大師","鏡頭吸引力","自信台風","完美主義","直拍女王"], "analysis": "「Love Dive」的標誌性wink直拍創下千萬點閱，被稱為表情管理教科書，每個鏡頭都精準踩在心動點上。" },
-        "content":     { "topics": ["beauty","fashion","self-care","idol tips","food"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "hype", "vibe": "Wonyoungism生活方式引領者", "trait_tags": ["日常Vlog","自我管理","元氣語錄","生活美學","自律偶像"], "analysis": "她的Vlog掀起「Wonyoungism」風潮，讀書、運動、正向語錄的自律日常被無數少女當作人生模板模仿。" },
-        "overview":    { "vibe": "自帶光環的元氣公主", "trait_tags": ["元氣公主","表情管理","Wonyoungism","極度自信","少女感","自律"], "summary": "甜美的洋娃娃美學、教科書級的表情管理、正能量爆棚的Wonyoungism——張元英把自信活成了一種風格，閃閃發光地感染所有人。" }
+        "aesthetic": {
+          "style_tags": [
+            "少女感",
+            "甜美",
+            "清純",
+            "洋娃娃感",
+            "芭蕾感",
+            "極簡優雅",
+            "純欲",
+            "學院風"
+          ],
+          "color_palette": [
+            "粉紅",
+            "白",
+            "薄紫",
+            "天藍"
+          ],
+          "vibe": "粉色系的甜美少女精靈",
+          "analysis": "Wonyoung以『Wonyoungism』粉色系甜美美學為核心，融合芭蕾感、洋娃娃臉與極簡優雅，既純欲又少女。身為Miu Miu美妝大使，雜誌封面與街拍不斷強化優雅少女人設。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "playful",
+          "mbti": "ESFJ",
+          "vibe": "閃耀自信的正能量公主",
+          "trait_tags": [
+            "極度自信",
+            "正向思維",
+            "完美主義",
+            "閃亮存在感",
+            "自我疼愛",
+            "從容優雅",
+            "努力派"
+          ],
+          "analysis": "她的「原英主義」：把小事往好的方向想，下雨淋濕了就說「幸好頭髮好看」，積極的自我疼愛哲學感染了無數粉絲。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "flawless center goddess",
+          "roles": [
+            "center",
+            "vocalist",
+            "visual"
+          ],
+          "vibe": "表情管理教科書的舞台精靈",
+          "trait_tags": [
+            "表情管理大師",
+            "鏡頭吸引力",
+            "自信台風",
+            "完美主義",
+            "直拍女王"
+          ],
+          "analysis": "「Love Dive」的標誌性wink直拍創下千萬點閱，被稱為表情管理教科書，每個鏡頭都精準踩在心動點上。"
+        },
+        "content": {
+          "topics": [
+            "beauty",
+            "fashion",
+            "self-care",
+            "idol tips",
+            "food"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "hype",
+          "vibe": "Wonyoungism生活方式引領者",
+          "trait_tags": [
+            "日常Vlog",
+            "自我管理",
+            "元氣語錄",
+            "生活美學",
+            "自律偶像"
+          ],
+          "analysis": "她的Vlog掀起「Wonyoungism」風潮，讀書、運動、正向語錄的自律日常被無數少女當作人生模板模仿。"
+        },
+        "overview": {
+          "vibe": "自帶光環的元氣公主",
+          "trait_tags": [
+            "元氣公主",
+            "表情管理",
+            "Wonyoungism",
+            "極度自信",
+            "少女感",
+            "自律"
+          ],
+          "summary": "甜美的洋娃娃美學、教科書級的表情管理、正能量爆棚的Wonyoungism——張元英把自信活成了一種風格，閃閃發光地感染所有人。"
+        }
       }
     },
     {
-      "id": "karina", "name": "Karina", "name_zh": "柳智旻", "group": "aespa",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 88, "followers": 10000000, "image_url": null,
+      "id": "karina",
+      "name": "Karina",
+      "name_zh": "柳智旻",
+      "group": "aespa",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 88,
+      "followers": 10000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["高級感","冷感","未來感","人間AI","金屬感","幾何銳利","極簡奢華","雙面性"], "color_palette": ["銀","黑","白","金屬灰"], "vibe": "冷豔未來的高級AI", "analysis": "Karina體現aespa的『未來』論述，視覺如AI般精緻冷豔，以金屬、銳利剪裁與幾何打造前衛感。身為Prada大使，造型不斷強化『人間AI』無懈可擊的人設。" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "ENFP", "vibe": "冷豔外表下的暖心領導者", "trait_tags": ["外冷內熱","高情商","觀察敏銳","細心體貼","言少情深","有邊界感","真誠待粉"], "analysis": "粉絲簽名會上她為每位粉絲手寫長信，留下「我給你的愛是你能收到最大的愛」——冷靜表面下藏著最深的溫柔。" },
-        "performance": { "dance_style": "powerful", "vocal_type": "dancer-vocalist", "stage_persona": "perfect AI avatar", "roles": ["main dancer","lead vocalist","center","leader"], "vibe": "刀群舞中心的氣場女王", "trait_tags": ["刀般精準","強悍台風","視線殺","爆發力","中心存在感","控場力"], "analysis": "「Savage」與「Drama」的銳利刀群舞被譽為SM新世代舞蹈門面，開場一個眼神就能掌控全場氣氛。" },
-        "content":     { "topics": ["technology","fashion","gaming","aespa universe lore"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "aesthetic", "vibe": "遊戲宅與高冷美照的反差", "trait_tags": ["遊戲實況","Bubble話癆","高質感自拍","反差萌","寵粉日常"], "analysis": "Instagram上是高級感大片，Bubble裡卻化身話癆，深夜陪粉絲聊天、認真回覆訊息的反差讓MY直呼上癮。" },
-        "overview":    { "vibe": "人間AI的雙面魅力", "trait_tags": ["人間AI","外冷內熱","刀群舞中心","遊戲宅","高級感","真誠待粉"], "summary": "舞台上是無懈可擊的未來戰士，舞台下是寫長信、玩遊戲的暖心領導者——Karina用「人間AI」的完美與真實的溫度，定義aespa的雙面宇宙。" }
+        "aesthetic": {
+          "style_tags": [
+            "高級感",
+            "冷感",
+            "未來感",
+            "人間AI",
+            "金屬感",
+            "幾何銳利",
+            "極簡奢華",
+            "雙面性"
+          ],
+          "color_palette": [
+            "銀",
+            "黑",
+            "白",
+            "金屬灰"
+          ],
+          "vibe": "冷豔未來的高級AI",
+          "analysis": "Karina體現aespa的『未來』論述，視覺如AI般精緻冷豔，以金屬、銳利剪裁與幾何打造前衛感。身為Prada大使，造型不斷強化『人間AI』無懈可擊的人設。"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "formal",
+          "mbti": "ENFP",
+          "vibe": "冷豔外表下的暖心領導者",
+          "trait_tags": [
+            "外冷內熱",
+            "高情商",
+            "觀察敏銳",
+            "細心體貼",
+            "言少情深",
+            "有邊界感",
+            "真誠待粉"
+          ],
+          "analysis": "粉絲簽名會上她為每位粉絲手寫長信，留下「我給你的愛是你能收到最大的愛」——冷靜表面下藏著最深的溫柔。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "dancer-vocalist",
+          "stage_persona": "perfect AI avatar",
+          "roles": [
+            "main dancer",
+            "lead vocalist",
+            "center",
+            "leader"
+          ],
+          "vibe": "刀群舞中心的氣場女王",
+          "trait_tags": [
+            "刀般精準",
+            "強悍台風",
+            "視線殺",
+            "爆發力",
+            "中心存在感",
+            "控場力"
+          ],
+          "analysis": "「Savage」與「Drama」的銳利刀群舞被譽為SM新世代舞蹈門面，開場一個眼神就能掌控全場氣氛。"
+        },
+        "content": {
+          "topics": [
+            "technology",
+            "fashion",
+            "gaming",
+            "aespa universe lore"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "TikTok"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "遊戲宅與高冷美照的反差",
+          "trait_tags": [
+            "遊戲實況",
+            "Bubble話癆",
+            "高質感自拍",
+            "反差萌",
+            "寵粉日常"
+          ],
+          "analysis": "Instagram上是高級感大片，Bubble裡卻化身話癆，深夜陪粉絲聊天、認真回覆訊息的反差讓MY直呼上癮。"
+        },
+        "overview": {
+          "vibe": "人間AI的雙面魅力",
+          "trait_tags": [
+            "人間AI",
+            "外冷內熱",
+            "刀群舞中心",
+            "遊戲宅",
+            "高級感",
+            "真誠待粉"
+          ],
+          "summary": "舞台上是無懈可擊的未來戰士，舞台下是寫長信、玩遊戲的暖心領導者——Karina用「人間AI」的完美與真實的溫度，定義aespa的雙面宇宙。"
+        }
       }
     },
     {
-      "id": "hanni", "name": "Hanni", "name_zh": "潘韓娜", "group": "NewJeans",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 87, "followers": 9000000, "image_url": null,
+      "id": "hanni",
+      "name": "Hanni",
+      "name_zh": "潘韓娜",
+      "group": "NewJeans",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 87,
+      "followers": 9000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["Y2K","90年代休閒","鄰家女孩","復古","甜美"], "color_palette": ["棕","奶油色","嫩黃","丹寧藍"], "vibe": "復古甜美的鄰家女孩" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFP" },
-        "performance": { "dance_style": "fluid", "vocal_type": "vocalist-dancer", "stage_persona": "charming mood maker", "roles": ["vocalist","dancer","face of group"] },
-        "content":     { "topics": ["daily life","food","beauty","travel","bubbly moments"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "Y2K",
+            "90年代休閒",
+            "鄰家女孩",
+            "復古",
+            "甜美"
+          ],
+          "color_palette": [
+            "棕",
+            "奶油色",
+            "嫩黃",
+            "丹寧藍"
+          ],
+          "vibe": "復古甜美的鄰家女孩"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFP",
+          "vibe": "陽光溫暖的跨文化小太陽",
+          "trait_tags": [
+            "溫暖親善",
+            "真摯粉絲心",
+            "活潑開朗",
+            "謙遜體貼",
+            "文化融合"
+          ],
+          "analysis": "越南裔澳洲出身，見到前輩偶像時興奮得像個粉絲，毫不掩飾地喊出「我真的超喜歡她們」，真情流露讓在場所有人都被感染。NewJeans裡最先主動靠近陌生人的，永遠是Hanni。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "charming mood maker",
+          "roles": [
+            "vocalist",
+            "dancer",
+            "face of group"
+          ]
+        },
+        "content": {
+          "topics": [
+            "daily life",
+            "food",
+            "beauty",
+            "travel",
+            "bubbly moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "YouTube"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "nayeon", "name": "Nayeon", "name_zh": "林娜璉", "group": "TWICE",
-      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 86, "followers": 13000000, "image_url": null,
+      "id": "nayeon",
+      "name": "Nayeon",
+      "name_zh": "林娜璉",
+      "group": "TWICE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-pop solo"
+      ],
+      "popularity": 86,
+      "followers": 13000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["兔系","泡泡糖甜","少女流行","經典偶像","活力"], "color_palette": ["粉","白","嫩黃","珊瑚"], "vibe": "甜美活力的兔系女偶像" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENFJ" },
-        "performance": { "dance_style": "precise", "vocal_type": "main vocalist", "stage_persona": "all-round idol star", "roles": ["main vocalist","lead dancer","center"] },
-        "content":     { "topics": ["food","beauty","daily life","travel","bunny moments"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "兔系",
+            "泡泡糖甜",
+            "少女流行",
+            "經典偶像",
+            "活力"
+          ],
+          "color_palette": [
+            "粉",
+            "白",
+            "嫩黃",
+            "珊瑚"
+          ],
+          "vibe": "甜美活力的兔系女偶像"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFJ",
+          "vibe": "永遠長不大的搗蛋兔子大姊",
+          "trait_tags": [
+            "愛捉弄人",
+            "好勝心強",
+            "聰慧機靈",
+            "愛護成員",
+            "活力充沛"
+          ],
+          "analysis": "自稱「永遠不老」，在綜藝上惡整完成員後還一臉無辜享受後果。遊戲中輸了大聲嚷嚷、贏了誇張歡呼，強烈勝負欲搭配少女感爆發的笑聲，是TWICE現場能量最高的存在。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "main vocalist",
+          "stage_persona": "all-round idol star",
+          "roles": [
+            "main vocalist",
+            "lead dancer",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "food",
+            "beauty",
+            "daily life",
+            "travel",
+            "bunny moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "minji", "name": "Minji", "name_zh": "金旻知", "group": "NewJeans",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 8500000, "image_url": null,
+      "id": "minji",
+      "name": "Minji",
+      "name_zh": "金旻知",
+      "group": "NewJeans",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 86,
+      "followers": 8500000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["乾淨感","初戀系","甜酷","颯爽","學院風","中性優雅","Y2K","女神氣質"], "color_palette": ["海軍藍","白","灰藍","金屬銀"], "vibe": "藍白系的乾淨颯爽女神", "analysis": "Minji的美學平衡『乾淨感』與『颯爽』，以海軍藍、白與灰藍為主調，透過oversized denim與tweed打造年輕又成熟的視覺。身為Chanel大使，持續強化初戀系優雅與girl crush率性。" },
-        "personality": { "energy_type": "calm", "fan_interaction": "playful", "mbti": "INFJ", "vibe": "沉靜成熟的溫柔隊長", "trait_tags": ["成熟穩重","溫柔領導","細心包容","低調自信","體貼暖心","幽默直率","藝術氣質"], "analysis": "身為NewJeans年紀最長的成員，民知以溫柔而堅定的方式守護隊友，直播時常主動關心成員狀態，被公認最令人安心的存在。" },
-        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "natural leader", "roles": ["main vocalist","leader","visual"], "vibe": "鬆弛感十足的天生主角", "trait_tags": ["鬆弛台風","自然舞感","眼神戲","低調存在感","細節控","穩定發揮"], "analysis": "「Ditto」「OMG」舞台上不刻意卻搶眼的鬆弛感，隨性一個回眸便成名場面，被讚是天生的舞台臉。" },
-        "content":     { "topics": ["fashion","art","daily life","understated moments"], "sns_platform": ["Instagram","TikTok"], "content_tone": "aesthetic", "vibe": "極簡精選的高級日常", "trait_tags": ["精選系IG","Phoning直播","時尚穿搭","慢步調日常","質感策展"], "analysis": "Instagram發文少而精，每張照片都像雜誌切圖；Phoning直播裡卻認真讀留言、關心粉絲日常，距離感與親近感並存。" },
-        "overview":    { "vibe": "初戀系隊長的靜水深流", "trait_tags": ["初戀系","溫柔隊長","鬆弛感","極簡品味","乾淨感","成熟穩重"], "summary": "藍白色系的乾淨美學、鬆弛自然的舞台魅力、少而精的內容品味——Minji以安靜而堅定的方式，成為NewJeans最令人安心的存在。" }
+        "aesthetic": {
+          "style_tags": [
+            "乾淨感",
+            "初戀系",
+            "甜酷",
+            "颯爽",
+            "學院風",
+            "中性優雅",
+            "Y2K",
+            "女神氣質"
+          ],
+          "color_palette": [
+            "海軍藍",
+            "白",
+            "灰藍",
+            "金屬銀"
+          ],
+          "vibe": "藍白系的乾淨颯爽女神",
+          "analysis": "Minji的美學平衡『乾淨感』與『颯爽』，以海軍藍、白與灰藍為主調，透過oversized denim與tweed打造年輕又成熟的視覺。身為Chanel大使，持續強化初戀系優雅與girl crush率性。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "playful",
+          "mbti": "INFJ",
+          "vibe": "沉靜成熟的溫柔隊長",
+          "trait_tags": [
+            "成熟穩重",
+            "溫柔領導",
+            "細心包容",
+            "低調自信",
+            "體貼暖心",
+            "幽默直率",
+            "藝術氣質"
+          ],
+          "analysis": "身為NewJeans年紀最長的成員，民知以溫柔而堅定的方式守護隊友，直播時常主動關心成員狀態，被公認最令人安心的存在。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "natural leader",
+          "roles": [
+            "main vocalist",
+            "leader",
+            "visual"
+          ],
+          "vibe": "鬆弛感十足的天生主角",
+          "trait_tags": [
+            "鬆弛台風",
+            "自然舞感",
+            "眼神戲",
+            "低調存在感",
+            "細節控",
+            "穩定發揮"
+          ],
+          "analysis": "「Ditto」「OMG」舞台上不刻意卻搶眼的鬆弛感，隨性一個回眸便成名場面，被讚是天生的舞台臉。"
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "art",
+            "daily life",
+            "understated moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "極簡精選的高級日常",
+          "trait_tags": [
+            "精選系IG",
+            "Phoning直播",
+            "時尚穿搭",
+            "慢步調日常",
+            "質感策展"
+          ],
+          "analysis": "Instagram發文少而精，每張照片都像雜誌切圖；Phoning直播裡卻認真讀留言、關心粉絲日常，距離感與親近感並存。"
+        },
+        "overview": {
+          "vibe": "初戀系隊長的靜水深流",
+          "trait_tags": [
+            "初戀系",
+            "溫柔隊長",
+            "鬆弛感",
+            "極簡品味",
+            "乾淨感",
+            "成熟穩重"
+          ],
+          "summary": "藍白色系的乾淨美學、鬆弛自然的舞台魅力、少而精的內容品味——Minji以安靜而堅定的方式，成為NewJeans最令人安心的存在。"
+        }
       }
     },
     {
-      "id": "winter", "name": "Winter", "name_zh": "金珉廷", "group": "aespa",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 9000000, "image_url": null,
+      "id": "winter",
+      "name": "Winter",
+      "name_zh": "金珉廷",
+      "group": "aespa",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 86,
+      "followers": 9000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["冰雪公主","空靈","未來感","清冷","仙氣"], "color_palette": ["白","銀","冰藍","覆盆莓"], "vibe": "清冷空靈的冰雪公主" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "INFP", "vibe": "真率直白的4D鬼靈精", "trait_tags": ["真誠率直","4D幽默","反差萌","聰慧機智","易感脆弱","毫不做作","暖心細膩"], "analysis": "Billboard頒獎典禮意外開麥，隨口說出「幫我綁一下」、「什麼香氣那麼好聞」，毫無偶像包袱的模樣讓粉絲大喊可愛。" },
-        "performance": { "dance_style": "powerful", "vocal_type": "main dancer-vocalist", "stage_persona": "cold charismatic ethereal", "roles": ["main dancer","vocalist"], "vibe": "穿透力主唱的冰與火", "trait_tags": ["高音穿透力","音色辨識度","穩定現場","唱跳兼優","深情詮釋"], "analysis": "「Armageddon」的高音與SOLO曲「Blue」的細膩詮釋展現主唱實力，清冷外型下唱跳俱佳的全能讓人驚艷。" },
-        "content":     { "topics": ["fashion","gaming","technology","tranquil moments"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic", "vibe": "深夜電台式的真誠連線", "trait_tags": ["深夜直播","碎碎念日常","遊戲玩家","真實不修飾","寵粉細節"], "analysis": "Weverse直播像深夜電台，想到什麼說什麼的碎碎念與毫無偶包的日常，讓粉絲感覺像在和朋友通話。" },
-        "overview":    { "vibe": "冰雪外表下的真性情", "trait_tags": ["冰雪公主","4D反差萌","主唱實力","深夜電台","真誠率直","仙氣"], "summary": "空靈如冰雪公主的視覺、穿透人心的主唱實力，加上開麥就藏不住的4D真性情——Winter的魅力正是這份極致反差。" }
+        "aesthetic": {
+          "style_tags": [
+            "冰雪公主",
+            "空靈",
+            "未來感",
+            "清冷",
+            "仙氣"
+          ],
+          "color_palette": [
+            "白",
+            "銀",
+            "冰藍",
+            "覆盆莓"
+          ],
+          "vibe": "清冷空靈的冰雪公主"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "formal",
+          "mbti": "INFP",
+          "vibe": "真率直白的4D鬼靈精",
+          "trait_tags": [
+            "真誠率直",
+            "4D幽默",
+            "反差萌",
+            "聰慧機智",
+            "易感脆弱",
+            "毫不做作",
+            "暖心細膩"
+          ],
+          "analysis": "Billboard頒獎典禮意外開麥，隨口說出「幫我綁一下」、「什麼香氣那麼好聞」，毫無偶像包袱的模樣讓粉絲大喊可愛。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "cold charismatic ethereal",
+          "roles": [
+            "main dancer",
+            "vocalist"
+          ],
+          "vibe": "穿透力主唱的冰與火",
+          "trait_tags": [
+            "高音穿透力",
+            "音色辨識度",
+            "穩定現場",
+            "唱跳兼優",
+            "深情詮釋"
+          ],
+          "analysis": "「Armageddon」的高音與SOLO曲「Blue」的細膩詮釋展現主唱實力，清冷外型下唱跳俱佳的全能讓人驚艷。"
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "gaming",
+            "technology",
+            "tranquil moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "深夜電台式的真誠連線",
+          "trait_tags": [
+            "深夜直播",
+            "碎碎念日常",
+            "遊戲玩家",
+            "真實不修飾",
+            "寵粉細節"
+          ],
+          "analysis": "Weverse直播像深夜電台，想到什麼說什麼的碎碎念與毫無偶包的日常，讓粉絲感覺像在和朋友通話。"
+        },
+        "overview": {
+          "vibe": "冰雪外表下的真性情",
+          "trait_tags": [
+            "冰雪公主",
+            "4D反差萌",
+            "主唱實力",
+            "深夜電台",
+            "真誠率直",
+            "仙氣"
+          ],
+          "summary": "空靈如冰雪公主的視覺、穿透人心的主唱實力，加上開麥就藏不住的4D真性情——Winter的魅力正是這份極致反差。"
+        }
       }
     },
     {
-      "id": "hyunjin", "name": "Hyunjin", "name_zh": "黃賢辰", "group": "Stray Kids",
-      "genres": ["k-pop", "k-pop boy group", "k-rap"], "popularity": 87, "followers": 10000000, "image_url": null,
+      "id": "hyunjin",
+      "name": "Hyunjin",
+      "name_zh": "黃賢辰",
+      "group": "Stray Kids",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-rap"
+      ],
+      "popularity": 87,
+      "followers": 10000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["暗黑藝術","畫家氣質","戲劇感","時尚模特","頹廢美"], "color_palette": ["黑","紫","緋紅","畫布白"], "vibe": "暗黑戲劇的藝術家偶像" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "parasocial-close", "mbti": "INFP" },
-        "performance": { "dance_style": "theatrical fluid", "vocal_type": "main dancer-rapper", "stage_persona": "theatrical dark charismatic", "roles": ["main dancer","lead rapper","center","visual"] },
-        "content":     { "topics": ["art","fashion","photography","music","painting"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "aesthetic" }
+        "aesthetic": {
+          "style_tags": [
+            "暗黑藝術",
+            "畫家氣質",
+            "戲劇感",
+            "時尚模特",
+            "頹廢美"
+          ],
+          "color_palette": [
+            "黑",
+            "紫",
+            "緋紅",
+            "畫布白"
+          ],
+          "vibe": "暗黑戲劇的藝術家偶像"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFP",
+          "vibe": "感性詩人的藝術家靈魂",
+          "trait_tags": [
+            "溫柔敏感",
+            "詩性深邃",
+            "完美主義",
+            "藝術表達",
+            "易受感動"
+          ],
+          "analysis": "用詩歌與油畫訴說內心黑暗——《DLMLU》歌詞探討自我懷疑，寫道「開始是小說，結尾卻成了詩」，將複雜情感昇華為藝術，是K-pop中罕見以創作者自我為核心的偶像。"
+        },
+        "performance": {
+          "dance_style": "theatrical fluid",
+          "vocal_type": "main dancer-rapper",
+          "stage_persona": "theatrical dark charismatic",
+          "roles": [
+            "main dancer",
+            "lead rapper",
+            "center",
+            "visual"
+          ]
+        },
+        "content": {
+          "topics": [
+            "art",
+            "fashion",
+            "photography",
+            "music",
+            "painting"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "aesthetic"
+        }
       }
     },
     {
-      "id": "taeyeon", "name": "TAEYEON", "name_zh": "太妍", "group": "Girls' Generation",
-      "genres": ["k-pop", "k-ballad", "korean pop", "k-pop solo"], "popularity": 85, "followers": 9000000, "image_url": null,
+      "id": "taeyeon",
+      "name": "TAEYEON",
+      "name_zh": "太妍",
+      "group": "Girls' Generation",
+      "genres": [
+        "k-pop",
+        "k-ballad",
+        "korean pop",
+        "k-pop solo"
+      ],
+      "popularity": 85,
+      "followers": 9000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["永恆天后","簡約","柔美","氛圍感","療癒"], "color_palette": ["白","米","柔粉","霧藍"], "vibe": "氛圍感十足的療癒天后" },
-        "personality": { "energy_type": "calm", "fan_interaction": "parasocial-close", "mbti": "INFJ" },
-        "performance": { "dance_style": "fluid", "vocal_type": "light lyric soprano", "stage_persona": "ultimate vocal queen", "roles": ["main vocalist","leader"] },
-        "content":     { "topics": ["music composition","photography","art","daily life","emotional expression"], "sns_platform": ["Instagram","YouTube","Weverse"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "永恆天后",
+            "簡約",
+            "柔美",
+            "氛圍感",
+            "療癒"
+          ],
+          "color_palette": [
+            "白",
+            "米",
+            "柔粉",
+            "霧藍"
+          ],
+          "vibe": "氛圍感十足的療癒天后"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "坦誠孤獨靈魂的療癒天后",
+          "trait_tags": [
+            "內向深情",
+            "坦白直率",
+            "情感豐沛",
+            "自黑幽默",
+            "獨立堅強"
+          ],
+          "analysis": "粉絲問她如何走出低潮，她坦然回答「我不擅長走出低潮，所以我就活在低潮裡」，後來更公開承認正接受憂鬱症治療。這份罕見的誠實讓粉絲深感共鳴，也讓她的療癒系歌聲有了更深的重量。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "light lyric soprano",
+          "stage_persona": "ultimate vocal queen",
+          "roles": [
+            "main vocalist",
+            "leader"
+          ]
+        },
+        "content": {
+          "topics": [
+            "music composition",
+            "photography",
+            "art",
+            "daily life",
+            "emotional expression"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "Weverse"
+          ],
+          "content_tone": "intimate"
+        }
       }
     },
     {
-      "id": "sakura", "name": "Sakura", "name_zh": "宮脇咲良", "group": "LE SSERAFIM",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 85, "followers": 8000000, "image_url": null,
+      "id": "sakura",
+      "name": "Sakura",
+      "name_zh": "宮脇咲良",
+      "group": "LE SSERAFIM",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 85,
+      "followers": 8000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["貓系銳利","都會感","成熟可愛","資深偶像","颯"], "color_palette": ["粉","黑","白","濕亮銀"], "vibe": "貓系魅力的資深偶像" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFJ" },
-        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "veteran idol powerhouse", "roles": ["vocalist","dancer","visual"] },
-        "content":     { "topics": ["daily life","gaming","fashion","beauty","idol growth journey"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "貓系銳利",
+            "都會感",
+            "成熟可愛",
+            "資深偶像",
+            "颯"
+          ],
+          "color_palette": [
+            "粉",
+            "黑",
+            "白",
+            "濕亮銀"
+          ],
+          "vibe": "貓系魅力的資深偶像"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFJ",
+          "vibe": "清醒自覺的偶像進化論者",
+          "trait_tags": [
+            "策略思維",
+            "高自我認知",
+            "坦誠反思",
+            "快速適應",
+            "成熟擔當"
+          ],
+          "analysis": "LE SSERAFIM紀錄片中她含淚說「我不知道為何選擇當偶像」，卻也直言「名人的人品比才華更重要」。從AKB48跨界K-pop，是業界罕見對偶像生態最清醒也最誠實的觀察者。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "veteran idol powerhouse",
+          "roles": [
+            "vocalist",
+            "dancer",
+            "visual"
+          ]
+        },
+        "content": {
+          "topics": [
+            "daily life",
+            "gaming",
+            "fashion",
+            "beauty",
+            "idol growth journey"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "intimate"
+        }
       }
     },
     {
-      "id": "tzuyu", "name": "Tzuyu", "name_zh": "周子瑜", "group": "TWICE",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 85, "followers": 12000000, "image_url": null,
+      "id": "tzuyu",
+      "name": "Tzuyu",
+      "name_zh": "周子瑜",
+      "group": "TWICE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 85,
+      "followers": 12000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["台灣公主","運動風","經典美人","高挑優雅","清純"], "color_palette": ["白","天藍","黑","金"], "vibe": "清純優雅的台灣門面女神" },
-        "personality": { "energy_type": "calm", "fan_interaction": "formal", "mbti": "ISFP" },
-        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "elegant silent visual queen", "roles": ["vocalist","dancer","visual","maknae"] },
-        "content":     { "topics": ["archery","food","fashion","self-care"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+        "aesthetic": {
+          "style_tags": [
+            "台灣公主",
+            "運動風",
+            "經典美人",
+            "高挑優雅",
+            "清純"
+          ],
+          "color_palette": [
+            "白",
+            "天藍",
+            "黑",
+            "金"
+          ],
+          "vibe": "清純優雅的台灣門面女神"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFP",
+          "vibe": "靜水深流的低調深情",
+          "trait_tags": [
+            "溫柔害羞",
+            "沉靜觀察",
+            "忠誠溫暖",
+            "乾式幽默",
+            "羞於被讚"
+          ],
+          "analysis": "出道後自述「一直需要時間才能和他人親近，我仍相當內向」，卻在TWICE 11年間以無聲忠誠贏得所有人信任。成員說她「純真又愛乾淨」，被誇時的害羞反應比任何言語都更動人。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "elegant silent visual queen",
+          "roles": [
+            "vocalist",
+            "dancer",
+            "visual",
+            "maknae"
+          ]
+        },
+        "content": {
+          "topics": [
+            "archery",
+            "food",
+            "fashion",
+            "self-care"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse"
+          ],
+          "content_tone": "aesthetic"
+        }
       }
     },
     {
-      "id": "felix", "name": "Felix", "name_zh": "李玟赫", "group": "Stray Kids",
-      "genres": ["k-pop", "k-pop boy group", "k-rap"], "popularity": 86, "followers": 9500000, "image_url": null,
+      "id": "felix",
+      "name": "Felix",
+      "name_zh": "李玟赫",
+      "group": "Stray Kids",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-rap"
+      ],
+      "popularity": 86,
+      "followers": 9500000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["雀斑王子","反差萌","街頭風","陽光","甜酷"], "color_palette": ["黑","橘","白","暖棕"], "vibe": "陽光反差的雀斑王子" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ENFJ" },
-        "performance": { "dance_style": "powerful", "vocal_type": "deep bass rapper-vocalist", "stage_persona": "powerful cutie cave voice", "roles": ["main dancer","rapper","visual","center"] },
-        "content":     { "topics": ["food","daily life","fitness","gaming","positive energy"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "雀斑王子",
+            "反差萌",
+            "街頭風",
+            "陽光",
+            "甜酷"
+          ],
+          "color_palette": [
+            "黑",
+            "橘",
+            "白",
+            "暖棕"
+          ],
+          "vibe": "陽光反差的雀斑王子"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ENFJ",
+          "vibe": "低沉嗓音裡的人類陽光",
+          "trait_tags": [
+            "溫暖親善",
+            "感情豐富",
+            "真摯溫柔",
+            "療癒系",
+            "容易動容"
+          ],
+          "analysis": "2022年MANIAC首爾演唱會，他拿起粉絲信件逐一朗讀，讀著讀著當眾大哭一小時，邊哭邊說「對不起」。低沉嗓音與純白靈魂的極致反差，讓他成為Stray Kids最能觸動人心的存在。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "deep bass rapper-vocalist",
+          "stage_persona": "powerful cutie cave voice",
+          "roles": [
+            "main dancer",
+            "rapper",
+            "visual",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "food",
+            "daily life",
+            "fitness",
+            "gaming",
+            "positive energy"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "soyeon", "name": "Soyeon", "name_zh": "田小娟", "group": "(G)I-DLE",
-      "genres": ["k-pop", "k-pop girl group", "k-rap"], "popularity": 85, "followers": 8000000, "image_url": null,
+      "id": "soyeon",
+      "name": "Soyeon",
+      "name_zh": "田小娟",
+      "group": "(G)I-DLE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group",
+        "k-rap"
+      ],
+      "popularity": 85,
+      "followers": 8000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["girl crush","實驗大膽","無畏","颯","霸氣"], "color_palette": ["紅","黑","金屬金","電光黃"], "vibe": "無畏霸氣的創作總監" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENTJ" },
-        "performance": { "dance_style": "powerful", "vocal_type": "main rapper-vocalist", "stage_persona": "boss lady creative director", "roles": ["main rapper","lead dancer","leader","songwriter","center"] },
-        "content":     { "topics": ["music production","fashion","empowerment","creative direction","feminism"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "hype" }
+        "aesthetic": {
+          "style_tags": [
+            "girl crush",
+            "實驗大膽",
+            "無畏",
+            "颯",
+            "霸氣"
+          ],
+          "color_palette": [
+            "紅",
+            "黑",
+            "金屬金",
+            "電光黃"
+          ],
+          "vibe": "無畏霸氣的創作總監"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENTJ",
+          "vibe": "直言不諱的冷靜製作人",
+          "trait_tags": [
+            "領導氣場",
+            "藝術凶悍",
+            "不怕批評",
+            "創意掌控",
+            "誠實無情"
+          ],
+          "analysis": "《TOMBOY》《NXDE》背後的創作大腦，敢在評審台上直說「這是我見過最差的表演」，也敢用「我他媽的是個假小子」向全世界宣言。掌控音樂到視覺的每個環節，是K-pop最不妥協的製作人偶像。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper-vocalist",
+          "stage_persona": "boss lady creative director",
+          "roles": [
+            "main rapper",
+            "lead dancer",
+            "leader",
+            "songwriter",
+            "center"
+          ]
+        },
+        "content": {
+          "topics": [
+            "music production",
+            "fashion",
+            "empowerment",
+            "creative direction",
+            "feminism"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "YouTube"
+          ],
+          "content_tone": "hype"
+        }
       }
     },
     {
-      "id": "sana", "name": "Sana", "name_zh": "三矢紗凪", "group": "TWICE",
-      "genres": ["k-pop", "k-pop girl group"], "popularity": 84, "followers": 11000000, "image_url": null,
+      "id": "sana",
+      "name": "Sana",
+      "name_zh": "三矢紗凪",
+      "group": "TWICE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 84,
+      "followers": 11000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["撒嬌女王","kawaii","奢華甜美","陽光","柔美魅惑"], "color_palette": ["粉","白","嫩紫","蜜桃"], "vibe": "陽光甜美的撒嬌女王" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "aegyo-forward", "mbti": "ESFP" },
-        "performance": { "dance_style": "fluid", "vocal_type": "vocalist-dancer", "stage_persona": "irresistible charmer", "roles": ["vocalist","dancer"] },
-        "content":     { "topics": ["beauty","food","daily life","viral aegyo moments"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "撒嬌女王",
+            "kawaii",
+            "奢華甜美",
+            "陽光",
+            "柔美魅惑"
+          ],
+          "color_palette": [
+            "粉",
+            "白",
+            "嫩紫",
+            "蜜桃"
+          ],
+          "vibe": "陽光甜美的撒嬌女王"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ESFP",
+          "vibe": "天生魅力的治癒系女孩",
+          "trait_tags": [
+            "感染力強",
+            "自然迷人",
+            "溫暖治癒",
+            "情感連結",
+            "逗趣可愛"
+          ],
+          "analysis": "「shashasha」招牌台詞源自她唸不準「shy shy shy」的可愛口誤，卻意外成為最標誌性的個人符號。她與粉絲之間的情感深度深到讓人造出「沒有莎娜就沒有活下去的意義」的迷因。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "irresistible charmer",
+          "roles": [
+            "vocalist",
+            "dancer"
+          ]
+        },
+        "content": {
+          "topics": [
+            "beauty",
+            "food",
+            "daily life",
+            "viral aegyo moments"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "jeonghan", "name": "Jeonghan", "name_zh": "尹定漢", "group": "SEVENTEEN",
-      "genres": ["k-pop", "k-pop boy group"], "popularity": 84, "followers": 8000000, "image_url": null,
+      "id": "jeonghan",
+      "name": "Jeonghan",
+      "name_zh": "尹定漢",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 84,
+      "followers": 8000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["天使臉","中性美","痞帥","俐落","反差"], "color_palette": ["黑","銀","白","淺金"], "vibe": "天使臉孔的痞帥靈魂" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "mischievous-charming", "mbti": "ENFJ" },
-        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "angelic schemer", "roles": ["main vocalist","visual"] },
-        "content":     { "topics": ["fashion","art","travel","daily life","member interactions"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "comedic" }
+        "aesthetic": {
+          "style_tags": [
+            "天使臉",
+            "中性美",
+            "痞帥",
+            "俐落",
+            "反差"
+          ],
+          "color_palette": [
+            "黑",
+            "銀",
+            "白",
+            "淺金"
+          ],
+          "vibe": "天使臉孔的痞帥靈魂"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ENFJ",
+          "vibe": "溫柔天使偽裝的惡魔策士",
+          "trait_tags": [
+            "心理戰術",
+            "詭計多端",
+            "遊戲高手",
+            "外表天使",
+            "暗藏溫柔"
+          ],
+          "analysis": "《Going Seventeen》以假藥劑師身份騙過所有成員、事後得意承認計謀的名場面讓粉絲拜服；私下卻是最體貼的哥哥，默默關心年輕成員的身體狀況。天使臉孔下住著局中局的策士。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "angelic schemer",
+          "roles": [
+            "main vocalist",
+            "visual"
+          ]
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "art",
+            "travel",
+            "daily life",
+            "member interactions"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "TikTok"
+          ],
+          "content_tone": "comedic"
+        }
       }
     },
     {
-      "id": "yeonjun", "name": "Yeonjun", "name_zh": "崔延俊", "group": "TXT",
-      "genres": ["k-pop", "k-pop boy group"], "popularity": 84, "followers": 7500000, "image_url": null,
+      "id": "yeonjun",
+      "name": "Yeonjun",
+      "name_zh": "崔延俊",
+      "group": "TXT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 84,
+      "followers": 7500000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["pop punk","中性風","奢華設計","另類實驗","Y2K"], "color_palette": ["紫","黑","霓虹","米白"], "vibe": "中性龐克的潮流引領者" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENFP" },
-        "performance": { "dance_style": "powerful", "vocal_type": "main dancer-vocalist", "stage_persona": "trendy all-rounder powerhouse", "roles": ["main dancer","vocalist","center","face of group"] },
-        "content":     { "topics": ["fashion","music","dance","gaming","genderless style"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "hype" }
+        "aesthetic": {
+          "style_tags": [
+            "pop punk",
+            "中性風",
+            "奢華設計",
+            "另類實驗",
+            "Y2K"
+          ],
+          "color_palette": [
+            "紫",
+            "黑",
+            "霓虹",
+            "米白"
+          ],
+          "vibe": "中性龐克的潮流引領者"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFP",
+          "vibe": "謙遜天才的溫暖大哥",
+          "trait_tags": [
+            "多才多藝",
+            "真誠謙遜",
+            "用心照顧",
+            "舞蹈天賦",
+            "感性細膩"
+          ],
+          "analysis": "2024年Hanteo頒獎拿到TXT首個大賞，演俊在台上感動落淚——不是因為理所當然，而是真心覺得珍貴。被封「舞蹈機器」卻謙遜如初，始終持續鑽研，是新生代偶像中罕見的溫暖大哥。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "trendy all-rounder powerhouse",
+          "roles": [
+            "main dancer",
+            "vocalist",
+            "center",
+            "face of group"
+          ]
+        },
+        "content": {
+          "topics": [
+            "fashion",
+            "music",
+            "dance",
+            "gaming",
+            "genderless style"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "Weverse"
+          ],
+          "content_tone": "hype"
+        }
       }
     },
     {
-      "id": "iu", "name": "IU", "name_zh": "李知恩", "group": null,
-      "genres": ["k-pop", "k-ballad", "korean pop", "k-pop solo"], "popularity": 90, "followers": 13000000, "image_url": null,
+      "id": "iu",
+      "name": "IU",
+      "name_zh": "李知恩",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-ballad",
+        "korean pop",
+        "k-pop solo"
+      ],
+      "popularity": 90,
+      "followers": 13000000,
+      "image_url": null,
       "profile": {
-        "aesthetic":   { "style_tags": ["國民初戀","復古精緻","鄰家女孩","氛圍感","清新"], "color_palette": ["奶油色","玫瑰","暖黑","橄欖綠"], "vibe": "氛圍感的國民初戀" },
-        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFJ" },
-        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "storytelling singer-songwriter actress", "roles": ["main vocalist","songwriter","actress"] },
-        "content":     { "topics": ["music","drama acting","literature","food","emotional songwriting"], "sns_platform": ["Instagram","YouTube"], "content_tone": "intimate" }
+        "aesthetic": {
+          "style_tags": [
+            "國民初戀",
+            "復古精緻",
+            "鄰家女孩",
+            "氛圍感",
+            "清新"
+          ],
+          "color_palette": [
+            "奶油色",
+            "玫瑰",
+            "暖黑",
+            "橄欖綠"
+          ],
+          "vibe": "氛圍感的國民初戀"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "永不停歇的靈魂創作者",
+          "trait_tags": [
+            "執著敬業",
+            "深度共鳴",
+            "真摯謙遜",
+            "多棲藝人",
+            "人文關懷"
+          ],
+          "analysis": "15歲出道前歷經20次試鏡全部落選，20年間從未停下腳步。她的歌詞源自真實情感，更捐出數百億韓圜投入教育公益；綜藝上的犀利反差幽默讓人忘記她其實是K-pop最具藝術誠信的創作者。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "storytelling singer-songwriter actress",
+          "roles": [
+            "main vocalist",
+            "songwriter",
+            "actress"
+          ]
+        },
+        "content": {
+          "topics": [
+            "music",
+            "drama acting",
+            "literature",
+            "food",
+            "emotional songwriting"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate"
+        }
       }
     }
   ],
