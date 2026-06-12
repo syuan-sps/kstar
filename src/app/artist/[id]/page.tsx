@@ -5,6 +5,7 @@ import { copy } from "@/lib/copy";
 import Thumb from "@/components/Thumb";
 import FavoriteButton from "@/components/FavoriteButton";
 import AestheticSection from "@/components/AestheticSection";
+import PersonalitySection from "@/components/PersonalitySection";
 import SimilarSection from "@/components/SimilarSection";
 
 export default async function ArtistPage({
@@ -50,6 +51,9 @@ export default async function ArtistPage({
 
       {/* 美學分析 — style breakdown */}
       <AestheticSection artist={artist} />
+
+      {/* 個性分析 — personality breakdown */}
+      <PersonalitySection artist={artist} />
 
       {/* Similar artists — client component handles scoring + AI reasons */}
       <SimilarSection sourceArtist={artist} allArtists={allArtists} />

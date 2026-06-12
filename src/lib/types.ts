@@ -1,7 +1,7 @@
 // ── Idol profile sub-types ─────────────────────────────────────────────
 export interface IdolProfile {
   aesthetic:   { style_tags: string[]; color_palette: string[]; vibe: string; analysis?: string }
-  personality: { energy_type: string; fan_interaction: string; mbti?: string }
+  personality: { energy_type: string; fan_interaction: string; mbti?: string; vibe?: string; trait_tags?: string[]; analysis?: string }
   performance: { dance_style: string; vocal_type: string; stage_persona: string; roles: string[] }
   content:     { topics: string[]; sns_platform: string[]; content_tone: string }
 }

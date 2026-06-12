@@ -86,7 +86,7 @@
       "genres": ["k-pop", "k-pop girl group"], "popularity": 89, "followers": 11000000, "image_url": null,
       "profile": {
         "aesthetic":   { "style_tags": ["少女感","甜美","清純","洋娃娃感","芭蕾感","極簡優雅","純欲","學院風"], "color_palette": ["粉紅","白","薄紫","天藍"], "vibe": "粉色系的甜美少女精靈", "analysis": "Wonyoung以『Wonyoungism』粉色系甜美美學為核心，融合芭蕾感、洋娃娃臉與極簡優雅，既純欲又少女。身為Miu Miu美妝大使，雜誌封面與街拍不斷強化優雅少女人設。" },
-        "personality": { "energy_type": "high energy", "fan_interaction": "playful", "mbti": "ESFJ" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "playful", "mbti": "ESFJ", "vibe": "閃耀自信的正能量公主", "trait_tags": ["極度自信","正向思維","完美主義","閃亮存在感","自我疼愛","從容優雅","努力派"], "analysis": "她的「原英主義」：把小事往好的方向想，下雨淋濕了就說「幸好頭髮好看」，積極的自我疼愛哲學感染了無數粉絲。" },
         "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "flawless center goddess", "roles": ["center","vocalist","visual"] },
         "content":     { "topics": ["beauty","fashion","self-care","idol tips","food"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "hype" }
       }
@@ -96,7 +96,7 @@
       "genres": ["k-pop", "k-pop girl group"], "popularity": 88, "followers": 10000000, "image_url": null,
       "profile": {
         "aesthetic":   { "style_tags": ["高級感","冷感","未來感","人間AI","金屬感","幾何銳利","極簡奢華","雙面性"], "color_palette": ["銀","黑","白","金屬灰"], "vibe": "冷豔未來的高級AI", "analysis": "Karina體現aespa的『未來』論述，視覺如AI般精緻冷豔，以金屬、銳利剪裁與幾何打造前衛感。身為Prada大使，造型不斷強化『人間AI』無懈可擊的人設。" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "ENFP" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "ENFP", "vibe": "冷豔外表下的暖心領導者", "trait_tags": ["外冷內熱","高情商","觀察敏銳","細心體貼","言少情深","有邊界感","真誠待粉"], "analysis": "粉絲簽名會上她為每位粉絲手寫長信，留下「我給你的愛是你能收到最大的愛」——冷靜表面下藏著最深的溫柔。" },
         "performance": { "dance_style": "powerful", "vocal_type": "dancer-vocalist", "stage_persona": "perfect AI avatar", "roles": ["main dancer","lead vocalist","center","leader"] },
         "content":     { "topics": ["technology","fashion","gaming","aespa universe lore"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "aesthetic" }
       }
@@ -126,7 +126,7 @@
       "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 8500000, "image_url": null,
       "profile": {
         "aesthetic":   { "style_tags": ["乾淨感","初戀系","甜酷","颯爽","學院風","中性優雅","Y2K","女神氣質"], "color_palette": ["海軍藍","白","灰藍","金屬銀"], "vibe": "藍白系的乾淨颯爽女神", "analysis": "Minji的美學平衡『乾淨感』與『颯爽』，以海軍藍、白與灰藍為主調，透過oversized denim與tweed打造年輕又成熟的視覺。身為Chanel大使，持續強化初戀系優雅與girl crush率性。" },
-        "personality": { "energy_type": "calm", "fan_interaction": "playful", "mbti": "INFJ" },
+        "personality": { "energy_type": "calm", "fan_interaction": "playful", "mbti": "INFJ", "vibe": "沉靜成熟的溫柔隊長", "trait_tags": ["成熟穩重","溫柔領導","細心包容","低調自信","體貼暖心","幽默直率","藝術氣質"], "analysis": "身為NewJeans年紀最長的成員，民知以溫柔而堅定的方式守護隊友，直播時常主動關心成員狀態，被公認最令人安心的存在。" },
         "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "natural leader", "roles": ["main vocalist","leader","visual"] },
         "content":     { "topics": ["fashion","art","daily life","understated moments"], "sns_platform": ["Instagram","TikTok"], "content_tone": "aesthetic" }
       }
@@ -136,7 +136,7 @@
       "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 9000000, "image_url": null,
       "profile": {
         "aesthetic":   { "style_tags": ["冰雪公主","空靈","未來感","清冷","仙氣"], "color_palette": ["白","銀","冰藍","覆盆莓"], "vibe": "清冷空靈的冰雪公主" },
-        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "INFP" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "INFP", "vibe": "真率直白的4D鬼靈精", "trait_tags": ["真誠率直","4D幽默","反差萌","聰慧機智","易感脆弱","毫不做作","暖心細膩"], "analysis": "Billboard頒獎典禮意外開麥，隨口說出「幫我綁一下」、「什麼香氣那麼好聞」，毫無偶像包袱的模樣讓粉絲大喊可愛。" },
         "performance": { "dance_style": "powerful", "vocal_type": "main dancer-vocalist", "stage_persona": "cold charismatic ethereal", "roles": ["main dancer","vocalist"] },
         "content":     { "topics": ["fashion","gaming","technology","tranquil moments"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
       }
