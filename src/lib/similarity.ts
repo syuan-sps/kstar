@@ -68,11 +68,26 @@ function contentScore(a: Artist, b: Artist): { score: number; traits: string[] }
   if (!a.profile || !b.profile) return { score: 0, traits: [] };
   const pa = a.profile.content;
   const pb = b.profile.content;
-  const tokens_a = [...pa.topics, ...pa.sns_platform];
-  const tokens_b = [...pb.topics, ...pb.sns_platform];
   const toneBonus = pa.content_tone === pb.content_tone ? 0.1 : 0;
-  const score = Math.min(1, jaccard(tokens_a, tokens_b) + toneBonus);
-  const traits = sharedTokens(pa.topics, pb.topics);
+
+  // Legacy fallback for entries without the zh-TW pools
+  if (!pa.lifestyle_topics || !pb.lifestyle_topics) {
+    const tokens_a = [...pa.topics, ...pa.sns_platform];
+    const tokens_b = [...pb.topics, ...pb.sns_platform];
+    const score = Math.min(1, jaccard(tokens_a, tokens_b) + toneBonus);
+    return { score, traits: sharedTokens(pa.topics, pb.topics) };
+  }
+
+  // Split-pool scoring: lifestyle topics dominate, values/worldview secondary
+  const LIFESTYLE_W = 0.65;
+  const VALUE_W = 0.35;
+  const lifestyle = jaccard(pa.lifestyle_topics, pb.lifestyle_topics);
+  const values = jaccard(pa.value_topics ?? [], pb.value_topics ?? []);
+  const score = Math.min(1, lifestyle * LIFESTYLE_W + values * VALUE_W + toneBonus);
+  const traits = [
+    ...sharedTokens(pa.lifestyle_topics, pb.lifestyle_topics),
+    ...sharedTokens(pa.value_topics ?? [], pb.value_topics ?? []),
+  ];
   return { score, traits };
 }
 

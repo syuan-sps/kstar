@@ -80,7 +80,26 @@
             "Weverse",
             "TikTok"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "健身",
+            "遊戲",
+            "音樂創作",
+            "美食"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉"
+          ],
+          "vibe": "深夜直播煮拉麵的翻唱機器",
+          "trait_tags": [
+            "深夜Weverse直播",
+            "翻唱歌單",
+            "健身拳擊",
+            "煮食日常",
+            "素顏寵粉"
+          ],
+          "analysis": "Jungkook的內容核心是「毫無偶像包袱的深夜陪伴」——Weverse直播煮拉麵、洗碗、隨口翻唱就破千萬觀看。直播中即興唱出的《Stay Alive》片段常在發布前就被粉絲剪成合輯瘋傳。"
         }
       }
     },
@@ -160,7 +179,26 @@
             "Instagram",
             "Weverse"
           ],
-          "content_tone": "aesthetic"
+          "content_tone": "aesthetic",
+          "lifestyle_topics": [
+            "藝術",
+            "攝影",
+            "時尚",
+            "動物"
+          ],
+          "value_topics": [
+            "自由奔放",
+            "真誠待粉"
+          ],
+          "vibe": "美術館散步與爵士歌單的浪漫主義",
+          "trait_tags": [
+            "Vante攝影",
+            "爵士歌單分享",
+            "Yeontan日常",
+            "美術館打卡",
+            "隨性發文"
+          ],
+          "analysis": "V以「Vante」名義發布的攝影作品和深夜爵士歌單，把Instagram經營成一本私人藝術雜誌。愛犬Yeontan的每次出鏡都是ARMY的節日，隨性到凌晨突然開直播看著鏡頭不說話也能上熱搜。"
         }
       }
     },
@@ -243,7 +281,25 @@
             "Weverse",
             "TikTok"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "時尚",
+            "健身",
+            "美食"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "心理健康倡議"
+          ],
+          "vibe": "溫柔細語的深夜安慰電台",
+          "trait_tags": [
+            "深夜長直播",
+            "真誠談心",
+            "時尚畫報",
+            "練習室日常",
+            "暖心回覆"
+          ],
+          "analysis": "Jimin的直播像一檔深夜談心電台，會認真讀粉絲留言並聊到自己的不安與成長。曾在Vlive坦承舞台焦慮並感謝粉絲陪伴的片段，被ARMY視為「被偶像安慰」的代表時刻。"
         }
       }
     },
@@ -324,7 +380,26 @@
             "Instagram",
             "Weverse"
           ],
-          "content_tone": "aesthetic"
+          "content_tone": "aesthetic",
+          "lifestyle_topics": [
+            "藝術",
+            "旅遊",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "心理健康倡議",
+            "自我認同",
+            "努力哲學"
+          ],
+          "vibe": "美術館導覽員兼讀書清單供應商",
+          "trait_tags": [
+            "美術館巡禮",
+            "讀書推薦",
+            "自行車日常",
+            "長文隨筆",
+            "哲思訪談"
+          ],
+          "analysis": "RM的Instagram是K-pop圈最高質感的美術館打卡帳號，他推薦過的書在韓國書店屢次斷貨。聯合國大會「Speak Yourself」演講讓他的內容從偶像日常升格為一代人的自我認同教材。"
         }
       }
     },
@@ -410,7 +485,26 @@
             "TikTok",
             "YouTube"
           ],
-          "content_tone": "hype"
+          "content_tone": "hype",
+          "lifestyle_topics": [
+            "時尚",
+            "美食",
+            "旅遊",
+            "動物"
+          ],
+          "value_topics": [
+            "自信表達",
+            "努力哲學"
+          ],
+          "vibe": "全球頂流的貓奴與時尚日記",
+          "trait_tags": [
+            "精品大使日常",
+            "五貓日常",
+            "泰國美食",
+            "舞室片段",
+            "億級流量"
+          ],
+          "analysis": "Lisa是Instagram追蹤數最高的K-pop藝人，內容在高級時裝週與「被五隻貓使喚的貓奴」之間自由切換。LILI's FILM舞蹈系列每支都被全球舞室翻跳，是她內容影響力的最佳證明。"
         }
       }
     },
@@ -491,7 +585,26 @@
             "Instagram",
             "YouTube"
           ],
-          "content_tone": "aesthetic"
+          "content_tone": "aesthetic",
+          "lifestyle_topics": [
+            "時尚",
+            "美食",
+            "居家日常",
+            "動物"
+          ],
+          "value_topics": [
+            "自信表達",
+            "自我認同"
+          ],
+          "vibe": "人間香奈兒的慵懶生活誌",
+          "trait_tags": [
+            "時尚畫報",
+            "居家慵懶感",
+            "愛犬Kuma",
+            "美食探店",
+            "氛圍美學"
+          ],
+          "analysis": "Jennie的Instagram被時尚媒體稱為「最會經營氛圍感的偶像帳號」，一張居家素顏照的時尚帶貨力不輸精品大片。從Jentle Garden眼鏡聯名到個人廠牌ODD ATELIER，她把內容直接做成了生意。"
         }
       }
     },
@@ -571,7 +684,25 @@
             "YouTube",
             "TikTok"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "健身"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "心理健康倡議"
+          ],
+          "vibe": "吉他彈唱與紫菜飯卷的真摯日常",
+          "trait_tags": [
+            "吉他彈唱片段",
+            "kimbap愛好者",
+            "健身日常",
+            "真誠長文",
+            "原聲分享"
+          ],
+          "analysis": "Rosé的內容招牌是隨手拿起吉他就唱的原聲片段，《APT.》爆紅後她受訪坦言創作期的孤獨與焦慮，真誠程度讓歌迷直呼「終於認識了舞台下的她」。對紫菜飯卷的執著愛好甚至成了國際媒體的採訪話題。"
         }
       }
     },
@@ -652,7 +783,25 @@
             "Instagram",
             "Weverse"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "居家日常",
+            "美食",
+            "動物"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "家庭觀"
+          ],
+          "vibe": "四次元冷笑話的居家系大姐",
+          "trait_tags": [
+            "4D冷笑話",
+            "愛犬Dalgom",
+            "居家Vlog",
+            "劇集幕後",
+            "自然素顏"
+          ],
+          "analysis": "Jisoo的內容魅力在「最不像頂級偶像的居家感」——直播裡講冷笑話自己先笑場，和愛犬Dalgom的互動比任何企劃都圈粉。《雪降花》拍攝幕後Vlog展現的劇組大姐性格讓路人粉激增。"
         }
       }
     },
@@ -746,7 +895,17 @@
             "生活美學",
             "自律偶像"
           ],
-          "analysis": "她的Vlog掀起「Wonyoungism」風潮，讀書、運動、正向語錄的自律日常被無數少女當作人生模板模仿。"
+          "analysis": "她的Vlog掀起「Wonyoungism」風潮，讀書、運動、正向語錄的自律日常被無數少女當作人生模板模仿。",
+          "lifestyle_topics": [
+            "美妝",
+            "時尚",
+            "美食"
+          ],
+          "value_topics": [
+            "自信表達",
+            "正向思考",
+            "努力哲學"
+          ]
         },
         "overview": {
           "vibe": "自帶光環的元氣公主",
@@ -853,7 +1012,16 @@
             "反差萌",
             "寵粉日常"
           ],
-          "analysis": "Instagram上是高級感大片，Bubble裡卻化身話癆，深夜陪粉絲聊天、認真回覆訊息的反差讓MY直呼上癮。"
+          "analysis": "Instagram上是高級感大片，Bubble裡卻化身話癆，深夜陪粉絲聊天、認真回覆訊息的反差讓MY直呼上癮。",
+          "lifestyle_topics": [
+            "遊戲",
+            "時尚",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ]
         },
         "overview": {
           "vibe": "人間AI的雙面魅力",
@@ -945,7 +1113,25 @@
             "TikTok",
             "YouTube"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "自我認同"
+          ],
+          "vibe": "Phoning裡的鄰家澳洲女孩",
+          "trait_tags": [
+            "Phoning直播",
+            "翻唱片段",
+            "越式家常菜",
+            "多語聊天",
+            "無濾鏡日常"
+          ],
+          "analysis": "Hanni在粉絲平台Phoning上以英韓越三語自然切換聊天，無濾鏡的鄰家感是NewJeans「真實系內容」的代表。她在公司活動上翻唱朴軫永《Blue & Black》的片段意外爆紅，被稱為翻唱帶動原曲回榜的教科書案例。"
         }
       }
     },
@@ -1027,7 +1213,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "美妝",
+            "時尚",
+            "美食"
+          ],
+          "value_topics": [
+            "自信表達",
+            "真誠待粉"
+          ],
+          "vibe": "元氣滿格的初代自拍女王",
+          "trait_tags": [
+            "自拍教科書",
+            "美妝分享",
+            "吃播片段",
+            "元氣直播",
+            "綜藝感"
+          ],
+          "analysis": "Nayeon的自拍角度被粉絲稱為「教科書」，元氣滿滿的直播風格讓她始終是TWICE內容輸出的門面。個人專輯《IM NAYEON》宣傳期間上遍各大網路綜藝，彈幕清一色是「姐姐的能量會傳染」。"
         }
       }
     },
@@ -1120,7 +1324,16 @@
             "慢步調日常",
             "質感策展"
           ],
-          "analysis": "Instagram發文少而精，每張照片都像雜誌切圖；Phoning直播裡卻認真讀留言、關心粉絲日常，距離感與親近感並存。"
+          "analysis": "Instagram發文少而精，每張照片都像雜誌切圖；Phoning直播裡卻認真讀留言、關心粉絲日常，距離感與親近感並存。",
+          "lifestyle_topics": [
+            "時尚",
+            "居家日常",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "自我認同",
+            "專業職人精神"
+          ]
         },
         "overview": {
           "vibe": "初戀系隊長的靜水深流",
@@ -1220,7 +1433,16 @@
             "真實不修飾",
             "寵粉細節"
           ],
-          "analysis": "Weverse直播像深夜電台，想到什麼說什麼的碎碎念與毫無偶包的日常，讓粉絲感覺像在和朋友通話。"
+          "analysis": "Weverse直播像深夜電台，想到什麼說什麼的碎碎念與毫無偶包的日常，讓粉絲感覺像在和朋友通話。",
+          "lifestyle_topics": [
+            "遊戲",
+            "音樂創作",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ]
         },
         "overview": {
           "vibe": "冰雪外表下的真性情",
@@ -1314,7 +1536,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "aesthetic"
+          "content_tone": "aesthetic",
+          "lifestyle_topics": [
+            "藝術",
+            "時尚",
+            "居家日常"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "自我認同"
+          ],
+          "vibe": "畫筆與舞鞋之間的美學少年",
+          "trait_tags": [
+            "繪畫Vlog",
+            "美術館約會",
+            "時尚大使日常",
+            "練習室直拍",
+            "深夜隨筆"
+          ],
+          "analysis": "Hyunjin的繪畫Vlog讓粉絲看到舞台之外的安靜面——他的畫作曾在SKZ官方內容中展出並被粉絲稱為「值得開展」。Versace全球大使的時尚內容和素顏在家畫畫的反差，是STAY最愛的內容組合。"
         }
       }
     },
@@ -1396,7 +1636,27 @@
             "YouTube",
             "Weverse"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "美食",
+            "居家日常",
+            "動物",
+            "美妝"
+          ],
+          "value_topics": [
+            "心理健康倡議",
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "vibe": "IG話癆兼吃播狂魔的國民姐姐",
+          "trait_tags": [
+            "IG限動話癆",
+            "탱구TV吃播",
+            "愛犬Zero",
+            "真誠談心",
+            "冷笑話連發"
+          ],
+          "analysis": "太妍的Instagram限動更新頻率被粉絲戲稱「比通訊軟體還勤」，YouTube頻道탱구TV的吃播和旅行內容完全是綜藝等級。她多次公開談論憂鬱症治療經歷，讓「偶像談心理健康」在韓國從禁忌變成可被討論的話題。"
         }
       }
     },
@@ -1476,7 +1736,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "美妝"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "努力哲學"
+          ],
+          "vibe": "重度電玩宅的職人偶像誌",
+          "trait_tags": [
+            "LoL重度玩家",
+            "遊戲實況",
+            "部落格長文",
+            "職人自律",
+            "宅文化"
+          ],
+          "analysis": "Sakura是公認的重度遊戲玩家，曾因打《英雄聯盟》太投入被隊友爆料凌晨還在排位。從AKB48時代延續至今的部落格長文習慣，讓她的內容始終帶著「職人寫給粉絲的信」的溫度。"
         }
       }
     },
@@ -1555,7 +1833,25 @@
             "Instagram",
             "Weverse"
           ],
-          "content_tone": "aesthetic"
+          "content_tone": "aesthetic",
+          "lifestyle_topics": [
+            "動物",
+            "居家日常",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "家庭觀",
+            "真誠待粉"
+          ],
+          "vibe": "話少但每次開口都暖的安靜系",
+          "trait_tags": [
+            "愛犬Gucci",
+            "射箭女神",
+            "家鄉台南",
+            "安靜暖心",
+            "真誠短句"
+          ],
+          "analysis": "子瑜的內容輸出量是TWICE裡最少的，但每次出現都是高光——偶像運動會射箭命中紅心的畫面至今仍是韓網經典gif。提到家鄉台南和家人時的真誠，讓她「話少但真」的形象深入人心。"
         }
       }
     },
@@ -1638,7 +1934,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "遊戲",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "努力哲學"
+          ],
+          "vibe": "烘焙布朗尼的低音陽光男孩",
+          "trait_tags": [
+            "布朗尼烘焙",
+            "遊戲實況",
+            "低音ASMR",
+            "澳式陽光",
+            "寵粉直播"
+          ],
+          "analysis": "Felix的招牌內容是親手烘焙布朗尼送給工作人員和成員，「Felix brownies」在粉絲圈已是專有名詞。低沉嗓音念晚安語錄的片段被做成ASMR合輯，是STAY的睡前必備。"
         }
       }
     },
@@ -1721,7 +2035,24 @@
             "TikTok",
             "YouTube"
           ],
-          "content_tone": "hype"
+          "content_tone": "hype",
+          "lifestyle_topics": [
+            "音樂創作",
+            "遊戲"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "自信表達"
+          ],
+          "vibe": "工作室與召喚峽谷之間的製作人",
+          "trait_tags": [
+            "作曲幕後",
+            "LoL狂熱",
+            "K/DA主唱",
+            "工作室日常",
+            "製作人視角"
+          ],
+          "analysis": "Soyeon的內容幾乎都圍繞創作——工作室寫歌幕後是粉絲最期待的更新。她對《英雄聯盟》的熱愛直接變成了職業履歷：拳頭遊戲K/DA虛擬女團主唱，遊戲與音樂內容在她身上完美合流。"
         }
       }
     },
@@ -1799,7 +2130,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "美妝",
+            "時尚",
+            "美食"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "vibe": "撒嬌與真心交錯的甜度供應商",
+          "trait_tags": [
+            "撒嬌名場面",
+            "日常自拍",
+            "美妝分享",
+            "日語直播",
+            "真心告白"
+          ],
+          "analysis": "Sana的「Shy Shy Shy」讓撒嬌成為她的內容代名詞，但粉絲更愛她直播裡突然認真感謝ONCE的反差真心。她的日語直播是日本粉絲的固定節目，甜度與真誠的比例拿捏是TWICE內容的黃金配方。"
         }
       }
     },
@@ -1878,7 +2227,25 @@
             "Weverse",
             "TikTok"
           ],
-          "content_tone": "comedic"
+          "content_tone": "comedic",
+          "lifestyle_topics": [
+            "居家日常",
+            "遊戲",
+            "美食"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "vibe": "GOING SEVENTEEN的狡猾天使",
+          "trait_tags": [
+            "綜藝詐欺師",
+            "GOING名場面",
+            "慵懶直播",
+            "損友互動",
+            "天使臉孔"
+          ],
+          "analysis": "淨漢在自製綜藝《GOING SEVENTEEN》裡以「用天使臉孔行騙」的狡猾玩法成為名場面製造機，TTT狼人殺集數被粉絲封為韓綜等級。直播時躺著聊天的慵懶風格反而成了CARAT的療癒內容。"
         }
       }
     },
@@ -1959,7 +2326,25 @@
             "TikTok",
             "Weverse"
           ],
-          "content_tone": "hype"
+          "content_tone": "hype",
+          "lifestyle_topics": [
+            "時尚",
+            "美食",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "自信表達",
+            "努力哲學"
+          ],
+          "vibe": "第四代It Boy的時尚與翻跳日誌",
+          "trait_tags": [
+            "時裝週寵兒",
+            "翻跳挑戰",
+            "吃播投入",
+            "4代It Boy",
+            "練習生紀錄"
+          ],
+          "analysis": "演俊被韓媒封為「第四代It Boy」，時裝週前排照和TikTok翻跳挑戰是他的內容雙引擎。練習生時期連續多年月末評價第一的紀錄被反覆引用，讓他的自信內容始終有努力背書。"
         }
       }
     },
@@ -2040,7 +2425,26 @@
             "Instagram",
             "YouTube"
           ],
-          "content_tone": "intimate"
+          "content_tone": "intimate",
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "公益環保",
+            "真誠待粉",
+            "努力哲學"
+          ],
+          "vibe": "歌手兼捐款天使的紫色日常",
+          "trait_tags": [
+            "IU's Palette",
+            "生日捐款",
+            "翻唱企劃",
+            "小酌談心",
+            "國民好感度"
+          ],
+          "analysis": "IU的YouTube音樂節目《IU's Palette》讓她的內容兼具歌手專業與閨蜜閒聊感。每逢生日和出道紀念日固定大額捐款的習慣持續十餘年，「捐款天使」的稱號讓她的內容好感度跨出粉圈成為國民級。"
         }
       }
     }

@@ -3,7 +3,7 @@ export interface IdolProfile {
   aesthetic:   { style_tags: string[]; color_palette: string[]; vibe: string; analysis?: string }
   personality: { energy_type: string; fan_interaction: string; mbti?: string; vibe?: string; trait_tags?: string[]; analysis?: string }
   performance: { dance_style: string; vocal_type: string; stage_persona: string; roles: string[]; vibe?: string; trait_tags?: string[]; analysis?: string }
-  content:     { topics: string[]; sns_platform: string[]; content_tone: string; vibe?: string; trait_tags?: string[]; analysis?: string }
+  content:     { topics: string[]; lifestyle_topics?: string[]; value_topics?: string[]; sns_platform: string[]; content_tone: string; vibe?: string; trait_tags?: string[]; analysis?: string }
   overview?:   { vibe: string; trait_tags: string[]; summary: string }  // 全部 combined card (deep-pass idols only)
 }
 
