@@ -126,7 +126,7 @@
       ],
       "popularity": 91,
       "followers": 22000000,
-      "image_url": null,
+      "image_url": "/idols/bts-v.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -242,7 +242,8 @@
           "summary": "K-pop中極罕見的深沉男中音，《Singularity》一個眼神就能讓全場噤聲；鏡頭外則是以「Vante」名義發布攝影作品、分享爵士歌單的浪漫主義者。復古文藝的審美、四次元的言行與隨性到凌晨開直播不說話的自由感，讓他成為最難被定義的偶像。"
         }
       },
-      "instagram": "thv"
+      "instagram": "thv",
+      "image_focus": 0.3
     },
     {
       "id": "jimin",

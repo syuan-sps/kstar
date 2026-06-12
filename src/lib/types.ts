@@ -39,6 +39,7 @@ export interface Artist {
   popularity: number;
   followers?: number | null;
   image_url?: string | null;
+  image_focus?: number | null;  // vertical focal point 0..1 for face alignment (default 0.3)
   instagram?: string | null;  // IG handle without @ (only confidently-verified accounts)
   profile?: IdolProfile;  // optional — old entries without profile still valid
 }

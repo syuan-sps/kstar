@@ -62,7 +62,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
     >
       {/* Top zone — photo */}
       <div className="relative aspect-[3/4] overflow-hidden">
-        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-none" />
+        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-none" focusY={artist.image_focus} />
         <div className="absolute right-1.5 top-1.5 z-20">
           <FavoriteButton id={artist.id} size="sm" />
         </div>

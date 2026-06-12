@@ -21,7 +21,7 @@ export default function FourCuts({
         {artists.map((a) => {
           const inner = (
             <>
-              <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-lg" />
+              <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-lg" focusY={a.image_focus} />
               {/* sparkle accent */}
               <span className="pointer-events-none absolute right-1 top-1 text-xs text-white/70 drop-shadow">
                 ✦

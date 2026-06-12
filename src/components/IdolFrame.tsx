@@ -84,7 +84,7 @@ export default function IdolFrame({
         className="relative aspect-[3/4] overflow-hidden rounded-xl border"
         style={{ borderColor: theme.accent + "55" }}
       >
-        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-xl" />
+        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-xl" focusY={artist.image_focus} />
       </div>
 
       {/* name */}

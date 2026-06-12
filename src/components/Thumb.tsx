@@ -20,15 +20,24 @@ export default function Thumb({
   seed,
   label,
   rounded = "rounded-2xl",
+  focusY,
 }: {
   src?: string | null;
   seed: string;
   label: string;
   rounded?: string;
+  focusY?: number | null;  // vertical focal point 0..1 — keeps faces at a consistent height across crops
 }) {
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={label} className={`h-full w-full object-cover ${rounded}`} />;
+    return (
+      <img
+        src={src}
+        alt={label}
+        className={`h-full w-full object-cover ${rounded}`}
+        style={{ objectPosition: `center ${Math.round((focusY ?? 0.3) * 100)}%` }}
+      />
+    );
   }
   const initials = label.replace(/[^A-Za-z0-9가-힣一-鿿]/g, "").slice(0, 2).toUpperCase();
   return (

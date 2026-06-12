@@ -20,7 +20,7 @@ export default async function ArtistPage({
       {/* Artist header */}
       <section className="flex flex-col gap-5 sm:flex-row sm:items-end">
         <div className="h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#ff00cc]/40">
-          <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" />
+          <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" focusY={artist.image_focus} />
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
