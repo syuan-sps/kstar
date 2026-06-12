@@ -4,9 +4,7 @@ import { getArtist, getAllArtists } from "@/lib/data";
 import { copy } from "@/lib/copy";
 import Thumb from "@/components/Thumb";
 import FavoriteButton from "@/components/FavoriteButton";
-import AestheticSection from "@/components/AestheticSection";
-import PersonalitySection from "@/components/PersonalitySection";
-import SimilarSection from "@/components/SimilarSection";
+import ProfileExplorer from "@/components/ProfileExplorer";
 
 export default async function ArtistPage({
   params,
@@ -49,14 +47,8 @@ export default async function ArtistPage({
         </div>
       </section>
 
-      {/* 美學分析 — style breakdown */}
-      <AestheticSection artist={artist} />
-
-      {/* 個性分析 — personality breakdown */}
-      <PersonalitySection artist={artist} />
-
-      {/* Similar artists — client component handles scoring + AI reasons */}
-      <SimilarSection sourceArtist={artist} allArtists={allArtists} />
+      {/* Analysis cards + similar artists — shared 全部/美學/個性/表演/內容 filter */}
+      <ProfileExplorer artist={artist} allArtists={allArtists} />
 
       <Link href="/" className="inline-block text-sm text-white/50 hover:text-white">
         ← {copy.backHome}

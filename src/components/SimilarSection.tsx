@@ -2,14 +2,12 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import type { Artist, SimilarArtist, Weights } from "@/lib/types";
+import type { Artist, SimilarArtist, Weights, LayerFilter } from "@/lib/types";
 import { DEFAULT_WEIGHTS } from "@/lib/types";
 import { similarArtists } from "@/lib/similarity";
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
 import { copy } from "@/lib/copy";
-
-type LayerFilter = "all" | "aesthetic" | "personality" | "performance" | "content";
 
 const PILL_LABELS: Record<LayerFilter, string> = {
   all:         "全部",
@@ -35,11 +33,13 @@ function SkeletonCard() {
 interface Props {
   sourceArtist: Artist;
   allArtists: Artist[];
+  // Controlled filter — owned by ProfileExplorer so the pills also drive the analysis cards
+  filter: LayerFilter;
+  onFilterChange: (f: LayerFilter) => void;
 }
 
-export default function SimilarSection({ sourceArtist, allArtists }: Props) {
+export default function SimilarSection({ sourceArtist, allArtists, filter, onFilterChange }: Props) {
   const [mounted, setMounted] = useState(false);
-  const [filter, setFilter] = useState<LayerFilter>("all");
   const [candidates, setCandidates] = useState<SimilarArtist[]>([]);
   const [reasons, setReasons] = useState<Record<string, string>>({});
   const [reasonsLoading, setReasonsLoading] = useState(false);
@@ -118,7 +118,7 @@ export default function SimilarSection({ sourceArtist, allArtists }: Props) {
 
   // Re-score on filter change (synchronous, instant)
   const handleFilter = (f: LayerFilter) => {
-    setFilter(f);
+    onFilterChange(f);
     score(f);
     // Fetch new reasons for the re-scored list
     const w = filterWeights(f);
