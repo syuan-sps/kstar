@@ -2667,6 +2667,2158 @@
           "summary": "出道逾16年的「現場信仰」，PALETTE演唱會建立起開口即現場的神話，每場巡迴售票系統仍會崩潰。《IU's Palette》讓內容兼具專業與閨蜜閒聊感，生日固定大額捐款十餘年的「捐款天使」稱號，讓好感度跨出粉圈成為國民級。"
         }
       }
+    },
+    {
+      "id": "yeji",
+      "name": "Yeji",
+      "name_zh": "黃禮志",
+      "group": "ITZY",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 82,
+      "followers": 9000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "貓系銳利",
+            "運動奢華",
+            "俐落短瀏海",
+            "舞台戰服",
+            "颯爽"
+          ],
+          "color_palette": [
+            "黑",
+            "螢光黃",
+            "銀",
+            "紫"
+          ],
+          "vibe": "貓眼銳利的颯爽隊長美學",
+          "analysis": "Yeji的視覺核心是那雙上挑的貓眼與俐落線條——《DALLA DALLA》時期的齊瀏海馬尾成為她的標誌剪影。舞台造型偏運動奢華混搭，銳利與颯爽並存，是ITZY「自信少女」概念的具象化。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFJ",
+          "vibe": "外冷內暖的努力型隊長",
+          "trait_tags": [
+            "反差溫柔",
+            "練習狂",
+            "照顧型",
+            "貓系慢熱",
+            "責任感"
+          ],
+          "analysis": "舞台上眼神凌厲，私下卻是說話輕聲細語的溫柔隊長，成員多次爆料她練習到最晚、把隊友狀態放在自己前面。直播裡被粉絲稱讚時會瞬間害羞搗臉的反差，是MIDZY最愛的「貓系慢熱」時刻。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "dancer-vocalist",
+          "stage_persona": "fierce cat-eye charisma",
+          "roles": [
+            "leader",
+            "main dancer",
+            "vocalist"
+          ],
+          "vibe": "開場一個眼神就定調的主舞",
+          "trait_tags": [
+            "主舞",
+            "隊長",
+            "眼神殺",
+            "動作精準",
+            "現場穩定"
+          ],
+          "analysis": "Yeji是ITZY舞台張力的來源，動作乾淨得像用尺量過。《DALLA DALLA》開場的貓眼直拍讓她出道即爆紅，《WANNABE》甩頭髮動作更成為全網翻跳的迷因級編舞。"
+        },
+        "content": {
+          "topics": [
+            "dance practice",
+            "fitness",
+            "daily vlog"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "居家日常",
+            "動物"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "intimate",
+          "vibe": "練習室與貓咪之間的安靜日常",
+          "trait_tags": [
+            "練習室Vlog",
+            "貓奴日常",
+            "輕聲直播",
+            "翻跳挑戰",
+            "認真回覆"
+          ],
+          "analysis": "Yeji的內容以練習室和家中貓咪為兩大主軸，輕聲細語的直播風格與舞台判若兩人。TikTok翻跳挑戰幾乎每支都被原編舞者轉發，「努力到讓人安心」是粉絲對她內容的共同註解。"
+        },
+        "overview": {
+          "vibe": "貓眼颯爽的努力型隊長",
+          "trait_tags": [
+            "主舞",
+            "眼神殺",
+            "反差溫柔",
+            "練習狂",
+            "貓系"
+          ],
+          "summary": "舞台上是《DALLA DALLA》貓眼直拍爆紅、動作精準如尺量的ITZY隊長兼主舞；私下卻輕聲細語、練習到最晚、被稱讚就害羞搗臉。銳利與溫柔的反差加上從不間斷的努力，讓她成為第四代最具說服力的隊長範本。"
+        }
+      }
+    },
+    {
+      "id": "ahyeon",
+      "name": "Ahyeon",
+      "name_zh": "雅賢",
+      "group": "BABYMONSTER",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 80,
+      "followers": 6000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "Y2K辣妹",
+            "嘻哈街頭",
+            "幼態臉反差",
+            "YG系酷感",
+            "高飽和"
+          ],
+          "color_palette": [
+            "粉",
+            "黑",
+            "銀",
+            "亮藍"
+          ],
+          "vibe": "娃娃臉與嘻哈氣場的暴力反差",
+          "analysis": "Ahyeon的視覺反差是BABYMONSTER的招牌——稚氣未脫的娃娃臉配上YG系街頭嘻哈造型，唱起rap瞬間切換成另一個人。Y2K辣妹元素與高飽和配色讓她的舞台造型自帶第五代的世代感。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ENFP",
+          "vibe": "舞台怪物與愛撒嬌么妹的雙面",
+          "trait_tags": [
+            "撒嬌天才",
+            "舞台變身",
+            "活力滿格",
+            "愛笑",
+            "全能新人"
+          ],
+          "analysis": "鏡頭前是對成員和粉絲撒嬌不停的團寵型么妹，一站上舞台卻像按下開關變成「Bae-mon」。療養暫退又回歸的經歷讓她在直播中多次哽咽感謝粉絲等待，真誠程度遠超新人標準。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper-vocalist",
+          "stage_persona": "all-rounder ace prodigy",
+          "roles": [
+            "main rapper",
+            "main vocalist",
+            "center"
+          ],
+          "vibe": "出道前就千萬觀看的全能王牌",
+          "trait_tags": [
+            "三棲全能",
+            "說唱爆發",
+            "高音穩定",
+            "舞台變身",
+            "新人怪物"
+          ],
+          "analysis": "Ahyeon是YG押注的全能王牌，rap、vocal、dance三個維度都是隊內主力。出道前翻唱《Dangerously》的預告影片狂掃千萬觀看，讓她在正式出道前就被冠上「怪物新人」的稱號。"
+        },
+        "content": {
+          "topics": [
+            "covers",
+            "behind the scenes",
+            "aegyo"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美妝",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "努力哲學",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "YouTube",
+            "Instagram",
+            "TikTok"
+          ],
+          "content_tone": "hype",
+          "vibe": "翻唱炸場與撒嬌日常的雙引擎",
+          "trait_tags": [
+            "翻唱企劃",
+            "撒嬌合輯",
+            "回歸感言",
+            "練習室直拍",
+            "團寵日常"
+          ],
+          "analysis": "Ahyeon的內容雙引擎是炸場翻唱與團寵撒嬌——前者讓路人入坑，後者讓粉絲淪陷。健康暫退後回歸的首支直拍下，全球粉絲刷屏「等你很值得」，是第五代最動人的內容時刻之一。"
+        },
+        "overview": {
+          "vibe": "娃娃臉的全能怪物新人",
+          "trait_tags": [
+            "三棲全能",
+            "Bae-mon",
+            "撒嬌天才",
+            "翻唱爆紅",
+            "正向回歸"
+          ],
+          "summary": "出道前翻唱《Dangerously》就千萬觀看的YG全能王牌，rap、vocal、dance三棲俱佳，舞台上是「Bae-mon」，鏡頭外是撒嬌不停的團寵么妹。健康暫退再回歸的經歷讓她的正向與真誠格外有重量，是第五代最受期待的名字。"
+        }
+      }
+    },
+    {
+      "id": "seulgi",
+      "name": "Seulgi",
+      "name_zh": "康瑟琪",
+      "group": "Red Velvet",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 81,
+      "followers": 8000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "單眼皮魅力",
+            "暗黑概念",
+            "簡約高級",
+            "舞者線條",
+            "熊系可愛"
+          ],
+          "color_palette": [
+            "黑",
+            "紅",
+            "米白",
+            "金"
+          ],
+          "vibe": "單眼皮高級臉的暗黑優雅",
+          "analysis": "Seulgi以標誌性單眼皮重新定義K-pop審美，時尚圈稱她為「單眼皮魅力的教科書」。個人出道《28 Reasons》的暗黑概念與Red Velvet的奇幻可愛兩種畫風都能完美駕馭，是SM視覺光譜最寬的成員之一。"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "playful",
+          "mbti": "ISTP",
+          "vibe": "認真到可愛的熊系模範生",
+          "trait_tags": [
+            "模範生",
+            "熊系",
+            "畫畫宅",
+            "溫和謙遜",
+            "努力派"
+          ],
+          "analysis": "七年練習生熬成的「SM模範生」，成員形容她認真到連玩遊戲都會做筆記。私下是收集熊玩偶、安靜畫畫的溫和性格，綜藝裡反應慢半拍的呆萌與舞台殺氣形成可愛反差。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "veteran stage perfectionist",
+          "roles": [
+            "main dancer",
+            "lead vocalist"
+          ],
+          "vibe": "七年磨一劍的舞台完美主義者",
+          "trait_tags": [
+            "主舞",
+            "唱跳平衡",
+            "細節控",
+            "暗黑概念",
+            "資深穩定"
+          ],
+          "analysis": "Seulgi是Red Velvet舞台的軸心，唱跳平衡度被業界評為SM女團頂級水準，《Psycho》《Bad Boy》的控制力是她的代表作。個人出道《28 Reasons》以暗黑概念展現十年累積的表演深度，被樂評稱為「等了太久的solo」。"
+        },
+        "content": {
+          "topics": [
+            "art",
+            "vlog",
+            "dance"
+          ],
+          "lifestyle_topics": [
+            "藝術",
+            "居家日常",
+            "健身"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "努力哲學",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "畫畫、熊玩偶與練習室的安靜頻道",
+          "trait_tags": [
+            "繪畫日常",
+            "熊玩偶收藏",
+            "Vlog質感",
+            "練習室幕後",
+            "手寫信"
+          ],
+          "analysis": "Seulgi的YouTube頻道以畫畫、日常Vlog為主，質感安靜得像一本插畫集。她為粉絲手繪的作品和熊玩偶收藏是內容的固定彩蛋，「認真生活的偶像」是訂閱者最常留下的評價。"
+        },
+        "overview": {
+          "vibe": "單眼皮魅力的舞台模範生",
+          "trait_tags": [
+            "主舞",
+            "暗黑概念",
+            "熊系可愛",
+            "畫畫宅",
+            "七年練習生"
+          ],
+          "summary": "七年練習生熬成的Red Velvet主舞，唱跳平衡是SM女團頂級，《28 Reasons》的暗黑solo被樂評稱為等了太久的出道。舞台殺氣與收集熊玩偶、安靜畫畫的私下性格反差鮮明，單眼皮高級臉更重新定義了K-pop審美。"
+        }
+      }
+    },
+    {
+      "id": "sullyoon",
+      "name": "Sullyoon",
+      "name_zh": "薛潤雅",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 76,
+      "followers": 4000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "古典美人",
+            "清純掛",
+            "黑髮紅唇",
+            "公主感",
+            "畫報臉"
+          ],
+          "color_palette": [
+            "白",
+            "正紅",
+            "黑",
+            "珍珠光"
+          ],
+          "vibe": "第四代奇蹟臉蛋的古典美",
+          "analysis": "Sullyoon被韓網封為「第四代奇蹟臉蛋」，黑長直配紅唇的古典美人路線在滿屏辣妹概念中獨樹一格。出道預告照公開當天即屠榜韓網熱搜，畫報臉的討論度至今是NMIXX最強的流量入口。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFP",
+          "vibe": "安靜端正的反差吃貨",
+          "trait_tags": [
+            "端正禮貌",
+            "安靜內向",
+            "反差吃貨",
+            "溫柔細心",
+            "慢熱"
+          ],
+          "analysis": "鏡頭前端正得像禮儀教材，直播裡卻是被成員爆料「吃飯最香」的反差吃貨。慢熱安靜的性格讓她的每次大笑都被粉絲截成珍藏，「冰山美人融化瞬間」是她的固定熱搜詞。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "elegant visual vocalist",
+          "roles": [
+            "lead vocalist",
+            "visual",
+            "face of group"
+          ],
+          "vibe": "被臉蛋耽誤的實力派門面",
+          "trait_tags": [
+            "門面",
+            "領唱",
+            "高音穩定",
+            "被低估實力",
+            "優雅台風"
+          ],
+          "analysis": "Sullyoon的歌唱實力長期被臉蛋光環掩蓋——NMIXX高難度換拍歌曲中她的高音穩定度是隊內支柱之一。《O.O》現場版的副歌高音被聲樂頻道逐幀分析後，「被臉耽誤的vocal」成了粉絲最愛的平反素材。"
+        },
+        "content": {
+          "topics": [
+            "beauty",
+            "food",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "美妝",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "畫報級自拍與吃貨直播的反差誌",
+          "trait_tags": [
+            "畫報自拍",
+            "吃播反差",
+            "美妝分享",
+            "溫柔直播",
+            "古典氛圍"
+          ],
+          "analysis": "Sullyoon的Instagram每張自拍都是畫報級，但粉絲更愛她直播裡毫無形象大口吃飯的反差。古典美人外表與吃貨靈魂的組合，讓她的內容同時收割顏值粉與性格粉。"
+        },
+        "overview": {
+          "vibe": "古典臉蛋的反差吃貨門面",
+          "trait_tags": [
+            "奇蹟臉蛋",
+            "領唱",
+            "反差吃貨",
+            "優雅",
+            "被低估vocal"
+          ],
+          "summary": "被韓網封為「第四代奇蹟臉蛋」的NMIXX門面，黑髮紅唇的古典美在辣妹時代獨樹一格；高音穩定度卻長期被臉蛋光環掩蓋，是被聲樂頻道平反的實力派。端正優雅與大口吃飯的反差，是她最圈粉的內容公式。"
+        }
+      }
+    },
+    {
+      "id": "natty",
+      "name": "Natty",
+      "name_zh": "娜緹",
+      "group": "KISS OF LIFE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 72,
+      "followers": 2000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "健康小麥肌",
+            "東南亞辣妹",
+            "舞者剪裁",
+            "性感自信",
+            "閃片舞台"
+          ],
+          "color_palette": [
+            "古銅",
+            "亮金",
+            "桃紅",
+            "黑"
+          ],
+          "vibe": "小麥肌自信感的舞者美學",
+          "analysis": "Natty以健康小麥肌與自信性感的舞者造型打破韓系白瘦審美的單一性，泰國血統的立體五官讓她的舞台妝容自成一派。《Sugarcoat》純白套裝的俐落剪裁成為她「优雅又能打」的視覺代表作。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "打不倒的太陽能量",
+          "trait_tags": [
+            "不放棄",
+            "陽光爆棚",
+            "舞台熱愛",
+            "感染力",
+            "草根逆襲"
+          ],
+          "analysis": "SIXTEEN落選、Idol School出道團解散、再從頭來過——Natty的字典裡沒有放棄兩個字。她在KISS OF LIFE出道感言上哽咽說「我等這個舞台等了八年」，讓全網見證了K-pop最勵志的草根逆襲。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "born performer survivor",
+          "roles": [
+            "main dancer",
+            "lead vocalist"
+          ],
+          "vibe": "八年磨成的天生表演者",
+          "trait_tags": [
+            "主舞",
+            "爆發力",
+            "solo直拍",
+            "唱跳兼備",
+            "舞台老練"
+          ],
+          "analysis": "Natty是KISS OF LIFE表演力的核心，十歲就在選秀舞台展現的天賦經過八年淬煉成了老練的爆發力。個人曲《Sugarcoat》直拍以絲滑控制力刷屏舞蹈圈，被編舞師圈轉發稱為「新人裡最完成的身體」。"
+        },
+        "content": {
+          "topics": [
+            "dance",
+            "thai culture",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美食",
+            "旅遊"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "自信表達",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "TikTok",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "泰式熱情與舞室汗水的勵志頻道",
+          "trait_tags": [
+            "舞室日常",
+            "泰國美食",
+            "勵志語錄",
+            "翻跳挑戰",
+            "自信穿搭"
+          ],
+          "analysis": "Natty的內容充滿泰式熱情——舞室練習、家鄉美食與毫不遮掩的自信穿搭是三大主軸。她公開談論落選低谷的訪談片段被剪成勵志合輯，「八年也要站上來」成為粉絲圈的精神標語。"
+        },
+        "overview": {
+          "vibe": "八年逆襲的太陽能舞者",
+          "trait_tags": [
+            "主舞",
+            "不放棄",
+            "小麥肌自信",
+            "Sugarcoat",
+            "草根逆襲"
+          ],
+          "summary": "SIXTEEN落選、出道團解散、八年後終於以KISS OF LIFE主舞站穩舞台的泰國女孩，《Sugarcoat》直拍被編舞師圈稱為「新人裡最完成的身體」。小麥肌的自信美學與打不倒的太陽能量，讓她成為K-pop最勵志的逆襲敘事本人。"
+        }
+      }
+    },
+    {
+      "id": "niki",
+      "name": "Ni-ki",
+      "name_zh": "西村力",
+      "group": "ENHYPEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 83,
+      "followers": 8000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "暗黑貴公子",
+            "吸血鬼概念",
+            "少年銳利",
+            "黑色系",
+            "腿長剪影"
+          ],
+          "color_palette": [
+            "黑",
+            "暗紅",
+            "銀",
+            "白"
+          ],
+          "vibe": "吸血鬼概念裡的舞者剪影",
+          "analysis": "Ni-ki的視覺武器是那副為舞蹈而生的修長剪影，ENHYPEN吸血鬼世界觀的暗黑造型在他身上像量身訂做。黑色系與銳利眼妝放大了「最年輕卻最危險」的概念張力，時尚雜誌稱他是「用身體線條穿衣服的偶像」。"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ISTP",
+          "vibe": "舞台天才與四次元么弟的切換",
+          "trait_tags": [
+            "舞蹈天才",
+            "四次元",
+            "毒舌幽默",
+            "么弟特權",
+            "日系冷面"
+          ],
+          "analysis": "舞台下的Ni-ki是個冷面四次元，毒舌吐槽哥哥們毫不留情卻總在關鍵時刻撒嬌——ENGENE稱之為「么弟特權的教科書用法」。日本出身的他剛出道時韓語還不流利，如今直播裡的冷笑話已經是團內名產。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "main dancer-rapper",
+          "stage_persona": "dance prodigy maknae",
+          "roles": [
+            "main dancer",
+            "maknae",
+            "center"
+          ],
+          "vibe": "SHINee伴舞出身的舞蹈神童",
+          "trait_tags": [
+            "主舞",
+            "神童",
+            "solo dance break",
+            "肢體控制",
+            "編舞理解力"
+          ],
+          "analysis": "六歲習舞、少年時期就為SHINee伴舞的Ni-ki，在《I-LAND》以舞蹈評價第一的成績鎖定出道位。MAMA頒獎禮的solo dance break讓Taemin本人公開稱讚，「神童長成了怪物」是舞蹈圈對他的世代註解。"
+        },
+        "content": {
+          "topics": [
+            "dance",
+            "gaming",
+            "variety"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "幽默自嘲",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Weverse",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "comedic",
+          "vibe": "練習室怪物與冷笑話工廠",
+          "trait_tags": [
+            "練習室直拍",
+            "冷面吐槽",
+            "遊戲直播",
+            "編舞挑戰",
+            "成長紀錄"
+          ],
+          "analysis": "Ni-ki的內容是練習室直拍與冷面吐槽的組合——練舞時是怪物，直播時是冷笑話工廠。從韓語生疏到主導整場直播的成長軌跡被粉絲剪成紀錄片式合輯，是ENGENE最珍視的養成系內容。"
+        },
+        "overview": {
+          "vibe": "吸血鬼概念裡的舞蹈神童",
+          "trait_tags": [
+            "主舞",
+            "神童",
+            "四次元么弟",
+            "冷面毒舌",
+            "養成系"
+          ],
+          "summary": "六歲習舞、SHINee伴舞出身、《I-LAND》舞蹈評價第一出道的ENHYPEN么弟，MAMA solo dance break讓Taemin親自認證「神童長成怪物」。舞台上是暗黑概念的銳利剪影，舞台下是毒舌冷笑話不斷的四次元，反差感正是他的圈粉公式。"
+        }
+      }
+    },
+    {
+      "id": "wonbin",
+      "name": "Wonbin",
+      "name_zh": "朴元彬",
+      "group": "RIIZE",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 79,
+      "followers": 5000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "世紀美顏",
+            "清冷貴氣",
+            "黑髮破碎感",
+            "極簡高級",
+            "膠片質感"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "灰藍",
+            "銀"
+          ],
+          "vibe": "膠片質感的世紀美顏",
+          "analysis": "Wonbin出道即引爆「SM世紀美顏」的討論，黑髮配清冷眼神的破碎感美學讓他的飯拍像膠片電影截圖。極簡黑白造型最能放大他的貴氣，時尚圈form認證的「鏡頭找不到死角」是他的視覺標籤。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFP",
+          "vibe": "話少但行動派的安靜溫柔",
+          "trait_tags": [
+            "安靜溫柔",
+            "行動派",
+            "害羞慢熱",
+            "成員寵",
+            "認真傾聽"
+          ],
+          "analysis": "Wonbin是RIIZE裡話最少的成員，但粉絲生日、成員低潮時他總是第一個默默行動的人。直播裡被稱讚帥會耳朵變紅的害羞反應，與舞台上的清冷氣場形成BRIIZE最愛的反差素材。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "visual all-rounder",
+          "roles": [
+            "visual",
+            "center",
+            "vocalist",
+            "dancer"
+          ],
+          "vibe": "美顏之下被低估的均衡實力",
+          "trait_tags": [
+            "門面",
+            "center",
+            "唱跳均衡",
+            "吉他少年",
+            "舞台氛圍"
+          ],
+          "analysis": "Wonbin的表演實力常被臉蛋搶走焦點——《Get A Guitar》center位的律動處理讓編舞師評價「身體比臉更會說話」。樂隊少年出身的吉他底子，讓SM在他身上預留了band concept的伏筆。"
+        },
+        "content": {
+          "topics": [
+            "guitar",
+            "fashion",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "時尚",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "吉他、黑白照與耳朵變紅的瞬間",
+          "trait_tags": [
+            "吉他彈唱",
+            "黑白攝影感",
+            "害羞名場面",
+            "安靜Vlog",
+            "氛圍美學"
+          ],
+          "analysis": "Wonbin的內容像一本安靜的黑白寫真集，偶爾插入吉他彈唱片段就足以屠榜熱搜。直播裡害羞到耳朵變紅的瞬間被粉絲做成合輯，「清冷臉的溫柔靈魂」是BRIIZE的固定tag。"
+        },
+        "overview": {
+          "vibe": "膠片美顏的安靜吉他少年",
+          "trait_tags": [
+            "世紀美顏",
+            "center",
+            "吉他少年",
+            "害羞反差",
+            "氛圍感"
+          ],
+          "summary": "出道即引爆「SM世紀美顏」討論的RIIZE門面，飯拍像膠片電影截圖；《Get A Guitar》center的律動讓編舞師認證「身體比臉更會說話」。話少行動派的溫柔與被稱讚就耳朵變紅的害羞，是清冷外表下最圈粉的反差。"
+        }
+      }
+    },
+    {
+      "id": "sung-hanbin",
+      "name": "Sung Hanbin",
+      "name_zh": "成韓彬",
+      "group": "ZEROBASEONE",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 77,
+      "followers": 4000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清爽王子",
+            "milky白皙",
+            "溫柔笑眼",
+            "校園男神",
+            "乾淨剪裁"
+          ],
+          "color_palette": [
+            "白",
+            "天藍",
+            "奶油",
+            "淺灰"
+          ],
+          "vibe": "笑眼溫柔的清爽王子系",
+          "analysis": "Sung Hanbin的視覺關鍵字是「乾淨」——白皙膚色、溫柔笑眼與清爽剪裁構成標準的校園男神範本。Boys Planet時期的白襯衫舞台照至今仍是粉絲頭像的最大宗，溫柔感就是他的造型語言。"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ESFJ",
+          "vibe": "把所有人放在心上的氛圍隊長",
+          "trait_tags": [
+            "氛圍隊長",
+            "照顧狂",
+            "共感能力",
+            "淚腺發達",
+            "服務精神"
+          ],
+          "analysis": "Boys Planet全程展現的照顧型領導讓他以斷層人氣1位出道，選手們落選時他比本人哭得更傷心的畫面成為節目名場面。ZEROBASEONE成員口中「隊長把我們每個人的小習慣都記得」是他共感能力的最佳註腳。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "warm charismatic leader",
+          "roles": [
+            "leader",
+            "main dancer"
+          ],
+          "vibe": "溫柔臉孔下的主舞實力",
+          "trait_tags": [
+            "隊長",
+            "主舞",
+            "絲滑舞線",
+            "舞台親和力",
+            "大賞級穩定"
+          ],
+          "analysis": "Sung Hanbin是ZB1舞台的定海神針，絲滑舞線與溫暖台風讓他的直拍評論區總是「被治癒了」。Boys Planet《Over Me》舞台的領舞表現被導師評為「會帶人的舞者」，奠定了他以表演服人的隊長地位。"
+        },
+        "content": {
+          "topics": [
+            "fan service",
+            "vlog",
+            "behind the scenes"
+          ],
+          "lifestyle_topics": [
+            "居家日常",
+            "美食",
+            "健身"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "家庭觀",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "Weverse",
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "把直播開成粉絲見面會的服務型隊長",
+          "trait_tags": [
+            "寵粉直播",
+            "記住粉絲ID",
+            "幕後花絮",
+            "家人談心",
+            "暖男語錄"
+          ],
+          "analysis": "Sung Hanbin的直播以「記得住常出現粉絲ID」聞名，服務精神讓每場直播都像小型見面會。談到家人與練習生歲月時的真誠淚水，讓ZEROSE把他的暖男語錄整理成了語錄合集。"
+        },
+        "overview": {
+          "vibe": "斷層1位的氛圍隊長",
+          "trait_tags": [
+            "隊長",
+            "主舞",
+            "照顧狂",
+            "寵粉直播",
+            "共感力"
+          ],
+          "summary": "Boys Planet以斷層人氣1位出道的ZEROBASEONE隊長，比落選選手哭得更傷心的共感力是他的人設原點。絲滑主舞實力配上記得住粉絲ID的服務精神，把「溫柔也是一種領導力」演成了第五代的隊長範本。"
+        }
+      }
+    },
+    {
+      "id": "san",
+      "name": "San",
+      "name_zh": "崔山",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 81,
+      "followers": 6000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "海盜概念",
+            "肌肉線條",
+            "黑暗劇場",
+            "煙燻濃顏",
+            "皮衣鏈條"
+          ],
+          "color_palette": [
+            "黑",
+            "深紅",
+            "古銅",
+            "銀"
+          ],
+          "vibe": "黑暗劇場感的海盜美學",
+          "analysis": "San的造型語言是ATEEZ海盜世界觀的具象化——皮衣、鏈條與煙燻濃顏構成黑暗劇場感，健身雕出的肌肉線條讓舞台服像戰甲。粉絲說他「臉是少年，身體是格鬥家」，這種衝突感正是他的視覺武器。"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ENFJ",
+          "vibe": "舞台瘋子與玩偶控的兩個極端",
+          "trait_tags": [
+            "表演瘋子",
+            "玩偶控",
+            "愛哭鬼",
+            "重感情",
+            "反差軟萌"
+          ],
+          "analysis": "舞台上被稱為「表演瘋子」的San，私下是抱著玩偶Shiber到處走的軟萌大男孩，演唱會感言必哭的重感情體質讓ATINY又笑又淚。「上台像換了靈魂」是成員對他反差的統一描述。"
+        },
+        "performance": {
+          "dance_style": "theatrical fluid",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "performance beast",
+          "roles": [
+            "vocalist",
+            "dancer",
+            "killing part specialist"
+          ],
+          "vibe": "用全身演戲的表演野獸",
+          "trait_tags": [
+            "表演瘋子",
+            "戲劇張力",
+            "killing part",
+            "肢體爆發",
+            "現場掌控"
+          ],
+          "analysis": "San是ATEEZ「表演系男團」名聲的核心論據，每個killing part都用全身演戲，戲劇張力被歐美樂評形容為「莎士比亞式的偶像表演」。Coachella 2024舞台後，他的fancam登上全球趨勢，西方媒體首次大規模討論K-pop第四代男團的現場實力。"
+        },
+        "content": {
+          "topics": [
+            "fitness",
+            "plushies",
+            "behind the scenes"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "居家日常",
+            "旅遊"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "hype",
+          "vibe": "健身房猛男與玩偶Shiber的同框",
+          "trait_tags": [
+            "健身日常",
+            "Shiber同框",
+            "巡演Vlog",
+            "感性長文",
+            "汗水紀錄"
+          ],
+          "analysis": "San的內容在健身房猛男與抱玩偶軟萌之間反覆橫跳，愛犬式玩偶Shiber的出鏡率高到擁有自己的粉絲tag。世界巡演Vlog裡寫給ATINY的感性長文，讓「San的信」成為巡演的固定淚點環節。"
+        },
+        "overview": {
+          "vibe": "玩偶控的表演野獸",
+          "trait_tags": [
+            "表演瘋子",
+            "killing part",
+            "Shiber",
+            "愛哭重感情",
+            "Coachella認證"
+          ],
+          "summary": "ATEEZ「表演系男團」名聲的核心，每個killing part都用全身演戲，Coachella 2024後fancam登上全球趨勢。舞台下卻是抱著玩偶Shiber、演唱會感言必哭的軟萌大男孩——「上台像換了靈魂」的反差正是他的代名詞。"
+        }
+      }
+    },
+    {
+      "id": "mark",
+      "name": "Mark",
+      "name_zh": "李馬克",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 82,
+      "followers": 7000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "街頭少年",
+            "潮牌混搭",
+            "眼鏡知性",
+            "加拿大隨性",
+            "舞台爆改"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "丹寧藍",
+            "螢光綠"
+          ],
+          "vibe": "潮牌街頭與眼鏡少年的切換",
+          "analysis": "Mark的造型在舞台潮牌街頭風與私下眼鏡衛衣的鄰家少年間自由切換，加拿大成長背景讓他的休閒穿搭自帶不費力的隨性。粉絲總結他的視覺公式：「摘了眼鏡是NCT王牌，戴上眼鏡是隔壁書呆子」。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "playful",
+          "mbti": "ISFJ",
+          "vibe": "永動機般的真誠過載少年",
+          "trait_tags": [
+            "永動機",
+            "真誠過載",
+            "感恩體質",
+            "話多可愛",
+            "謙遜王牌"
+          ],
+          "analysis": "「李馬克太忙」是NCT粉圈最著名的迷因——127、Dream、SuperM全勤的他卻從不喊累，訪談裡每三句就冒出一次「真的很感恩」。講話激動就語無倫次的真誠過載體質，讓他成為粉絲口中「無法討厭的王牌」。"
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "main rapper-dancer",
+          "stage_persona": "all-unit ace workhorse",
+          "roles": [
+            "main rapper",
+            "songwriter",
+            "lead dancer"
+          ],
+          "vibe": "全組合全勤的說唱王牌",
+          "trait_tags": [
+            "主饒舌",
+            "全勤王牌",
+            "作詞參與",
+            "節奏天才",
+            "舞台體力怪"
+          ],
+          "analysis": "Mark是NCT體系的說唱軸心，127、Dream、SuperM三組全勤還包辦大量作詞，產出量被粉絲戲稱「SM的永動機」。《Kick It》的說唱段落與年末舞台的體力輸出，讓「李馬克太忙但李馬克從不掉鏈子」成為公認事實。"
+        },
+        "content": {
+          "topics": [
+            "rap",
+            "songwriting",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "戶外活動",
+            "美食"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "comedic",
+          "vibe": "創作幕後與語無倫次的感恩日常",
+          "trait_tags": [
+            "作詞幕後",
+            "語無倫次名場面",
+            "吉他自彈",
+            "感恩語錄",
+            "迷因體質"
+          ],
+          "analysis": "Mark的內容魅力一半來自創作幕後，一半來自講話激動就語無倫次的迷因體質——「lemon瞬間」等名場面被剪成合輯百萬觀看。寫詞筆記與吉他自彈的分享，讓粉絲看見全勤王牌背後真正的音樂熱情。"
+        },
+        "overview": {
+          "vibe": "全勤永動機的真誠王牌",
+          "trait_tags": [
+            "主饒舌",
+            "全組合全勤",
+            "作詞",
+            "迷因體質",
+            "感恩過載"
+          ],
+          "summary": "NCT 127、Dream、SuperM三組全勤還包辦作詞的「SM永動機」，《Kick It》說唱與年末舞台體力輸出從不掉鏈子。講話激動就語無倫次的真誠過載與每三句一次的「真的很感恩」，讓這位王牌成為粉圈公認「無法討厭的人」。"
+        }
+      }
+    },
+    {
+      "id": "ningning",
+      "name": "Ningning",
+      "name_zh": "寧藝卓",
+      "group": "aespa",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 84,
+      "followers": 9000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "酷甜辣妹",
+            "Y2K金屬",
+            "紅黑撞色",
+            "未來感",
+            "貓鼻尖"
+          ],
+          "color_palette": [
+            "紅",
+            "黑",
+            "銀",
+            "冰藍"
+          ],
+          "vibe": "未來感概念裡的酷甜主唱",
+          "analysis": "Ningning在aespa的未來金屬美學中負責「酷甜」光譜——紅黑撞色與Y2K金屬感造型襯出她00後的銳氣。《Armageddon》時期的紅髮造型被中韓兩網同時刷屏，是她視覺辨識度的代表作。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ESFP",
+          "vibe": "東北話和高音一樣豪爽",
+          "trait_tags": [
+            "東北豪爽",
+            "直球發言",
+            "吃貨",
+            "反差幽默",
+            "舞台自信"
+          ],
+          "analysis": "舞台上是冷艷主唱，直播裡一開口就是豪爽東北話的反差讓中韓粉絲集體上頭。直球發言毫不包裝——被問減肥就回「我不想忍」——這種00後的坦率讓她的直播切片在兩國社群都自帶傳播力。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main vocalist",
+          "stage_persona": "stable high-note machine",
+          "roles": [
+            "main vocalist",
+            "maknae"
+          ],
+          "vibe": "尾音穩到可怕的00後主唱",
+          "trait_tags": [
+            "主唱",
+            "高音穩定",
+            "現場機器",
+            "音色厚度",
+            "大賞舞台"
+          ],
+          "analysis": "Ningning是aespa現場穩定度的下限保證，《Armageddon》尾音的現場直拍被聲樂頻道用來示範「什麼叫支撐」。年末大賞的高音部分她從不修飾直接開麥，「00後裡最敢開麥的主唱」是樂評對她的定位。"
+        },
+        "content": {
+          "topics": [
+            "food",
+            "vlog",
+            "music"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "居家日常",
+            "美妝"
+          ],
+          "value_topics": [
+            "自信表達",
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "TikTok"
+          ],
+          "content_tone": "comedic",
+          "vibe": "吃播豪爽與冷艷舞照的雙面帳號",
+          "trait_tags": [
+            "吃播名場面",
+            "東北話切片",
+            "直球語錄",
+            "高音清唱",
+            "反差自拍"
+          ],
+          "analysis": "Ningning的內容是冷艷舞台照與豪爽吃播的雙面帳號，直播裡大口吃東西配東北話吐槽的切片是中韓雙語圈的固定迷因。興起時的隨口清唱又會瞬間提醒所有人：這是aespa的主唱。"
+        },
+        "overview": {
+          "vibe": "東北話主唱的酷甜反差",
+          "trait_tags": [
+            "主唱",
+            "高音穩定",
+            "東北豪爽",
+            "吃貨",
+            "直球發言"
+          ],
+          "summary": "aespa現場穩定度的下限保證，《Armageddon》尾音被聲樂頻道當教材，年末大賞從不修音直接開麥。舞台下一開口就是豪爽東北話的吃貨體質與直球發言，讓這位00後主唱在中韓兩網都自帶迷因傳播力。"
+        }
+      }
+    },
+    {
+      "id": "haerin",
+      "name": "Haerin",
+      "name_zh": "姜海琳",
+      "group": "NewJeans",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 84,
+      "followers": 8000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "貓系臉",
+            "靜謐少女",
+            "復古膠片",
+            "天然系",
+            "氛圍美人"
+          ],
+          "color_palette": [
+            "奶白",
+            "薄荷",
+            "淺棕",
+            "灰藍"
+          ],
+          "vibe": "貓系靜謐的膠片少女",
+          "analysis": "Haerin的「貓系臉」是NewJeans天然系美學的最佳載體——不費力的靜謐感讓她的每張抓拍都像膠片寫真。《Ditto》MV裡她望向鏡頭的眼神成為Y2K懷舊氛圍的代表畫面，氛圍美人是她的視覺定義。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ISTP",
+          "vibe": "話少但句句戳中的貓系四次元",
+          "trait_tags": [
+            "貓系慢熱",
+            "四次元發言",
+            "安靜觀察者",
+            "突然反差",
+            "我行我素"
+          ],
+          "analysis": "Haerin平時安靜得像隻觀察中的貓，但開口常是讓成員愣住的四次元發言——「海琳語錄」是Bunnies的固定收藏項目。突然湊近鏡頭或面無表情做可愛動作的我行我素，正是貓系魅力的教科書演繹。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist-dancer",
+          "stage_persona": "effortless mood center",
+          "roles": [
+            "vocalist",
+            "dancer",
+            "visual"
+          ],
+          "vibe": "不費力美學的氛圍中心",
+          "trait_tags": [
+            "氛圍中心",
+            "自然舞感",
+            "音色清透",
+            "鏡頭吸力",
+            "靜中帶刺"
+          ],
+          "analysis": "Haerin是NewJeans「自然勝於刻意」哲學在舞台上的化身，清透音色與不過度用力的舞感讓她成為《Ditto》氛圍的中心。直拍裡她看似放鬆卻精準踩點的細節，被舞評稱為「靜中帶刺的表演智商」。"
+        },
+        "content": {
+          "topics": [
+            "daily",
+            "animals",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "動物",
+            "居家日常",
+            "藝術"
+          ],
+          "value_topics": [
+            "自由奔放",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "intimate",
+          "vibe": "Phoning裡惜字如金的貓系電台",
+          "trait_tags": [
+            "海琳語錄",
+            "貓咪舉動",
+            "安靜Vlog",
+            "突襲鏡頭",
+            "膠片日常"
+          ],
+          "analysis": "Haerin在Phoning的直播以惜字如金聞名，但每句四次元發言都會被做成語錄圖瘋傳。突然湊近鏡頭又默默退開的貓咪式舉動，讓她的切片擁有NewJeans裡最高的「無聲勝有聲」傳播率。"
+        },
+        "overview": {
+          "vibe": "貓系靜謐的四次元氛圍中心",
+          "trait_tags": [
+            "貓系臉",
+            "Ditto中心",
+            "海琳語錄",
+            "自然舞感",
+            "我行我素"
+          ],
+          "summary": "NewJeans天然系美學的最佳載體，《Ditto》裡望向鏡頭的眼神成為Y2K懷舊的代表畫面。平時安靜如觀察中的貓，開口卻是讓成員愣住的四次元語錄；不費力卻精準踩點的表演智商，讓她成為靜中帶刺的氛圍中心。"
+        }
+      }
+    },
+    {
+      "id": "an-yujin",
+      "name": "An Yujin",
+      "name_zh": "安俞真",
+      "group": "IVE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 85,
+      "followers": 9000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "健康元氣",
+            "長腿比例",
+            "學姐風",
+            "亮色活力",
+            "大方氣場"
+          ],
+          "color_palette": [
+            "亮紅",
+            "白",
+            "牛仔藍",
+            "金"
+          ],
+          "vibe": "元氣健康美的大方學姐",
+          "analysis": "An Yujin的視覺關鍵字是「健康大方」——173cm的比例與元氣笑容讓她駕馭亮色系毫無壓力。相較IVE夢幻掛的成員，她的學姐風穿搭與大方氣場開拓了「自信不靠冷臉」的第四代審美路線。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFJ",
+          "vibe": "自帶綜藝感的元氣隊長",
+          "trait_tags": [
+            "元氣隊長",
+            "綜藝天賦",
+            "大方爽朗",
+            "氣氛擔當",
+            "可靠姐姐"
+          ],
+          "analysis": "IVE最年輕的隊長卻擁有最強的氣氛掌控力，《地球娛樂室》裡放得開的綜藝感讓她收穫大量團外粉。成員形容她「像太陽一樣的隊長」，爽朗大笑與關鍵時刻的可靠是DIVE最安心的存在。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "confident energizer leader",
+          "roles": [
+            "leader",
+            "lead vocalist"
+          ],
+          "vibe": "自信敘事的能量輸出端",
+          "trait_tags": [
+            "隊長",
+            "領唱",
+            "活力爆發",
+            "舞台大方",
+            "穩定輸出"
+          ],
+          "analysis": "An Yujin是IVE「自信敘事」的能量輸出端，《I AM》副歌的開闊唱腔與大開大合的舞台動作完美承載歌曲的宣言感。從《ELEVEN》到《I AM》，她的現場穩定度讓「IVE的下限由隊長守住」成為粉圈共識。"
+        },
+        "content": {
+          "topics": [
+            "variety",
+            "vlog",
+            "fitness"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美食",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "自信表達",
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "hype",
+          "vibe": "綜藝笑聲與元氣Vlog的太陽能頻道",
+          "trait_tags": [
+            "綜藝名場面",
+            "爽朗大笑",
+            "運動Vlog",
+            "隊長日記",
+            "能量傳染"
+          ],
+          "analysis": "An Yujin的內容核心是會傳染的爽朗大笑，《地球娛樂室》的綜藝名場面讓她的切片觀看數常壓過正式舞台。運動Vlog與隊長視角的幕後日記，把「健康自信」從概念變成了可訂閱的日常。"
+        },
+        "overview": {
+          "vibe": "太陽能量的元氣隊長",
+          "trait_tags": [
+            "隊長",
+            "綜藝天賦",
+            "I AM",
+            "爽朗大笑",
+            "健康自信"
+          ],
+          "summary": "IVE最年輕的隊長卻是「自信敘事」的能量輸出端，《I AM》的開闊唱腔守住團隊現場下限。《地球娛樂室》的綜藝感收穫大量團外粉，像太陽一樣會傳染的爽朗大笑，讓「健康大方的自信」成為她的世代標籤。"
+        }
+      }
+    },
+    {
+      "id": "kim-chaewon",
+      "name": "Kim Chaewon",
+      "name_zh": "金采源",
+      "group": "LE SSERAFIM",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 83,
+      "followers": 7000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "小隻強悍",
+            "法式短髮",
+            "冷調簡約",
+            "貓兔臉",
+            "颯氣"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "燕麥",
+            "酒紅"
+          ],
+          "vibe": "短髮颯氣的小隻隊長美學",
+          "analysis": "Kim Chaewon的《UNFORGIVEN》短髮造型是第四代最成功的形象轉型之一——法式短髮配冷調簡約穿搭，把「小隻」翻譯成了「精悍」。貓兔混合的臉部線條讓她可甜可颯，是LE SSERAFIM冷感美學的隊長級示範。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "playful",
+          "mbti": "ISTP",
+          "vibe": "冷靜吐槽掛的反差隊長",
+          "trait_tags": [
+            "冷靜幽默",
+            "吐槽擔當",
+            "外冷內熱",
+            "我行我素",
+            "可靠判斷"
+          ],
+          "analysis": "Chaewon的幽默是冷靜的吐槽型——綜藝裡一句不帶表情的回擊常讓全場笑翻。IZ*ONE時期的妹妹形象到LE SSERAFIM隊長的轉變中，成員說「她看起來慵懶，但每個決定都很準」，外冷內熱是FEARNOT的共識。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "compact powerhouse leader",
+          "roles": [
+            "leader",
+            "lead vocalist",
+            "lead dancer"
+          ],
+          "vibe": "小隻身體裡的大爆發力",
+          "trait_tags": [
+            "隊長",
+            "爆發力",
+            "音色辨識",
+            "舞台氣場",
+            "IZ*ONE歷練"
+          ],
+          "analysis": "Chaewon用《UNFORGIVEN》證明了氣場與身高無關——小隻框架裡的爆發力與貫穿全曲的眼神讓她的隊長氣場屠版直拍評論區。IZ*ONE時期積累的舞台歷練，讓她的音色辨識度與穩定性都是隊內頂級。"
+        },
+        "content": {
+          "topics": [
+            "gaming",
+            "vlog",
+            "fashion"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "時尚"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "專業職人精神",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "冷面吐槽與遊戲宅的慵懶頻道",
+          "trait_tags": [
+            "冷吐槽語錄",
+            "遊戲直播",
+            "慵懶日常",
+            "短髮自拍",
+            "隊長幕後"
+          ],
+          "analysis": "Chaewon的內容是冷面吐槽與遊戲宅日常的組合，直播裡邊打遊戲邊用氣音吐槽的切片是FEARNOT的快樂源泉。《UNFORGIVEN》後的短髮自拍系列更讓她的Instagram成為「短髮種草機」。"
+        },
+        "overview": {
+          "vibe": "短髮颯氣的冷面隊長",
+          "trait_tags": [
+            "隊長",
+            "UNFORGIVEN短髮",
+            "冷吐槽",
+            "爆發力",
+            "遊戲宅"
+          ],
+          "summary": "IZ*ONE妹妹蛻變成LE SSERAFIM隊長的代表案例，《UNFORGIVEN》短髮把「小隻」翻譯成「精悍」，眼神氣場屠版直拍評論區。私下是冷面吐槽配遊戲宅的慵懶體質，「看起來慵懶但每個決定都很準」是成員給她的隊長認證。"
+        }
+      }
+    },
+    {
+      "id": "momo",
+      "name": "Momo",
+      "name_zh": "平井桃",
+      "group": "TWICE",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "popularity": 85,
+      "followers": 11000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "舞者腹肌",
+            "性感健康",
+            "桃色系",
+            "舞台爆改",
+            "日系精緻"
+          ],
+          "color_palette": [
+            "桃粉",
+            "黑",
+            "金",
+            "白"
+          ],
+          "vibe": "腹肌線條的桃色舞者美學",
+          "analysis": "Momo的視覺標籤是那條被稱為「11字腹肌」的舞者線條——健康性感路線讓她在TWICE甜美光譜中佔住獨特位置。桃色系是她的本命色，舞台服一旦走爆改性感路線，熱搜必定有她的direct cam。"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ISFP",
+          "vibe": "吃貨靈魂的呆萌舞神",
+          "trait_tags": [
+            "吃貨傳說",
+            "呆萌反差",
+            "撒嬌自然",
+            "慢半拍",
+            "努力背書"
+          ],
+          "analysis": "Momo的吃貨傳說在K-pop圈無人不曉——「比起跳舞更愛吃」的發言配上認真吃飯的樣子成為ONCE的療癒素材。綜藝裡慢半拍的呆萌與舞台上的殺氣反差極大，被成員稱為「開關只裝在舞台上的人」。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "dance machine survivor",
+          "roles": [
+            "main dancer",
+            "vocalist"
+          ],
+          "vibe": "被朴軫永召回的舞蹈機器",
+          "trait_tags": [
+            "主舞",
+            "Momo的舞蹈時間",
+            "力量控制",
+            "直拍女王",
+            "淘汰逆轉"
+          ],
+          "analysis": "SIXTEEN被淘汰又被朴軫永親自召回的傳奇，是Momo「靠實力無法被放棄」的最佳註腳。年末舞台的「Momo的舞蹈時間」solo環節是TWICE現場的固定高潮，力量與控制兼備的舞感至今仍是JYP女團的標竿。"
+        },
+        "content": {
+          "topics": [
+            "food",
+            "dance",
+            "vlog"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube",
+            "TikTok"
+          ],
+          "content_tone": "comedic",
+          "vibe": "吃播傳說與舞室直拍的雙修頻道",
+          "trait_tags": [
+            "吃播傳說",
+            "舞室片段",
+            "日語直播",
+            "呆萌名場面",
+            "腹肌教學"
+          ],
+          "analysis": "Momo的內容兩大支柱是吃播與舞室——大胃王等級的進食量配上「還想再吃」的表情包是ONCE的固定快樂。舞室直拍與腹肌維持秘訣的分享，則讓她的頻道同時是吃貨樂園和健身教材。"
+        },
+        "overview": {
+          "vibe": "吃貨靈魂的舞蹈機器",
+          "trait_tags": [
+            "主舞",
+            "Momo的舞蹈時間",
+            "吃貨傳說",
+            "11字腹肌",
+            "淘汰逆轉"
+          ],
+          "summary": "SIXTEEN被淘汰又被朴軫永親自召回的傳奇主舞，年末「Momo的舞蹈時間」是TWICE現場的固定高潮。舞台殺氣與「比起跳舞更愛吃」的呆萌吃貨靈魂反差極大——開關只裝在舞台上的人，是她最準確的註解。"
+        }
+      }
+    },
+    {
+      "id": "j-hope",
+      "name": "J-Hope",
+      "name_zh": "鄭號錫",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-pop solo"
+      ],
+      "popularity": 90,
+      "followers": 20000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "街舞底色",
+            "高飽和撞色",
+            "暗黑轉型",
+            "潮流教科書",
+            "笑容招牌"
+          ],
+          "color_palette": [
+            "螢光橘",
+            "黑",
+            "白",
+            "紫"
+          ],
+          "vibe": "從彩虹能量到Jack In The Box的光譜",
+          "analysis": "J-Hope的視覺光譜橫跨兩個極端——團體時期高飽和撞色的「希望」能量，與《Jack In The Box》潘朵拉概念的暗黑轉型。街舞出身的底色讓他的造型永遠帶著street credibility，被時尚媒體稱為BTS裡「最會穿的潮流教科書」。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFJ",
+          "vibe": "名字就是人設的希望本望",
+          "trait_tags": [
+            "希望能量",
+            "自律狂",
+            "氣氛核心",
+            "細心體貼",
+            "舞台變臉"
+          ],
+          "analysis": "「I'm your hope, you're my hope, I'm J-Hope」——他把名字活成了人設，團內氣氛低迷時第一個炒熱的永遠是他。但成員也公認他是練習室裡最嚴格的「舞蹈隊長」，入伍前最後一次直播的笑著安慰粉絲，是ARMY心中希望本望的定格畫面。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper-dancer",
+          "stage_persona": "street dance captain",
+          "roles": [
+            "main dancer",
+            "main rapper",
+            "lyricist"
+          ],
+          "vibe": "Lollapalooza headliner級的舞台統治力",
+          "trait_tags": [
+            "主舞",
+            "街舞出身",
+            "Lollapalooza",
+            "編舞隊長",
+            "groove天花板"
+          ],
+          "analysis": "街舞團出身的J-Hope是BTS編舞品質的把關人，groove感被全球編舞師公認為K-pop天花板級。2022年以韓國藝人身分首次headline Lollapalooza，數萬人合唱《Chicken Noodle Soup》的畫面成為K-pop solo藝人的里程碑。"
+        },
+        "content": {
+          "topics": [
+            "dance",
+            "fashion",
+            "solo work"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "音樂創作",
+            "健身"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "Weverse",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "Hope on the street的正能量電台",
+          "trait_tags": [
+            "街舞企劃",
+            "Hope on the Street",
+            "正能量語錄",
+            "時尚穿搭",
+            "自律日常"
+          ],
+          "analysis": "J-Hope的內容母題是「希望與街頭」——紀錄片《Hope on the Street》回到街舞初心，與各國舞者尬舞的企劃讓舞蹈圈集體致敬。自律到極致的日常與永遠先想到粉絲的正能量語錄，讓他的帳號像一座移動的加油站。"
+        },
+        "overview": {
+          "vibe": "把名字活成人設的希望隊長",
+          "trait_tags": [
+            "主舞",
+            "Lollapalooza",
+            "Jack In The Box",
+            "正能量",
+            "自律狂"
+          ],
+          "summary": "BTS的舞蹈隊長與氣氛核心，2022年以韓國藝人首次headline Lollapalooza，《Jack In The Box》的暗黑轉型證明「希望」之下還有藝術家的深度。把「I'm your hope」活成日常的正能量與練習室裡最嚴格的自律，是他二十年如一日的雙面引擎。"
+        }
+      }
+    },
+    {
+      "id": "jin",
+      "name": "Jin",
+      "name_zh": "金碩珍",
+      "group": "BTS",
+      "genres": [
+        "k-pop",
+        "k-pop boy group",
+        "k-pop solo"
+      ],
+      "popularity": 90,
+      "followers": 20000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "世界帥臉",
+            "西裝肩線",
+            "粉色本命",
+            "端正古典",
+            "迷因反差"
+          ],
+          "color_palette": [
+            "粉",
+            "藏青",
+            "白",
+            "金"
+          ],
+          "vibe": "Worldwide Handsome的端正古典美",
+          "analysis": "「Worldwide Handsome」不只是玩笑——Jin的端正古典臉與寬肩西裝線條讓他屢次因紅毯side profile登上全球熱搜。粉色是他的本命色，端正帥臉配上自封世界帥哥的迷因式自信，構成獨一無二的視覺人設。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "INTP",
+          "vibe": "冷笑話宇宙的迷因之王",
+          "trait_tags": [
+            "冷笑話之王",
+            "迷因體質",
+            "年長者餘裕",
+            "窗笑名場面",
+            "真誠擔當"
+          ],
+          "analysis": "BTS最年長卻最愛胡鬧的Jin，冷笑話講完自己先「窗笑」的名場面是ARMY的快樂源泉。《Super Tuna》本想低調發布卻自爆成全球迷因的事件，完美示範了他「認真搞笑」的人生哲學；關鍵時刻穩住團隊的年長者餘裕又是另一面。"
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist",
+          "stage_persona": "silver voice stabilizer",
+          "roles": [
+            "vocalist",
+            "visual"
+          ],
+          "vibe": "高音區的銀嗓穩定器",
+          "trait_tags": [
+            "銀嗓",
+            "高音擔當",
+            "穩定後盾",
+            "The Astronaut",
+            "成長型"
+          ],
+          "analysis": "Jin的「銀嗓」負責BTS和聲結構的高音區，《Epiphany》的現場演繹讓他從「visual擔當」徹底翻身為實力派。與Coldplay合作的《The Astronaut》在阿根廷演唱會首唱時數萬人合唱，是他歌手生涯的定格時刻。"
+        },
+        "content": {
+          "topics": [
+            "variety",
+            "cooking",
+            "gaming"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "遊戲",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "真誠待粉",
+            "家庭觀"
+          ],
+          "sns_platform": [
+            "Weverse",
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "Run Jin與釣魚直播的迷因工廠",
+          "trait_tags": [
+            "Run Jin",
+            "Super Tuna",
+            "釣魚日常",
+            "冷笑話連發",
+            "吃播豪邁"
+          ],
+          "analysis": "退伍後的自製綜藝《Run Jin》每集都在生產新迷因，證明他是BTS裡最懂內容的人。《Super Tuna》的全球病毒式傳播與釣魚、做飯的大叔系日常，讓他的頻道成為「偶像做自己」的最佳範本。"
+        },
+        "overview": {
+          "vibe": "銀嗓迷因王Worldwide Handsome",
+          "trait_tags": [
+            "銀嗓",
+            "Worldwide Handsome",
+            "Run Jin",
+            "冷笑話",
+            "The Astronaut"
+          ],
+          "summary": "自封「Worldwide Handsome」卻真的屢次因側臉登上全球熱搜的BTS最年長成員，《Epiphany》讓他從visual徹底翻身為實力派，《The Astronaut》阿根廷首唱的萬人合唱是歌手生涯定格。冷笑話講完自己先笑的迷因體質與關鍵時刻的年長者餘裕，是他的一體兩面。"
+        }
+      }
+    },
+    {
+      "id": "bang-chan",
+      "name": "Bang Chan",
+      "name_zh": "方燦",
+      "group": "Stray Kids",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 86,
+      "followers": 12000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "健身肩線",
+            "黑色皮革",
+            "澳系隨性",
+            "製作人帽T",
+            "狼系領袖"
+          ],
+          "color_palette": [
+            "黑",
+            "灰",
+            "酒紅",
+            "銀"
+          ],
+          "vibe": "帽T製作人與皮革隊長的切換",
+          "analysis": "Bang Chan的造型在兩個模式間切換——工作室裡的帽T製作人與舞台上的黑色皮革狼系領袖。健身雕出的肩線讓舞台服的張力翻倍，澳洲成長的隨性底色則讓他的私服永遠比舞台照鬆弛一個檔位。"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ENFJ",
+          "vibe": "把全團扛在肩上的大家長",
+          "trait_tags": [
+            "大家長",
+            "傾聽者",
+            "完美主義",
+            "自我要求過高",
+            "溫柔英語"
+          ],
+          "analysis": "JYP練習七年、親手把Stray Kids從企劃保到出道的隊長，成員口中「把所有壓力往自己身上扛的人」。Chan's Room直播裡用三種語言安慰各國粉絲的溫柔，與訪談中坦承「怕自己做得不夠好」的完美主義，是STAY最心疼的一體兩面。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper-vocalist",
+          "stage_persona": "producer leader powerhouse",
+          "roles": [
+            "leader",
+            "main rapper",
+            "songwriter",
+            "vocalist"
+          ],
+          "vibe": "3RACHA核心的自產自演火力",
+          "trait_tags": [
+            "隊長",
+            "3RACHA",
+            "詞曲製作",
+            "唱饒雙修",
+            "舞台爆發"
+          ],
+          "analysis": "Bang Chan是3RACHA製作核心，Stray Kids「自產自演」招牌的第一責任人，《God's Menu》《MANIAC》的暴烈聲響都出自他與隊友之手。唱饒雙修加上健身派的舞台爆發力，讓他成為「製作人偶像」最完整的當代樣本。"
+        },
+        "content": {
+          "topics": [
+            "producing",
+            "fitness",
+            "weekly live"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "心理健康倡議",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "YouTube",
+            "Instagram",
+            "TikTok"
+          ],
+          "content_tone": "intimate",
+          "vibe": "數百集Chan's Room的每週之約",
+          "trait_tags": [
+            "Chan's Room",
+            "每週直播",
+            "音樂推薦",
+            "三語安慰",
+            "陪伴型內容"
+          ],
+          "analysis": "「Chan's Room」每週日直播堅持數年、累積數百集，是K-pop最著名的陪伴型內容——推薦歌單、回覆煩惱、用英韓日三語輪流安慰各國粉絲。這份雷打不動的每週之約，讓STAY說「他不只做音樂，還做了一個家」。"
+        },
+        "overview": {
+          "vibe": "數百集直播陪伴的製作人大家長",
+          "trait_tags": [
+            "隊長",
+            "3RACHA",
+            "Chan's Room",
+            "大家長",
+            "自產自演"
+          ],
+          "summary": "JYP練習七年、親手把Stray Kids保到出道的隊長兼3RACHA製作核心，《God's Menu》的暴烈聲響出自他手。每週日雷打不動的Chan's Room直播累積數百集，用三種語言安慰各國粉絲——STAY說他不只做音樂，還做了一個家。"
+        }
+      }
+    },
+    {
+      "id": "hoshi",
+      "name": "Hoshi",
+      "name_zh": "權順榮",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 83,
+      "followers": 8000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "10:10眼角",
+            "老虎概念",
+            "舞台爆改",
+            "活力撞色",
+            "反差精緻"
+          ],
+          "color_palette": [
+            "橘",
+            "黑",
+            "白",
+            "電光藍"
+          ],
+          "vibe": "老虎能量的10:10美學",
+          "analysis": "Hoshi自創的「10:10眼角」理論——眼尾上揚如時鐘指向十點十分——是K-pop最著名的自我視覺營銷。老虎概念貫穿他的造型語言，橘黑撞色與舞台爆改的精緻度，讓「順榮老虎」從玩笑變成了完整的美學體系。"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESTP",
+          "vibe": "Horanghae宇宙的能量過載體",
+          "trait_tags": [
+            "老虎人設",
+            "綜藝爆發力",
+            "熱血過載",
+            "反差認真",
+            "氣氛製造機"
+          ],
+          "analysis": "「Horanghae」（虎朗嘿）是他自創並推廣到全團粉絲圈的問候語，綜藝裡的能量過載讓《GOING SEVENTEEN》多個名場面由他承包。但練習室裡的他判若兩人——表演組成員說「舞台之神附身時的順榮哥不會笑」。"
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main dancer-vocalist",
+          "stage_persona": "performance team general",
+          "roles": [
+            "main dancer",
+            "leader",
+            "songwriter"
+          ],
+          "vibe": "表演組隊長的編舞統帥力",
+          "trait_tags": [
+            "表演組隊長",
+            "編舞統帥",
+            "TIGER",
+            "刀群舞核心",
+            "舞台之神"
+          ],
+          "analysis": "SEVENTEEN「刀群舞」神話的第一功臣，作為表演組隊長統帥十三人編舞的完成度，業界稱他為「會編舞的指揮官」。個人曲《TIGER》把老虎人設炸成了舞台實體，年末大賞的solo直拍讓「舞台之神附身」成為固定彈幕。"
+        },
+        "content": {
+          "topics": [
+            "variety",
+            "dance",
+            "tiger"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "居家日常",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Weverse",
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "Horanghae與編舞筆記的雙面頻道",
+          "trait_tags": [
+            "Horanghae",
+            "GOING名場面",
+            "編舞幕後",
+            "熱血語錄",
+            "老虎收藏"
+          ],
+          "analysis": "Hoshi的內容是老虎迷因與編舞筆記的雙面體——《GOING SEVENTEEN》的搞笑名場面與練習室裡逐拍摳動作的幕後形成强烈反差。他推廣的「Horanghae」問候語甚至讓老虎周邊成為CARAT圈的固定應援物。"
+        },
+        "overview": {
+          "vibe": "刀群舞統帥的老虎能量",
+          "trait_tags": [
+            "表演組隊長",
+            "刀群舞",
+            "Horanghae",
+            "TIGER",
+            "反差認真"
+          ],
+          "summary": "SEVENTEEN「刀群舞」神話的第一功臣，統帥十三人編舞的表演組隊長，個人曲《TIGER》把自創的老虎人設炸成舞台實體。綜藝裡是Horanghae能量過載體，練習室裡卻是逐拍摳動作、被稱「舞台之神附身時不會笑」的指揮官。"
+        }
+      }
+    },
+    {
+      "id": "soobin",
+      "name": "Soobin",
+      "name_zh": "崔秀彬",
+      "group": "TXT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "popularity": 82,
+      "followers": 8000000,
+      "image_url": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "兔系少年",
+            "185比例",
+            "奶油色系",
+            "酒窩殺",
+            "清新貴公子"
+          ],
+          "color_palette": [
+            "奶油",
+            "淺紫",
+            "白",
+            "天藍"
+          ],
+          "vibe": "兔系酒窩的奶油色貴公子",
+          "analysis": "Soobin的「兔系」形象是TXT夢幻美學的支點——185cm的比例配上酒窩笑與奶油色系穿搭，把「高大」和「軟萌」這對矛盾詞穿在了同一個人身上。MOA公認他是「被兔子餅乾代言的男人」，清新貴公子是他的視覺基調。"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFP",
+          "vibe": "內向但寫長文的真誠隊長",
+          "trait_tags": [
+            "內向隊長",
+            "Weverse長文",
+            "麵包愛好者",
+            "慢熱真誠",
+            "自我剖白"
+          ],
+          "analysis": "Soobin是偶像圈罕見承認「社恐」的隊長，卻會在Weverse寫下千字長文剖白心境——這種笨拙的真誠反而成了他最強的連結力。Music Bank MC時期與Arin的化學反應讓「彬彬Arin」登上熱搜，是他打破內向標籤的代表作。"
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "gentle giant leader",
+          "roles": [
+            "leader",
+            "lead vocalist"
+          ],
+          "vibe": "高個子的細膩演繹",
+          "trait_tags": [
+            "隊長",
+            "領唱",
+            "長肢線條",
+            "細膩處理",
+            "概念消化力"
+          ],
+          "analysis": "Soobin的長肢線條讓TXT編舞的視覺張力翻倍，《0X1=LOVESONG》副歌的情緒處理展現他被低估的細膩唱功。從夢幻到黑暗的概念跨度裡，他的消化力是TXT「成長敘事」能成立的隱形支柱。"
+        },
+        "content": {
+          "topics": [
+            "bread",
+            "weverse",
+            "gaming"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "遊戲",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "自我認同",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Weverse",
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "麵包、長文與深夜遊戲的宅系頻道",
+          "trait_tags": [
+            "麵包巡禮",
+            "Weverse千字文",
+            "深夜遊戲",
+            "社恐自嘲",
+            "酒窩名場面"
+          ],
+          "analysis": "Soobin的內容是麵包巡禮、深夜遊戲與Weverse千字長文的宅系組合，自嘲社恐的笨拙瞬間反而是MOA最愛的切片。「內向的人也能當隊長」的自我剖白長文曾被粉絲翻譯成十幾種語言轉發，是他內容影響力的代表作。"
+        },
+        "overview": {
+          "vibe": "兔系社恐的長文隊長",
+          "trait_tags": [
+            "隊長",
+            "兔系",
+            "Weverse長文",
+            "麵包愛好者",
+            "細膩唱功"
+          ],
+          "summary": "185cm卻把「軟萌」穿在身上的TXT兔系隊長，長肢線條讓編舞視覺張力翻倍，《0X1=LOVESONG》的細膩處理是被低估的實力。罕見承認社恐卻用Weverse千字長文剖白心境的笨拙真誠，被粉絲翻譯成十幾種語言——內向也能當隊長，他就是證明。"
+        }
+      }
     }
   ],
   "tracks": []
