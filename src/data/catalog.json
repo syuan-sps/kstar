@@ -55,7 +55,17 @@
             "lead dancer",
             "center",
             "killing part specialist"
-          ]
+          ],
+          "vibe": "全能黃金么弟的舞台掌控",
+          "trait_tags": [
+            "主唱",
+            "領舞",
+            "全能型",
+            "現場穩定",
+            "爆發高音",
+            "節奏感"
+          ],
+          "analysis": "被稱「黃金么弟」因為他在BTS七人中最全能——主唱兼領舞兼center，現場表現堪比錄音室版本。《Euphoria》純淨高音與《Seven》律動感，讓直拍總是率先破千萬。"
         },
         "content": {
           "topics": [
@@ -127,7 +137,16 @@
             "vocalist",
             "visual",
             "center"
-          ]
+          ],
+          "vibe": "深沉嗓音中的戲劇靈魂",
+          "trait_tags": [
+            "男中音",
+            "情感詮釋",
+            "戲劇張力",
+            "視覺系中心",
+            "舞台控場"
+          ],
+          "analysis": "V獨特的低沉男中音在K-pop中極為罕見，《Singularity》的爵士舞台展現其無可複製的戲劇詮釋力——開場一個眼神就讓全場噤聲，舞台氣場遠超技術本身。"
         },
         "content": {
           "topics": [
@@ -199,7 +218,17 @@
             "lead vocalist",
             "center",
             "killing part specialist"
-          ]
+          ],
+          "vibe": "縹緲舞蹈力學的氛圍詩人",
+          "trait_tags": [
+            "主舞",
+            "現代舞技",
+            "流線感",
+            "高音爆發",
+            "舞台氛圍",
+            "細節控"
+          ],
+          "analysis": "以現代舞底子詮釋偶像舞台是Jimin的獨家語法，《Filter》與《Lie》直拍每次重上熱搜。他能在三分鐘內從甜美切換到危險，舞台氛圍的掌控力讓同僚偶像多次公開表示欽佩。"
         },
         "content": {
           "topics": [
@@ -272,7 +301,16 @@
             "leader",
             "main rapper",
             "lyricist"
-          ]
+          ],
+          "vibe": "哲學饒舌的語言建築師",
+          "trait_tags": [
+            "主饒舌",
+            "詞作人",
+            "說唱節拍",
+            "舞台氣場",
+            "演說型魅力"
+          ],
+          "analysis": "RM的饒舌不只是技術展演，更是一次文學朗讀。《Mono》音樂會上舞台從說唱表演變成一人詩歌朗讀會，讓海外主流媒體以「藝術家」而非「偶像」定義他。"
         },
         "content": {
           "topics": [
@@ -347,7 +385,17 @@
             "main dancer",
             "lead rapper",
             "center"
-          ]
+          ],
+          "vibe": "全球舞台上的霸氣舞蹈女王",
+          "trait_tags": [
+            "主舞",
+            "領饒舌",
+            "hip-hop舞技",
+            "爆發力",
+            "直拍女王",
+            "律動天才"
+          ],
+          "analysis": "Lisa是BLACKPINK無爭議的舞蹈核心，《LALISA》直拍發布48小時內突破千萬點閱。融合hip-hop、popping與waacking的多元舞風讓業界封她為「最全面的K-pop舞者之一」。"
         },
         "content": {
           "topics": [
@@ -420,7 +468,17 @@
             "main rapper",
             "lead vocalist",
             "center"
-          ]
+          ],
+          "vibe": "慵懶魅力的多才全能偶像",
+          "trait_tags": [
+            "領唱",
+            "領舞",
+            "饒舌",
+            "台風魅力",
+            "慵懶感",
+            "現場穩定"
+          ],
+          "analysis": "Jennie的舞台魅力核心是那份「不費力的高冷感」——《Solo》直拍展現她如何用最少動作製造最大視覺張力。慵懶台風建立在扎實唱跳實力上，是極致控場而非偷懶。"
         },
         "content": {
           "topics": [
@@ -489,7 +547,16 @@
           "roles": [
             "main vocalist",
             "lead dancer"
-          ]
+          ],
+          "vibe": "空靈嗓音的情感裂縫歌者",
+          "trait_tags": [
+            "主唱",
+            "音色辨識",
+            "吉他手",
+            "情感裂縫音",
+            "現場感染力"
+          ],
+          "analysis": "Rosé的細薄卻穿透的音色被粉絲稱為「情感裂縫音」，《Gone》現場彈唱讓她從偶像轉型為藝術家，Grammy博物館駐場演出是她現場實力最權威的認證。"
         },
         "content": {
           "topics": [
@@ -561,7 +628,16 @@
             "lead vocalist",
             "visual",
             "center"
-          ]
+          ],
+          "vibe": "古典唱腔的優雅現場派",
+          "trait_tags": [
+            "領唱",
+            "音域寬廣",
+            "現場穩定",
+            "優雅台風",
+            "成長型歌手"
+          ],
+          "analysis": "Jisoo以古典女聲詮釋偶像歌曲，《FLOWER》個人出道後的現場展現多年累積的功力。相比出道初期，如今在高音處理與情感控制上都已蛻變為BLACKPINK中最讓人驚喜的現場表演者。"
         },
         "content": {
           "topics": [
@@ -845,7 +921,16 @@
             "vocalist",
             "dancer",
             "face of group"
-          ]
+          ],
+          "vibe": "自然氣息的輕盈舞台存在",
+          "trait_tags": [
+            "歌手舞者兼備",
+            "自然舞感",
+            "音色甜潤",
+            "表情詮釋",
+            "輕盈存在感"
+          ],
+          "analysis": "NewJeans的舞台哲學是「自然勝於刻意」，Hanni是最具說服力的示範者。《Attention》直拍中細微表情與肢體語言讓業界稱其為「不費力卻致命」的舞台存在。"
         },
         "content": {
           "topics": [
@@ -917,7 +1002,17 @@
             "main vocalist",
             "lead dancer",
             "center"
-          ]
+          ],
+          "vibe": "爆發力驚人的流行女聲",
+          "trait_tags": [
+            "主唱",
+            "高音爆發",
+            "女高音",
+            "現場全開",
+            "活力台風",
+            "流行唱腔"
+          ],
+          "analysis": "Nayeon的高音在TWICE演唱會現場從不保留，《POP!》個人出道舞台展現作為主唱多年積累的爆發力。韓國業界「現場最穩定女偶像」調查中她多次位居前列。"
         },
         "content": {
           "topics": [
@@ -1195,7 +1290,16 @@
             "lead rapper",
             "center",
             "visual"
-          ]
+          ],
+          "vibe": "劇場感舞者的黑暗詩篇",
+          "trait_tags": [
+            "主舞",
+            "領饒舌",
+            "劇場型舞台",
+            "流線動感",
+            "視覺系中心"
+          ],
+          "analysis": "Hyunjin是Stray Kids編舞的核心靈感來源，「MIROH」「神메뉴」的複雜群舞都以他的身體極限為基準。2023年Versace Show同台走秀後，時尚圈開始以「行走的藝術品」形容他的表演方式。"
         },
         "content": {
           "topics": [
@@ -1267,7 +1371,17 @@
           "roles": [
             "main vocalist",
             "leader"
-          ]
+          ],
+          "vibe": "橫跨兩個世代的頂級女聲",
+          "trait_tags": [
+            "主唱",
+            "抒情女高音",
+            "音域寬廣",
+            "現場天花板",
+            "情感控制",
+            "跨世代天后"
+          ],
+          "analysis": "太妍被業界和歌迷共同認定為「韓國女偶像現場天花板」，17年演唱生涯從未有現場翻車紀錄。《Fine》演唱會舞台上她獨自背負一小時的演唱重量，讓現場觀眾和攝影師同時流淚。"
         },
         "content": {
           "topics": [
@@ -1338,7 +1452,16 @@
             "vocalist",
             "dancer",
             "visual"
-          ]
+          ],
+          "vibe": "資深歷練下的穩健舞台派",
+          "trait_tags": [
+            "歌手舞者兼備",
+            "現場穩定",
+            "颯爽台風",
+            "多年磨練",
+            "職業偶像"
+          ],
+          "analysis": "從AKB48劇場演出到LE SSERAFIM大型舞台，Sakura擁有任何新人無法習得的舞台歷練感。「ANTIFRAGILE」現場中她的眼神控制與肢體穩定度被評論認為是全隊最「鎮場」的存在。"
         },
         "content": {
           "topics": [
@@ -1410,7 +1533,16 @@
             "dancer",
             "visual",
             "maknae"
-          ]
+          ],
+          "vibe": "骨架天賦成就的線條女神",
+          "trait_tags": [
+            "主舞",
+            "線條控",
+            "高挑優勢",
+            "乾淨技術",
+            "視覺核心"
+          ],
+          "analysis": "Tzuyu的170cm高挑骨架讓她的舞蹈線條在TWICE演唱會現場始終最突出，「What is Love?」群舞中她伸展的手臂弧度多次被截圖成「教科書示範」在舞蹈社群廣傳。"
         },
         "content": {
           "topics": [
@@ -1481,7 +1613,17 @@
             "rapper",
             "visual",
             "center"
-          ]
+          ],
+          "vibe": "爆炸性能量的精準舞蹈機器",
+          "trait_tags": [
+            "主舞",
+            "popping控",
+            "爆發力",
+            "節拍精準",
+            "群舞靈魂",
+            "身體控制"
+          ],
+          "analysis": "Felix在Stray Kids舞台上是最具爆炸性能量的存在，「MIROH」直拍以他的popping動作為核心被截成gif廣傳。他的身體控制能力讓編舞老師多次在訪談中說「他是最好教的學生」。"
         },
         "content": {
           "topics": [
@@ -1555,7 +1697,16 @@
             "leader",
             "songwriter",
             "center"
-          ]
+          ],
+          "vibe": "製作人饒舌手的全場掌控",
+          "trait_tags": [
+            "主饒舌",
+            "詞曲創作",
+            "舞台編導",
+            "爆發說唱",
+            "全場掌控"
+          ],
+          "analysis": "Soyeon在(G)I-DLE舞台上集饒舌手、製作人與編舞概念設計者於一身，《TOMBOY》現場演出幾乎每個細節都由她親自設計。說唱爆發力在《My Teenage Girl》導師舞台上讓評委和選手同時震驚。"
         },
         "content": {
           "topics": [
@@ -1625,7 +1776,16 @@
           "roles": [
             "vocalist",
             "dancer"
-          ]
+          ],
+          "vibe": "迷人魅力值爆表的氛圍舞者",
+          "trait_tags": [
+            "歌手舞者兼備",
+            "氛圍製造者",
+            "表情詮釋",
+            "迷人魅力",
+            "情感感染力"
+          ],
+          "analysis": "Sana的舞台魅力不在技術精準而在氛圍感染，TWICE「Feel Special」現場中她在橋段的每個眼神都被截圖成「心跳停止」系列。是TWICE舞台上最能讓觀眾忘記呼吸的存在。"
         },
         "content": {
           "topics": [
@@ -1694,7 +1854,16 @@
           "roles": [
             "main vocalist",
             "visual"
-          ]
+          ],
+          "vibe": "天使嗓音的情感型歌手",
+          "trait_tags": [
+            "主唱群",
+            "情感詮釋",
+            "天使音色",
+            "抒情派",
+            "現場感染力"
+          ],
+          "analysis": "正漢嗓音被粉絲形容為「聽一秒就知道是他」的高辨識度音色，《Don't Wanna Cry》現場版本以他的情感爆發點成為舞台影片的高潮剪輯片段。即使只是一句和聲也能讓全場專注於他。"
         },
         "content": {
           "topics": [
@@ -1766,7 +1935,16 @@
             "vocalist",
             "center",
             "face of group"
-          ]
+          ],
+          "vibe": "三棲全能的新世代舞台王者",
+          "trait_tags": [
+            "主舞",
+            "唱跳饒舌三棲",
+            "舞台爆發力",
+            "多才多藝",
+            "領袖氣場"
+          ],
+          "analysis": "演俊是TXT舞台上辨識度最高的存在，唱跳饒舌三個維度都能勝任主力。「0X1=LOVESONG」現場版本中說唱與演唱無縫切換，讓音樂評論稱TXT為「後BTS世代最值得期待的表演型男團」。"
         },
         "content": {
           "topics": [
@@ -1839,7 +2017,16 @@
             "main vocalist",
             "songwriter",
             "actress"
-          ]
+          ],
+          "vibe": "20年舞台歷練的國民歌姬",
+          "trait_tags": [
+            "主唱",
+            "音域寬廣",
+            "現場天花板",
+            "詞曲創作",
+            "舞台說故事"
+          ],
+          "analysis": "IU在韓國被稱為「現場信仰」，PALETTE演唱會讓業界建立起她「開口即現場」的神話。出道逾16年，每場新巡迴售票系統仍崩潰，是韓國娛樂圈無可動搖的頂級現場表演者。"
         },
         "content": {
           "topics": [
