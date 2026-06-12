@@ -1,0 +1,236 @@
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import type { Artist, SimilarArtist, Weights } from "@/lib/types";
+import { DEFAULT_WEIGHTS } from "@/lib/types";
+import { similarArtists } from "@/lib/similarity";
+import IdolFrame from "./IdolFrame";
+import FavoriteButton from "./FavoriteButton";
+import { copy } from "@/lib/copy";
+
+type LayerFilter = "all" | "aesthetic" | "personality" | "performance" | "content";
+
+const PILL_LABELS: Record<LayerFilter, string> = {
+  all:         "全部",
+  aesthetic:   "美學",
+  personality: "個性",
+  performance: "表演",
+  content:     "內容",
+};
+
+const FILTERS: LayerFilter[] = ["all", "aesthetic", "personality", "performance", "content"];
+
+function filterWeights(f: LayerFilter): Weights {
+  if (f === "all") return DEFAULT_WEIGHTS;
+  return { aesthetic: 0, personality: 0, performance: 0, content: 0, [f]: 1 };
+}
+
+function SkeletonCard() {
+  return (
+    <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-48 w-full" />
+  );
+}
+
+interface Props {
+  sourceArtist: Artist;
+  allArtists: Artist[];
+}
+
+export default function SimilarSection({ sourceArtist, allArtists }: Props) {
+  const [mounted, setMounted] = useState(false);
+  const [filter, setFilter] = useState<LayerFilter>("all");
+  const [candidates, setCandidates] = useState<SimilarArtist[]>([]);
+  const [reasons, setReasons] = useState<Record<string, string>>({});
+  const [reasonsLoading, setReasonsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [fallbackNote, setFallbackNote] = useState(false);
+
+  // Score candidates based on current filter
+  const score = useCallback((f: LayerFilter, weights?: Weights) => {
+    const w = weights ?? filterWeights(f);
+    const results = similarArtists(sourceArtist, allArtists, w);
+
+    // If filtering by a single layer and all score 0, fall back
+    if (f !== "all" && results.every((r) => r.score < 0.01)) {
+      setFallbackNote(true);
+      const fallback = similarArtists(sourceArtist, allArtists, DEFAULT_WEIGHTS);
+      setCandidates(fallback.slice(0, 6));
+    } else {
+      setFallbackNote(false);
+      setCandidates(results.slice(0, 6));
+    }
+  }, [sourceArtist, allArtists]);
+
+  // Fetch AI reasons for displayed candidates
+  const fetchReasons = useCallback(async (artists: SimilarArtist[], weights: Weights) => {
+    setReasonsLoading(true);
+    const results = await Promise.allSettled(
+      artists.map(async (s) => {
+        const res = await fetch("/api/similarity-reason", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            source: sourceArtist,
+            candidate: s.artist,
+            weights,
+            topTraits: s.topTraits,
+          }),
+        });
+        const data = await res.json() as { reason: string };
+        return { id: s.artist.id, reason: data.reason };
+      })
+    );
+    const newReasons: Record<string, string> = {};
+    for (const r of results) {
+      if (r.status === "fulfilled") {
+        newReasons[r.value.id] = r.value.reason;
+      }
+    }
+    setReasons((prev) => ({ ...prev, ...newReasons }));
+    setReasonsLoading(false);
+  }, [sourceArtist]);
+
+  // On mount: load prefs, score, fetch reasons
+  const init = useCallback(() => {
+    setError(false);
+    setReasons({});
+    try {
+      let weights = DEFAULT_WEIGHTS;
+      const raw = localStorage.getItem("kstar:prefs");
+      if (raw) {
+        const prefs = JSON.parse(raw) as { weights: Weights };
+        if (prefs.weights) weights = prefs.weights;
+      }
+      const results = similarArtists(sourceArtist, allArtists, weights);
+      const top6 = results.slice(0, 6);
+      setCandidates(top6);
+      fetchReasons(top6, weights);
+    } catch {
+      setError(true);
+    }
+  }, [sourceArtist, allArtists, fetchReasons]);
+
+  useEffect(() => {
+    setMounted(true);
+    init();
+  }, [init]);
+
+  // Re-score on filter change (synchronous, instant)
+  const handleFilter = (f: LayerFilter) => {
+    setFilter(f);
+    score(f);
+    // Fetch new reasons for the re-scored list
+    const w = filterWeights(f);
+    const results = similarArtists(sourceArtist, allArtists, w);
+    const validResults = f !== "all" && results.every((r) => r.score < 0.01)
+      ? similarArtists(sourceArtist, allArtists, DEFAULT_WEIGHTS).slice(0, 6)
+      : results.slice(0, 6);
+    fetchReasons(validResults, w);
+  };
+
+  if (!mounted) {
+    return (
+      <section>
+        <div className="mb-4 h-8 w-48 animate-pulse rounded-full bg-[#ff00cc]/10" />
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section>
+        <h2 className="mb-4 font-orbitron text-lg font-bold text-white">{copy.similarArtistsTitle}</h2>
+        <div className="rounded-xl border border-[#ff00cc]/20 bg-[#ff00cc]/5 p-6 text-center">
+          <p className="text-white/60 mb-3">無法載入推薦</p>
+          <button
+            onClick={init}
+            className="rounded-full bg-[#ff00cc] px-4 py-1.5 text-sm font-bold text-white hover:brightness-110"
+          >
+            請重試
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section>
+      {/* Header + filter pills */}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <h2 className="font-orbitron text-lg font-bold text-white">{copy.similarArtistsTitle}</h2>
+        <div className="flex flex-wrap gap-1.5">
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              onClick={() => handleFilter(f)}
+              className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                filter === f
+                  ? "bg-[#ff00cc] text-white shadow-[0_0_8px_#ff00cc80]"
+                  : "border border-[#ff00cc]/30 text-pink-300 hover:bg-[#ff00cc]/10"
+              }`}
+            >
+              {PILL_LABELS[f]}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {fallbackNote && (
+        <p className="mb-3 text-xs text-white/40">此偶像資料不足，顯示綜合推薦</p>
+      )}
+
+      {candidates.length === 0 ? (
+        <p className="text-white/50">{copy.noResults}</p>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {candidates.map((s) => {
+            const aiReason = reasons[s.artist.id];
+            const displayReasons = aiReason ? [aiReason] : (reasonsLoading ? [] : s.reasons);
+            return (
+              <SimilarCard
+                key={s.artist.id}
+                similar={s}
+                reasons={displayReasons}
+                loading={!aiReason && reasonsLoading}
+              />
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function SimilarCard({
+  similar,
+  reasons,
+  loading,
+}: {
+  similar: SimilarArtist;
+  reasons: string[];
+  loading: boolean;
+}) {
+  const { artist } = similar;
+  return (
+    <Link
+      href={`/artist/${artist.id}`}
+      className="group relative block transition hover:-translate-y-0.5"
+    >
+      <IdolFrame artist={artist} />
+      <div className="absolute right-2 top-7 z-20">
+        <FavoriteButton id={artist.id} size="sm" />
+      </div>
+      <div className="mt-1.5 min-h-[2rem] px-1 text-center text-[11px] leading-relaxed text-pink-200/85">
+        {loading ? (
+          <span className="text-[#ff66cc]/60 animate-pulse">・・・</span>
+        ) : reasons.length > 0 ? (
+          <span className="transition-opacity duration-300">{reasons[0]}</span>
+        ) : null}
+      </div>
+    </Link>
+  );
+}

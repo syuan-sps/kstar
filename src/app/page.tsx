@@ -1,65 +1,51 @@
-import Image from "next/image";
+import { getPopularArtists } from "@/lib/data";
+import { copy } from "@/lib/copy";
+import ArtistCard from "@/components/ArtistCard";
+import MyFourCuts from "@/components/MyFourCuts";
 
-export default function Home() {
+export default async function Home() {
+  const artists = await getPopularArtists(12);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* ── Desktop: 인생네컷 centerpiece ─────────────────────── */}
+      <div className="hidden md:block relative" style={{ height: "calc(100vh - 3.5rem - 2.5rem)" }}>
+        {/* Hero text */}
+        <div className="absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0">
+          <div className="font-orbitron text-5xl font-black tracking-widest text-[#ff00cc]/20 select-none uppercase">
+            {copy.taglineEn}
+          </div>
+        </div>
+
+        {/* Personalized 인생네컷 — pinned to the center of the desktop */}
+        <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+          <MyFourCuts frameClassName="w-[clamp(320px,38vh,480px)]" />
+        </div>
+      </div>
+
+      {/* ── Mobile: hero + card grid ──────────────────────────── */}
+      <div className="space-y-8 md:hidden">
+        {/* Personalized 인생네컷 */}
+        <MyFourCuts className="pt-2" />
+
+        <section className="rounded-2xl border border-[#ff00cc]/25 bg-[#ff00cc]/5 p-6 text-center">
+          <h1 className="font-orbitron text-2xl font-black tracking-tight text-[#ff00cc]">
+            {copy.taglineEn}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <p className="mt-2 text-sm text-white/60">{copy.tagline}</p>
+        </section>
+
+        <section>
+          <h2 className="mb-4 font-orbitron text-sm font-bold tracking-widest text-[#ff00cc]/70 uppercase">
+            {copy.featuredArtists}
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {artists.map((a) => (
+              <ArtistCard key={a.id} artist={a} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

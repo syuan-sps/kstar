@@ -1,0 +1,246 @@
+{
+  "_note": "Individual K-pop artists. group field = which group they belong to (null for soloists). profile = 4-layer similarity data.",
+  "artists": [
+    {
+      "id": "jungkook", "name": "Jungkook", "name_zh": "田柾國", "group": "BTS",
+      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 93, "followers": 25000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["暗黑系","吸血鬼感","奢華簡約","刺青感","痞帥"], "color_palette": ["黑","白","金","深紅"], "vibe": "暗黑奢華的痞帥少年" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFP" },
+        "performance": { "dance_style": "powerful", "vocal_type": "main vocalist", "stage_persona": "killing part king", "roles": ["main vocalist","lead dancer","center","killing part specialist"] },
+        "content":     { "topics": ["fitness","cooking","gaming","art","apartment aesthetic"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "intimate" }
+      }
+    },
+    {
+      "id": "bts-v", "name": "V", "name_zh": "金泰亨", "group": "BTS",
+      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 91, "followers": 22000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["復古奢華","藝術感","浪漫","時尚前衛","文青"], "color_palette": ["棕","米","酒紅","黑"], "vibe": "復古浪漫的藝術家" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "parasocial-close", "mbti": "INFP" },
+        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "visual dark prince", "roles": ["vocalist","visual","center"] },
+        "content":     { "topics": ["art","photography","fashion","travel","film"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "jimin", "name": "Jimin", "name_zh": "朴智旻", "group": "BTS",
+      "genres": ["k-pop", "k-pop boy group", "k-pop solo"], "popularity": 91, "followers": 20000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["流線剪裁","柔美魅惑","中性風","氛圍感","仙氣"], "color_palette": ["裸粉","白","金","透膚黑"], "vibe": "縹緲仙氣的現代舞者" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFJ" },
+        "performance": { "dance_style": "fluid", "vocal_type": "main dancer-vocalist", "stage_persona": "killing part manufacturer", "roles": ["main dancer","lead vocalist","center","killing part specialist"] },
+        "content":     { "topics": ["dance","fashion","food","artistic process","daily life"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "intimate" }
+      }
+    },
+    {
+      "id": "rm", "name": "RM", "name_zh": "金南俊", "group": "BTS",
+      "genres": ["k-pop", "k-pop boy group", "k-rap", "k-pop solo"], "popularity": 87, "followers": 15000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["知性","文青","oversize","策展人風","沉穩"], "color_palette": ["大地色","白","黑","森林綠"], "vibe": "哲思系藝術策展人" },
+        "personality": { "energy_type": "calm", "fan_interaction": "formal", "mbti": "INFJ" },
+        "performance": { "dance_style": "rhythmic", "vocal_type": "rapper", "stage_persona": "philosophical leader", "roles": ["leader","main rapper","lyricist"] },
+        "content":     { "topics": ["contemporary art","literature","travel","mental health","museum visits"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "lisa", "name": "Lisa", "name_zh": "羅讚", "group": "BLACKPINK",
+      "genres": ["k-pop", "k-pop girl group", "k-pop solo", "k-rap"], "popularity": 94, "followers": 28000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["性感","辣","girl crush","高級感","暗黑優雅","結構剪裁","大膽前衛","紳士風"], "color_palette": ["黑","金","銀","酒紅"], "vibe": "暗黑優雅的颯爽女王", "analysis": "Lisa的美學建立在大膽黑色系與結構剪裁上，性感卻不失高貴，將透視與建築感融合。從Met Gala的鏤空corset到紅毯的透膚層次，是對傳統女性氣質的叛逆詮釋。" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ESFP" },
+        "performance": { "dance_style": "powerful", "vocal_type": "main rapper-dancer", "stage_persona": "charismatic dance queen", "roles": ["main dancer","lead rapper","center"] },
+        "content":     { "topics": ["fashion","dance tutorials","beauty","travel","Thailand culture"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "hype" }
+      }
+    },
+    {
+      "id": "jennie", "name": "Jennie", "name_zh": "金珍妮", "group": "BLACKPINK",
+      "genres": ["k-pop", "k-pop girl group", "k-pop solo", "k-rap"], "popularity": 92, "followers": 20000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["人間香奈兒","暗黑甜酷","Y2K奢華","隨性高級","氛圍感"], "color_palette": ["黑","白","嫩粉","金屬色"], "vibe": "隨性高級的人間香奈兒" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "playful", "mbti": "ISTP" },
+        "performance": { "dance_style": "precise", "vocal_type": "rapper-vocalist", "stage_persona": "nonchalant icon", "roles": ["main rapper","lead vocalist","center"] },
+        "content":     { "topics": ["fashion","beauty","food","luxury brand collaborations"], "sns_platform": ["Instagram","YouTube"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "rose", "name": "Rosé", "name_zh": "朴彩英", "group": "BLACKPINK",
+      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 90, "followers": 18000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["暗黑浪漫","復古indie","夢幻","波希米亞","文青"], "color_palette": ["玫瑰粉","奶油色","森林綠","透白"], "vibe": "暗黑浪漫的indie繆思" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFP" },
+        "performance": { "dance_style": "fluid", "vocal_type": "golden voice soprano", "stage_persona": "emotional storyteller", "roles": ["main vocalist","lead dancer"] },
+        "content":     { "topics": ["songwriting","food","fashion","emotional music","daily life"], "sns_platform": ["Instagram","YouTube","TikTok"], "content_tone": "intimate" }
+      }
+    },
+    {
+      "id": "jisoo", "name": "Jisoo", "name_zh": "金知秀", "group": "BLACKPINK",
+      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 89, "followers": 17000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["經典美人","古典女人味","優雅","少女感","4D"], "color_palette": ["紅","粉","白","薰衣草"], "vibe": "古典優雅的韓系美人" },
+        "personality": { "energy_type": "warm", "fan_interaction": "4D-quirky", "mbti": "ISFP" },
+        "performance": { "dance_style": "precise", "vocal_type": "lead vocalist", "stage_persona": "graceful centerpiece", "roles": ["lead vocalist","visual","center"] },
+        "content":     { "topics": ["acting","fashion","food","pets","gaming","quirky moments"], "sns_platform": ["Instagram","Weverse"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "wonyoung", "name": "Wonyoung", "name_zh": "張元英", "group": "IVE",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 89, "followers": 11000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["少女感","甜美","清純","洋娃娃感","芭蕾感","極簡優雅","純欲","學院風"], "color_palette": ["粉紅","白","薄紫","天藍"], "vibe": "粉色系的甜美少女精靈", "analysis": "Wonyoung以『Wonyoungism』粉色系甜美美學為核心，融合芭蕾感、洋娃娃臉與極簡優雅，既純欲又少女。身為Miu Miu美妝大使，雜誌封面與街拍不斷強化優雅少女人設。" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "playful", "mbti": "ESFJ" },
+        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "flawless center goddess", "roles": ["center","vocalist","visual"] },
+        "content":     { "topics": ["beauty","fashion","self-care","idol tips","food"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "hype" }
+      }
+    },
+    {
+      "id": "karina", "name": "Karina", "name_zh": "柳智旻", "group": "aespa",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 88, "followers": 10000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["高級感","冷感","未來感","人間AI","金屬感","幾何銳利","極簡奢華","雙面性"], "color_palette": ["銀","黑","白","金屬灰"], "vibe": "冷豔未來的高級AI", "analysis": "Karina體現aespa的『未來』論述，視覺如AI般精緻冷豔，以金屬、銳利剪裁與幾何打造前衛感。身為Prada大使，造型不斷強化『人間AI』無懈可擊的人設。" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "ENFP" },
+        "performance": { "dance_style": "powerful", "vocal_type": "dancer-vocalist", "stage_persona": "perfect AI avatar", "roles": ["main dancer","lead vocalist","center","leader"] },
+        "content":     { "topics": ["technology","fashion","gaming","aespa universe lore"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "hanni", "name": "Hanni", "name_zh": "潘韓娜", "group": "NewJeans",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 87, "followers": 9000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["Y2K","90年代休閒","鄰家女孩","復古","甜美"], "color_palette": ["棕","奶油色","嫩黃","丹寧藍"], "vibe": "復古甜美的鄰家女孩" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFP" },
+        "performance": { "dance_style": "fluid", "vocal_type": "vocalist-dancer", "stage_persona": "charming mood maker", "roles": ["vocalist","dancer","face of group"] },
+        "content":     { "topics": ["daily life","food","beauty","travel","bubbly moments"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "nayeon", "name": "Nayeon", "name_zh": "林娜璉", "group": "TWICE",
+      "genres": ["k-pop", "k-pop girl group", "k-pop solo"], "popularity": 86, "followers": 13000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["兔系","泡泡糖甜","少女流行","經典偶像","活力"], "color_palette": ["粉","白","嫩黃","珊瑚"], "vibe": "甜美活力的兔系女偶像" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENFJ" },
+        "performance": { "dance_style": "precise", "vocal_type": "main vocalist", "stage_persona": "all-round idol star", "roles": ["main vocalist","lead dancer","center"] },
+        "content":     { "topics": ["food","beauty","daily life","travel","bunny moments"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "minji", "name": "Minji", "name_zh": "金旻知", "group": "NewJeans",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 8500000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["乾淨感","初戀系","甜酷","颯爽","學院風","中性優雅","Y2K","女神氣質"], "color_palette": ["海軍藍","白","灰藍","金屬銀"], "vibe": "藍白系的乾淨颯爽女神", "analysis": "Minji的美學平衡『乾淨感』與『颯爽』，以海軍藍、白與灰藍為主調，透過oversized denim與tweed打造年輕又成熟的視覺。身為Chanel大使，持續強化初戀系優雅與girl crush率性。" },
+        "personality": { "energy_type": "calm", "fan_interaction": "playful", "mbti": "INFJ" },
+        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "natural leader", "roles": ["main vocalist","leader","visual"] },
+        "content":     { "topics": ["fashion","art","daily life","understated moments"], "sns_platform": ["Instagram","TikTok"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "winter", "name": "Winter", "name_zh": "金珉廷", "group": "aespa",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 86, "followers": 9000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["冰雪公主","空靈","未來感","清冷","仙氣"], "color_palette": ["白","銀","冰藍","覆盆莓"], "vibe": "清冷空靈的冰雪公主" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "formal", "mbti": "INFP" },
+        "performance": { "dance_style": "powerful", "vocal_type": "main dancer-vocalist", "stage_persona": "cold charismatic ethereal", "roles": ["main dancer","vocalist"] },
+        "content":     { "topics": ["fashion","gaming","technology","tranquil moments"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "hyunjin", "name": "Hyunjin", "name_zh": "黃賢辰", "group": "Stray Kids",
+      "genres": ["k-pop", "k-pop boy group", "k-rap"], "popularity": 87, "followers": 10000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["暗黑藝術","畫家氣質","戲劇感","時尚模特","頹廢美"], "color_palette": ["黑","紫","緋紅","畫布白"], "vibe": "暗黑戲劇的藝術家偶像" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "parasocial-close", "mbti": "INFP" },
+        "performance": { "dance_style": "theatrical fluid", "vocal_type": "main dancer-rapper", "stage_persona": "theatrical dark charismatic", "roles": ["main dancer","lead rapper","center","visual"] },
+        "content":     { "topics": ["art","fashion","photography","music","painting"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "taeyeon", "name": "TAEYEON", "name_zh": "太妍", "group": "Girls' Generation",
+      "genres": ["k-pop", "k-ballad", "korean pop", "k-pop solo"], "popularity": 85, "followers": 9000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["永恆天后","簡約","柔美","氛圍感","療癒"], "color_palette": ["白","米","柔粉","霧藍"], "vibe": "氛圍感十足的療癒天后" },
+        "personality": { "energy_type": "calm", "fan_interaction": "parasocial-close", "mbti": "INFJ" },
+        "performance": { "dance_style": "fluid", "vocal_type": "light lyric soprano", "stage_persona": "ultimate vocal queen", "roles": ["main vocalist","leader"] },
+        "content":     { "topics": ["music composition","photography","art","daily life","emotional expression"], "sns_platform": ["Instagram","YouTube","Weverse"], "content_tone": "intimate" }
+      }
+    },
+    {
+      "id": "sakura", "name": "Sakura", "name_zh": "宮脇咲良", "group": "LE SSERAFIM",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 85, "followers": 8000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["貓系銳利","都會感","成熟可愛","資深偶像","颯"], "color_palette": ["粉","黑","白","濕亮銀"], "vibe": "貓系魅力的資深偶像" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ISFJ" },
+        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "veteran idol powerhouse", "roles": ["vocalist","dancer","visual"] },
+        "content":     { "topics": ["daily life","gaming","fashion","beauty","idol growth journey"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "intimate" }
+      }
+    },
+    {
+      "id": "tzuyu", "name": "Tzuyu", "name_zh": "周子瑜", "group": "TWICE",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 85, "followers": 12000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["台灣公主","運動風","經典美人","高挑優雅","清純"], "color_palette": ["白","天藍","黑","金"], "vibe": "清純優雅的台灣門面女神" },
+        "personality": { "energy_type": "calm", "fan_interaction": "formal", "mbti": "ISFP" },
+        "performance": { "dance_style": "precise", "vocal_type": "vocalist-dancer", "stage_persona": "elegant silent visual queen", "roles": ["vocalist","dancer","visual","maknae"] },
+        "content":     { "topics": ["archery","food","fashion","self-care"], "sns_platform": ["Instagram","Weverse"], "content_tone": "aesthetic" }
+      }
+    },
+    {
+      "id": "felix", "name": "Felix", "name_zh": "李玟赫", "group": "Stray Kids",
+      "genres": ["k-pop", "k-pop boy group", "k-rap"], "popularity": 86, "followers": 9500000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["雀斑王子","反差萌","街頭風","陽光","甜酷"], "color_palette": ["黑","橘","白","暖棕"], "vibe": "陽光反差的雀斑王子" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "ENFJ" },
+        "performance": { "dance_style": "powerful", "vocal_type": "deep bass rapper-vocalist", "stage_persona": "powerful cutie cave voice", "roles": ["main dancer","rapper","visual","center"] },
+        "content":     { "topics": ["food","daily life","fitness","gaming","positive energy"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "soyeon", "name": "Soyeon", "name_zh": "田小娟", "group": "(G)I-DLE",
+      "genres": ["k-pop", "k-pop girl group", "k-rap"], "popularity": 85, "followers": 8000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["girl crush","實驗大膽","無畏","颯","霸氣"], "color_palette": ["紅","黑","金屬金","電光黃"], "vibe": "無畏霸氣的創作總監" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENTJ" },
+        "performance": { "dance_style": "powerful", "vocal_type": "main rapper-vocalist", "stage_persona": "boss lady creative director", "roles": ["main rapper","lead dancer","leader","songwriter","center"] },
+        "content":     { "topics": ["music production","fashion","empowerment","creative direction","feminism"], "sns_platform": ["Instagram","TikTok","YouTube"], "content_tone": "hype" }
+      }
+    },
+    {
+      "id": "sana", "name": "Sana", "name_zh": "三矢紗凪", "group": "TWICE",
+      "genres": ["k-pop", "k-pop girl group"], "popularity": 84, "followers": 11000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["撒嬌女王","kawaii","奢華甜美","陽光","柔美魅惑"], "color_palette": ["粉","白","嫩紫","蜜桃"], "vibe": "陽光甜美的撒嬌女王" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "aegyo-forward", "mbti": "ESFP" },
+        "performance": { "dance_style": "fluid", "vocal_type": "vocalist-dancer", "stage_persona": "irresistible charmer", "roles": ["vocalist","dancer"] },
+        "content":     { "topics": ["beauty","food","daily life","viral aegyo moments"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "jeonghan", "name": "Jeonghan", "name_zh": "尹定漢", "group": "SEVENTEEN",
+      "genres": ["k-pop", "k-pop boy group"], "popularity": 84, "followers": 8000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["天使臉","中性美","痞帥","俐落","反差"], "color_palette": ["黑","銀","白","淺金"], "vibe": "天使臉孔的痞帥靈魂" },
+        "personality": { "energy_type": "mysterious", "fan_interaction": "mischievous-charming", "mbti": "ENFJ" },
+        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "angelic schemer", "roles": ["main vocalist","visual"] },
+        "content":     { "topics": ["fashion","art","travel","daily life","member interactions"], "sns_platform": ["Instagram","Weverse","TikTok"], "content_tone": "comedic" }
+      }
+    },
+    {
+      "id": "yeonjun", "name": "Yeonjun", "name_zh": "崔延俊", "group": "TXT",
+      "genres": ["k-pop", "k-pop boy group"], "popularity": 84, "followers": 7500000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["pop punk","中性風","奢華設計","另類實驗","Y2K"], "color_palette": ["紫","黑","霓虹","米白"], "vibe": "中性龐克的潮流引領者" },
+        "personality": { "energy_type": "high energy", "fan_interaction": "hype", "mbti": "ENFP" },
+        "performance": { "dance_style": "powerful", "vocal_type": "main dancer-vocalist", "stage_persona": "trendy all-rounder powerhouse", "roles": ["main dancer","vocalist","center","face of group"] },
+        "content":     { "topics": ["fashion","music","dance","gaming","genderless style"], "sns_platform": ["Instagram","TikTok","Weverse"], "content_tone": "hype" }
+      }
+    },
+    {
+      "id": "iu", "name": "IU", "name_zh": "李知恩", "group": null,
+      "genres": ["k-pop", "k-ballad", "korean pop", "k-pop solo"], "popularity": 90, "followers": 13000000, "image_url": null,
+      "profile": {
+        "aesthetic":   { "style_tags": ["國民初戀","復古精緻","鄰家女孩","氛圍感","清新"], "color_palette": ["奶油色","玫瑰","暖黑","橄欖綠"], "vibe": "氛圍感的國民初戀" },
+        "personality": { "energy_type": "warm", "fan_interaction": "parasocial-close", "mbti": "INFJ" },
+        "performance": { "dance_style": "fluid", "vocal_type": "main vocalist", "stage_persona": "storytelling singer-songwriter actress", "roles": ["main vocalist","songwriter","actress"] },
+        "content":     { "topics": ["music","drama acting","literature","food","emotional songwriting"], "sns_platform": ["Instagram","YouTube"], "content_tone": "intimate" }
+      }
+    }
+  ],
+  "tracks": []
+}
