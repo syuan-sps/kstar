@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import type { Artist, Weights } from "@/lib/types";
+import { zhTrait } from "@/lib/cardMeta";
 
 // Dominant layer label in zh-TW
 const LAYER_ZH: Record<keyof Weights, string> = {
@@ -34,7 +35,7 @@ ${candidate.name} 資料：${canProfile}`;
 
 function localFallback(source: Artist, candidate: Artist, topTraits: string[]): string {
   if (topTraits.length > 0) {
-    return `相似特質：${topTraits.slice(0, 2).join("、")}`;
+    return `相似特質：${topTraits.slice(0, 2).map(zhTrait).join("、")}`;
   }
   const shared = source.genres.filter((g) => candidate.genres.includes(g));
   return shared.length ? `相同曲風：${shared[0]}` : "同為人氣偶像";

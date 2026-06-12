@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
 import type { Artist, SimilarArtist, Weights, LayerFilter } from "@/lib/types";
 import { DEFAULT_WEIGHTS } from "@/lib/types";
 import { similarArtists } from "@/lib/similarity";
-import IdolFrame from "./IdolFrame";
-import FavoriteButton from "./FavoriteButton";
+import { personalReason } from "@/lib/cardMeta";
+import SimilarIdolCard from "./SimilarIdolCard";
 import { copy } from "@/lib/copy";
 
 const PILL_LABELS: Record<LayerFilter, string> = {
@@ -26,7 +25,7 @@ function filterWeights(f: LayerFilter): Weights {
 
 function SkeletonCard() {
   return (
-    <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-48 w-full" />
+    <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-64 w-full" />
   );
 }
 
@@ -40,6 +39,7 @@ interface Props {
 
 export default function SimilarSection({ sourceArtist, allArtists, filter, onFilterChange }: Props) {
   const [mounted, setMounted] = useState(false);
+  const [topIdols, setTopIdols] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<SimilarArtist[]>([]);
   const [reasons, setReasons] = useState<Record<string, string>>({});
   const [reasonsLoading, setReasonsLoading] = useState(false);
@@ -99,8 +99,9 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
       let weights = DEFAULT_WEIGHTS;
       const raw = localStorage.getItem("kstar:prefs");
       if (raw) {
-        const prefs = JSON.parse(raw) as { weights: Weights };
+        const prefs = JSON.parse(raw) as { weights: Weights; topIdols?: string[] };
         if (prefs.weights) weights = prefs.weights;
+        if (Array.isArray(prefs.topIdols)) setTopIdols(prefs.topIdols);
       }
       const results = similarArtists(sourceArtist, allArtists, weights);
       const top6 = results.slice(0, 6);
@@ -187,50 +188,17 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
         <p className="text-white/50">{copy.noResults}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {candidates.map((s) => {
-            const aiReason = reasons[s.artist.id];
-            const displayReasons = aiReason ? [aiReason] : (reasonsLoading ? [] : s.reasons);
-            return (
-              <SimilarCard
-                key={s.artist.id}
-                similar={s}
-                reasons={displayReasons}
-                loading={!aiReason && reasonsLoading}
-              />
-            );
-          })}
+          {candidates.map((s) => (
+            <SimilarIdolCard
+              key={s.artist.id}
+              similar={s}
+              reason={reasons[s.artist.id] ?? null}
+              personal={personalReason(s.artist, topIdols, allArtists)}
+              loading={!reasons[s.artist.id] && reasonsLoading}
+            />
+          ))}
         </div>
       )}
     </section>
-  );
-}
-
-function SimilarCard({
-  similar,
-  reasons,
-  loading,
-}: {
-  similar: SimilarArtist;
-  reasons: string[];
-  loading: boolean;
-}) {
-  const { artist } = similar;
-  return (
-    <Link
-      href={`/artist/${artist.id}`}
-      className="group relative block transition hover:-translate-y-0.5"
-    >
-      <IdolFrame artist={artist} />
-      <div className="absolute right-2 top-7 z-20">
-        <FavoriteButton id={artist.id} size="sm" />
-      </div>
-      <div className="mt-1.5 min-h-[2rem] px-1 text-center text-[11px] leading-relaxed text-pink-200/85">
-        {loading ? (
-          <span className="text-[#ff66cc]/60 animate-pulse">・・・</span>
-        ) : reasons.length > 0 ? (
-          <span className="transition-opacity duration-300">{reasons[0]}</span>
-        ) : null}
-      </div>
-    </Link>
   );
 }
