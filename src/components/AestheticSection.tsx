@@ -68,12 +68,49 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
         </div>
       </div>
 
-      {/* style read (deep-pass idols only) */}
-      {aes.analysis && (
-        <p className="mt-4 border-t border-[#ff00cc]/15 pt-3 text-sm leading-relaxed text-[#3a1030]">
-          {aes.analysis}
-        </p>
+      {/* 官方/私服 dual-track blocks (researched idols) — otherwise legacy single read */}
+      {aes.official || aes.personal ? (
+        <>
+          {aes.official && <StyleTrack label="官方造型" icon="◆" data={aes.official} />}
+          {aes.personal && <StyleTrack label="私服風格" icon="◇" data={aes.personal} />}
+        </>
+      ) : (
+        aes.analysis && (
+          <p className="mt-4 border-t border-[#ff00cc]/15 pt-3 text-sm leading-relaxed text-[#3a1030]">
+            {aes.analysis}
+          </p>
+        )
       )}
     </section>
+  );
+}
+
+function StyleTrack({
+  label,
+  icon,
+  data,
+}: {
+  label: string;
+  icon: string;
+  data: { style_tags: string[]; analysis: string };
+}) {
+  return (
+    <div className="mt-4 border-t border-[#ff00cc]/15 pt-3">
+      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#990066]/70">
+        <span>{icon}</span>
+        <span>{label}</span>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {data.style_tags.map((t) => (
+          <span
+            key={t}
+            className="rounded-full bg-[#ff00cc]/12 px-3 py-1 text-xs font-semibold text-[#cc0099]"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+      <p className="mt-2.5 text-sm leading-relaxed text-[#3a1030]">{data.analysis}</p>
+    </div>
   );
 }

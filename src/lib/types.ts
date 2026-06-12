@@ -1,6 +1,10 @@
 // ── Idol profile sub-types ─────────────────────────────────────────────
 export interface IdolProfile {
-  aesthetic:   { style_tags: string[]; color_palette: string[]; vibe: string; analysis?: string }
+  aesthetic:   {
+    style_tags: string[]; color_palette: string[]; vibe: string; analysis?: string;
+    official?: { style_tags: string[]; analysis: string };  // 官方造型 (albums, red carpet, brand deals, runway)
+    personal?: { style_tags: string[]; analysis: string };  // 私服風格 (IG, airport, vlog off-duty style)
+  }
   personality: { energy_type: string; fan_interaction: string; mbti?: string; vibe?: string; trait_tags?: string[]; analysis?: string }
   performance: { dance_style: string; vocal_type: string; stage_persona: string; roles: string[]; vibe?: string; trait_tags?: string[]; analysis?: string }
   content:     { topics: string[]; lifestyle_topics?: string[]; value_topics?: string[]; sns_platform: string[]; content_tone: string; vibe?: string; trait_tags?: string[]; analysis?: string }

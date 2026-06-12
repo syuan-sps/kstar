@@ -30,8 +30,13 @@ function aestheticScore(a: Artist, b: Artist): { score: number; traits: string[]
   if (!a.profile || !b.profile) return { score: 0, traits: [] };
   const pa = a.profile.aesthetic;
   const pb = b.profile.aesthetic;
-  const tokens_a = [...pa.style_tags, ...pa.color_palette, ...pa.vibe.split(" ")];
-  const tokens_b = [...pb.style_tags, ...pb.color_palette, ...pb.vibe.split(" ")];
+  // 官方造型/私服風格 tags (when present) join the token pool
+  const extra = (p: typeof pa) => [
+    ...(p.official?.style_tags ?? []),
+    ...(p.personal?.style_tags ?? []),
+  ];
+  const tokens_a = [...pa.style_tags, ...pa.color_palette, ...pa.vibe.split(" "), ...extra(pa)];
+  const tokens_b = [...pb.style_tags, ...pb.color_palette, ...pb.vibe.split(" "), ...extra(pb)];
   const score = jaccard(tokens_a, tokens_b);
   const traits = sharedTokens(pa.style_tags, pb.style_tags);
   return { score, traits };
