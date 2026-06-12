@@ -9,7 +9,9 @@ node scripts/sync-idol-photos.mjs
 腳本會自動把照片連到 catalog；沒照片的偶像維持漸層首字卡。每位偶像的 `image_focus`（0~1，臉的垂直位置，預設 0.3）可在 `src/data/catalog.json` 微調 — 重跑腳本不會覆蓋你調過的值。
 
 ## 選照片守則
+- **一年內的照片**（2025年6月之後拍攝/發布）— 在 Commons 檔案頁確認拍攝日期；MediaSearch 可在左側篩選日期。太舊的照片寧可先留漸層卡。
 - **來源順位**：① Wikimedia Commons CC 授權照（最安全，記下作者+授權）② 經紀公司官方宣傳照。**絕不用**粉絲拍攝或有浮水印的照片。
+- 一年內的 CC 照最可能出現在：2025–2026 時裝週/首映會/記者會的紅毯照、頒獎典禮報導照。Commons 找不到近照時，官方近期宣傳照（回歸概念照、品牌活動官方照）是更好的退路。
 - 直式人像優先，臉在畫面上半部，寬度 ≥600px。
 - 照片風格盡量貼合該偶像的氣質（例：V 選復古紳士感、Karina 選未來高級感）。
 
@@ -67,6 +69,6 @@ node scripts/sync-idol-photos.mjs
 
 ## 授權紀錄（CC BY 需要署名 — 下載時順手填）
 
-| 檔名 | 來源連結 | 作者 | 授權 |
-|---|---|---|---|
-| bts-v.jpg（示範用，可換更新的照片） | [Commons: V performing at TRB Taipei (cropped)](https://commons.wikimedia.org/wiki/File:V_(Kim_Tae-hyung)_performing_at_the_TRB_in_Taipei_02_(cropped).jpg) | 中華文化總會(GACC) | CC BY 4.0 |
+| 檔名 | 來源連結 | 拍攝日期 | 作者 | 授權 |
+|---|---|---|---|---|
+| (待填) | | | | |
