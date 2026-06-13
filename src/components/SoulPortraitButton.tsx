@@ -9,8 +9,10 @@ import { createPortal } from "react-dom";
 import type { ArtistLite } from "@/lib/lite";
 import type { PickSummary, UserPrefs } from "@/lib/types";
 import { getArchetype, type ArchetypeResult } from "@/lib/archetypes";
+import { zhTrait } from "@/lib/cardMeta";
 import { copy } from "@/lib/copy";
 import TastePortraitCard from "@/components/TastePortraitCard";
+import type { ResultAnswers } from "@/components/SoulReport";
 
 export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistLite[] }) {
   const [prefs, setPrefs] = useState<UserPrefs | null>(null);
@@ -44,6 +46,17 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
     .map((id) => allArtists.find((a) => a.id === id))
     .filter(Boolean) as ArtistLite[];
   if (picks.length !== 4) return null;
+
+  // Rebuild the report's answer-reflection from stored prefs.
+  const answers: ResultAnswers = {
+    contrast: prefs.contrast ?? null,
+    visualMood: prefs.visualMood ?? null,
+    valueTokens: Object.entries(prefs.tokenPrefs ?? {})
+      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || zhTrait(t) !== t))
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([t]) => t),
+  };
 
   async function openCard() {
     if (loading || !prefs) return;
@@ -83,7 +96,7 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
               <span className="win-btn win-btn-close" onClick={() => setOpen(false)} style={{ cursor: "pointer" }}>×</span>
             </div>
             <div className="window-body max-h-[85vh] overflow-y-auto p-5">
-              <TastePortraitCard result={result} picks={picks} />
+              <TastePortraitCard result={result} picks={picks} answers={answers} />
             </div>
           </div>
         </div>,

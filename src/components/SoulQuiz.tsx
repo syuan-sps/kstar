@@ -17,6 +17,7 @@ import { getArchetype, LAYER_ZH, LAYER_COLOR, type ArchetypeResult } from "@/lib
 import { zhTrait } from "@/lib/cardMeta";
 import { copy } from "@/lib/copy";
 import TastePortraitCard from "@/components/TastePortraitCard";
+import type { ResultAnswers } from "@/components/SoulReport";
 
 const CONTENT_TONE_ZH: Record<string, string> = {
   intimate: "日常陪伴", hype: "嗨翻舞台", aesthetic: "美感氛圍", comedic: "搞笑名場面",
@@ -79,6 +80,7 @@ export default function SoulQuiz({
   const [, force] = useState(0);
   const answersRef = useRef<Record<string, string>>({});
   const [result, setResult] = useState<ArchetypeResult | null>(null);
+  const [answers, setAnswers] = useState<ResultAnswers | null>(null);
 
   const nameById = new Map(picks.map((p) => [p.id, p.name]));
   const topName = picks[0]?.name ?? "他";
@@ -134,13 +136,30 @@ export default function SoulQuiz({
     const quiz = computeQuizResult({ rank, answers, extraTokens, layerNudges });
     const arche = getArchetype(summaries, quiz.weights);
     const weights: Weights = quiz.weights;
+
+    // Q7 mood (open answer id, or the agreed token on a confirm screen)
+    let visualMood: string | null = null;
+    for (const s of sc) {
+      if (s.kind === "question" && s.q.id === "q7") visualMood = answersRef.current.q7 ?? null;
+      if (s.kind === "confirm" && s.field === "mood") visualMood = s.token;
+    }
+    // top resonant tokens (zh or zh-mappable engine tokens) for the report
+    const valueTokens = Object.entries(quiz.tokenPrefs)
+      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || zhTrait(t) !== t))
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([t]) => t);
+
     onPersist({
       weights,
       layerRank: rank,
       tokenPrefs: quiz.tokenPrefs,
       hiddenFace: arche.hiddenLayer,
       archetype: { code: arche.code, hiddenLayer: arche.hiddenLayer },
+      contrast: quiz.contrast,
+      visualMood,
     });
+    setAnswers({ contrast: quiz.contrast, visualMood, valueTokens });
     setResult(arche);
     setPhase("result");
   }
@@ -181,7 +200,8 @@ export default function SoulQuiz({
         <TastePortraitCard
           result={result}
           picks={picks}
-          onRestart={() => { setRank([...SCORE_LAYERS]); setResult(null); setPhase("rank"); }}
+          answers={answers ?? undefined}
+          onRestart={() => { setRank([...SCORE_LAYERS]); setResult(null); setAnswers(null); setPhase("rank"); }}
         />
         <div className="flex justify-center pt-1">
           <button onClick={onClose} className="rounded-full border border-[#c8ccd2] px-4 py-1.5 text-xs font-bold text-[#1c1e24] hover:bg-[#7c8088]/10">✦ 完成</button>

@@ -44,4 +44,16 @@ export const copy = {
   shareHint: "截圖分享到限動，讓朋友也測一張",
   reshareEntry: "我的追星靈魂",
   soulEvolving: "你的追星靈魂正在進化",
+  // result views (toggle + report)
+  viewStory: "限動卡",
+  viewReport: "完整報告",
+  storyCta: "測你的追星靈魂 →",
+  reportLayers: "四層拆解",
+  reportAnswers: "你的答案",
+  reportUniverse: "追星宇宙",
+  reportContrast: "反差 vs 始終如一",
+  reportVisual: "電到你的視覺型",
+  reportResonance: "你最有共鳴的",
+  shareDownloadStory: "下載限動卡",
+  shareDownloadReport: "下載報告長圖",
 } as const;

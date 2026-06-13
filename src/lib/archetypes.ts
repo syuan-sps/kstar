@@ -93,6 +93,19 @@ export const LAYER_COLOR: Record<ScoreLayer, string> = {
   aesthetic: "#4a4f57", personality: "#b4302b", performance: "#56789f", content: "#b9bdc4",
 };
 
+// Plain-語 meaning of each axis being high vs low — for the detailed report.
+export const LAYER_MEANINGS: Record<ScoreLayer, { high: string; low: string }> = {
+  aesthetic:   { high: "顏值與造型是你入坑的第一道門 — 你超吃視覺。", low: "長相不是重點，你看的是別的東西。" },
+  personality: { high: "你愛的是「那個人」本身 — 性格、為人、互動方式。", low: "個性怎樣你沒那麼在意。" },
+  performance: { high: "舞台與直拍才是你的命 — 實力派收割機。", low: "舞台強不強，對你不是關鍵。" },
+  content:     { high: "日常、共鳴、私下的他 — 你要的是陪伴感。", low: "他發什麼內容，你比較不執著。" },
+};
+
+/** Coarse 高/中/低 label from a 0–100 bar value (for the report). */
+export function barLabel(pct: number): string {
+  return pct >= 60 ? "高" : pct >= 33 ? "中" : "低";
+}
+
 // ── Scoring ────────────────────────────────────────────────────────────
 export interface ArchetypeResult {
   code: string;
