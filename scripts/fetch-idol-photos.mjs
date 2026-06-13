@@ -50,6 +50,17 @@ const SEARCH = {
   beomgyu: 'Choi Beom-gyu TXT', taehyun: 'Kang Tae-hyun TXT', hueningkai: 'Huening Kai',
   giselle: 'Giselle aespa Uchinaga', danielle: 'Danielle NewJeans Marsh', hyein: 'Hyein NewJeans',
   suga: 'Suga BTS Min Yoon-gi',
+  scoups: 'S.Coups Choi Seung-cheol', joshua: 'Joshua Hong Seventeen', jun: 'Wen Jun-hui Seventeen',
+  wonwoo: 'Jeon Won-woo Seventeen', woozi: 'Lee Ji-hoon Woozi', dk: 'Lee Seok-min DK Seventeen',
+  mingyu: 'Kim Min-gyu Seventeen', the8: 'Xu Ming-hao The8', seungkwan: 'Boo Seung-kwan',
+  vernon: 'Vernon Chwe Seventeen', dino: 'Lee Chan Dino Seventeen',
+  hongjoong: 'Kim Hong-joong Ateez', seonghwa: 'Park Seong-hwa Ateez', yunho: 'Jeong Yun-ho Ateez',
+  yeosang: 'Kang Yeo-sang Ateez', mingi: 'Song Min-gi Ateez', wooyoung: 'Jung Woo-young Ateez', jongho: 'Choi Jong-ho Ateez',
+  irene: 'Bae Joo-hyun Irene', wendy: 'Son Seung-wan Wendy', joy: 'Park Soo-young Joy Red Velvet', yeri: 'Kim Ye-rim Yeri',
+  lily: 'Lily NMIXX Morrow', haewon: 'Oh Hae-won NMIXX', bae: 'Bae NMIXX Jinsol', jiwoo: 'Kim Ji-woo NMIXX', kyujin: 'Jang Kyu-jin NMIXX',
+  taeyong: 'Lee Tae-yong NCT', doyoung: 'Kim Dong-young Doyoung NCT', jaehyun: 'Jeong Jae-hyun NCT',
+  haechan: 'Lee Dong-hyuck Haechan', jeno: 'Lee Je-no NCT', jaemin: 'Na Jae-min NCT', renjun: 'Huang Ren-jun NCT', jisung: 'Park Ji-sung NCT Dream',
+  yoona: 'Im Yoon-ah', yuri: 'Kwon Yu-ri', tiffany: 'Tiffany Young Hwang', hyoyeon: 'Kim Hyo-yeon',
 };
 
 const FREE_LICENSE = /^(cc0|cc[ -]by(?:[ -]sa)?(?:[ -]\d|\b)|public domain|pd)/i;

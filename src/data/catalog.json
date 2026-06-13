@@ -9560,6 +9560,3850 @@
         }
       },
       "image_focus": 0.3
+    },
+    {
+      "id": "scoups",
+      "name": "S.Coups",
+      "name_zh": "崔勝哲",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "可靠大哥",
+            "休閒皮衣",
+            "沉穩街頭",
+            "男人味"
+          ],
+          "color_palette": [
+            "黑",
+            "棕",
+            "白"
+          ],
+          "vibe": "大哥風範的沉穩街頭"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "hype",
+          "mbti": "ENFJ",
+          "vibe": "扛起13人的總隊長",
+          "trait_tags": [
+            "總隊長",
+            "可靠",
+            "重感情",
+            "大哥"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "lead rapper",
+          "stage_persona": "general leader",
+          "roles": [
+            "leader",
+            "lead rapper"
+          ],
+          "vibe": "氣場開路的隊長饒舌",
+          "trait_tags": [
+            "隊長",
+            "領饒舌",
+            "氣場",
+            "開場擔當"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "大哥的烤肉局",
+          "trait_tags": [
+            "健身",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "努力哲學"
+          ]
+        },
+        "overview": {
+          "vibe": "扛起13人的總隊長",
+          "trait_tags": [
+            "總隊長",
+            "隊長",
+            "可靠大哥",
+            "健身",
+            "真誠待粉"
+          ],
+          "summary": "SEVENTEEN總隊長——扛起十三人的可靠大哥，氣場與溫情並存。"
+        }
+      }
+    },
+    {
+      "id": "joshua",
+      "name": "Joshua",
+      "name_zh": "洪知秀",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/joshua.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "紳士襯衫",
+            "LA清爽",
+            "溫文",
+            "乾淨"
+          ],
+          "color_palette": [
+            "白",
+            "天藍",
+            "米"
+          ],
+          "vibe": "LA紳士的溫文清爽"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "溫柔紳士的英語擔當",
+          "trait_tags": [
+            "紳士",
+            "LA出身",
+            "溫柔",
+            "教會哥哥"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "gentleman vocalist",
+          "roles": [
+            "vocalist"
+          ],
+          "vibe": "柔和音色的和聲匠",
+          "trait_tags": [
+            "和聲",
+            "柔和音色",
+            "雙語",
+            "穩定"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "居家日常",
+            "美食"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "家庭觀"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "吉他與咖啡的午後",
+          "trait_tags": [
+            "音樂創作",
+            "居家日常",
+            "美食",
+            "真誠待粉",
+            "家庭觀"
+          ]
+        },
+        "overview": {
+          "vibe": "溫柔紳士的英語擔當",
+          "trait_tags": [
+            "紳士",
+            "和聲",
+            "紳士襯衫",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "SEVENTEEN的LA紳士——溫柔英語與柔和和聲，乾淨清爽的教科書。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jun",
+      "name": "Jun",
+      "name_zh": "文俊輝",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "仙氣古裝",
+            "中華風",
+            "清冷",
+            "飄逸"
+          ],
+          "color_palette": [
+            "白",
+            "薄紫",
+            "黑"
+          ],
+          "vibe": "中華仙氣的清冷飄逸"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "INFP",
+          "vibe": "四次元的中國哥哥",
+          "trait_tags": [
+            "四次元",
+            "中國line",
+            "戲精",
+            "溫柔"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "ethereal performer",
+          "roles": [
+            "vocalist",
+            "dancer"
+          ],
+          "vibe": "舞線飄逸的隱藏舞者",
+          "trait_tags": [
+            "舞者",
+            "飄逸線條",
+            "表現力",
+            "戲劇感"
+          ]
+        },
+        "content": {
+          "topics": [
+            "遊戲",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "貓系直播",
+          "trait_tags": [
+            "遊戲",
+            "美食",
+            "居家日常",
+            "幽默自嘲",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "四次元的中國哥哥",
+          "trait_tags": [
+            "四次元",
+            "舞者",
+            "仙氣古裝",
+            "遊戲",
+            "幽默自嘲"
+          ],
+          "summary": "SEVENTEEN中國line——仙氣舞線與四次元言行，戲精本精。"
+        }
+      }
+    },
+    {
+      "id": "wonwoo",
+      "name": "Wonwoo",
+      "name_zh": "全圓佑",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": "/idols/wonwoo.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "眼鏡知性",
+            "黑色極簡",
+            "低音紳士",
+            "冷靜"
+          ],
+          "color_palette": [
+            "黑",
+            "灰",
+            "白"
+          ],
+          "vibe": "眼鏡低音的知性極簡"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INTP",
+          "vibe": "低音炮的安靜溫柔",
+          "trait_tags": [
+            "低音炮",
+            "眼鏡",
+            "遊戲宅",
+            "安靜溫柔"
+          ]
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "lead rapper",
+          "stage_persona": "deep-voice intellect",
+          "roles": [
+            "lead rapper"
+          ],
+          "vibe": "低音饒舌的知性流",
+          "trait_tags": [
+            "領饒舌",
+            "低音辨識",
+            "冷靜flow",
+            "遊戲手"
+          ]
+        },
+        "content": {
+          "topics": [
+            "遊戲",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "攝影"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "遊戲直播與書",
+          "trait_tags": [
+            "遊戲",
+            "居家日常",
+            "攝影",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "低音炮的安靜溫柔",
+          "trait_tags": [
+            "低音炮",
+            "領饒舌",
+            "眼鏡知性",
+            "遊戲",
+            "真誠待粉"
+          ],
+          "summary": "SEVENTEEN的低音炮——眼鏡知性與遊戲宅魂，安靜卻存在感滿分。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "woozi",
+      "name": "Woozi",
+      "name_zh": "李知勳",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "小個子大佬",
+            "工作室休閒",
+            "簡約",
+            "堅毅"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "粉"
+          ],
+          "vibe": "製作大佬的簡約堅毅"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INTP",
+          "vibe": "全包製作的小巨人",
+          "trait_tags": [
+            "自作曲全包",
+            "健身反差",
+            "毒舌",
+            "完美主義"
+          ]
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "music brain",
+          "roles": [
+            "lead vocalist",
+            "songwriter"
+          ],
+          "vibe": "SEVENTEEN音樂的大腦",
+          "trait_tags": [
+            "主創",
+            "作曲全包",
+            "領唱",
+            "完美主義"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "健身",
+            "遊戲"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "錄音室住戶",
+          "trait_tags": [
+            "音樂創作",
+            "健身",
+            "遊戲",
+            "專業職人精神",
+            "努力哲學"
+          ]
+        },
+        "overview": {
+          "vibe": "全包製作的小巨人",
+          "trait_tags": [
+            "自作曲全包",
+            "主創",
+            "小個子大佬",
+            "音樂創作",
+            "專業職人精神"
+          ],
+          "summary": "SEVENTEEN音樂大腦——團歌幾乎全包的自作曲小巨人，健身反差萌。"
+        }
+      }
+    },
+    {
+      "id": "dk",
+      "name": "DK",
+      "name_zh": "李碩珉",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "陽光爆棚",
+            "亮色休閒",
+            "大笑臉",
+            "熱血"
+          ],
+          "color_palette": [
+            "亮紅",
+            "白",
+            "金"
+          ],
+          "vibe": "陽光大笑的熱血亮色"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFJ",
+          "vibe": "笑聲就是BGM",
+          "trait_tags": [
+            "大笑名場面",
+            "熱血",
+            "音樂劇",
+            "正能量"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main vocalist",
+          "stage_persona": "powerhouse smile",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "高音直上的主唱機",
+          "trait_tags": [
+            "主唱",
+            "爆發高音",
+            "音樂劇級",
+            "現場全開"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "笑聲合輯",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "戶外活動",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "笑聲就是BGM",
+          "trait_tags": [
+            "大笑名場面",
+            "主唱",
+            "陽光爆棚",
+            "音樂創作",
+            "正向思考"
+          ],
+          "summary": "SEVENTEEN主唱——音樂劇級高音與招牌大笑，正能量過載。"
+        }
+      }
+    },
+    {
+      "id": "mingyu",
+      "name": "Mingyu",
+      "name_zh": "金珉奎",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 82,
+      "followers": 8200000,
+      "image_url": "/idols/mingyu.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "模特比例",
+            "時尚畫報",
+            "都會型男",
+            "187"
+          ],
+          "color_palette": [
+            "黑",
+            "米白",
+            "丹寧藍"
+          ],
+          "vibe": "187模特的都會型男"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "hype",
+          "mbti": "ESFJ",
+          "vibe": "全能管家的暖",
+          "trait_tags": [
+            "生活全能",
+            "管家",
+            "料理",
+            "狗系暖"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "rapper",
+          "stage_persona": "visual rapper",
+          "roles": [
+            "rapper",
+            "visual"
+          ],
+          "vibe": "視覺系的舞台支點",
+          "trait_tags": [
+            "門面",
+            "饒舌",
+            "比例",
+            "存在感"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美食",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "料理與露營",
+          "trait_tags": [
+            "美食",
+            "健身",
+            "居家日常",
+            "真誠待粉",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "全能管家的暖",
+          "trait_tags": [
+            "生活全能",
+            "門面",
+            "模特比例",
+            "美食",
+            "真誠待粉"
+          ],
+          "summary": "SEVENTEEN門面——187模特比例配生活全能管家力，狗系暖男。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "the8",
+      "name": "The8",
+      "name_zh": "徐明浩",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "藝術家",
+            "高級時裝",
+            "清醒淡然",
+            "美學"
+          ],
+          "color_palette": [
+            "白",
+            "黑",
+            "大地色"
+          ],
+          "vibe": "時裝藝術家的淡然"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INFJ",
+          "vibe": "清醒發言的藝術家",
+          "trait_tags": [
+            "清醒語錄",
+            "藝術收藏",
+            "武術底",
+            "淡然"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "artistic dancer",
+          "roles": [
+            "dancer",
+            "vocalist"
+          ],
+          "vibe": "武術底的舞線美學",
+          "trait_tags": [
+            "舞者",
+            "武術底子",
+            "線條",
+            "美學視角"
+          ]
+        },
+        "content": {
+          "topics": [
+            "藝術",
+            "時尚"
+          ],
+          "lifestyle_topics": [
+            "藝術",
+            "時尚",
+            "攝影"
+          ],
+          "value_topics": [
+            "自我認同",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "畫廊與時裝週",
+          "trait_tags": [
+            "藝術",
+            "時尚",
+            "攝影",
+            "自我認同",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "清醒發言的藝術家",
+          "trait_tags": [
+            "清醒語錄",
+            "舞者",
+            "藝術家",
+            "藝術",
+            "自我認同"
+          ],
+          "summary": "SEVENTEEN的藝術擔當——武術底舞線與清醒語錄，時尚圈寵兒。"
+        }
+      }
+    },
+    {
+      "id": "seungkwan",
+      "name": "Seungkwan",
+      "name_zh": "夫勝寬",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": "/idols/seungkwan.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "綜藝活力",
+            "休閒亮色",
+            "親和",
+            "濟州"
+          ],
+          "color_palette": [
+            "嫩黃",
+            "白",
+            "天藍"
+          ],
+          "vibe": "綜藝王的活力親和"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ESFJ",
+          "vibe": "綜藝藍籌股的真心",
+          "trait_tags": [
+            "綜藝王",
+            "濟州",
+            "真心",
+            "捧哏天才"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "main vocalist",
+          "stage_persona": "variety ace vocalist",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "靈魂高音的綜藝王",
+          "trait_tags": [
+            "主唱",
+            "靈魂高音",
+            "綜藝",
+            "感染力"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美食",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "居家日常",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "綜藝名場面庫",
+          "trait_tags": [
+            "美食",
+            "居家日常",
+            "戶外活動",
+            "真誠待粉",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "綜藝藍籌股的真心",
+          "trait_tags": [
+            "綜藝王",
+            "主唱",
+            "綜藝活力",
+            "美食",
+            "真誠待粉"
+          ],
+          "summary": "SEVENTEEN主唱兼綜藝王——靈魂高音與捧哏天分，真心是底色。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "vernon",
+      "name": "Vernon",
+      "name_zh": "崔韓率",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/vernon.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "復古搖滾",
+            "古著",
+            "混血酷",
+            "鬆弛"
+          ],
+          "color_palette": [
+            "丹寧藍",
+            "白",
+            "紅"
+          ],
+          "vibe": "古著搖滾的鬆弛酷"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ISTP",
+          "vibe": "鬆弛宇宙的住民",
+          "trait_tags": [
+            "鬆弛",
+            "混血",
+            "搖滾魂",
+            "meme臉"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "main rapper",
+          "stage_persona": "laid-back rapper",
+          "roles": [
+            "main rapper"
+          ],
+          "vibe": "鬆弛flow的饒舌",
+          "trait_tags": [
+            "主饒舌",
+            "鬆弛flow",
+            "音樂品味",
+            "雙語"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "遊戲"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "遊戲",
+            "時尚"
+          ],
+          "value_topics": [
+            "自由奔放",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "黑膠與meme",
+          "trait_tags": [
+            "音樂創作",
+            "遊戲",
+            "時尚",
+            "自由奔放",
+            "自我認同"
+          ]
+        },
+        "overview": {
+          "vibe": "鬆弛宇宙的住民",
+          "trait_tags": [
+            "鬆弛",
+            "主饒舌",
+            "復古搖滾",
+            "音樂創作",
+            "自由奔放"
+          ],
+          "summary": "SEVENTEEN主饒舌——古著搖滾品味與鬆弛宇宙，自成頻率。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "dino",
+      "name": "Dino",
+      "name_zh": "李燦",
+      "group": "SEVENTEEN",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/dino.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "舞者街頭",
+            "帽子",
+            "能量",
+            "未來"
+          ],
+          "color_palette": [
+            "黑",
+            "螢光黃",
+            "白"
+          ],
+          "vibe": "舞者街頭的能量"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFJ",
+          "vibe": "未來的man的自證",
+          "trait_tags": [
+            "未來的man",
+            "舞癡",
+            "么弟",
+            "上進"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "dance prodigy maknae",
+          "roles": [
+            "maknae",
+            "dancer"
+          ],
+          "vibe": "編舞輸出的么弟",
+          "trait_tags": [
+            "么弟",
+            "編舞",
+            "Michael Jackson魂",
+            "能量"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "練習室vlog",
+          "trait_tags": [
+            "音樂創作",
+            "健身",
+            "居家日常",
+            "努力哲學",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "未來的man的自證",
+          "trait_tags": [
+            "未來的man",
+            "么弟",
+            "舞者街頭",
+            "音樂創作",
+            "努力哲學"
+          ],
+          "summary": "SEVENTEEN么弟——「未來的man」的舞蹈自證，MJ魂編舞機。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "hongjoong",
+      "name": "Hongjoong",
+      "name_zh": "金弘中",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/hongjoong.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "船長",
+            "改造時裝",
+            "個性",
+            "小個子大能量"
+          ],
+          "color_palette": [
+            "黑",
+            "紅",
+            "金"
+          ],
+          "vibe": "海盜船長的改造美學"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "船長的責任與浪漫",
+          "trait_tags": [
+            "船長",
+            "自改衣服",
+            "責任感",
+            "創作腦"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "main rapper",
+          "stage_persona": "captain producer",
+          "roles": [
+            "leader",
+            "main rapper",
+            "songwriter"
+          ],
+          "vibe": "掌舵全團的創作饒舌",
+          "trait_tags": [
+            "隊長",
+            "主饒舌",
+            "作曲",
+            "掌舵"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "時尚"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "時尚",
+            "居家日常"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "工作室船艙",
+          "trait_tags": [
+            "音樂創作",
+            "時尚",
+            "居家日常",
+            "專業職人精神",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "船長的責任與浪漫",
+          "trait_tags": [
+            "船長",
+            "隊長",
+            "船長",
+            "音樂創作",
+            "專業職人精神"
+          ],
+          "summary": "ATEEZ船長——創作掌舵與自改時裝的浪漫，小身軀大能量。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "seonghwa",
+      "name": "Seonghwa",
+      "name_zh": "朴星化",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/seonghwa.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "優雅暗黑",
+            "貴族",
+            "清潔魂",
+            "沉靜"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "酒紅"
+          ],
+          "vibe": "暗黑貴族的優雅"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "溫柔潔癖的大哥",
+          "trait_tags": [
+            "大哥",
+            "清潔魂",
+            "溫柔",
+            "反差舞台"
+          ]
+        },
+        "performance": {
+          "dance_style": "theatrical fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "elegant duality",
+          "roles": [
+            "vocalist",
+            "visual"
+          ],
+          "vibe": "優雅與瘋批的切換",
+          "trait_tags": [
+            "門面",
+            "戲劇張力",
+            "優雅",
+            "反差"
+          ]
+        },
+        "content": {
+          "topics": [
+            "居家日常",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "居家日常",
+            "藝術",
+            "美食"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "收納與香氛",
+          "trait_tags": [
+            "居家日常",
+            "藝術",
+            "美食",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "溫柔潔癖的大哥",
+          "trait_tags": [
+            "大哥",
+            "門面",
+            "優雅暗黑",
+            "居家日常",
+            "真誠待粉"
+          ],
+          "summary": "ATEEZ大哥——居家溫柔潔癖與舞台瘋批優雅的極限反差。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "yunho",
+      "name": "Yunho",
+      "name_zh": "鄭允浩",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/yunho.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "陽光大狗",
+            "運動休閒",
+            "清爽",
+            "高挑"
+          ],
+          "color_palette": [
+            "白",
+            "天藍",
+            "黑"
+          ],
+          "vibe": "大狗系的清爽運動"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFJ",
+          "vibe": "金毛大狗的快樂",
+          "trait_tags": [
+            "大狗系",
+            "快樂",
+            "暖",
+            "舞蹈長腿"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "golden retriever dancer",
+          "roles": [
+            "main dancer",
+            "vocalist"
+          ],
+          "vibe": "長腿主舞的能量",
+          "trait_tags": [
+            "主舞",
+            "長腿線條",
+            "能量",
+            "穩定"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "遊戲"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "遊戲",
+            "美食"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "快樂源泉日常",
+          "trait_tags": [
+            "健身",
+            "遊戲",
+            "美食",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "金毛大狗的快樂",
+          "trait_tags": [
+            "大狗系",
+            "主舞",
+            "陽光大狗",
+            "健身",
+            "正向思考"
+          ],
+          "summary": "ATEEZ主舞——金毛大狗的快樂能量與長腿舞線。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "yeosang",
+      "name": "Yeosang",
+      "name_zh": "姜呂尚",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/yeosang.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "雕像美顏",
+            "極簡",
+            "安靜",
+            "胎記"
+          ],
+          "color_palette": [
+            "白",
+            "灰",
+            "黑"
+          ],
+          "vibe": "雕像臉的安靜極簡"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "ISTP",
+          "vibe": "安靜四次元的直球",
+          "trait_tags": [
+            "雕像美顏",
+            "安靜",
+            "直球",
+            "宅"
+          ]
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist",
+          "stage_persona": "statuesque precision",
+          "roles": [
+            "vocalist",
+            "visual"
+          ],
+          "vibe": "精準舞線的安靜者",
+          "trait_tags": [
+            "門面",
+            "精準",
+            "安靜存在感",
+            "直拍"
+          ]
+        },
+        "content": {
+          "topics": [
+            "遊戲",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "美食"
+          ],
+          "value_topics": [
+            "自我認同",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "宅家遊戲日",
+          "trait_tags": [
+            "遊戲",
+            "居家日常",
+            "美食",
+            "自我認同",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "安靜四次元的直球",
+          "trait_tags": [
+            "雕像美顏",
+            "門面",
+            "雕像美顏",
+            "遊戲",
+            "自我認同"
+          ],
+          "summary": "ATEEZ的雕像美顏——安靜四次元與直球發言的反差。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "mingi",
+      "name": "Mingi",
+      "name_zh": "宋旼琦",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/mingi.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "低音巨人",
+            "街頭oversized",
+            "氣場",
+            "柔軟內心"
+          ],
+          "color_palette": [
+            "黑",
+            "紅",
+            "灰"
+          ],
+          "vibe": "低音巨人的街頭"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFP",
+          "vibe": "巨人外表小狗內心",
+          "trait_tags": [
+            "低音炮",
+            "反差軟",
+            "fix on舞台",
+            "真誠"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main rapper",
+          "stage_persona": "deep-voice giant",
+          "roles": [
+            "main rapper"
+          ],
+          "vibe": "地鳴低音的爆發",
+          "trait_tags": [
+            "主饒舌",
+            "低音地鳴",
+            "爆發",
+            "存在感"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "心理健康倡議",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "低音朗讀",
+          "trait_tags": [
+            "音樂創作",
+            "健身",
+            "居家日常",
+            "心理健康倡議",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "巨人外表小狗內心",
+          "trait_tags": [
+            "低音炮",
+            "主饒舌",
+            "低音巨人",
+            "音樂創作",
+            "心理健康倡議"
+          ],
+          "summary": "ATEEZ主饒舌——地鳴低音與小狗內心，舞台爆發力代名詞。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "wooyoung",
+      "name": "Wooyoung",
+      "name_zh": "鄭優榮",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/wooyoung.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "性感頑皮",
+            "crop top",
+            "笑聲",
+            "張揚"
+          ],
+          "color_palette": [
+            "黑",
+            "紫",
+            "銀"
+          ],
+          "vibe": "頑皮性感的張揚"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ESFP",
+          "vibe": "笑聲製造機",
+          "trait_tags": [
+            "笑聲",
+            "頑皮",
+            "黏人",
+            "料理"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "playful firecracker",
+          "roles": [
+            "vocalist",
+            "dancer"
+          ],
+          "vibe": "腰線舞蹈的火花",
+          "trait_tags": [
+            "舞者",
+            "腰線",
+            "火花",
+            "現場嗨點"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美食",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "健身",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "廚房與惡作劇",
+          "trait_tags": [
+            "美食",
+            "健身",
+            "居家日常",
+            "真誠待粉",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "笑聲製造機",
+          "trait_tags": [
+            "笑聲",
+            "舞者",
+            "性感頑皮",
+            "美食",
+            "真誠待粉"
+          ],
+          "summary": "ATEEZ的頑皮火花——標誌笑聲與腰線舞蹈，現場嗨點製造者。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jongho",
+      "name": "Jongho",
+      "name_zh": "崔鍾浩",
+      "group": "ATEEZ",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 4,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/jongho.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "少年正裝",
+            "乾淨",
+            "運動",
+            "沉穩"
+          ],
+          "color_palette": [
+            "白",
+            "黑",
+            "藍"
+          ],
+          "vibe": "沉穩么弟的乾淨"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISTJ",
+          "vibe": "掰蘋果的鐵嗓么弟",
+          "trait_tags": [
+            "鐵嗓",
+            "掰蘋果",
+            "沉穩",
+            "運動魂"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "main vocalist",
+          "stage_persona": "iron-voice maknae",
+          "roles": [
+            "main vocalist",
+            "maknae"
+          ],
+          "vibe": "鐵嗓高音的支柱",
+          "trait_tags": [
+            "主唱",
+            "鐵嗓",
+            "高音支柱",
+            "穩定"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "戶外活動"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "戶外活動",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "棒球與高音",
+          "trait_tags": [
+            "健身",
+            "戶外活動",
+            "音樂創作",
+            "努力哲學",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "掰蘋果的鐵嗓么弟",
+          "trait_tags": [
+            "鐵嗓",
+            "主唱",
+            "少年正裝",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "ATEEZ主唱么弟——鐵嗓高音的團隊支柱，掰蘋果名場面。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "irene",
+      "name": "Irene",
+      "name_zh": "裴珠泫",
+      "group": "Red Velvet",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": "/idols/irene.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "冰山女神",
+            "極簡高級",
+            "紅色",
+            "端麗"
+          ],
+          "color_palette": [
+            "紅",
+            "白",
+            "黑"
+          ],
+          "vibe": "冰山女神的紅色端麗"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "安靜姐姐的細膩",
+          "trait_tags": [
+            "冰山美人",
+            "安靜",
+            "細膩",
+            "姐姐"
+          ]
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "vocalist",
+          "stage_persona": "ice queen visual",
+          "roles": [
+            "leader",
+            "visual"
+          ],
+          "vibe": "端麗台風的中心",
+          "trait_tags": [
+            "隊長",
+            "門面",
+            "端麗",
+            "中心"
+          ]
+        },
+        "content": {
+          "topics": [
+            "居家日常",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "居家日常",
+            "美妝",
+            "藝術"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "安靜的閱讀",
+          "trait_tags": [
+            "居家日常",
+            "美妝",
+            "藝術",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "安靜姐姐的細膩",
+          "trait_tags": [
+            "冰山美人",
+            "隊長",
+            "冰山女神",
+            "居家日常",
+            "真誠待粉"
+          ],
+          "summary": "Red Velvet隊長門面——冰山端麗與安靜細膩，紅色是她的顏色。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "wendy",
+      "name": "Wendy",
+      "name_zh": "孫承完",
+      "group": "Red Velvet",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/wendy.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "溫暖燦笑",
+            "柔色針織",
+            "加拿大",
+            "親切"
+          ],
+          "color_palette": [
+            "蜜桃",
+            "白",
+            "天藍"
+          ],
+          "vibe": "燦笑暖陽的柔色"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ENFJ",
+          "vibe": "為他人著想的暖",
+          "trait_tags": [
+            "暖心",
+            "加拿大",
+            "燦笑",
+            "體貼"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "warm main vocalist",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "情感高音的主唱",
+          "trait_tags": [
+            "主唱",
+            "情感高音",
+            "穩定",
+            "治癒"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "心理健康倡議"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "電台與暖湯",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "心理健康倡議"
+          ]
+        },
+        "overview": {
+          "vibe": "為他人著想的暖",
+          "trait_tags": [
+            "暖心",
+            "主唱",
+            "溫暖燦笑",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "Red Velvet主唱——治癒系情感高音與體貼暖心，人間暖陽。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "joy",
+      "name": "Joy",
+      "name_zh": "朴秀榮",
+      "group": "Red Velvet",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/joy.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "元氣果汁",
+            "亮色復古",
+            "笑容",
+            "健康美"
+          ],
+          "color_palette": [
+            "亮紅",
+            "嫩黃",
+            "綠"
+          ],
+          "vibe": "果汁系的亮色復古"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "綜藝笑容的元氣",
+          "trait_tags": [
+            "元氣",
+            "綜藝",
+            "笑容",
+            "正能量"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "vocalist",
+          "stage_persona": "vitamin vocalist",
+          "roles": [
+            "vocalist"
+          ],
+          "vibe": "亮嗓的活力輸出",
+          "trait_tags": [
+            "亮嗓",
+            "活力",
+            "綜藝舞台",
+            "表情"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美食",
+            "戶外活動"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "戶外活動",
+            "美妝"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "果汁日常",
+          "trait_tags": [
+            "美食",
+            "戶外活動",
+            "美妝",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "綜藝笑容的元氣",
+          "trait_tags": [
+            "元氣",
+            "亮嗓",
+            "元氣果汁",
+            "美食",
+            "正向思考"
+          ],
+          "summary": "Red Velvet的維他命——果汁系笑容與亮嗓活力。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "yeri",
+      "name": "Yeri",
+      "name_zh": "金藝琳",
+      "group": "Red Velvet",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 3,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/yeri.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "率性么妹",
+            "Y2K",
+            "個性",
+            "自由"
+          ],
+          "color_palette": [
+            "黑",
+            "粉",
+            "銀"
+          ],
+          "vibe": "率性Y2K的自由"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ENFP",
+          "vibe": "姐姐們的搗蛋鬼",
+          "trait_tags": [
+            "搗蛋",
+            "率性",
+            "重感情",
+            "直率"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "vocalist",
+          "stage_persona": "free-spirit maknae",
+          "roles": [
+            "maknae",
+            "vocalist"
+          ],
+          "vibe": "成長型的率性舞台",
+          "trait_tags": [
+            "么妹",
+            "率性",
+            "成長型",
+            "個性"
+          ]
+        },
+        "content": {
+          "topics": [
+            "時尚",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "居家日常",
+            "動物"
+          ],
+          "value_topics": [
+            "自我認同",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "姐姐tour",
+          "trait_tags": [
+            "時尚",
+            "居家日常",
+            "動物",
+            "自我認同",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "姐姐們的搗蛋鬼",
+          "trait_tags": [
+            "搗蛋",
+            "么妹",
+            "率性么妹",
+            "時尚",
+            "自我認同"
+          ],
+          "summary": "Red Velvet么妹——率性Y2K與重感情搗蛋鬼的雙面。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "lily",
+      "name": "Lily",
+      "name_zh": "莉莉",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 4,
+      "popularity": 75,
+      "followers": 7500000,
+      "image_url": "/idols/lily.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "澳系亮眼",
+            "復古",
+            "聲樂家",
+            "活潑"
+          ],
+          "color_palette": [
+            "紅",
+            "白",
+            "金"
+          ],
+          "vibe": "聲樂家的復古亮眼"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "hype",
+          "mbti": "ENFP",
+          "vibe": "澳洲莉莉的爆笑",
+          "trait_tags": [
+            "澳洲",
+            "爆笑",
+            "聲樂底",
+            "親和"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "vocal dynamite",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "歌劇級的主唱炸彈",
+          "trait_tags": [
+            "主唱",
+            "聲樂底",
+            "爆發",
+            "high note"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "翻唱炸場",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "澳洲莉莉的爆笑",
+          "trait_tags": [
+            "澳洲",
+            "主唱",
+            "澳系亮眼",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "NMIXX主唱——歌劇級聲樂底的high note炸彈，澳系爆笑性格。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "haewon",
+      "name": "Haewon",
+      "name_zh": "吳海原",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 4,
+      "popularity": 76,
+      "followers": 7600000,
+      "image_url": "/idols/haewon.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清純隊長",
+            "簡約",
+            "乾淨",
+            "端正"
+          ],
+          "color_palette": [
+            "白",
+            "粉",
+            "黑"
+          ],
+          "vibe": "清純端正的乾淨"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "MZ清醒隊長",
+          "trait_tags": [
+            "隊長",
+            "清醒",
+            "MZ語錄",
+            "穩定"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "steady leader vocalist",
+          "roles": [
+            "leader",
+            "lead vocalist"
+          ],
+          "vibe": "穩定音准的隊長",
+          "trait_tags": [
+            "隊長",
+            "音準",
+            "穩定",
+            "清亮"
+          ]
+        },
+        "content": {
+          "topics": [
+            "居家日常",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "居家日常",
+            "美食",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "清醒語錄",
+          "trait_tags": [
+            "居家日常",
+            "美食",
+            "音樂創作",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "MZ清醒隊長",
+          "trait_tags": [
+            "隊長",
+            "隊長",
+            "清純隊長",
+            "居家日常",
+            "真誠待粉"
+          ],
+          "summary": "NMIXX隊長——穩定音準與MZ清醒語錄的反差。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "bae",
+      "name": "BAE",
+      "name_zh": "裴珍映",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 4,
+      "popularity": 75,
+      "followers": 7500000,
+      "image_url": "/idols/bae.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "公主活力",
+            "粉色",
+            "亮眼",
+            "華麗"
+          ],
+          "color_palette": [
+            "粉",
+            "金",
+            "白"
+          ],
+          "vibe": "公主系的華麗活力"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ENFP",
+          "vibe": "公主與girl crush切換",
+          "trait_tags": [
+            "公主",
+            "活力",
+            "表情",
+            "華麗"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "princess performer",
+          "roles": [
+            "lead vocalist"
+          ],
+          "vibe": "華麗音色的switch",
+          "trait_tags": [
+            "領唱",
+            "華麗音色",
+            "switch",
+            "表現力"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美妝",
+            "時尚"
+          ],
+          "lifestyle_topics": [
+            "美妝",
+            "時尚",
+            "美食"
+          ],
+          "value_topics": [
+            "自信表達",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "公主日記",
+          "trait_tags": [
+            "美妝",
+            "時尚",
+            "美食",
+            "自信表達",
+            "正向思考"
+          ]
+        },
+        "overview": {
+          "vibe": "公主與girl crush切換",
+          "trait_tags": [
+            "公主",
+            "領唱",
+            "公主活力",
+            "美妝",
+            "自信表達"
+          ],
+          "summary": "NMIXX領唱——公主華麗與girl crush的switch表現力。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jiwoo",
+      "name": "Jiwoo",
+      "name_zh": "金智佑",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 4,
+      "popularity": 74,
+      "followers": 7400000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "活力街頭",
+            "運動",
+            "清爽",
+            "元氣"
+          ],
+          "color_palette": [
+            "天藍",
+            "白",
+            "黑"
+          ],
+          "vibe": "街頭元氣的清爽"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "KKPP的活力擔當",
+          "trait_tags": [
+            "活力",
+            "運動魂",
+            "率直",
+            "笑容"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "rapper",
+          "stage_persona": "energetic rapper",
+          "roles": [
+            "rapper",
+            "dancer"
+          ],
+          "vibe": "節奏饒舌的元氣",
+          "trait_tags": [
+            "饒舌",
+            "節奏",
+            "活力",
+            "群舞"
+          ]
+        },
+        "content": {
+          "topics": [
+            "戶外活動",
+            "健身"
+          ],
+          "lifestyle_topics": [
+            "戶外活動",
+            "健身",
+            "美食"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "運動場日常",
+          "trait_tags": [
+            "戶外活動",
+            "健身",
+            "美食",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "KKPP的活力擔當",
+          "trait_tags": [
+            "活力",
+            "饒舌",
+            "活力街頭",
+            "戶外活動",
+            "正向思考"
+          ],
+          "summary": "NMIXX的活力擔當——節奏饒舌與運動魂元氣。"
+        }
+      }
+    },
+    {
+      "id": "kyujin",
+      "name": "Kyujin",
+      "name_zh": "張珪真",
+      "group": "NMIXX",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 4,
+      "popularity": 76,
+      "followers": 7600000,
+      "image_url": "/idols/kyujin.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "全能么妹",
+            "俐落",
+            "酷感",
+            "超齡"
+          ],
+          "color_palette": [
+            "黑",
+            "銀",
+            "白"
+          ],
+          "vibe": "超齡俐落的酷感"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISTP",
+          "vibe": "六邊形么妹",
+          "trait_tags": [
+            "六邊形",
+            "超齡",
+            "冷靜",
+            "實力"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "all-round maknae",
+          "roles": [
+            "maknae",
+            "main dancer"
+          ],
+          "vibe": "全能輸出的主舞",
+          "trait_tags": [
+            "主舞",
+            "么妹",
+            "全能",
+            "爆發"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "遊戲"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "全能練習生",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "遊戲",
+            "努力哲學",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "六邊形么妹",
+          "trait_tags": [
+            "六邊形",
+            "主舞",
+            "全能么妹",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "NMIXX全能么妹——超齡冷靜與六邊形實力的主舞。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "taeyong",
+      "name": "Taeyong",
+      "name_zh": "李泰容",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": "/idols/taeyong.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "精靈美",
+            "前衛時裝",
+            "銳利",
+            "脆弱感"
+          ],
+          "color_palette": [
+            "銀",
+            "黑",
+            "白"
+          ],
+          "vibe": "精靈臉的前衛銳利"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "銳利與脆弱並存",
+          "trait_tags": [
+            "精靈",
+            "敏感細膩",
+            "創作",
+            "真誠"
+          ]
+        },
+        "performance": {
+          "dance_style": "precise",
+          "vocal_type": "main rapper",
+          "stage_persona": "ethereal all-rounder",
+          "roles": [
+            "leader",
+            "main rapper",
+            "main dancer"
+          ],
+          "vibe": "全能中心的銳利",
+          "trait_tags": [
+            "隊長",
+            "主饒舌",
+            "主舞",
+            "中心"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "遊戲"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "遊戲",
+            "藝術"
+          ],
+          "value_topics": [
+            "心理健康倡議",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "直播談心",
+          "trait_tags": [
+            "音樂創作",
+            "遊戲",
+            "藝術",
+            "心理健康倡議",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "銳利與脆弱並存",
+          "trait_tags": [
+            "精靈",
+            "隊長",
+            "精靈美",
+            "音樂創作",
+            "心理健康倡議"
+          ],
+          "summary": "NCT隊長——精靈銳利與敏感真誠，唱跳饒全能中心。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "doyoung",
+      "name": "Doyoung",
+      "name_zh": "金道英",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/doyoung.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "乾淨襯衫",
+            "知性",
+            "兔系",
+            "端正"
+          ],
+          "color_palette": [
+            "白",
+            "藍",
+            "黑"
+          ],
+          "vibe": "兔系知性的乾淨"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "操心鬼的溫柔",
+          "trait_tags": [
+            "兔系",
+            "操心",
+            "毒舌愛",
+            "可靠"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "reliable main vocalist",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "穩定主唱的支柱",
+          "trait_tags": [
+            "主唱",
+            "穩定",
+            "音色乾淨",
+            "抒情"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "家庭觀"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "哥哥的嘮叨",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "家庭觀"
+          ]
+        },
+        "overview": {
+          "vibe": "操心鬼的溫柔",
+          "trait_tags": [
+            "兔系",
+            "主唱",
+            "乾淨襯衫",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "NCT主唱——兔系知性與操心鬼溫柔，穩定的聲音支柱。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jaehyun",
+      "name": "Jaehyun",
+      "name_zh": "鄭在玹",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": "/idols/jaehyun.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "果汁肌",
+            "紳士休閒",
+            "低調奢華",
+            "完顏"
+          ],
+          "color_palette": [
+            "米白",
+            "黑",
+            "丹寧藍"
+          ],
+          "vibe": "完顏紳士的低調"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFP",
+          "vibe": "靜水流深的溫和",
+          "trait_tags": [
+            "完顏",
+            "低調",
+            "溫和",
+            "運動"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "smooth visual vocalist",
+          "roles": [
+            "vocalist",
+            "visual"
+          ],
+          "vibe": "低音R&B的門面",
+          "trait_tags": [
+            "門面",
+            "低音R&B",
+            "柔和",
+            "質感"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "攝影"
+          ],
+          "value_topics": [
+            "自我認同",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "黑膠與健身",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "攝影",
+            "自我認同",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "靜水流深的溫和",
+          "trait_tags": [
+            "完顏",
+            "門面",
+            "果汁肌",
+            "健身",
+            "自我認同"
+          ],
+          "summary": "NCT門面——果汁肌完顏與低音R&B質感，靜水流深。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "haechan",
+      "name": "Haechan",
+      "name_zh": "李楔燦",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": "/idols/haechan.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "蜜糖肌",
+            "活力街頭",
+            "亮眼",
+            "頑皮"
+          ],
+          "color_palette": [
+            "蜜桃",
+            "黑",
+            "白"
+          ],
+          "vibe": "蜜糖肌的活力"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ENFP",
+          "vibe": "全能滿月的頑皮",
+          "trait_tags": [
+            "滿月",
+            "頑皮",
+            "綜藝",
+            "親和"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "main vocalist",
+          "stage_persona": "honey-voice ace",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "蜜嗓高音的全能",
+          "trait_tags": [
+            "主唱",
+            "蜜嗓",
+            "高音",
+            "綜藝感"
+          ]
+        },
+        "content": {
+          "topics": [
+            "遊戲",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "美食",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "遊戲台主播",
+          "trait_tags": [
+            "遊戲",
+            "美食",
+            "音樂創作",
+            "幽默自嘲",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "全能滿月的頑皮",
+          "trait_tags": [
+            "滿月",
+            "主唱",
+            "蜜糖肌",
+            "遊戲",
+            "幽默自嘲"
+          ],
+          "summary": "NCT主唱——蜜糖嗓全能與頑皮綜藝感，127與Dream雙線輸出。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jeno",
+      "name": "Jeno",
+      "name_zh": "李帝努",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/jeno.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "眼笑",
+            "健身休閒",
+            "乾淨",
+            "紳士"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "灰"
+          ],
+          "vibe": "眼笑紳士的乾淨"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "眼笑下的踏實",
+          "trait_tags": [
+            "眼笑",
+            "健身",
+            "踏實",
+            "溫柔"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "rapper",
+          "stage_persona": "eye-smile powerhouse",
+          "roles": [
+            "rapper",
+            "dancer",
+            "visual"
+          ],
+          "vibe": "力量舞線的安定",
+          "trait_tags": [
+            "饒舌",
+            "力量舞線",
+            "安定",
+            "健身"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "動物"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "動物",
+            "居家日常"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "健身與貓",
+          "trait_tags": [
+            "健身",
+            "動物",
+            "居家日常",
+            "努力哲學",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "眼笑下的踏實",
+          "trait_tags": [
+            "眼笑",
+            "饒舌",
+            "眼笑",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "NCT Dream的眼笑擔當——力量舞線與踏實溫柔。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jaemin",
+      "name": "Jaemin",
+      "name_zh": "羅渽民",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": "/idols/jaemin.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "膠片少年",
+            "咖啡",
+            "溫柔風",
+            "氛圍"
+          ],
+          "color_palette": [
+            "米白",
+            "棕",
+            "黑"
+          ],
+          "vibe": "膠片咖啡的氛圍"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "寵粉到極致",
+          "trait_tags": [
+            "寵粉",
+            "攝影",
+            "咖啡",
+            "溫柔"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "rapper",
+          "stage_persona": "soft charisma",
+          "roles": [
+            "rapper",
+            "visual"
+          ],
+          "vibe": "氛圍系的表現力",
+          "trait_tags": [
+            "饒舌",
+            "氛圍",
+            "表現力",
+            "視覺"
+          ]
+        },
+        "content": {
+          "topics": [
+            "攝影",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "攝影",
+            "美食",
+            "藝術"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "自由奔放"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "底片與咖啡廳",
+          "trait_tags": [
+            "攝影",
+            "美食",
+            "藝術",
+            "真誠待粉",
+            "自由奔放"
+          ]
+        },
+        "overview": {
+          "vibe": "寵粉到極致",
+          "trait_tags": [
+            "寵粉",
+            "饒舌",
+            "膠片少年",
+            "攝影",
+            "真誠待粉"
+          ],
+          "summary": "NCT Dream的氛圍擔當——膠片攝影與咖啡的溫柔，寵粉教科書。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "renjun",
+      "name": "Renjun",
+      "name_zh": "黃仁俊",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/renjun.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "文藝青年",
+            "畫畫",
+            "柔和",
+            "細膩"
+          ],
+          "color_palette": [
+            "薄紫",
+            "白",
+            "棕"
+          ],
+          "vibe": "文藝細膩的柔和"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "4D-quirky",
+          "mbti": "INFP",
+          "vibe": "會畫畫的哲學家",
+          "trait_tags": [
+            "畫畫",
+            "哲學",
+            "細膩",
+            "直率"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "main vocalist",
+          "stage_persona": "artistic vocalist",
+          "roles": [
+            "main vocalist"
+          ],
+          "vibe": "細膩音色的主唱",
+          "trait_tags": [
+            "主唱",
+            "細膩",
+            "音色美",
+            "和聲"
+          ]
+        },
+        "content": {
+          "topics": [
+            "藝術",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "藝術",
+            "音樂創作",
+            "居家日常"
+          ],
+          "value_topics": [
+            "自我認同",
+            "心理健康倡議"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "畫本與隨筆",
+          "trait_tags": [
+            "藝術",
+            "音樂創作",
+            "居家日常",
+            "自我認同",
+            "心理健康倡議"
+          ]
+        },
+        "overview": {
+          "vibe": "會畫畫的哲學家",
+          "trait_tags": [
+            "畫畫",
+            "主唱",
+            "文藝青年",
+            "藝術",
+            "自我認同"
+          ],
+          "summary": "NCT Dream主唱——細膩音色與畫畫哲學家的文藝魂。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "jisung",
+      "name": "Jisung",
+      "name_zh": "朴志晟",
+      "group": "NCT",
+      "genres": [
+        "k-pop",
+        "k-pop boy group"
+      ],
+      "generation": 3,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/jisung.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "少年舞者",
+            "簡約街頭",
+            "清瘦",
+            "成長"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "天藍"
+          ],
+          "vibe": "少年舞者的簡約"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INFP",
+          "vibe": "害羞巨人的成長",
+          "trait_tags": [
+            "害羞",
+            "舞蹈天才",
+            "成長",
+            "純真"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "shy dance prodigy",
+          "roles": [
+            "maknae",
+            "main dancer"
+          ],
+          "vibe": "天才舞線的么弟",
+          "trait_tags": [
+            "主舞",
+            "么弟",
+            "天才舞線",
+            "爆發"
+          ]
+        },
+        "content": {
+          "topics": [
+            "遊戲",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "遊戲",
+            "居家日常",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "練習室成長記",
+          "trait_tags": [
+            "遊戲",
+            "居家日常",
+            "音樂創作",
+            "努力哲學",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "害羞巨人的成長",
+          "trait_tags": [
+            "害羞",
+            "主舞",
+            "少年舞者",
+            "遊戲",
+            "努力哲學"
+          ],
+          "summary": "NCT Dream么弟——害羞性格與天才舞線的反差成長股。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "yoona",
+      "name": "Yoona",
+      "name_zh": "林潤妸",
+      "group": "Girls' Generation",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 2,
+      "popularity": 82,
+      "followers": 8200000,
+      "image_url": "/idols/yoona.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "國民女神",
+            "清新優雅",
+            "畫報",
+            "經典"
+          ],
+          "color_palette": [
+            "白",
+            "粉",
+            "金"
+          ],
+          "vibe": "國民女神的清新"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFP",
+          "vibe": "愛笑女神的踏實",
+          "trait_tags": [
+            "國民女神",
+            "愛笑",
+            "演技",
+            "踏實"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "vocalist",
+          "stage_persona": "nation's visual",
+          "roles": [
+            "visual",
+            "center"
+          ],
+          "vibe": "中心存在的優雅",
+          "trait_tags": [
+            "門面",
+            "中心",
+            "優雅",
+            "演員"
+          ]
+        },
+        "content": {
+          "topics": [
+            "美食",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "美食",
+            "藝術",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "片場與美食",
+          "trait_tags": [
+            "美食",
+            "藝術",
+            "居家日常",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "愛笑女神的踏實",
+          "trait_tags": [
+            "國民女神",
+            "門面",
+            "國民女神",
+            "美食",
+            "真誠待粉"
+          ],
+          "summary": "少女時代門面——國民女神的清新與演員實力，愛笑的踏實派。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "yuri",
+      "name": "Yuri",
+      "name_zh": "權俞利",
+      "group": "Girls' Generation",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 2,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": "/idols/yuri.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "健康美",
+            "運動",
+            "黑珍珠",
+            "活力"
+          ],
+          "color_palette": [
+            "古銅",
+            "黑",
+            "白"
+          ],
+          "vibe": "黑珍珠的健康美"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "運動派的爽朗",
+          "trait_tags": [
+            "黑珍珠",
+            "運動",
+            "料理",
+            "爽朗"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "vocalist",
+          "stage_persona": "athletic performer",
+          "roles": [
+            "vocalist",
+            "dancer"
+          ],
+          "vibe": "力與美的舞者",
+          "trait_tags": [
+            "舞者",
+            "力與美",
+            "健康",
+            "表現"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美食",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "游泳與料理",
+          "trait_tags": [
+            "健身",
+            "美食",
+            "戶外活動",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "運動派的爽朗",
+          "trait_tags": [
+            "黑珍珠",
+            "舞者",
+            "健康美",
+            "健身",
+            "正向思考"
+          ],
+          "summary": "少女時代的黑珍珠——健康美與運動爽朗，料理頻道主。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "tiffany",
+      "name": "Tiffany",
+      "name_zh": "黃美英",
+      "group": "Girls' Generation",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 2,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": "/idols/tiffany.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "粉紅教主",
+            "華麗",
+            "加州",
+            "眼笑"
+          ],
+          "color_palette": [
+            "粉",
+            "金",
+            "白"
+          ],
+          "vibe": "粉紅教主的華麗"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "hype",
+          "mbti": "ESFJ",
+          "vibe": "加州陽光的眼笑",
+          "trait_tags": [
+            "粉紅控",
+            "眼笑",
+            "加州",
+            "華麗"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "lead vocalist",
+          "stage_persona": "pink california",
+          "roles": [
+            "lead vocalist"
+          ],
+          "vibe": "華麗音色的領唱",
+          "trait_tags": [
+            "領唱",
+            "華麗",
+            "眼笑",
+            "雙語"
+          ]
+        },
+        "content": {
+          "topics": [
+            "時尚",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "美妝",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "自信表達",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "粉紅收藏",
+          "trait_tags": [
+            "時尚",
+            "美妝",
+            "音樂創作",
+            "自信表達",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "加州陽光的眼笑",
+          "trait_tags": [
+            "粉紅控",
+            "領唱",
+            "粉紅教主",
+            "時尚",
+            "自信表達"
+          ],
+          "summary": "少女時代領唱——粉紅教主的華麗與加州眼笑。"
+        }
+      },
+      "image_focus": 0.3
+    },
+    {
+      "id": "hyoyeon",
+      "name": "Hyoyeon",
+      "name_zh": "金孝淵",
+      "group": "Girls' Generation",
+      "genres": [
+        "k-pop",
+        "k-pop girl group"
+      ],
+      "generation": 2,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": "/idols/hyoyeon.jpg",
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "DJ街頭",
+            "前衛",
+            "金髮",
+            "個性"
+          ],
+          "color_palette": [
+            "金",
+            "黑",
+            "螢光黃"
+          ],
+          "vibe": "DJ金髮的前衛"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "舞神的直率",
+          "trait_tags": [
+            "舞神",
+            "DJ",
+            "直率",
+            "姐姐豪爽"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "rapper",
+          "stage_persona": "dance machine DJ",
+          "roles": [
+            "main dancer",
+            "rapper"
+          ],
+          "vibe": "初代舞神的爆發",
+          "trait_tags": [
+            "主舞",
+            "DJ",
+            "爆發",
+            "律動"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "時尚"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "時尚",
+            "戶外活動"
+          ],
+          "value_topics": [
+            "自信表達",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "DJ台日常",
+          "trait_tags": [
+            "音樂創作",
+            "時尚",
+            "戶外活動",
+            "自信表達",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "舞神的直率",
+          "trait_tags": [
+            "舞神",
+            "主舞",
+            "DJ街頭",
+            "音樂創作",
+            "自信表達"
+          ],
+          "summary": "少女時代主舞——初代舞神與DJ Hyo的雙重身分，豪爽直率。"
+        }
+      },
+      "image_focus": 0.3
     }
   ],
   "tracks": []
