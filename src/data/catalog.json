@@ -22282,7 +22282,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/mark-got7.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22365,7 +22365,8 @@
           ],
           "summary": "GOT7的加州大哥——害羞暖男與俐落饒舌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jackson",
@@ -22379,7 +22380,7 @@
       "generation": 3,
       "popularity": 83,
       "followers": 8300000,
-      "image_url": null,
+      "image_url": "/idols/jackson.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22462,7 +22463,8 @@
           ],
           "summary": "GOT7的國際擔當——能量爆棚與嘻哈氣勢。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jinyoung-got7",
@@ -22476,7 +22478,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/jinyoung-got7.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22560,7 +22562,8 @@
           ],
           "summary": "GOT7的文藝擔當——書卷知性與演員細膩。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "youngjae-got7",
@@ -22574,7 +22577,7 @@
       "generation": 3,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/youngjae-got7.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22657,7 +22660,8 @@
           ],
           "summary": "GOT7主唱——治癒笑聲與明亮高音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "bambam",
@@ -22671,7 +22675,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/bambam.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22754,7 +22758,8 @@
           ],
           "summary": "GOT7的時尚擔當——泰系自信與律動饒舌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "yugyeom",
@@ -22768,7 +22773,7 @@
       "generation": 3,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/yugyeom.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22852,7 +22857,8 @@
           ],
           "summary": "GOT7主舞么弟——街舞潮酷與反差萌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "solar",
@@ -22866,7 +22872,7 @@
       "generation": 3,
       "popularity": 80,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/solar.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22950,7 +22956,8 @@
           ],
           "summary": "MAMAMOO隊長——華麗女王與古靈精怪。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "moonbyul",
@@ -22964,7 +22971,7 @@
       "generation": 3,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/moonbyul.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23047,7 +23054,8 @@
           ],
           "summary": "MAMAMOO饒舌——中性帥氣與穩健flow。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "wheein",
@@ -23061,7 +23069,7 @@
       "generation": 3,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/wheein.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23144,7 +23152,8 @@
           ],
           "summary": "MAMAMOO主唱——文青軟萌與獨特音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hwasa",
@@ -23158,7 +23167,7 @@
       "generation": 3,
       "popularity": 82,
       "followers": 8200000,
-      "image_url": null,
+      "image_url": "/idols/hwasa.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23242,7 +23251,8 @@
           ],
           "summary": "MAMAMOO么妹——性感自信與煙嗓魅惑。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "shownu",
@@ -23354,7 +23364,7 @@
       "generation": 3,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/minhyuk.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23438,7 +23448,8 @@
           ],
           "summary": "MONSTA X門面——明亮活力與氣氛製造。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kihyun",
@@ -23452,7 +23463,7 @@
       "generation": 3,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/kihyun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23535,7 +23546,8 @@
           ],
           "summary": "MONSTA X主唱——乾淨俐落與穩健高音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hyungwon",
@@ -23549,7 +23561,7 @@
       "generation": 3,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/hyungwon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23633,7 +23645,8 @@
           ],
           "summary": "MONSTA X門面——模特慵懶與四次元反差。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "joohoney",
@@ -23647,7 +23660,7 @@
       "generation": 3,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/joohoney.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23731,7 +23744,8 @@
           ],
           "summary": "MONSTA X饒舌——陽光笑容與自寫詞能量。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "i-m",
@@ -23843,7 +23857,7 @@
       "generation": 3,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/jiu.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -23927,7 +23941,8 @@
           ],
           "summary": "Dreamcatcher隊長——優雅女神與溫柔向心。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sua",
@@ -23941,7 +23956,7 @@
       "generation": 3,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/sua.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24024,7 +24039,8 @@
           ],
           "summary": "Dreamcatcher主舞——力量舞線與反差可愛。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "siyeon",
@@ -24038,7 +24054,7 @@
       "generation": 3,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/siyeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24121,7 +24137,8 @@
           ],
           "summary": "Dreamcatcher主唱——搖滾暗黑與爆發唱腔。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "handong",
@@ -24135,7 +24152,7 @@
       "generation": 3,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/handong.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24218,7 +24235,8 @@
           ],
           "summary": "Dreamcatcher中國line——東方優雅與柔美音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "yoohyeon",
@@ -24232,7 +24250,7 @@
       "generation": 3,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/yoohyeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24315,7 +24333,8 @@
           ],
           "summary": "Dreamcatcher主唱——清純明亮與天然呆反差。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "dami",
@@ -24426,7 +24445,7 @@
       "generation": 3,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/gahyeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24510,7 +24529,8 @@
           ],
           "summary": "Dreamcatcher么妹——甜美活力與反差魅力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hyojung",
@@ -24524,7 +24544,7 @@
       "generation": 3,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/hyojung.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24608,7 +24628,8 @@
           ],
           "summary": "Oh My Girl隊長——仙氣夢幻與暖心向心。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "mimi",
@@ -24719,7 +24740,7 @@
       "generation": 3,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/yooa.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24802,7 +24823,8 @@
           ],
           "summary": "Oh My Girl主舞——性感優雅與敘事舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "seunghee",
@@ -24816,7 +24838,7 @@
       "generation": 3,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/seunghee.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -24899,7 +24921,8 @@
           ],
           "summary": "Oh My Girl主唱——甜美清新與鐵肺高音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "binnie",
@@ -25206,7 +25229,7 @@
       "generation": 4,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/hayoung-fromis.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -25290,7 +25313,8 @@
           ],
           "summary": "fromis_9主唱門面——清麗柔美與清透聲線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jiwon",
@@ -25304,7 +25328,7 @@
       "generation": 4,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/jiwon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -25387,7 +25411,8 @@
           ],
           "summary": "fromis_9主舞——明亮活力與爆發舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jisun",
@@ -25595,7 +25620,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/chaeyoung-fromis.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -25679,7 +25704,8 @@
           ],
           "summary": "fromis_9的酷擔當——俐落酷感與精準舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "nagyung",
@@ -25693,7 +25719,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/nagyung.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -25777,7 +25803,8 @@
           ],
           "summary": "fromis_9的甜美視覺——童顏柔美與甜嗓音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jiheon",
@@ -26183,7 +26210,7 @@
       "generation": 4,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/seeun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26266,7 +26293,8 @@
           ],
           "summary": "STAYC的清純擔當——童顏純真與清亮和聲。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "yoon-stayc",
@@ -26280,7 +26308,7 @@
       "generation": 4,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/yoon-stayc.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26364,7 +26392,8 @@
           ],
           "summary": "STAYC主舞饒舌——率性活力與爆發舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "j-stayc",
@@ -26378,7 +26407,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/j-stayc.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26462,7 +26491,8 @@
           ],
           "summary": "STAYC么妹——清新純真與清亮音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "choi-yujin",
@@ -26476,7 +26506,7 @@
       "generation": 4,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/choi-yujin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26560,7 +26590,8 @@
           ],
           "summary": "Kep1er隊長——華麗優雅與愛笑向心。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "xiaoting",
@@ -26574,7 +26605,7 @@
       "generation": 4,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/xiaoting.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26658,7 +26689,8 @@
           ],
           "summary": "Kep1er門面——東方仙氣與古典舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "mashiro",
@@ -26672,7 +26704,7 @@
       "generation": 4,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/mashiro.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26755,7 +26787,8 @@
           ],
           "summary": "Kep1er主舞——日系俐落與精準舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "chaehyun",
@@ -26769,7 +26802,7 @@
       "generation": 4,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/chaehyun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26852,7 +26885,8 @@
           ],
           "summary": "Kep1er主唱——清麗柔美與穩健底力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "dayeon",
@@ -26866,7 +26900,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/dayeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -26949,7 +26983,8 @@
           ],
           "summary": "Kep1er的清純擔當——童顏純真與清亮和聲。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hikaru",
@@ -26963,7 +26998,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/hikaru.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -27047,7 +27082,8 @@
           ],
           "summary": "Kep1er的元氣擔當——日系陽光與律動氣氛。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "yeseo",
@@ -27061,7 +27097,7 @@
       "generation": 4,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/yeseo.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -27145,7 +27181,8 @@
           ],
           "summary": "Kep1er全能擔當——明亮俐落與三棲表現。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "bahiyyih",
@@ -27159,7 +27196,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/bahiyyih.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -27243,7 +27280,8 @@
           ],
           "summary": "Kep1er么妹——混血甜美與愛笑清新。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "youngeun",
@@ -27257,7 +27295,7 @@
       "generation": 4,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/youngeun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -27340,7 +27378,8 @@
           ],
           "summary": "Kep1er主唱——清麗知性與柔美轉音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "eunha",
@@ -27841,7 +27880,7 @@
       "generation": 3,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/younghoon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -27925,7 +27964,8 @@
           ],
           "summary": "THE BOYZ門面——畫報清雅與安靜溫柔。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hyunjae",
@@ -27939,7 +27979,7 @@
       "generation": 3,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/hyunjae.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -28023,7 +28063,8 @@
           ],
           "summary": "THE BOYZ門面——明亮俏皮與甜亮主唱。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "juyeon",
@@ -29206,7 +29247,7 @@
       "generation": 3,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/eunseo.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -29289,7 +29330,8 @@
           ],
           "summary": "WJSN的暖心擔當——甜美清新與清亮和聲。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "dayoung",
