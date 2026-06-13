@@ -15,7 +15,7 @@ import { MOODS } from "@/lib/questionnaire";
 import { zhTrait } from "@/lib/cardMeta";
 import { copy } from "@/lib/copy";
 import { exportNode } from "@/lib/exportImage";
-import Thumb from "@/components/Thumb";
+import { MiniPhotoCard } from "@/components/SoulStoryCard";
 
 const GHOST = "#c8ccd2";
 
@@ -63,13 +63,14 @@ export default function SoulReport({
 
   return (
     <div className="flex flex-col items-center gap-3">
+      {/* export target — the card itself (the known-good export shape) */}
       <div
         ref={reportRef}
-        className="w-full max-w-[340px] overflow-hidden rounded-[20px] p-5"
+        className="w-full max-w-[340px] overflow-hidden rounded-[24px] p-5"
         style={{
           background: "linear-gradient(175deg, #ffffff 0%, #f4f5f7 60%, #e9ebee 100%)",
           border: `2px solid ${accent}55`,
-          boxShadow: "5px 5px 0 rgba(124,128,136,0.28)",
+          boxShadow: `0 9px 24px rgba(80,85,95,0.20), 3px 4px 0 ${accent}26`,
         }}
       >
         {/* hero */}
@@ -87,15 +88,8 @@ export default function SoulReport({
         <p className="mx-auto mt-2 max-w-[280px] text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline}」</p>
 
         {/* 代表偶像 */}
-        <div className="mt-3 grid grid-cols-4 gap-1.5">
-          {picks.slice(0, 4).map((a) => (
-            <div key={a.id} className="overflow-hidden rounded-md ring-1 ring-[#c8ccd2]">
-              <div className="relative aspect-[3/4]">
-                <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-none" focusY={a.image_focus} />
-              </div>
-              <div className="truncate bg-white/80 px-0.5 text-center text-[7px] font-bold text-[#1c1e24]">{a.name}</div>
-            </div>
-          ))}
+        <div className="mt-3 grid grid-cols-4 gap-2">
+          {picks.slice(0, 4).map((a) => <MiniPhotoCard key={a.id} a={a} accent={accent} label />)}
         </div>
 
         {/* 四層拆解 */}

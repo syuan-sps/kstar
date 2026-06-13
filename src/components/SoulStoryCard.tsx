@@ -1,8 +1,8 @@
 "use client";
 
-// 限動卡 — the IG-story share asset (9:16, exports ~1080×1920). Text-light:
-// code, hero name, one tagline, four photos, compact bars, and a CTA. No
-// discovery loop / 隱藏面 box — that lives in the report.
+// 限動卡 — the IG-story share asset (9:16, exports transparent ~1080-wide).
+// Text-light: code, hero name, one tagline, four mini-photocards, compact bars,
+// CTA. Content is distributed top/middle/bottom so there's no empty middle.
 
 import { useRef, useState } from "react";
 import type { CardArtist } from "@/lib/lite";
@@ -13,6 +13,24 @@ import { exportNode } from "@/lib/exportImage";
 import Thumb from "@/components/Thumb";
 
 const GHOST = "#c8ccd2";
+
+// A mini photocard framed like the 圖鑑 cards: rounded colour border, a white
+// inner frame, and an offset sticker shadow for a 3D feel.
+export function MiniPhotoCard({ a, accent, label }: { a: CardArtist; accent: string; label?: boolean }) {
+  return (
+    <div
+      className="overflow-hidden rounded-[12px] border-2 shadow-[2px_2px_0_rgba(124,128,136,0.28)]"
+      style={{ borderColor: `${accent}55`, background: "linear-gradient(180deg,#ffffff,#eceef2)" }}
+    >
+      <div className="m-[3px] overflow-hidden rounded-[8px]">
+        <div className="relative aspect-[3/4]">
+          <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-none" focusY={a.image_focus} />
+        </div>
+      </div>
+      {label && <div className="truncate px-0.5 pb-0.5 text-center text-[8px] font-bold text-[#1c1e24]">{a.name}</div>}
+    </div>
+  );
+}
 
 export default function SoulStoryCard({ result, picks }: { result: ArchetypeResult; picks: CardArtist[] }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -26,7 +44,7 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
     setBusy(true); setFailed(false);
     const { ok } = await exportNode(cardRef.current, {
       fileName: `kstar-${code}.png`,
-      pixelRatio: 4, // 270 × 480 → ~1080 × 1920
+      pixelRatio: 4,
       kind,
       shareText: `我是「${archetype.zhName}」(${code}) ✦ 來測你的 →`,
     });
@@ -36,72 +54,59 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
 
   return (
     <div className="flex flex-col items-center gap-3">
-      {/* ── The 9:16 card (export target) ───────────────────────────── */}
+      {/* export target — the card itself (fixed size; the known-good export shape) */}
       <div
         ref={cardRef}
-        className="flex w-[270px] flex-col items-center overflow-hidden rounded-[20px]"
+        className="flex w-[270px] flex-col items-center justify-between overflow-hidden rounded-[24px]"
         style={{
-          aspectRatio: "9 / 16",
-          background: "linear-gradient(165deg, #ffffff 0%, #f4f5f7 50%, #e6e9ed 100%)",
+          height: 480, // explicit 9:16 (270×16/9) — html-to-image needs explicit dimensions
+          background: "linear-gradient(165deg, #ffffff 0%, #f4f5f7 52%, #e6e9ed 100%)",
           border: `2px solid ${accent}55`,
-          boxShadow: "4px 4px 0 rgba(124,128,136,0.28)",
-          padding: "20px 18px",
+          boxShadow: `0 9px 24px rgba(80,85,95,0.20), 3px 4px 0 ${accent}26`,
+          padding: "22px 18px",
         }}
       >
-        <div className="font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦ 你的追星靈魂 ✦</div>
-
-        {/* code */}
-        <div className="mt-3 flex justify-center gap-1.5 font-orbitron text-[46px] font-black leading-none">
-          {code.split("").map((ch, i) => {
-            const isHigh = ch === ch.toUpperCase();
-            return (
-              <span key={i} style={{ color: isHigh ? accent : GHOST, textShadow: isHigh ? "0 1px 0 #fff" : undefined }}>{ch}</span>
-            );
-          })}
-        </div>
-
-        {/* name */}
-        <div className="mt-3 text-center">
-          <div className="text-[26px] font-black leading-tight tracking-tight text-[#1c1e24]">{archetype.zhName}</div>
-          <div className="mt-1 font-orbitron text-[9px] uppercase tracking-[0.22em] text-[#9aa0aa]">{archetype.enName}</div>
-        </div>
-
-        {/* one tagline */}
-        <p className="mt-2.5 px-1 text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline}」</p>
-
-        {/* four photos */}
-        <div className="mt-auto w-full">
-          <div className="grid grid-cols-4 gap-1.5">
-            {picks.slice(0, 4).map((a) => (
-              <div key={a.id} className="overflow-hidden rounded-md ring-1 ring-[#c8ccd2]">
-                <div className="relative aspect-[3/4]">
-                  <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-none" focusY={a.image_focus} />
-                </div>
-              </div>
-            ))}
+          {/* top: identity */}
+          <div className="flex flex-col items-center">
+            <div className="font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦ 你的追星靈魂 ✦</div>
+            <div className="mt-3 flex justify-center gap-1.5 font-orbitron text-[46px] font-black leading-none">
+              {code.split("").map((ch, i) => {
+                const isHigh = ch === ch.toUpperCase();
+                return <span key={i} style={{ color: isHigh ? accent : GHOST, textShadow: isHigh ? "0 1px 0 #fff" : undefined }}>{ch}</span>;
+              })}
+            </div>
+            <div className="mt-3 text-center">
+              <div className="text-[26px] font-black leading-tight tracking-tight text-[#1c1e24]">{archetype.zhName}</div>
+              <div className="mt-1 font-orbitron text-[9px] uppercase tracking-[0.22em] text-[#9aa0aa]">{archetype.enName}</div>
+            </div>
+            <p className="mt-3 px-1 text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline}」</p>
           </div>
 
-          {/* compact bars */}
-          <div className="mt-3 grid grid-cols-4 gap-1.5">
-            {SCORE_LAYERS.map((L) => (
-              <div key={L}>
-                <div className="h-1.5 overflow-hidden rounded-full bg-[#7c8088]/15">
-                  <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: high[L] ? LAYER_COLOR[L] : "#c8ccd2" }} />
+          {/* middle: representative idols + layer bars */}
+          <div className="w-full">
+            <div className="grid grid-cols-4 gap-2">
+              {picks.slice(0, 4).map((a) => <MiniPhotoCard key={a.id} a={a} accent={accent} />)}
+            </div>
+            <div className="mt-3.5 grid grid-cols-4 gap-1.5">
+              {SCORE_LAYERS.map((L) => (
+                <div key={L}>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-[#7c8088]/15">
+                    <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: high[L] ? LAYER_COLOR[L] : "#c8ccd2" }} />
+                  </div>
+                  <div className="mt-0.5 text-center text-[8px]" style={{ color: high[L] ? "#1c1e24" : "#9aa0aa", fontWeight: high[L] ? 700 : 400 }}>
+                    {LAYER_ZH[L]}
+                  </div>
                 </div>
-                <div className="mt-0.5 text-center text-[8px]" style={{ color: high[L] ? "#1c1e24" : "#9aa0aa", fontWeight: high[L] ? 700 : 400 }}>
-                  {LAYER_ZH[L]}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* bottom: CTA */}
+          <div className="text-center">
+            <div className="font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent }}>{copy.storyCta}</div>
+            <div className="mt-1 font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦ KSTAR · 2026 ✦</div>
           </div>
         </div>
-
-        {/* CTA footer */}
-        <div className="mt-3 text-center">
-          <div className="font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent }}>{copy.storyCta}</div>
-          <div className="mt-1 font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦ KSTAR · 2026 ✦</div>
-        </div>
-      </div>
 
       {/* ── Actions (not exported) ──────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-2">

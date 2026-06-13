@@ -39,9 +39,12 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
   const { fileName, pixelRatio = 2, kind = "download", shareTitle = "我的追星靈魂", shareText = "" } = opts;
   try {
     const htmlToImage = await import("html-to-image");
+    // Light surface tone (close to the card's gradient edge) so the rounded 3D
+    // card sits cleanly on it — like a 圖鑑 photocard on the app background,
+    // no harsh grey corner wedges.
     const o = {
       pixelRatio,
-      backgroundColor: "#eceef1",
+      backgroundColor: "#f1f3f6",
       skipFonts: true,
       fontEmbedCSS: "",
       includeStyleProperties: EXPORT_STYLE_PROPS,
@@ -60,7 +63,7 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
       try {
         const dataUrl = await Promise.race([
           htmlToImage.toPng(node, o),
-          new Promise<string>((_, rej) => setTimeout(() => rej(new Error("timeout")), 8000)),
+          new Promise<string>((_, rej) => setTimeout(() => rej(new Error("timeout")), 12000)),
         ]);
         const b = await (await fetch(dataUrl)).blob();
         if (b && b.size > 5000) blob = b;
