@@ -3740,7 +3740,7 @@
       ],
       "popularity": 72,
       "followers": 2000000,
-      "image_url": null,
+      "image_url": "/idols/natty.jpg",
       "profile": {
         "aesthetic": {
           "style_tags": [
@@ -3855,7 +3855,8 @@
           "summary": "SIXTEEN落選、出道團解散、八年後終於以KISS OF LIFE主舞站穩舞台的泰國女孩，《Sugarcoat》直拍被編舞師圈稱為「新人裡最完成的身體」。小麥肌的自信美學與打不倒的太陽能量，讓她成為K-pop最勵志的逆襲敘事本人。"
         }
       },
-      "generation": 5
+      "generation": 5,
+      "image_focus": 0.3
     },
     {
       "id": "niki",
@@ -10063,7 +10064,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/dk.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -10146,7 +10147,8 @@
           ],
           "summary": "SEVENTEEN主唱——音樂劇級高音與招牌大笑，正能量過載。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "mingyu",
@@ -13417,7 +13419,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/yunah.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13501,7 +13503,8 @@
           ],
           "summary": "ILLIT門面——仙女清透與愛笑開朗的發光體。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "minju",
@@ -13515,7 +13518,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/minju.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13598,7 +13601,8 @@
           ],
           "summary": "ILLIT的優雅擔當——貴族氣質與柔美音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "moka",
@@ -13612,7 +13616,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/moka.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13695,7 +13699,8 @@
           ],
           "summary": "ILLIT日本line——透明感與安靜溫柔。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "wonhee",
@@ -13709,7 +13714,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/wonhee.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13792,7 +13797,8 @@
           ],
           "summary": "ILLIT的奶糖甜——天然呆治癒與甜嗓。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "iroha",
@@ -13806,7 +13812,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/iroha.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13890,7 +13896,8 @@
           ],
           "summary": "ILLIT么妹——舞蹈神童的超齡冷靜。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "shinyu",
@@ -13904,7 +13911,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/shinyu.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -13988,7 +13995,8 @@
           ],
           "summary": "TWS隊長門面——清爽挺拔與溫柔可靠。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "dohoon",
@@ -14002,7 +14010,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/dohoon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14085,7 +14093,8 @@
           ],
           "summary": "TWS的低音少年——安靜沉穩的饒舌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "youngjae",
@@ -14197,7 +14206,7 @@
       "generation": 5,
       "popularity": 72,
       "followers": 7200000,
-      "image_url": null,
+      "image_url": "/idols/hanjin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14280,7 +14289,8 @@
           ],
           "summary": "TWS中國line——文靜清秀與柔和音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jihoon-tws",
@@ -14391,7 +14401,7 @@
       "generation": 5,
       "popularity": 72,
       "followers": 7200000,
-      "image_url": null,
+      "image_url": "/idols/kyungmin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14475,7 +14485,8 @@
           ],
           "summary": "TWS么弟——安靜認真的舞線潛力股。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sungho",
@@ -14489,7 +14500,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/sungho.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14573,7 +14584,8 @@
           ],
           "summary": "BND隊長主唱——鄰家溫和的安定聲線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "riwoo",
@@ -14587,7 +14599,7 @@
       "generation": 5,
       "popularity": 72,
       "followers": 7200000,
-      "image_url": null,
+      "image_url": "/idols/riwoo.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14671,7 +14683,8 @@
           ],
           "summary": "BND主舞——groove本能與街頭自由。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "myung-jaehyun",
@@ -14685,7 +14698,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/myung-jaehyun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14769,7 +14782,8 @@
           ],
           "summary": "BND門面——校園青春與頑皮直球。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "taesan",
@@ -14783,7 +14797,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/taesan.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14867,7 +14881,8 @@
           ],
           "summary": "BND的創作擔當——古著酷感與詞曲深度。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "leehan",
@@ -14881,7 +14896,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/leehan.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -14964,7 +14979,8 @@
           ],
           "summary": "BND的氛圍擔當——養魚四次元與慵懶音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "woonhak",
@@ -14978,7 +14994,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/woonhak.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15062,7 +15078,8 @@
           ],
           "summary": "BND么弟——少年氣勢與野心饒舌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "ruka",
@@ -15076,7 +15093,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/ruka.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15160,7 +15177,8 @@
           ],
           "summary": "BABYMON主舞——街舞battle出身的紅髮帥氣。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "pharita",
@@ -15272,7 +15290,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/asa.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15356,7 +15374,8 @@
           ],
           "summary": "BABYMON的饒舌職人——自寫詞的日系老練。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "rami",
@@ -15564,7 +15583,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/chiquita.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15648,7 +15667,8 @@
           ],
           "summary": "BABYMON泰籍么妹——09line的超齡大膽。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "julie",
@@ -15760,7 +15780,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/belle.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15844,7 +15864,8 @@
           ],
           "summary": "KIOF主唱——R&B靈魂與作曲才華。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "haneul",
@@ -15858,7 +15879,7 @@
       "generation": 5,
       "popularity": 72,
       "followers": 7200000,
-      "image_url": null,
+      "image_url": "/idols/haneul.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -15942,7 +15963,8 @@
           ],
           "summary": "KIOF么妹——透明感清純的成長股。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "shotaro",
@@ -16151,7 +16173,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/sungchan.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16234,7 +16256,8 @@
           ],
           "summary": "RIIZE的體育生——長腿氣勢與爽朗熱血。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sohee-riize",
@@ -16248,7 +16271,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/sohee-riize.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16331,7 +16354,8 @@
           ],
           "summary": "RIIZE主唱——小狗系元氣與清亮聲線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "anton",
@@ -16345,7 +16369,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/anton.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16429,7 +16453,8 @@
           ],
           "summary": "RIIZE么弟——音樂世家的溫柔低音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kim-jiwoong",
@@ -16443,7 +16468,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/kim-jiwoong.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16527,7 +16552,8 @@
           ],
           "summary": "ZB1大哥——演員出身的深邃成熟。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "zhang-hao",
@@ -16541,7 +16567,7 @@
       "generation": 5,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/zhang-hao.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16624,7 +16650,8 @@
           ],
           "summary": "ZB1的1位主唱——小提琴貴公子的音樂性。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "seok-matthew",
@@ -16736,7 +16763,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/kim-taerae.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -16819,7 +16846,8 @@
           ],
           "summary": "ZB1主唱——清澈真摯的聲音匠人。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "ricky",
@@ -16931,7 +16959,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/kim-gyuvin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17015,7 +17043,8 @@
           ],
           "summary": "ZB1氣氛擔當——長腿活力的快樂。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "park-gunwook",
@@ -17029,7 +17058,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/park-gunwook.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17113,7 +17142,8 @@
           ],
           "summary": "ZB1的熱血——力量饒舌與責任感。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "han-yujin",
@@ -17127,7 +17157,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/han-yujin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17211,7 +17241,8 @@
           ],
           "summary": "ZB1么弟——07line的純真成長。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jeemin",
@@ -17225,7 +17256,7 @@
       "generation": 5,
       "popularity": 72,
       "followers": 7200000,
-      "image_url": null,
+      "image_url": "/idols/jeemin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17309,7 +17340,8 @@
           ],
           "summary": "izna隊長——I-LAND2出身的颯爽舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "ella",
@@ -17323,7 +17355,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/ella.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17407,7 +17439,8 @@
           ],
           "summary": "MEOVV隊長——貓系自信與主唱氣場。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "suho",
@@ -17421,7 +17454,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/suho.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17505,7 +17538,8 @@
           ],
           "summary": "EXO隊長——美術館系紳士與安定中音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "xiumin",
@@ -17715,7 +17749,7 @@
       "generation": 3,
       "popularity": 83,
       "followers": 8300000,
-      "image_url": null,
+      "image_url": "/idols/baekhyun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17798,7 +17832,8 @@
           ],
           "summary": "EXO主唱——人間小狗與天才級甜高音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "chen",
@@ -17909,7 +17944,7 @@
       "generation": 3,
       "popularity": 81,
       "followers": 8100000,
-      "image_url": null,
+      "image_url": "/idols/chanyeol.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -17993,7 +18028,8 @@
           ],
           "summary": "EXO饒舌——快樂病毒與樂器全能。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "d-o",
@@ -18007,7 +18043,7 @@
       "generation": 3,
       "popularity": 81,
       "followers": 8100000,
-      "image_url": null,
+      "image_url": "/idols/d-o.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18090,7 +18126,8 @@
           ],
           "summary": "EXO主唱——影帝級演技與療癒音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kai",
@@ -18104,7 +18141,7 @@
       "generation": 3,
       "popularity": 82,
       "followers": 8200000,
-      "image_url": null,
+      "image_url": "/idols/kai.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18187,7 +18224,8 @@
           ],
           "summary": "EXO主舞——時裝週高級感與本能舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sehun",
@@ -18201,7 +18239,7 @@
       "generation": 3,
       "popularity": 81,
       "followers": 8100000,
-      "image_url": null,
+      "image_url": "/idols/sehun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18285,7 +18323,8 @@
           ],
           "summary": "EXO么弟——冷面幽默與模特比例。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "onew",
@@ -18299,7 +18338,7 @@
       "generation": 2,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/onew.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18383,7 +18422,8 @@
           ],
           "summary": "SHINee隊長——溫吞治癒與療癒音色。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "key",
@@ -18397,7 +18437,7 @@
       "generation": 2,
       "popularity": 80,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/key.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18481,7 +18521,8 @@
           ],
           "summary": "SHINee萬能擔當——前衛品味與毒舌真心。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "minho",
@@ -18495,7 +18536,7 @@
       "generation": 2,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/minho.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18579,7 +18620,8 @@
           ],
           "summary": "SHINee火焰卡里斯馬——勝負欲與暖男反差。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "taemin",
@@ -18593,7 +18635,7 @@
       "generation": 2,
       "popularity": 82,
       "followers": 8200000,
-      "image_url": null,
+      "image_url": "/idols/taemin.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18677,7 +18719,8 @@
           ],
           "summary": "SHINee么弟——耽美舞台王者與迷糊日常。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "g-dragon",
@@ -18691,7 +18734,7 @@
       "generation": 2,
       "popularity": 86,
       "followers": 8600000,
-      "image_url": null,
+      "image_url": "/idols/g-dragon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -18776,7 +18819,8 @@
           ],
           "summary": "BIGBANG隊長——人間香奈兒與時代級創作。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "taeyang",
@@ -19083,7 +19127,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/bom.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19166,7 +19210,8 @@
           ],
           "summary": "2NE1主唱——四次元天然與穿透高音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "dara",
@@ -19180,7 +19225,7 @@
       "generation": 2,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/dara.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19264,7 +19309,8 @@
           ],
           "summary": "2NE1門面——凍齡俏皮與菲律賓國民度。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "minzy",
@@ -19376,7 +19422,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/gyuri.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19460,7 +19506,8 @@
           ],
           "summary": "KARA隊長——自封女神的優雅與幽默。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "seungyeon",
@@ -19474,7 +19521,7 @@
       "generation": 2,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/seungyeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19557,7 +19604,8 @@
           ],
           "summary": "KARA拚命三娘——倉鼠系可愛與真摯。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "nicole",
@@ -19571,7 +19619,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/nicole.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19654,7 +19702,8 @@
           ],
           "summary": "KARA主舞——加州陽光與招牌腰舞。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jiyoung",
@@ -19668,7 +19717,7 @@
       "generation": 2,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/jiyoung.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19752,7 +19801,8 @@
           ],
           "summary": "KARA么妹——日韓雙棲的知性成長。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "youngji",
@@ -20060,7 +20110,7 @@
       "generation": 2,
       "popularity": 81,
       "followers": 8100000,
-      "image_url": null,
+      "image_url": "/idols/sunmi.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20144,7 +20194,8 @@
           ],
           "summary": "Wonder Girls出身的solo女王——魅惑舞台與四次元日常。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sohee",
@@ -20158,7 +20209,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/sohee.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20241,7 +20292,8 @@
           ],
           "summary": "Wonder Girls國民忙內——「Omona」符號與演員轉身。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "yubin",
@@ -20646,7 +20698,7 @@
       "generation": 2,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/donghae.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20730,7 +20782,8 @@
           ],
           "summary": "SuJu東海——浪漫少年與深情舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "siwon",
@@ -20744,7 +20797,7 @@
       "generation": 2,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/siwon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20828,7 +20881,8 @@
           ],
           "summary": "SuJu始源——國際紳士與公益人生。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kyuhyun",
@@ -20842,7 +20896,7 @@
       "generation": 2,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/kyuhyun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20926,7 +20980,8 @@
           ],
           "summary": "SuJu忙內——毒舌反差與音樂劇主唱。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "jun-k",
@@ -21038,7 +21093,7 @@
       "generation": 2,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/nichkhun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21122,7 +21177,8 @@
           ],
           "summary": "2PM泰國王子——溫雅國際紳士。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "taecyeon",
@@ -21136,7 +21192,7 @@
       "generation": 2,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/taecyeon.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21219,7 +21275,8 @@
           ],
           "summary": "2PM澤演——野獸偶像與學霸反轉。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "wooyoung-2pm",
@@ -21233,7 +21290,7 @@
       "generation": 2,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/wooyoung-2pm.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21317,7 +21374,8 @@
           ],
           "summary": "2PM主舞——熱血直率的爆發力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "junho",
@@ -21331,7 +21389,7 @@
       "generation": 2,
       "popularity": 80,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/junho.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21415,7 +21473,8 @@
           ],
           "summary": "2PM俊昊——影帝級轉身的三棲王牌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "chansung",
@@ -21429,7 +21488,7 @@
       "generation": 2,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/chansung.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21513,7 +21572,8 @@
           ],
           "summary": "2PM忙內——田園自由與居家轉身。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "chorong",
@@ -21527,7 +21587,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/chorong.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21611,7 +21671,8 @@
           ],
           "summary": "Apink隊長——蝴蝶結仙女與溫柔堅韌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "bomi",
@@ -21625,7 +21686,7 @@
       "generation": 2,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/bomi.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21709,7 +21770,8 @@
           ],
           "summary": "Apink開心果——綜藝細胞與元氣體能。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "eunji",
@@ -21723,7 +21785,7 @@
       "generation": 2,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/eunji.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21806,7 +21868,8 @@
           ],
           "summary": "Apink主唱——鐵肺釜山女兒的豪爽真誠。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "naeun",
@@ -21820,7 +21883,7 @@
       "generation": 2,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/naeun.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -21904,7 +21967,8 @@
           ],
           "summary": "Apink門面——畫報優雅與安靜溫柔。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "namjoo",
@@ -21918,7 +21982,7 @@
       "generation": 2,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/namjoo.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22001,7 +22065,8 @@
           ],
           "summary": "Apink南珠——獨特音色與反轉魅力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hayoung",
@@ -22015,7 +22080,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/hayoung.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -22099,7 +22164,8 @@
           ],
           "summary": "Apink忙內——行動派爽朗與穩健低音。"
         }
-      }
+      },
+      "image_focus": 0.3
     }
   ],
   "tracks": []
