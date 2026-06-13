@@ -1,12 +1,12 @@
 // Image with a deterministic gradient fallback (local catalog has no images).
 
 const GRADIENTS = [
-  "from-fuchsia-500 to-purple-700",
-  "from-cyan-400 to-blue-700",
-  "from-rose-400 to-pink-700",
-  "from-amber-400 to-orange-700",
-  "from-emerald-400 to-teal-700",
-  "from-violet-400 to-indigo-700",
+  "from-[#c8ccd2] via-[#9aa0aa] to-[#7c8088]",
+  "from-[#9aa0aa] via-[#7c8088] to-[#c8ccd2]",
+  "from-[#c8ccd2] to-[#7c8088]",
+  "from-[#7c8088] via-[#9aa0aa] to-[#c8ccd2]",
+  "from-[#9aa0aa] to-[#c8ccd2]",
+  "from-[#c8ccd2] via-[#7c8088] to-[#9aa0aa]",
 ];
 
 function pick(seed: string) {

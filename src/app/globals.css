@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1a0028;
-  --foreground: #f5e6ff;
-  --pink: #ff00cc;
-  --cyan: #00e5ff;
-  --lime: #ccff00;
-  --magenta: #cc00ff;
+  /* Y2K Silvercore — light chrome base */
+  --background: #dfe2e7;   /* silver mist */
+  --foreground: #1c1e24;   /* ink */
+  --surface: #f4f5f7;      /* frost */
+  --card: #ffffff;
+  --ink-2: #5e636d;
+  --ink-3: #9aa0aa;
+  --line: #c8ccd2;         /* silver border */
+  --steel: #7c8088;
+  --cherry: #b4302b;       /* lipstick / cherry accent */
+  --lacquer: #d23a33;
+  --blue: #56789f;         /* steel blue accent */
+  --powder: #a7c0dc;
 }
 
 @theme inline {
@@ -19,14 +26,14 @@
 body {
   background-color: var(--background);
   background-image:
-    /* Grid mesh */
-    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,0,204,0.07) 39px, rgba(255,0,204,0.07) 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,0,204,0.07) 39px, rgba(255,0,204,0.07) 40px),
-    /* Color glows */
-    radial-gradient(70rem 50rem at 50% 0%,   rgba(255,0,204,0.22) 0%, transparent 60%),
-    radial-gradient(50rem 40rem at 0%   30%,  rgba(0,229,255,0.12) 0%, transparent 55%),
-    radial-gradient(45rem 35rem at 100% 60%,  rgba(153,51,255,0.15) 0%, transparent 55%),
-    radial-gradient(40rem 30rem at 40% 100%,  rgba(255,0,204,0.10) 0%, transparent 55%);
+    /* faint silver grid */
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+    /* chrome sheen + whispered accents */
+    radial-gradient(70rem 50rem at 50% 0%,    rgba(255,255,255,0.55) 0%, transparent 60%),
+    radial-gradient(52rem 42rem at 100% 22%,  rgba(167,192,220,0.30) 0%, transparent 55%),
+    radial-gradient(45rem 35rem at 0%   78%,   rgba(180,48,43,0.06) 0%, transparent 55%),
+    radial-gradient(48rem 36rem at 40% 100%,   rgba(124,128,136,0.10) 0%, transparent 55%);
   color: var(--foreground);
   font-family: var(--font-noto-tc), system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
@@ -45,15 +52,15 @@ body {
   font-size: 0.65em; /* multi-char symbols (>2) — components also scale inline */
 }
 
-/* ── OS window chrome ─────────────────────────────────── */
+/* ── OS window chrome (brushed silver) ────────────────── */
 .window-frame {
-  border: 2px solid #cc00ff;
+  border: 2px solid #aeb3bb;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.5),
-    4px 4px 0 rgba(0,0,0,0.45),
-    0 0 20px rgba(255,0,204,0.25);
-  background: #f0e6ff;
-  color: #1a0028;
+    inset 0 0 0 1px rgba(255,255,255,0.7),
+    4px 4px 0 rgba(74,74,74,0.35),
+    0 0 20px rgba(124,128,136,0.22);
+  background: #f4f5f7;
+  color: #1c1e24;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -63,11 +70,11 @@ body {
   align-items: center;
   gap: 0.25rem;
   padding: 0.2rem 0.4rem;
-  background: linear-gradient(90deg, #ff66cc 0%, #9933ff 100%);
-  color: white;
+  background: linear-gradient(180deg, #f4f6f8 0%, #c8ccd2 48%, #9aa0aa 100%);
+  color: #1c1e24;
   user-select: none;
   min-height: 22px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 
 .win-btn {
@@ -76,26 +83,26 @@ body {
   justify-content: center;
   width: 16px;
   height: 14px;
-  background: linear-gradient(180deg, #f0c0e0 0%, #d080b0 100%);
-  border: 1px solid #9933ff;
+  background: linear-gradient(180deg, #ffffff 0%, #c0c4ca 100%);
+  border: 1px solid #9aa0aa;
   border-radius: 2px;
   font-size: 9px;
   font-weight: bold;
-  color: #1a0028;
+  color: #1c1e24;
   cursor: default;
   line-height: 1;
 }
-.win-btn-close { background: linear-gradient(180deg, #ff99cc 0%, #ff3399 100%); }
+.win-btn-close { background: linear-gradient(180deg, #e0584f 0%, #b4302b 100%); color: #fff; border-color: #8f231f; }
 
 .window-body {
-  background: #f0e6ff;
+  background: #f7f8fa;
 }
 
-/* ── Taskbar ─────────────────────────────────────────── */
+/* ── Taskbar (silver tray) ───────────────────────────── */
 .taskbar {
-  background: #0d0015;
-  border-top: 2px solid #ff00cc;
-  box-shadow: 0 -2px 20px rgba(255,0,204,0.30);
+  background: #e9ebee;
+  border-top: 2px solid #aeb3bb;
+  box-shadow: 0 -2px 20px rgba(124,128,136,0.25);
 }
 
 .taskbar-icon {
@@ -104,15 +111,15 @@ body {
   justify-content: center;
   width: 32px;
   height: 28px;
-  border: 1px solid #ff00cc40;
+  border: 1px solid rgba(124,128,136,0.45);
   border-radius: 4px;
   font-size: 14px;
-  color: #ff99ee;
+  color: #5e636d;
   transition: background 0.15s;
 }
-.taskbar-icon:hover { background: rgba(255,0,204,0.15); }
+.taskbar-icon:hover { background: rgba(124,128,136,0.16); }
 
-/* ── Holographic card shimmer ─────────────────────────── */
+/* ── Holographic card shimmer (silver / steel / accents) ─ */
 .card-holo {
   position: relative;
   isolation: isolate;
@@ -124,13 +131,13 @@ body {
   border-radius: inherit;
   background: conic-gradient(
     from 180deg at 50% 50%,
-    rgba(255,0,204,0) 0deg,
-    rgba(255,0,204,0.10) 60deg,
-    rgba(0,229,255,0.10) 120deg,
-    rgba(153,51,255,0.08) 180deg,
-    rgba(255,102,204,0.08) 240deg,
-    rgba(0,229,255,0.06) 300deg,
-    rgba(255,0,204,0) 360deg
+    rgba(124,128,136,0) 0deg,
+    rgba(255,255,255,0.45) 60deg,
+    rgba(86,120,159,0.12) 120deg,
+    rgba(124,128,136,0.14) 180deg,
+    rgba(180,48,43,0.08) 240deg,
+    rgba(255,255,255,0.30) 300deg,
+    rgba(124,128,136,0) 360deg
   );
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -141,19 +148,19 @@ body {
 
 /* ── Sticker card (artist detail inner cards) ─────────── */
 .card-sticker {
-  background: #fff0fb;
-  border: 2px solid #ff00cc;
+  background: #ffffff;
+  border: 2px solid #c8ccd2;
   border-radius: 16px;
   box-shadow:
-    3px 3px 0 #cc00ff,
-    0 0 12px rgba(255,0,204,0.20);
-  color: #1a0028;
+    3px 3px 0 #aeb3bb,
+    0 0 12px rgba(124,128,136,0.18);
+  color: #1c1e24;
   position: relative;
   isolation: isolate;
 }
 .card-sticker:hover {
-  border-color: #9933ff;
-  box-shadow: 4px 4px 0 #ff00cc, 0 0 18px rgba(255,0,204,0.35);
+  border-color: #7c8088;
+  box-shadow: 4px 4px 0 #b4302b, 0 0 16px rgba(124,128,136,0.30);
   transform: translate(-1px, -1px);
 }
 .card-sticker::before {
@@ -162,8 +169,7 @@ body {
   top: -7px;
   left: -7px;
   font-size: 12px;
-  color: #ff00cc;
-  text-shadow: 0 0 6px #ff00cc;
+  color: #7c8088;
 }
 .card-sticker::after {
   content: "✦";
@@ -171,8 +177,7 @@ body {
   bottom: -7px;
   right: -7px;
   font-size: 10px;
-  color: #9933ff;
-  text-shadow: 0 0 6px #9933ff;
+  color: #b4302b;
 }
 
 /* ── Animations ──────────────────────────────────────── */
@@ -201,15 +206,15 @@ body {
 .fourcuts-pop { animation: fourcuts-pop 0.45s ease-out; }
 
 /* ── Y2K Silvercore / Chrome layer ────────────────────── */
-/* Chrome display text — silver gradient fill (logo, hero, counts) */
+/* Chrome display text — brushed-metal gradient readable on the light base */
 .chrome-text {
   background: linear-gradient(
     135deg,
-    #888888 0%,
-    #ffffff 35%,
-    #aaaaaa 50%,
-    #ffffff 65%,
-    #888888 100%
+    #7c8088 0%,
+    #14151a 24%,
+    #c0c4ca 48%,
+    #14151a 72%,
+    #7c8088 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -232,15 +237,15 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(192, 192, 192, 0.6),
-    rgba(255, 255, 255, 0.9),
-    rgba(192, 192, 192, 0.6),
+    rgba(124, 128, 136, 0.55),
+    rgba(28, 30, 36, 0.5),
+    rgba(124, 128, 136, 0.55),
     transparent
   );
 }
 .chrome-divider-star {
   color: transparent;
-  background: linear-gradient(135deg, #888, #fff, #aaa);
+  background: linear-gradient(135deg, #7c8088, #14151a, #aeb3bb);
   -webkit-background-clip: text;
   background-clip: text;
   font-size: 14px;
@@ -262,7 +267,7 @@ body {
   background: linear-gradient(
     45deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.28) 50%,
+    rgba(124, 128, 136, 0.20) 50%,
     transparent 70%
   );
   transform: translateX(-120%);
@@ -270,8 +275,8 @@ body {
 }
 .chrome-card:hover,
 .chrome-card:focus-within {
-  border-color: rgba(192, 192, 192, 0.4);
-  box-shadow: 0 0 12px rgba(192, 192, 192, 0.15), 0 0 24px rgba(255, 0, 204, 0.1);
+  border-color: rgba(124, 128, 136, 0.5);
+  box-shadow: 0 0 12px rgba(124, 128, 136, 0.22), 0 0 22px rgba(180, 48, 43, 0.10);
   transform: translateY(-2px);
 }
 .chrome-card:hover::after,

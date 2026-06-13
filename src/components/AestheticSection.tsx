@@ -3,7 +3,7 @@
 
 import type { Artist } from "@/lib/types";
 
-// 繁中 colour name → hex for swatches. Unknown names fall back to a pink tint.
+// 繁中 colour name → hex for swatches. Unknown names fall back to a silver tint.
 const COLOR_HEX: Record<string, string> = {
   "黑": "#1a1a1a", "白": "#ffffff", "金": "#d4af37", "銀": "#c8ccd4",
   "酒紅": "#7b1e2b", "深紅": "#7b1e2b", "金屬灰": "#9aa0a8", "金屬銀": "#c0c4cc",
@@ -20,30 +20,30 @@ const COLOR_HEX: Record<string, string> = {
   "透膚黑": "#2a2a2a", "透白": "#fbfbf7",
 };
 
-const FALLBACK = "#ff66cc";
+const FALLBACK = "#b9bdc4";
 
 export default function AestheticSection({ artist }: { artist: Artist }) {
   const aes = artist.profile?.aesthetic;
   if (!aes) return null;
 
   return (
-    <section className="rounded-3xl border-2 border-[#ff00cc]/30 bg-gradient-to-b from-white/95 to-[#fff0f8]/90 p-5 text-[#1a0028] shadow-[4px_4px_0_rgba(255,0,204,0.18)]">
+    <section className="rounded-3xl border-2 border-[#c8ccd2]/30 bg-gradient-to-b from-white/95 to-[#eceef1]/90 p-5 text-[#1c1e24] shadow-[4px_4px_0_rgba(124,128,136,0.3)]">
       <div className="flex items-center gap-2">
         <span className="text-base">✦</span>
-        <h2 className="font-orbitron text-sm font-black uppercase tracking-[0.15em] text-[#cc0099]">
+        <h2 className="font-orbitron text-sm font-black uppercase tracking-[0.15em] text-[#1c1e24]">
           美學分析
         </h2>
       </div>
 
       {/* vibe headline */}
-      <p className="mt-2 text-lg font-black text-[#1a0028]">{aes.vibe}</p>
+      <p className="mt-2 text-lg font-black text-[#1c1e24]">{aes.vibe}</p>
 
       {/* trait chips */}
       <div className="mt-3 flex flex-wrap gap-1.5">
         {aes.style_tags.map((t) => (
           <span
             key={t}
-            className="rounded-full bg-[#ff00cc]/12 px-3 py-1 text-xs font-semibold text-[#cc0099]"
+            className="rounded-full bg-[#7c8088]/12 px-3 py-1 text-xs font-semibold text-[#1c1e24]"
           >
             {t}
           </span>
@@ -52,7 +52,7 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
 
       {/* colour palette swatches */}
       <div className="mt-4">
-        <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[#990066]/70">
+        <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[#5e636d]">
           色彩
         </div>
         <div className="flex flex-wrap gap-3">
@@ -62,7 +62,7 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
                 className="h-4 w-4 rounded-full ring-1 ring-black/10"
                 style={{ backgroundColor: COLOR_HEX[c] ?? FALLBACK }}
               />
-              <span className="text-xs text-[#660066]">{c}</span>
+              <span className="text-xs text-[#5e636d]">{c}</span>
             </div>
           ))}
         </div>
@@ -76,7 +76,7 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
         </>
       ) : (
         aes.analysis && (
-          <p className="mt-4 border-t border-[#ff00cc]/15 pt-3 text-sm leading-relaxed text-[#3a1030]">
+          <p className="mt-4 border-t border-[#c8ccd2]/15 pt-3 text-sm leading-relaxed text-[#1c1e24]">
             {aes.analysis}
           </p>
         )
@@ -95,8 +95,8 @@ function StyleTrack({
   data: { style_tags: string[]; analysis: string };
 }) {
   return (
-    <div className="mt-4 border-t border-[#ff00cc]/15 pt-3">
-      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#990066]/70">
+    <div className="mt-4 border-t border-[#c8ccd2]/15 pt-3">
+      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#5e636d]">
         <span>{icon}</span>
         <span>{label}</span>
       </div>
@@ -104,13 +104,13 @@ function StyleTrack({
         {data.style_tags.map((t) => (
           <span
             key={t}
-            className="rounded-full bg-[#ff00cc]/12 px-3 py-1 text-xs font-semibold text-[#cc0099]"
+            className="rounded-full bg-[#7c8088]/12 px-3 py-1 text-xs font-semibold text-[#1c1e24]"
           >
             {t}
           </span>
         ))}
       </div>
-      <p className="mt-2.5 text-sm leading-relaxed text-[#3a1030]">{data.analysis}</p>
+      <p className="mt-2.5 text-sm leading-relaxed text-[#1c1e24]">{data.analysis}</p>
     </div>
   );
 }

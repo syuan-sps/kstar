@@ -27,7 +27,7 @@ function filterWeights(f: LayerFilter): Weights {
 }
 
 function SkeletonCard() {
-  return <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-64 w-full" />;
+  return <div className="animate-pulse rounded-2xl bg-[#7c8088]/10 h-64 w-full" />;
 }
 
 interface Props {
@@ -101,7 +101,7 @@ export default function SimilarSection({
   if (!mounted) {
     return (
       <section>
-        <div className="mb-4 h-8 w-48 animate-pulse rounded-full bg-[#ff00cc]/10" />
+        <div className="mb-4 h-8 w-48 animate-pulse rounded-full bg-[#7c8088]/10" />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
         </div>
@@ -115,7 +115,7 @@ export default function SimilarSection({
     <section>
       {/* Header + filter pills */}
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <h2 className="font-orbitron text-lg font-bold text-white">{copy.similarArtistsTitle}</h2>
+        <h2 className="font-orbitron text-lg font-bold text-[#1c1e24]">{copy.similarArtistsTitle}</h2>
         <div className="flex flex-wrap gap-1.5">
           {FILTERS.map((f) => (
             <button
@@ -123,8 +123,8 @@ export default function SimilarSection({
               onClick={() => handleFilter(f)}
               className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                 filter === f
-                  ? "bg-[#ff00cc] text-white shadow-[0_0_8px_#ff00cc80]"
-                  : "border border-[#ff00cc]/30 text-pink-300 hover:bg-[#ff00cc]/10"
+                  ? "bg-[#b4302b] text-white shadow-[0_0_8px_rgba(180,48,43,0.4)]"
+                  : "border border-[#c8ccd2]/30 text-[#7c8088] hover:bg-[#7c8088]/10"
               }`}
             >
               {PILL_LABELS[f]}
@@ -135,7 +135,7 @@ export default function SimilarSection({
       <div className="chrome-divider"><span className="chrome-divider-star">✦</span></div>
 
       {candidates.length === 0 ? (
-        <p className="text-white/50">{copy.noResults}</p>
+        <p className="text-[#9aa0aa]">{copy.noResults}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {candidates.map((s) => (

@@ -16,7 +16,7 @@ export default function FourCuts({
 }) {
   return (
     <div
-      className={`rounded-[22px] border-2 border-[#ff00cc] bg-[#160010] p-3 shadow-[5px_5px_0_rgba(255,0,204,0.35)] ${className}`}
+      className={`rounded-[22px] border-2 border-[#aeb3bb] bg-[#e9ebee] p-3 shadow-[5px_5px_0_rgba(124,128,136,0.3)] ${className}`}
     >
       <div className="grid grid-cols-2 gap-1.5">
         {artists.map((a) => {
@@ -48,7 +48,7 @@ export default function FourCuts({
             <Link
               key={a.id}
               href={`/artist/${a.id}`}
-              className={`${cutClass} transition hover:ring-2 hover:ring-[#ff66cc]`}
+              className={`${cutClass} transition hover:ring-2 hover:ring-[#c8ccd2]`}
             >
               {inner}
             </Link>
@@ -60,7 +60,7 @@ export default function FourCuts({
         })}
       </div>
       {/* photobooth footer caption */}
-      <div className="mt-2.5 flex items-center justify-center gap-1.5 font-orbitron text-[10px] font-bold tracking-[0.25em] text-[#ff66cc]">
+      <div className="mt-2.5 flex items-center justify-center gap-1.5 font-orbitron text-[10px] font-bold tracking-[0.25em] text-[#7c8088]">
         <span>✦</span>
         <span>KSTAR · 2026</span>
         <span>✦</span>

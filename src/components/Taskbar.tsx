@@ -17,7 +17,7 @@ function Clock() {
     const id = setInterval(fmt, 10000);
     return () => clearInterval(id);
   }, []);
-  return <span className="font-mono tabular-nums text-pink-200">{time}</span>;
+  return <span className="font-mono tabular-nums text-[#7c8088]">{time}</span>;
 }
 
 export default function Taskbar() {
@@ -26,16 +26,16 @@ export default function Taskbar() {
       {/* Start button */}
       <Link
         href="/"
-        className="start-btn flex items-center gap-1.5 rounded-full border border-[#ff00cc] bg-gradient-to-r from-[#ff00cc] to-[#9933ff] px-4 py-1 text-xs font-black text-white shadow-[0_0_10px_#ff00cc80] hover:brightness-110"
+        className="start-btn flex items-center gap-1.5 rounded-full border border-[#b4302b] bg-[#b4302b] px-4 py-1 text-xs font-black text-white shadow-[0_0_10px_rgba(180,48,43,0.4)] hover:brightness-110"
       >
         <span>✦</span>
         <span className="font-orbitron">{copy.startBtn}</span>
       </Link>
 
       {/* Center label + clock */}
-      <div className="flex flex-1 items-center justify-center gap-3 text-xs text-pink-300/70">
+      <div className="flex flex-1 items-center justify-center gap-3 text-xs text-[#5e636d]/70">
         <span className="font-orbitron tracking-widest">{copy.taskbarLabel}</span>
-        <span className="text-pink-400/50">|</span>
+        <span className="text-[#5e636d]/50">|</span>
         <Clock />
       </div>
 

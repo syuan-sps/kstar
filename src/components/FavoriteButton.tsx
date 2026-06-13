@@ -22,8 +22,8 @@ export default function FavoriteButton({
       onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggle(id); }}
       className={`inline-flex items-center justify-center rounded-full border transition ${pad} ${
         active
-          ? "border-[#ff00cc]/70 bg-[#ff00cc]/20 text-pink-200"
-          : "border-white/20 text-white/70 hover:border-[#ff00cc]/50 hover:text-white"
+          ? "border-[#b4302b]/70 bg-[#b4302b]/20 text-[#b4302b]"
+          : "border-[#9aa0aa]/40 text-[#9aa0aa] hover:border-[#b4302b]/50 hover:text-[#b4302b]"
       }`}
     >
       <span>{active ? "♥" : "♡"}</span>

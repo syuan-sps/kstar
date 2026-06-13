@@ -14,13 +14,13 @@ import Thumb from "./Thumb";
 import FavoriteButton from "./FavoriteButton";
 
 const LAYERS: { key: keyof LayerScores; label: string; color: string }[] = [
-  { key: "aesthetic",   label: "美學", color: "#ff00cc" },
-  { key: "personality", label: "個性", color: "#9933ff" },
-  { key: "performance", label: "表演", color: "#00e5ff" },
-  { key: "content",     label: "內容", color: "#ffe14d" },
+  { key: "aesthetic",   label: "美學", color: "#4a4f57" },
+  { key: "personality", label: "個性", color: "#b4302b" },
+  { key: "performance", label: "表演", color: "#56789f" },
+  { key: "content",     label: "內容", color: "#b9bdc4" },
 ];
 
-const LIFT = "-translate-y-1 border-[#ff00cc]/70 shadow-[0_0_18px_rgba(255,0,204,0.45)]";
+const LIFT = "-translate-y-1 border-[#c8ccd2]/70 shadow-[0_0_18px_rgba(124,128,136,0.3)]";
 
 interface Props {
   similar: SimilarArtist;
@@ -58,7 +58,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
     <Link
       href={`/artist/${artist.id}`}
       onClick={handleTap}
-      className={`chrome-card group block overflow-hidden rounded-2xl border-2 border-[#ff00cc]/30 bg-[#1f0533]/85 shadow-[3px_3px_0_rgba(204,0,255,0.25)] transition duration-200 hover:-translate-y-1 hover:border-[#ff00cc]/70 hover:shadow-[0_0_18px_rgba(255,0,204,0.45)] ${
+      className={`chrome-card group block overflow-hidden rounded-2xl border-2 border-[#c8ccd2]/30 bg-[#ffffff]/85 shadow-[3px_3px_0_rgba(124,128,136,0.3)] transition duration-200 hover:-translate-y-1 hover:border-[#c8ccd2]/70 hover:shadow-[0_0_18px_rgba(124,128,136,0.3)] ${
         isTouch && expanded ? LIFT : ""
       }`}
     >
@@ -78,10 +78,10 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
       </div>
 
       {/* Bottom zone — info panel */}
-      <div className="space-y-1 bg-[#14021f]/70 p-2 backdrop-blur-sm">
+      <div className="space-y-1 bg-[#f4f5f7]/70 p-2 backdrop-blur-sm">
         <div className="truncate text-[12px]">
-          <span className="font-black text-white">{artist.name}</span>
-          {artist.group && <span className="text-white/45"> · {artist.group}</span>}
+          <span className="font-black text-[#1c1e24]">{artist.name}</span>
+          {artist.group && <span className="text-[#9aa0aa]"> · {artist.group}</span>}
         </div>
 
         <div className="text-[13px] leading-none tracking-wide">{emojis.join(" ")}</div>
@@ -91,8 +91,8 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
             collapsed ? "max-h-0 opacity-0" : "max-h-24 opacity-100"
           }`}
         >
-          <p className="line-clamp-2 min-h-[1.6em] text-[10px] leading-snug text-pink-200/85">
-            {reasonText ?? <span className="animate-pulse text-[#ff66cc]/60">・・・</span>}
+          <p className="line-clamp-2 min-h-[1.6em] text-[10px] leading-snug text-[#5e636d]/85">
+            {reasonText ?? <span className="animate-pulse text-[#5e636d]/60">・・・</span>}
           </p>
 
           <div className="mt-1.5 grid grid-cols-4 gap-1">
@@ -100,13 +100,13 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
               const pct = Math.max(6, Math.round((layerScores?.[key] ?? 0) * 100));
               return (
                 <div key={key}>
-                  <div className="h-1 rounded-full bg-white/10">
+                  <div className="h-1 rounded-full bg-[#7c8088]/15">
                     <div
                       className="h-1 rounded-full"
                       style={{ width: `${pct}%`, backgroundColor: color }}
                     />
                   </div>
-                  <div className="mt-0.5 text-center text-[8px] text-white/40">{label}</div>
+                  <div className="mt-0.5 text-center text-[8px] text-[#9aa0aa]">{label}</div>
                 </div>
               );
             })}

@@ -53,7 +53,7 @@ export default async function Home() {
         {/* Scroll hint toward the directory */}
         <a
           href="#idols"
-          className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-xs text-pink-300/60 transition hover:text-pink-200"
+          className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-xs text-[#56789f]/60 transition hover:text-[#56789f]"
         >
           ↓ 偶像圖鑑
         </a>
@@ -63,11 +63,11 @@ export default async function Home() {
       <div className="space-y-8 md:hidden">
         <MyFourCuts allArtists={artists} className="pt-2" />
 
-        <section className="rounded-2xl border border-[#ff00cc]/25 bg-[#ff00cc]/5 p-6 text-center">
+        <section className="rounded-2xl border border-[#c8ccd2]/25 bg-[#7c8088]/8 p-6 text-center">
           <h1 className="chrome-text font-orbitron text-2xl font-black tracking-tight">
             {copy.taglineEn}
           </h1>
-          <p className="mt-2 text-sm text-white/60">{copy.tagline}</p>
+          <p className="mt-2 text-sm text-[#5e636d]">{copy.tagline}</p>
         </section>
       </div>
 

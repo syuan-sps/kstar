@@ -51,7 +51,7 @@ export default function IdolFrame({
 
   return (
     <div
-      className={`relative rounded-[18px] border-2 p-2.5 pt-5 shadow-[3px_3px_0_rgba(255,0,204,0.18)] ${className}`}
+      className={`relative rounded-[18px] border-2 p-2.5 pt-5 shadow-[3px_3px_0_rgba(124,128,136,0.3)] ${className}`}
       style={{
         borderColor: theme.accent + "66",
         background: `linear-gradient(180deg, #ffffffe6, ${theme.soft}cc)`,
@@ -93,9 +93,9 @@ export default function IdolFrame({
 
       {/* name */}
       <div className="mt-1.5 px-0.5 text-center">
-        <div className="truncate text-[13px] font-black text-[#1a0028]">{artist.name}</div>
+        <div className="truncate text-[13px] font-black text-[#1c1e24]">{artist.name}</div>
         {artist.name_zh && artist.name_zh !== artist.name && (
-          <div className="truncate text-[10px] text-[#7a3a66]">{artist.name_zh}</div>
+          <div className="truncate text-[10px] text-[#7c8088]">{artist.name_zh}</div>
         )}
       </div>
     </div>

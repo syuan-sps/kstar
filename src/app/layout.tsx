@@ -41,7 +41,7 @@ export default async function RootLayout({
         {/* Y2K Silvercore layer — silver ✦ floating above the pink world */}
         <ChromeSparkle density="low" zone="background" />
 
-        <header className="relative z-20 sticky top-0 border-b border-[#ff00cc]/20 bg-[#1a0028]/85 backdrop-blur">
+        <header className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/20 bg-[#f4f5f7]/85 backdrop-blur">
           <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3">
             <Link href="/" className="shrink-0 text-lg font-black tracking-tight">
               <span className="font-orbitron chrome-text">
@@ -55,20 +55,20 @@ export default async function RootLayout({
             </div>
             <Link
               href="/#idols"
-              className="shrink-0 rounded-full border border-[#ff00cc]/30 px-3 py-1.5 text-sm font-medium text-pink-300 hover:bg-[#ff00cc]/10"
+              className="shrink-0 rounded-full border border-[#c8ccd2]/30 px-3 py-1.5 text-sm font-medium text-[#1c1e24] hover:bg-[#7c8088]/10"
             >
               ✦ 偶像圖鑑
             </Link>
             <Link
               href="/favorites"
-              className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-pink-300 hover:bg-[#ff00cc]/10"
+              className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-[#5e636d] hover:bg-[#7c8088]/10"
             >
               ♥ {copy.myFavorites}
             </Link>
           </div>
         </header>
         <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
-        <footer className="relative z-10 border-t border-[#ff00cc]/15 px-4 py-6 text-center text-xs text-white/40">
+        <footer className="relative z-10 border-t border-[#c8ccd2]/15 px-4 py-6 text-center text-xs text-[#9aa0aa]">
           {copy.appName} · 以曲風與後設資料推薦 · 資料來源 Spotify
         </footer>
         <Taskbar />

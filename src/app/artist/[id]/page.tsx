@@ -46,12 +46,12 @@ export default async function ArtistPage({
     <div className="space-y-10">
       {/* Artist header */}
       <section className="flex flex-col gap-5 sm:flex-row sm:items-end">
-        <div className="h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#ff00cc]/40">
+        <div className="h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#c8ccd2]/40">
           <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" focusY={artist.image_focus} />
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <span className="font-orbitron text-3xl font-black text-white">{artist.name}</span>
+            <span className="font-orbitron text-3xl font-black text-[#1c1e24]">{artist.name}</span>
             {artist.instagram && (
               <a
                 href={`https://instagram.com/${artist.instagram}`}
@@ -59,7 +59,7 @@ export default async function ArtistPage({
                 rel="noopener noreferrer"
                 title={`@${artist.instagram}`}
                 aria-label={`Instagram @${artist.instagram}`}
-                className="text-white/40 transition hover:text-[#ff00cc]"
+                className="text-[#9aa0aa] transition hover:text-[#1c1e24]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                   <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -70,14 +70,14 @@ export default async function ArtistPage({
             )}
           </div>
           {artist.name_zh && artist.name_zh !== artist.name && (
-            <div className="mt-1 text-white/60">{artist.name_zh}</div>
+            <div className="mt-1 text-[#5e636d]">{artist.name_zh}</div>
           )}
           {artist.group && (
-            <div className="mt-0.5 text-sm text-[#ff99ee]/70">{artist.group}</div>
+            <div className="mt-0.5 text-sm text-[#5e636d]/70">{artist.group}</div>
           )}
           <div className="mt-2 flex flex-wrap gap-1">
             {artist.genres.map((g) => (
-              <span key={g} className="rounded-full bg-[#ff00cc]/15 px-2.5 py-0.5 text-xs text-pink-300">
+              <span key={g} className="rounded-full bg-[#7c8088]/15 px-2.5 py-0.5 text-xs text-[#5e636d]">
                 {g}
               </span>
             ))}
@@ -91,7 +91,7 @@ export default async function ArtistPage({
       {/* Analysis cards + similar artists — shared 全部/美學/個性/表演/內容 filter */}
       <ProfileExplorer artist={artist} recsByLayer={recsByLayer} personalBySrc={personalBySrc} />
 
-      <Link href="/" className="inline-block text-sm text-white/50 hover:text-white">
+      <Link href="/" className="inline-block text-sm text-[#9aa0aa] hover:text-[#1c1e24]">
         ← {copy.backHome}
       </Link>
     </div>

@@ -62,10 +62,10 @@ export default function ChromeSparkle({
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <defs>
           <linearGradient id="chromeStar" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#888888" />
-            <stop offset="40%" stopColor="#ffffff" />
-            <stop offset="60%" stopColor="#aaaaaa" />
-            <stop offset="100%" stopColor="#ffffff" />
+            <stop offset="0%" stopColor="#5a5d63" />
+            <stop offset="42%" stopColor="#c8ccd2" />
+            <stop offset="60%" stopColor="#7c8088" />
+            <stop offset="100%" stopColor="#aeb3bb" />
           </linearGradient>
         </defs>
       </svg>

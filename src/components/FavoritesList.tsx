@@ -15,16 +15,16 @@ export default function FavoritesList({ allArtists }: { allArtists: ArtistLite[]
 
   return (
     <div className="space-y-8">
-      <h1 className="font-orbitron text-xl font-bold text-white">{copy.myFavorites}</h1>
+      <h1 className="font-orbitron text-xl font-bold text-[#1c1e24]">{copy.myFavorites}</h1>
 
-      <p className="rounded-xl border border-[#ff00cc]/20 bg-[#ff00cc]/5 px-4 py-3 text-xs text-white/50">
+      <p className="rounded-xl border border-[#c8ccd2]/20 bg-[#7c8088]/5 px-4 py-3 text-xs text-[#9aa0aa]">
         收藏目前儲存在這個瀏覽器中。（設定 Supabase 後可跨裝置同步）
       </p>
 
       {favArtists.length === 0 && (
-        <p className="text-white/50">
+        <p className="text-[#9aa0aa]">
           {copy.noFavorites}{" "}
-          <Link href="/" className="text-[#ff00cc] hover:underline">
+          <Link href="/" className="text-[#1c1e24] hover:underline">
             {copy.backHome}
           </Link>
         </p>
@@ -32,7 +32,7 @@ export default function FavoritesList({ allArtists }: { allArtists: ArtistLite[]
 
       {favArtists.length > 0 && (
         <section>
-          <h2 className="mb-3 text-sm font-semibold text-[#ff00cc]/70">{copy.artistsSection}</h2>
+          <h2 className="mb-3 text-sm font-semibold text-[#5e636d]">{copy.artistsSection}</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {favArtists.map((a) => (
               <ArtistCard key={a.id} artist={a} />

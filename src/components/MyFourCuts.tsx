@@ -57,7 +57,7 @@ export default function MyFourCuts({
 
   return (
     <section className={`flex flex-col items-center gap-3 ${className}`}>
-      <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#ff00cc]/80 uppercase">
+      <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
         你的人生四格 ✦
       </h2>
       <div key={ids.join(",")} className="fourcuts-pop">
@@ -65,7 +65,7 @@ export default function MyFourCuts({
       </div>
       <button
         onClick={repick}
-        className="text-xs text-pink-300/70 hover:text-pink-200 transition"
+        className="text-xs text-[#5e636d]/70 hover:text-[#7c8088] transition"
       >
         重新挑選 ✎
       </button>

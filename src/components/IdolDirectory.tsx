@@ -65,23 +65,23 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   return (
     <section id="idols" className="scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-baseline gap-3">
-        <h2 className="font-orbitron text-lg font-bold text-white">偶像圖鑑</h2>
-        <span className="text-xs text-white/50"><span className="chrome-text font-orbitron font-bold">{matched.length}</span> 位偶像</span>
+        <h2 className="font-orbitron text-lg font-bold text-[#1c1e24]">偶像圖鑑</h2>
+        <span className="text-xs text-[#9aa0aa]"><span className="chrome-text font-orbitron font-bold">{matched.length}</span> 位偶像</span>
       </div>
       <div className="chrome-divider"><span className="chrome-divider-star">✦</span></div>
 
       <div className="mb-5 space-y-2">
         {rows.map(({ label, key, options }) => (
           <div key={key} className="flex flex-wrap items-center gap-1.5">
-            <span className="w-8 shrink-0 text-xs text-white/50">{label}</span>
+            <span className="w-8 shrink-0 text-xs text-[#9aa0aa]">{label}</span>
             {options.map((opt) => (
               <button
                 key={opt}
                 onClick={() => setFilters((f) => ({ ...f, [key]: opt }))}
                 className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                   filters[key] === opt
-                    ? "bg-[#ff00cc] text-white shadow-[0_0_8px_#ff00cc80]"
-                    : "border border-[#ff00cc]/30 text-pink-300 hover:bg-[#ff00cc]/10"
+                    ? "bg-[#b4302b] text-white shadow-[0_0_8px_rgba(180,48,43,0.4)]"
+                    : "border border-[#c8ccd2] text-[#5e636d] hover:bg-[#7c8088]/10"
                 }`}
               >
                 {opt}
@@ -92,7 +92,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
       </div>
 
       {matched.length === 0 ? (
-        <p className="rounded-xl border border-[#ff00cc]/20 bg-[#ff00cc]/5 p-6 text-center text-sm text-white/50">
+        <p className="rounded-xl border border-[#c8ccd2]/20 bg-[#7c8088]/5 p-6 text-center text-sm text-[#9aa0aa]">
           沒有符合的偶像 — 放寬一下篩選吧
         </p>
       ) : (
@@ -113,8 +113,8 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
                 title="放進人生四格"
                 className={`absolute bottom-9 right-2 z-20 flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold transition ${
                   justAdded === a.id
-                    ? "bg-[#00e5ff] text-[#1a0028]"
-                    : "bg-[#ff00cc]/90 text-white hover:brightness-110"
+                    ? "bg-[#b4302b] text-white"
+                    : "bg-[#7c8088]/90 text-white hover:brightness-110"
                 }`}
               >
                 {justAdded === a.id ? "✓" : "＋"}

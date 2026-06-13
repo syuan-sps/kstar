@@ -23,7 +23,7 @@ export default function SearchBar() {
         onChange={(e) => setQ(e.target.value)}
         placeholder={copy.searchPlaceholder}
         aria-label={copy.search}
-        className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm outline-none placeholder:text-white/40 focus:border-fuchsia-400/60"
+        className="w-full rounded-full border border-[#c8ccd2] bg-[#f4f5f7] px-4 py-1.5 text-sm text-[#1c1e24] outline-none placeholder:text-[#9aa0aa] focus:border-[#56789f]"
       />
     </form>
   );

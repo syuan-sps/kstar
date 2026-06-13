@@ -82,10 +82,10 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
         <div className="window-body p-5 space-y-4">
           {step === 1 && (
             <>
-              <p className="font-orbitron text-sm font-bold text-[#1a0028]">
+              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">
                 你最喜歡的四位偶像？
               </p>
-              <p className="text-xs text-[#660066]">
+              <p className="text-xs text-[#5e636d]">
                 選出你的 Top 4 · 已選 {selected.length}/{MAX_PICKS}
               </p>
 
@@ -95,11 +95,11 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="搜尋偶像…"
-                className="w-full rounded-xl border border-[#ff00cc]/40 bg-white px-3 py-2 text-sm text-[#1a0028] outline-none focus:border-[#ff00cc] focus:ring-1 focus:ring-[#ff00cc]/30"
+                className="w-full rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2 text-sm text-[#1c1e24] outline-none focus:border-[#56789f] focus:ring-1 focus:ring-[#56789f]/30"
               />
 
               {results.length > 0 && (
-                <div className="rounded-xl border border-[#ff00cc]/20 bg-white divide-y divide-[#ff00cc]/10 max-h-48 overflow-y-auto">
+                <div className="rounded-xl border border-[#c8ccd2]/20 bg-white divide-y divide-[#c8ccd2]/10 max-h-48 overflow-y-auto">
                   {results.map((a) => {
                     const isSelected = selected.includes(a.id);
                     const isFull = selected.length >= MAX_PICKS && !isSelected;
@@ -108,18 +108,18 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
                         key={a.id}
                         onClick={() => toggleIdol(a.id)}
                         disabled={isFull}
-                        className="w-full flex items-center justify-between px-3 py-2 text-sm text-[#1a0028] hover:bg-[#ff00cc]/5 transition disabled:opacity-40 disabled:hover:bg-transparent"
+                        className="w-full flex items-center justify-between px-3 py-2 text-sm text-[#1c1e24] hover:bg-[#7c8088]/5 transition disabled:opacity-40 disabled:hover:bg-transparent"
                       >
                         <span>
                           {a.name}
                           {a.name_zh && a.name_zh !== a.name && (
-                            <span className="ml-1 text-xs text-[#660066]">{a.name_zh}</span>
+                            <span className="ml-1 text-xs text-[#5e636d]">{a.name_zh}</span>
                           )}
                           {a.group && (
-                            <span className="ml-1 text-[10px] text-[#cc0099]/70">{a.group}</span>
+                            <span className="ml-1 text-[10px] text-[#1c1e24]/70">{a.group}</span>
                           )}
                         </span>
-                        {isSelected && <span className="text-[#ff00cc]">✓</span>}
+                        {isSelected && <span className="text-[#b4302b]">✓</span>}
                       </button>
                     );
                   })}
@@ -133,7 +133,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
                     <span
                       key={a.id}
                       onClick={() => toggleIdol(a.id)}
-                      className="cursor-pointer rounded-full bg-[#ff00cc]/15 px-3 py-1 text-xs font-semibold text-[#cc0099] hover:bg-[#ff00cc]/25"
+                      className="cursor-pointer rounded-full bg-[#b4302b]/15 px-3 py-1 text-xs font-semibold text-[#b4302b] hover:bg-[#b4302b]/25"
                     >
                       {a.name} ×
                     </span>
@@ -144,14 +144,14 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
               <div className="flex justify-between items-center pt-1">
                 <button
                   onClick={dismiss}
-                  className="text-xs text-[#990066]/60 hover:text-[#990066]"
+                  className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]"
                 >
                   先跳過
                 </button>
                 <button
                   disabled={selected.length !== MAX_PICKS}
                   onClick={() => setStep(2)}
-                  className="rounded-full bg-gradient-to-r from-[#ff00cc] to-[#9933ff] px-4 py-1.5 text-xs font-bold text-white disabled:opacity-40"
+                  className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white disabled:opacity-40"
                 >
                   沖洗照片 →
                 </button>
@@ -161,10 +161,10 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
 
           {step === 2 && (
             <>
-              <p className="font-orbitron text-sm font-bold text-[#1a0028]">
+              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">
                 你的人生四格 ✦
               </p>
-              <p className="text-xs text-[#660066]">和你的本命合照一張</p>
+              <p className="text-xs text-[#5e636d]">和你的本命合照一張</p>
 
               {/* 인생네컷 — Life in 4 Cuts photobooth strip */}
               <FourCuts artists={selectedArtists} className="mx-auto w-full max-w-[280px]" />
@@ -172,13 +172,13 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
               <div className="flex justify-between items-center pt-1">
                 <button
                   onClick={() => setStep(1)}
-                  className="text-xs text-[#990066]/60 hover:text-[#990066]"
+                  className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]"
                 >
                   ← 重選
                 </button>
                 <button
                   onClick={complete}
-                  className="rounded-full bg-gradient-to-r from-[#ff00cc] to-[#9933ff] px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_12px_#ff00cc60] hover:brightness-110"
+                  className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] hover:brightness-110"
                 >
                   收進相簿 ✦
                 </button>
