@@ -18,8 +18,8 @@ const PILL_LABELS: Record<LayerFilter, string> = {
 
 const FILTERS: LayerFilter[] = ["all", "aesthetic", "personality", "performance", "content"];
 
-function filterWeights(f: LayerFilter): Weights {
-  if (f === "all") return DEFAULT_WEIGHTS;
+function filterWeights(f: LayerFilter, allWeights: Weights = DEFAULT_WEIGHTS): Weights {
+  if (f === "all") return allWeights;  // 全部 honors the user's stored weights
   return { aesthetic: 0, personality: 0, performance: 0, content: 0, [f]: 1 };
 }
 
@@ -40,6 +40,7 @@ interface Props {
 export default function SimilarSection({ sourceArtist, allArtists, filter, onFilterChange }: Props) {
   const [mounted, setMounted] = useState(false);
   const [topIdols, setTopIdols] = useState<string[]>([]);
+  const [userWeights, setUserWeights] = useState<Weights>(DEFAULT_WEIGHTS);
   const [candidates, setCandidates] = useState<SimilarArtist[]>([]);
   const [reasons, setReasons] = useState<Record<string, string>>({});
   const [reasonsLoading, setReasonsLoading] = useState(false);
@@ -48,7 +49,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
 
   // Score candidates based on current filter
   const score = useCallback((f: LayerFilter, weights?: Weights) => {
-    const w = weights ?? filterWeights(f);
+    const w = weights ?? filterWeights(f, userWeights);
     const results = similarArtists(sourceArtist, allArtists, w);
 
     // If filtering by a single layer and all score 0, fall back
@@ -60,7 +61,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
       setFallbackNote(false);
       setCandidates(results.slice(0, 6));
     }
-  }, [sourceArtist, allArtists]);
+  }, [sourceArtist, allArtists, userWeights]);
 
   // Fetch AI reasons for displayed candidates
   const fetchReasons = useCallback(async (artists: SimilarArtist[], weights: Weights) => {
@@ -100,7 +101,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
       const raw = localStorage.getItem("kstar:prefs");
       if (raw) {
         const prefs = JSON.parse(raw) as { weights: Weights; topIdols?: string[] };
-        if (prefs.weights) weights = prefs.weights;
+        if (prefs.weights) { weights = prefs.weights; setUserWeights(prefs.weights); }
         if (Array.isArray(prefs.topIdols)) setTopIdols(prefs.topIdols);
       }
       const results = similarArtists(sourceArtist, allArtists, weights);
@@ -122,7 +123,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
     onFilterChange(f);
     score(f);
     // Fetch new reasons for the re-scored list
-    const w = filterWeights(f);
+    const w = filterWeights(f, userWeights);
     const results = similarArtists(sourceArtist, allArtists, w);
     const validResults = f !== "all" && results.every((r) => r.score < 0.01)
       ? similarArtists(sourceArtist, allArtists, DEFAULT_WEIGHTS).slice(0, 6)

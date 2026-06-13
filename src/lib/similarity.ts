@@ -169,9 +169,23 @@ export function similarArtists(
         reason = shared.length ? `相同曲風：${shared[0]}` : "同為人氣偶像";
       }
 
-      return { artist: a, score, layerScores, topTraits, reasons: [reason] };
+      // Overall similarity under default weights — used as a tie-break so
+      // low/zero scorers on a single layer still rank meaningfully.
+      const overall =
+        layerScores.aesthetic   * DEFAULT_WEIGHTS.aesthetic +
+        layerScores.personality * DEFAULT_WEIGHTS.personality +
+        layerScores.performance * DEFAULT_WEIGHTS.performance +
+        layerScores.content     * DEFAULT_WEIGHTS.content;
+
+      return { artist: a, score, layerScores, topTraits, reasons: [reason], overall };
     })
-    .filter((s) => s.score > 0.05)
-    .sort((x, y) => y.score - x.score)
-    .slice(0, limit);
+    .sort(
+      (x, y) =>
+        y.score - x.score ||
+        y.overall - x.overall ||
+        y.artist.popularity - x.artist.popularity ||
+        x.artist.id.localeCompare(y.artist.id)
+    )
+    .slice(0, limit)
+    .map(({ overall: _overall, ...rest }) => rest);
 }
