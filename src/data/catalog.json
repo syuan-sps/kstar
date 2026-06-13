@@ -29623,6 +29623,2555 @@
           "summary": "WJSN主唱——清麗柔美與鐵肺高音。"
         }
       }
+    },
+    {
+      "id": "chungha",
+      "name": "Chungha",
+      "name_zh": "金請夏",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 88,
+      "followers": 8800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "華麗舞臺",
+            "女王",
+            "俐落",
+            "性感"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "紅"
+          ],
+          "vibe": "華麗女王的俐落舞臺"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ISTJ",
+          "vibe": "自律拚命的舞臺女王",
+          "trait_tags": [
+            "自律",
+            "拚命",
+            "完美主義",
+            "女王"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "solo dance queen",
+          "roles": [
+            "soloist",
+            "main dancer"
+          ],
+          "vibe": "碾壓級的solo舞臺",
+          "trait_tags": [
+            "主舞",
+            "氣場",
+            "現場",
+            "完成度"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "時尚"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "練舞房汗水",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "時尚",
+            "努力哲學",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "自律拚命的舞臺女王",
+          "trait_tags": [
+            "自律",
+            "主舞",
+            "華麗舞臺",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "選秀出身的solo舞臺女王——自律拚命與華麗氣場。"
+        }
+      }
+    },
+    {
+      "id": "hyuna",
+      "name": "HyunA",
+      "name_zh": "金泫雅",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 84,
+      "followers": 8400000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "大膽性感",
+            "華麗",
+            "個性",
+            "自由"
+          ],
+          "color_palette": [
+            "紅",
+            "黑",
+            "粉"
+          ],
+          "vibe": "大膽性感的自由華麗"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ESFP",
+          "vibe": "做自己的性感icon",
+          "trait_tags": [
+            "大膽",
+            "自由",
+            "坦率",
+            "個性"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "sexy icon",
+          "roles": [
+            "soloist"
+          ],
+          "vibe": "魅惑張力的solo舞臺",
+          "trait_tags": [
+            "氣場",
+            "魅惑",
+            "台風",
+            "表現"
+          ]
+        },
+        "content": {
+          "topics": [
+            "時尚",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "美妝",
+            "動物"
+          ],
+          "value_topics": [
+            "自我認同",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "自由的icon",
+          "trait_tags": [
+            "時尚",
+            "美妝",
+            "動物",
+            "自我認同",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "做自己的性感icon",
+          "trait_tags": [
+            "大膽",
+            "氣場",
+            "大膽性感",
+            "時尚",
+            "自我認同"
+          ],
+          "summary": "K-pop性感女王——大膽自由與魅惑張力。"
+        }
+      }
+    },
+    {
+      "id": "jessi",
+      "name": "Jessi",
+      "name_zh": "扈賢周",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 82,
+      "followers": 8200000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "美式辣",
+            "華麗",
+            "大膽",
+            "嘻哈"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "紅"
+          ],
+          "vibe": "美式嘻哈的大膽華麗"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESTP",
+          "vibe": "直球真實的美式大姐",
+          "trait_tags": [
+            "直球",
+            "真實",
+            "幽默",
+            "大姐"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "american baddie",
+          "roles": [
+            "soloist",
+            "rapper"
+          ],
+          "vibe": "氣勢carry的饒舌",
+          "trait_tags": [
+            "饒舌",
+            "氣勢",
+            "現場",
+            "carry"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美食",
+            "時尚"
+          ],
+          "value_topics": [
+            "自信表達",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "真實不演",
+          "trait_tags": [
+            "健身",
+            "美食",
+            "時尚",
+            "自信表達",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "直球真實的美式大姐",
+          "trait_tags": [
+            "直球",
+            "饒舌",
+            "美式辣",
+            "健身",
+            "自信表達"
+          ],
+          "summary": "美韓嘻哈大姐——直球真實與氣勢饒舌。"
+        }
+      }
+    },
+    {
+      "id": "leehi",
+      "name": "Lee Hi",
+      "name_zh": "李遐怡",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "復古爵士",
+            "華麗",
+            "典雅",
+            "靈魂"
+          ],
+          "color_palette": [
+            "酒紅",
+            "金",
+            "黑"
+          ],
+          "vibe": "復古爵士的典雅靈魂"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INFP",
+          "vibe": "沉穩內斂的靈魂歌姬",
+          "trait_tags": [
+            "沉穩",
+            "內斂",
+            "真摯",
+            "靈魂"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "soulful diva",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "靈魂唱腔的solo",
+          "trait_tags": [
+            "主唱",
+            "靈魂",
+            "音色",
+            "現場"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "藝術",
+            "居家日常"
+          ],
+          "value_topics": [
+            "自我認同",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "靈魂翻唱",
+          "trait_tags": [
+            "音樂創作",
+            "藝術",
+            "居家日常",
+            "自我認同",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "沉穩內斂的靈魂歌姬",
+          "trait_tags": [
+            "沉穩",
+            "主唱",
+            "復古爵士",
+            "音樂創作",
+            "自我認同"
+          ],
+          "summary": "YG出身的靈魂歌姬——復古爵士與低音靈魂。"
+        }
+      }
+    },
+    {
+      "id": "heize",
+      "name": "Heize",
+      "name_zh": "張多蕙",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "都會感性",
+            "文藝",
+            "柔和",
+            "氛圍"
+          ],
+          "color_palette": [
+            "米",
+            "棕",
+            "酒紅"
+          ],
+          "vibe": "都會感性的文藝氛圍"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFP",
+          "vibe": "感性細膩的唱作人",
+          "trait_tags": [
+            "感性",
+            "細膩",
+            "文藝",
+            "真摯"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "soloist",
+          "stage_persona": "emotional singer-rapper",
+          "roles": [
+            "soloist",
+            "songwriter"
+          ],
+          "vibe": "R&B與rap的唱作",
+          "trait_tags": [
+            "唱作",
+            "R&B",
+            "rap",
+            "氛圍"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "攝影"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "攝影",
+            "居家日常"
+          ],
+          "value_topics": [
+            "自我認同",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "雨天歌單",
+          "trait_tags": [
+            "音樂創作",
+            "攝影",
+            "居家日常",
+            "自我認同",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "感性細膩的唱作人",
+          "trait_tags": [
+            "感性",
+            "唱作",
+            "都會感性",
+            "音樂創作",
+            "自我認同"
+          ],
+          "summary": "都會感性唱作人——文藝氛圍與R&B轉rap。"
+        }
+      }
+    },
+    {
+      "id": "zico",
+      "name": "Zico",
+      "name_zh": "禹智皓",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 83,
+      "followers": 8300000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "嘻哈潮流",
+            "街頭",
+            "個性",
+            "華麗"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "紅"
+          ],
+          "vibe": "嘻哈潮流的個性街頭"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ENTP",
+          "vibe": "鬼才製作的嘻哈領袖",
+          "trait_tags": [
+            "鬼才",
+            "製作",
+            "直率",
+            "領袖"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "soloist",
+          "stage_persona": "hitmaker rapper",
+          "roles": [
+            "soloist",
+            "rapper",
+            "songwriter"
+          ],
+          "vibe": "全能製作的饒舌",
+          "trait_tags": [
+            "饒舌",
+            "製作",
+            "flow",
+            "hook"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "時尚"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "時尚",
+            "健身"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "錄音室鬼才",
+          "trait_tags": [
+            "音樂創作",
+            "時尚",
+            "健身",
+            "專業職人精神",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "鬼才製作的嘻哈領袖",
+          "trait_tags": [
+            "鬼才",
+            "饒舌",
+            "嘻哈潮流",
+            "音樂創作",
+            "專業職人精神"
+          ],
+          "summary": "Block B出身的嘻哈鬼才——製作全能與洗腦hook。"
+        }
+      }
+    },
+    {
+      "id": "crush",
+      "name": "Crush",
+      "name_zh": "申效涉",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "都會R&B",
+            "簡約",
+            "溫柔",
+            "質感"
+          ],
+          "color_palette": [
+            "黑",
+            "米",
+            "棕"
+          ],
+          "vibe": "都會R&B的溫柔質感"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFP",
+          "vibe": "溫柔深情的R&B王子",
+          "trait_tags": [
+            "溫柔",
+            "深情",
+            "質感",
+            "真摯"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "r&b prince",
+          "roles": [
+            "soloist",
+            "main vocalist",
+            "songwriter"
+          ],
+          "vibe": "絲滑唱腔的R&B",
+          "trait_tags": [
+            "主唱",
+            "R&B",
+            "絲滑",
+            "唱作"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "深夜R&B",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "溫柔深情的R&B王子",
+          "trait_tags": [
+            "溫柔",
+            "主唱",
+            "都會R&B",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "韓國R&B王子——絲滑唱腔與都會溫柔。"
+        }
+      }
+    },
+    {
+      "id": "dean",
+      "name": "DEAN",
+      "name_zh": "權革",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "暗黑都會",
+            "前衛",
+            "氛圍",
+            "質感"
+          ],
+          "color_palette": [
+            "黑",
+            "深藍",
+            "銀"
+          ],
+          "vibe": "暗黑都會的前衛氛圍"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "formal",
+          "mbti": "INFP",
+          "vibe": "神祕低調的另類R&B",
+          "trait_tags": [
+            "神祕",
+            "低調",
+            "前衛",
+            "藝術"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "alt r&b artist",
+          "roles": [
+            "soloist",
+            "songwriter"
+          ],
+          "vibe": "氛圍唱腔的唱作",
+          "trait_tags": [
+            "唱作",
+            "氛圍",
+            "R&B",
+            "製作"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "藝術",
+            "攝影"
+          ],
+          "value_topics": [
+            "自我認同",
+            "自由奔放"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "暗夜創作",
+          "trait_tags": [
+            "音樂創作",
+            "藝術",
+            "攝影",
+            "自我認同",
+            "自由奔放"
+          ]
+        },
+        "overview": {
+          "vibe": "神祕低調的另類R&B",
+          "trait_tags": [
+            "神祕",
+            "唱作",
+            "暗黑都會",
+            "音樂創作",
+            "自我認同"
+          ],
+          "summary": "另類R&B藝術家——暗黑氛圍與前衛質感。"
+        }
+      }
+    },
+    {
+      "id": "jaypark",
+      "name": "Jay Park",
+      "name_zh": "朴載範",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 82,
+      "followers": 8200000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "嘻哈大佬",
+            "街頭",
+            "健碩",
+            "華麗"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "白"
+          ],
+          "vibe": "嘻哈大佬的健碩街頭"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENTP",
+          "vibe": "直率野心的嘻哈大佬",
+          "trait_tags": [
+            "野心",
+            "直率",
+            "健碩",
+            "領袖"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "soloist",
+          "stage_persona": "hip-hop mogul",
+          "roles": [
+            "soloist",
+            "rapper"
+          ],
+          "vibe": "groove滿載的饒舌",
+          "trait_tags": [
+            "饒舌",
+            "groove",
+            "製作",
+            "舞線"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "時尚"
+          ],
+          "value_topics": [
+            "自信表達",
+            "努力哲學"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "AOMG日常",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "時尚",
+            "自信表達",
+            "努力哲學"
+          ]
+        },
+        "overview": {
+          "vibe": "直率野心的嘻哈大佬",
+          "trait_tags": [
+            "野心",
+            "饒舌",
+            "嘻哈大佬",
+            "健身",
+            "自信表達"
+          ],
+          "summary": "韓國嘻哈大佬——groove饒舌與廠牌野心。"
+        }
+      }
+    },
+    {
+      "id": "somi",
+      "name": "Jeon Somi",
+      "name_zh": "全昭彌",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "明亮少女",
+            "繽紛",
+            "俏皮",
+            "清新"
+          ],
+          "color_palette": [
+            "粉",
+            "白",
+            "亮黃"
+          ],
+          "vibe": "明亮繽紛的俏皮清新"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ESFP",
+          "vibe": "直率可愛的混血少女",
+          "trait_tags": [
+            "直率",
+            "可愛",
+            "混血",
+            "親和"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "it-girl soloist",
+          "roles": [
+            "soloist"
+          ],
+          "vibe": "清亮solo的台風",
+          "trait_tags": [
+            "solo",
+            "清亮",
+            "台風",
+            "表現"
+          ]
+        },
+        "content": {
+          "topics": [
+            "時尚",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "美妝",
+            "美食"
+          ],
+          "value_topics": [
+            "自信表達",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "Somi日常",
+          "trait_tags": [
+            "時尚",
+            "美妝",
+            "美食",
+            "自信表達",
+            "正向思考"
+          ]
+        },
+        "overview": {
+          "vibe": "直率可愛的混血少女",
+          "trait_tags": [
+            "直率",
+            "solo",
+            "明亮少女",
+            "時尚",
+            "自信表達"
+          ],
+          "summary": "選秀出身的It-girl——混血俏皮與洗腦solo。"
+        }
+      }
+    },
+    {
+      "id": "bibi",
+      "name": "BIBI",
+      "name_zh": "金亨瑞",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "復古暗黑",
+            "華麗",
+            "個性",
+            "電影感"
+          ],
+          "color_palette": [
+            "酒紅",
+            "黑",
+            "金"
+          ],
+          "vibe": "復古暗黑的電影華麗"
+        },
+        "personality": {
+          "energy_type": "mysterious",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "INFP",
+          "vibe": "坦率大膽的故事歌姬",
+          "trait_tags": [
+            "坦率",
+            "大膽",
+            "故事感",
+            "個性"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "storyteller artist",
+          "roles": [
+            "soloist",
+            "songwriter"
+          ],
+          "vibe": "敘事唱作的魅惑",
+          "trait_tags": [
+            "唱作",
+            "敘事",
+            "魅惑",
+            "氛圍"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "藝術",
+            "美食"
+          ],
+          "value_topics": [
+            "自我認同",
+            "自由奔放"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "壞女孩日記",
+          "trait_tags": [
+            "音樂創作",
+            "藝術",
+            "美食",
+            "自我認同",
+            "自由奔放"
+          ]
+        },
+        "overview": {
+          "vibe": "坦率大膽的故事歌姬",
+          "trait_tags": [
+            "坦率",
+            "唱作",
+            "復古暗黑",
+            "音樂創作",
+            "自我認同"
+          ],
+          "summary": "敘事系唱作歌姬——復古電影感與坦率魅惑。"
+        }
+      }
+    },
+    {
+      "id": "kangdaniel",
+      "name": "Kang Daniel",
+      "name_zh": "姜丹尼爾",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "都會俐落",
+            "簡約",
+            "成熟",
+            "質感"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "灰"
+          ],
+          "vibe": "都會俐落的成熟質感"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFJ",
+          "vibe": "溫柔可靠的努力派",
+          "trait_tags": [
+            "溫柔",
+            "可靠",
+            "努力",
+            "真摯"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "reliable performer",
+          "roles": [
+            "soloist",
+            "main dancer"
+          ],
+          "vibe": "力量舞線的solo",
+          "trait_tags": [
+            "主舞",
+            "力量",
+            "台風",
+            "完成度"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "動物"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "動物",
+            "音樂創作"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "努力的證明",
+          "trait_tags": [
+            "健身",
+            "動物",
+            "音樂創作",
+            "努力哲學",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "溫柔可靠的努力派",
+          "trait_tags": [
+            "溫柔",
+            "主舞",
+            "都會俐落",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "選秀國民製作人1位——力量舞線與努力派。"
+        }
+      }
+    },
+    {
+      "id": "yena",
+      "name": "Choi Yena",
+      "name_zh": "崔叡娜",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "繽紛活力",
+            "俏皮",
+            "明亮",
+            "華麗"
+          ],
+          "color_palette": [
+            "亮黃",
+            "粉",
+            "黑"
+          ],
+          "vibe": "繽紛活力的俏皮華麗"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENFP",
+          "vibe": "古靈精怪的氣氛女王",
+          "trait_tags": [
+            "古靈精怪",
+            "活力",
+            "綜藝",
+            "親和"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "quirky energizer",
+          "roles": [
+            "soloist"
+          ],
+          "vibe": "能量solo的台風",
+          "trait_tags": [
+            "solo",
+            "能量",
+            "台風",
+            "綜藝"
+          ]
+        },
+        "content": {
+          "topics": [
+            "時尚",
+            "遊戲"
+          ],
+          "lifestyle_topics": [
+            "時尚",
+            "遊戲",
+            "美食"
+          ],
+          "value_topics": [
+            "自信表達",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "古怪可愛",
+          "trait_tags": [
+            "時尚",
+            "遊戲",
+            "美食",
+            "自信表達",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "古靈精怪的氣氛女王",
+          "trait_tags": [
+            "古靈精怪",
+            "solo",
+            "繽紛活力",
+            "時尚",
+            "自信表達"
+          ],
+          "summary": "IZONE出身soloist——古靈精怪與繽紛能量。"
+        }
+      }
+    },
+    {
+      "id": "kwoneunbi",
+      "name": "Kwon Eunbi",
+      "name_zh": "權恩妃",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "華麗優雅",
+            "性感",
+            "端莊",
+            "氣場"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "酒紅"
+          ],
+          "vibe": "華麗優雅的性感氣場"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ESFJ",
+          "vibe": "可靠端莊的姐系solo",
+          "trait_tags": [
+            "可靠",
+            "端莊",
+            "氣場",
+            "專業"
+          ]
+        },
+        "performance": {
+          "dance_style": "theatrical fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "elegant performer",
+          "roles": [
+            "soloist",
+            "main dancer"
+          ],
+          "vibe": "敘事舞線的氣場",
+          "trait_tags": [
+            "主舞",
+            "敘事",
+            "氣場",
+            "表現"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "美妝",
+            "時尚"
+          ],
+          "value_topics": [
+            "自信表達",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "aesthetic",
+          "vibe": "氣場solo",
+          "trait_tags": [
+            "健身",
+            "美妝",
+            "時尚",
+            "自信表達",
+            "自我認同"
+          ]
+        },
+        "overview": {
+          "vibe": "可靠端莊的姐系solo",
+          "trait_tags": [
+            "可靠",
+            "主舞",
+            "華麗優雅",
+            "健身",
+            "自信表達"
+          ],
+          "summary": "IZONE隊長出身——華麗氣場與敘事舞線。"
+        }
+      }
+    },
+    {
+      "id": "joyuri",
+      "name": "Jo Yuri",
+      "name_zh": "曺柔理",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清新甜美",
+            "明亮",
+            "少女",
+            "柔和"
+          ],
+          "color_palette": [
+            "粉",
+            "白",
+            "天藍"
+          ],
+          "vibe": "清新甜美的明亮柔和"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "aegyo-forward",
+          "mbti": "ISFP",
+          "vibe": "愛笑真摯的清亮歌姬",
+          "trait_tags": [
+            "愛笑",
+            "真摯",
+            "親和",
+            "清新"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "bright vocalist",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "清亮主唱的solo",
+          "trait_tags": [
+            "主唱",
+            "清亮",
+            "音色",
+            "現場"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美妝"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美妝",
+            "居家日常"
+          ],
+          "value_topics": [
+            "正向思考",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "清亮翻唱",
+          "trait_tags": [
+            "音樂創作",
+            "美妝",
+            "居家日常",
+            "正向思考",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "愛笑真摯的清亮歌姬",
+          "trait_tags": [
+            "愛笑",
+            "主唱",
+            "清新甜美",
+            "音樂創作",
+            "正向思考"
+          ],
+          "summary": "IZONE出身soloist——清新甜美與清亮高音。"
+        }
+      }
+    },
+    {
+      "id": "suhyun",
+      "name": "Lee Suhyun",
+      "name_zh": "李秀賢",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清新自然",
+            "隨性",
+            "明亮",
+            "純粹"
+          ],
+          "color_palette": [
+            "白",
+            "米",
+            "嫩黃"
+          ],
+          "vibe": "清新自然的隨性純粹"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "playful",
+          "mbti": "ENFP",
+          "vibe": "直率可愛的天賦歌姬",
+          "trait_tags": [
+            "直率",
+            "可愛",
+            "天賦",
+            "隨性"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "gifted vocalist",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "天賦音色的主唱",
+          "trait_tags": [
+            "主唱",
+            "天賦",
+            "音色",
+            "現場"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "哥哥與我",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "居家日常",
+            "真誠待粉",
+            "自我認同"
+          ]
+        },
+        "overview": {
+          "vibe": "直率可愛的天賦歌姬",
+          "trait_tags": [
+            "直率",
+            "主唱",
+            "清新自然",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "AKMU妹妹的solo——天賦音色與清新隨性。"
+        }
+      }
+    },
+    {
+      "id": "younha",
+      "name": "Younha",
+      "name_zh": "高潤荷",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 79,
+      "followers": 7900000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "搖滾抒情",
+            "典雅",
+            "深情",
+            "質感"
+          ],
+          "color_palette": [
+            "深藍",
+            "黑",
+            "銀"
+          ],
+          "vibe": "搖滾抒情的深情質感"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "INFJ",
+          "vibe": "真摯暖心的唱作姐",
+          "trait_tags": [
+            "真摯",
+            "暖心",
+            "知性",
+            "深情"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "rock balladeer",
+          "roles": [
+            "soloist",
+            "main vocalist",
+            "songwriter"
+          ],
+          "vibe": "高音爆發的唱作",
+          "trait_tags": [
+            "主唱",
+            "高音",
+            "搖滾",
+            "唱作"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "藝術"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "藝術",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "深夜電台",
+          "trait_tags": [
+            "音樂創作",
+            "藝術",
+            "居家日常",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "真摯暖心的唱作姐",
+          "trait_tags": [
+            "真摯",
+            "主唱",
+            "搖滾抒情",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "搖滾抒情唱作人——高音爆發與真摯暖心。"
+        }
+      }
+    },
+    {
+      "id": "ailee",
+      "name": "Ailee",
+      "name_zh": "李藝真",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 81,
+      "followers": 8100000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "華麗大器",
+            "女王",
+            "氣場",
+            "性感"
+          ],
+          "color_palette": [
+            "紅",
+            "金",
+            "黑"
+          ],
+          "vibe": "華麗大器的女王氣場"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESFP",
+          "vibe": "直率自信的鐵肺歌后",
+          "trait_tags": [
+            "直率",
+            "自信",
+            "大器",
+            "真摯"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "powerhouse diva",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "鐵肺爆發的solo",
+          "trait_tags": [
+            "主唱",
+            "鐵肺",
+            "爆發",
+            "現場"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "健身"
+          ],
+          "value_topics": [
+            "自信表達",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "現場炸場",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "健身",
+            "自信表達",
+            "自我認同"
+          ]
+        },
+        "overview": {
+          "vibe": "直率自信的鐵肺歌后",
+          "trait_tags": [
+            "直率",
+            "主唱",
+            "華麗大器",
+            "音樂創作",
+            "自信表達"
+          ],
+          "summary": "美韓鐵肺歌后——華麗大器與爆發高音。"
+        }
+      }
+    },
+    {
+      "id": "boa",
+      "name": "BoA",
+      "name_zh": "權寶雅",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 83,
+      "followers": 8300000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "亞洲天后",
+            "俐落",
+            "氣場",
+            "經典"
+          ],
+          "color_palette": [
+            "黑",
+            "銀",
+            "白"
+          ],
+          "vibe": "亞洲天后的俐落氣場"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "formal",
+          "mbti": "ENTJ",
+          "vibe": "自律專業的亞洲之星",
+          "trait_tags": [
+            "自律",
+            "專業",
+            "氣場",
+            "領袖"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "asia's star",
+          "roles": [
+            "soloist",
+            "main dancer"
+          ],
+          "vibe": "傳奇級的舞臺",
+          "trait_tags": [
+            "主舞",
+            "傳奇",
+            "氣場",
+            "完成度"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "旅遊"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "練習室傳奇",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "旅遊",
+            "努力哲學",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "自律專業的亞洲之星",
+          "trait_tags": [
+            "自律",
+            "主舞",
+            "亞洲天后",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "亞洲天后——傳奇舞線與自律專業。"
+        }
+      }
+    },
+    {
+      "id": "rain",
+      "name": "Rain",
+      "name_zh": "鄭智薰",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "性感舞王",
+            "華麗",
+            "健碩",
+            "經典"
+          ],
+          "color_palette": [
+            "黑",
+            "金",
+            "白"
+          ],
+          "vibe": "性感舞王的華麗健碩"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ESTP",
+          "vibe": "自信幽默的世界級舞王",
+          "trait_tags": [
+            "自信",
+            "幽默",
+            "健碩",
+            "拚勁"
+          ]
+        },
+        "performance": {
+          "dance_style": "powerful",
+          "vocal_type": "soloist",
+          "stage_persona": "world-class performer",
+          "roles": [
+            "soloist",
+            "main dancer"
+          ],
+          "vibe": "傳奇級的舞臺",
+          "trait_tags": [
+            "主舞",
+            "傳奇",
+            "氣場",
+            "表演"
+          ]
+        },
+        "content": {
+          "topics": [
+            "健身",
+            "音樂創作"
+          ],
+          "lifestyle_topics": [
+            "健身",
+            "音樂創作",
+            "時尚"
+          ],
+          "value_topics": [
+            "努力哲學",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "舞王日常",
+          "trait_tags": [
+            "健身",
+            "音樂創作",
+            "時尚",
+            "努力哲學",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "自信幽默的世界級舞王",
+          "trait_tags": [
+            "自信",
+            "主舞",
+            "性感舞王",
+            "健身",
+            "努力哲學"
+          ],
+          "summary": "世界級性感舞王——傳奇舞臺與自信幽默。"
+        }
+      }
+    },
+    {
+      "id": "psy",
+      "name": "PSY",
+      "name_zh": "朴載相",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 82,
+      "followers": 8200000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "華麗綜藝",
+            "大膽",
+            "幽默",
+            "派對"
+          ],
+          "color_palette": [
+            "金",
+            "黑",
+            "紅"
+          ],
+          "vibe": "華麗派對的大膽幽默"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "hype",
+          "mbti": "ENTP",
+          "vibe": "搞怪自嘲的派對之王",
+          "trait_tags": [
+            "搞怪",
+            "自嘲",
+            "派對",
+            "真實"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "soloist",
+          "stage_persona": "global entertainer",
+          "roles": [
+            "soloist",
+            "songwriter"
+          ],
+          "vibe": "全場嗨翻的舞臺",
+          "trait_tags": [
+            "舞臺",
+            "派對",
+            "綜藝",
+            "hook"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "遊戲"
+          ],
+          "value_topics": [
+            "幽默自嘲",
+            "自信表達"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "comedic",
+          "vibe": "全場嗨翻",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "遊戲",
+            "幽默自嘲",
+            "自信表達"
+          ]
+        },
+        "overview": {
+          "vibe": "搞怪自嘲的派對之王",
+          "trait_tags": [
+            "搞怪",
+            "舞臺",
+            "華麗綜藝",
+            "音樂創作",
+            "幽默自嘲"
+          ],
+          "summary": "全球神曲製造機——派對舞臺與搞怪自嘲。"
+        }
+      }
+    },
+    {
+      "id": "bol4",
+      "name": "Bolbbalgan4",
+      "name_zh": "安智煐",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清新文青",
+            "隨性",
+            "柔和",
+            "日常感"
+          ],
+          "color_palette": [
+            "米",
+            "橄欖綠",
+            "白"
+          ],
+          "vibe": "清新文青的隨性日常"
+        },
+        "personality": {
+          "energy_type": "warm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFP",
+          "vibe": "真摯感性的鄰家唱作",
+          "trait_tags": [
+            "真摯",
+            "感性",
+            "隨性",
+            "文青"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "indie singer-songwriter",
+          "roles": [
+            "soloist",
+            "main vocalist",
+            "songwriter"
+          ],
+          "vibe": "清亮音色的唱作",
+          "trait_tags": [
+            "唱作",
+            "清亮",
+            "音色",
+            "氛圍"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "動物"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "動物",
+            "居家日常"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "自我認同"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "校園民謠",
+          "trait_tags": [
+            "音樂創作",
+            "動物",
+            "居家日常",
+            "真誠待粉",
+            "自我認同"
+          ]
+        },
+        "overview": {
+          "vibe": "真摯感性的鄰家唱作",
+          "trait_tags": [
+            "真摯",
+            "唱作",
+            "清新文青",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "國民初戀系唱作——清新文青與鄰家音色。"
+        }
+      }
+    },
+    {
+      "id": "leeyoungji",
+      "name": "Lee Young Ji",
+      "name_zh": "李泳知",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 80,
+      "followers": 8000000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "率性嘻哈",
+            "街頭",
+            "俏皮",
+            "真實"
+          ],
+          "color_palette": [
+            "黑",
+            "白",
+            "橘"
+          ],
+          "vibe": "率性嘻哈的俏皮真實"
+        },
+        "personality": {
+          "energy_type": "high energy",
+          "fan_interaction": "mischievous-charming",
+          "mbti": "ENFP",
+          "vibe": "直率親和的MC饒舌",
+          "trait_tags": [
+            "直率",
+            "親和",
+            "俏皮",
+            "真誠"
+          ]
+        },
+        "performance": {
+          "dance_style": "rhythmic",
+          "vocal_type": "soloist",
+          "stage_persona": "rapper host",
+          "roles": [
+            "soloist",
+            "rapper"
+          ],
+          "vibe": "率性flow的饒舌",
+          "trait_tags": [
+            "饒舌",
+            "flow",
+            "MC",
+            "親和"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "美食"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "美食",
+            "遊戲"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "幽默自嘲"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "hype",
+          "vibe": "沒餐廳日常",
+          "trait_tags": [
+            "音樂創作",
+            "美食",
+            "遊戲",
+            "真誠待粉",
+            "幽默自嘲"
+          ]
+        },
+        "overview": {
+          "vibe": "直率親和的MC饒舌",
+          "trait_tags": [
+            "直率",
+            "饒舌",
+            "率性嘻哈",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "選秀冠軍饒舌MC——率性flow與真誠親和。"
+        }
+      }
+    },
+    {
+      "id": "lee-mujin",
+      "name": "Lee Mujin",
+      "name_zh": "李茂珍",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 4,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "清新校園",
+            "簡約",
+            "溫柔",
+            "純粹"
+          ],
+          "color_palette": [
+            "白",
+            "米",
+            "天藍"
+          ],
+          "vibe": "清新校園的溫柔純粹"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "parasocial-close",
+          "mbti": "ISFP",
+          "vibe": "真摯溫暖的清亮歌手",
+          "trait_tags": [
+            "真摯",
+            "溫暖",
+            "純粹",
+            "親和"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "warm vocalist",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "清亮高音的主唱",
+          "trait_tags": [
+            "主唱",
+            "清亮",
+            "高音",
+            "音色"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "居家日常",
+            "美食"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "正向思考"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "清亮翻唱",
+          "trait_tags": [
+            "音樂創作",
+            "居家日常",
+            "美食",
+            "真誠待粉",
+            "正向思考"
+          ]
+        },
+        "overview": {
+          "vibe": "真摯溫暖的清亮歌手",
+          "trait_tags": [
+            "真摯",
+            "主唱",
+            "清新校園",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "選秀出身的清亮歌手——校園溫柔與透明高音。"
+        }
+      }
+    },
+    {
+      "id": "punch",
+      "name": "Punch",
+      "name_zh": "裴珍榮",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 3,
+      "popularity": 77,
+      "followers": 7700000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "抒情氛圍",
+            "柔美",
+            "典雅",
+            "質感"
+          ],
+          "color_palette": [
+            "薄紫",
+            "白",
+            "米"
+          ],
+          "vibe": "抒情氛圍的柔美質感"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "INFP",
+          "vibe": "低調真摯的OST女王",
+          "trait_tags": [
+            "低調",
+            "真摯",
+            "柔美",
+            "細膩"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "ost queen",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "氛圍唱腔的OST",
+          "trait_tags": [
+            "主唱",
+            "OST",
+            "氛圍",
+            "音色"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "居家日常",
+            "藝術"
+          ],
+          "value_topics": [
+            "真誠待粉",
+            "專業職人精神"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "OST點播",
+          "trait_tags": [
+            "音樂創作",
+            "居家日常",
+            "藝術",
+            "真誠待粉",
+            "專業職人精神"
+          ]
+        },
+        "overview": {
+          "vibe": "低調真摯的OST女王",
+          "trait_tags": [
+            "低調",
+            "主唱",
+            "抒情氛圍",
+            "音樂創作",
+            "真誠待粉"
+          ],
+          "summary": "OST女王——抒情氛圍與柔美音色。"
+        }
+      }
+    },
+    {
+      "id": "gummy",
+      "name": "Gummy",
+      "name_zh": "朴志妍",
+      "group": null,
+      "genres": [
+        "k-pop",
+        "k-pop solo"
+      ],
+      "generation": 2,
+      "popularity": 78,
+      "followers": 7800000,
+      "image_url": null,
+      "instagram": null,
+      "profile": {
+        "aesthetic": {
+          "style_tags": [
+            "復古抒情",
+            "典雅",
+            "沉穩",
+            "靈魂"
+          ],
+          "color_palette": [
+            "酒紅",
+            "棕",
+            "黑"
+          ],
+          "vibe": "復古抒情的典雅靈魂"
+        },
+        "personality": {
+          "energy_type": "calm",
+          "fan_interaction": "formal",
+          "mbti": "ISFJ",
+          "vibe": "沉穩內斂的抒情歌后",
+          "trait_tags": [
+            "沉穩",
+            "內斂",
+            "真摯",
+            "靈魂"
+          ]
+        },
+        "performance": {
+          "dance_style": "fluid",
+          "vocal_type": "soloist",
+          "stage_persona": "soulful balladeer",
+          "roles": [
+            "soloist",
+            "main vocalist"
+          ],
+          "vibe": "靈魂唱腔的抒情",
+          "trait_tags": [
+            "主唱",
+            "靈魂",
+            "抒情",
+            "現場"
+          ]
+        },
+        "content": {
+          "topics": [
+            "音樂創作",
+            "居家日常"
+          ],
+          "lifestyle_topics": [
+            "音樂創作",
+            "居家日常",
+            "美食"
+          ],
+          "value_topics": [
+            "專業職人精神",
+            "真誠待粉"
+          ],
+          "sns_platform": [
+            "Instagram",
+            "YouTube"
+          ],
+          "content_tone": "intimate",
+          "vibe": "靈魂抒情",
+          "trait_tags": [
+            "音樂創作",
+            "居家日常",
+            "美食",
+            "專業職人精神",
+            "真誠待粉"
+          ]
+        },
+        "overview": {
+          "vibe": "沉穩內斂的抒情歌后",
+          "trait_tags": [
+            "沉穩",
+            "主唱",
+            "復古抒情",
+            "音樂創作",
+            "專業職人精神"
+          ],
+          "summary": "實力派抒情歌后——復古典雅與靈魂唱腔。"
+        }
+      }
     }
   ],
   "tracks": []
