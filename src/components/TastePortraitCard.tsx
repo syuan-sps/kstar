@@ -52,7 +52,7 @@ export default function TastePortraitCard({
           onClick={onRestart}
           className="rounded-full px-3 py-2 text-xs font-medium text-[#7c8088]/70 transition hover:text-[#7c8088]"
         >
-          ↻ 重測
+          ↻ {copy.redoQuiz}
         </button>
       )}
     </div>

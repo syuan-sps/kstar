@@ -56,4 +56,5 @@ export const copy = {
   reportResonance: "你最有共鳴的",
   shareDownloadStory: "下載限動卡",
   shareDownloadReport: "下載報告長圖",
+  redoQuiz: "重做測驗",
 } as const;

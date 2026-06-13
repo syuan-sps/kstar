@@ -12,6 +12,7 @@ import { getArchetype, type ArchetypeResult } from "@/lib/archetypes";
 import { zhTrait } from "@/lib/cardMeta";
 import { copy } from "@/lib/copy";
 import TastePortraitCard from "@/components/TastePortraitCard";
+import SoulQuiz from "@/components/SoulQuiz";
 import type { ResultAnswers } from "@/components/SoulReport";
 
 export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistLite[] }) {
@@ -19,6 +20,8 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ArchetypeResult | null>(null);
+  const [summaries, setSummaries] = useState<PickSummary[]>([]);
+  const [mode, setMode] = useState<"card" | "quiz">("card");
 
   const read = useCallback(() => {
     try {
@@ -68,13 +71,23 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
         body: JSON.stringify({ pickIds: prefs.topIdols }),
       });
       const data = (await res.json()) as { summaries?: PickSummary[] };
+      setSummaries(data.summaries ?? []);
       setResult(getArchetype(data.summaries ?? [], prefs.weights));
+      setMode("card");
       setOpen(true);
     } catch {
       /* ignore */
     } finally {
       setLoading(false);
     }
+  }
+
+  // Persist a redo (keeps topIdols; refreshes the home button via the event).
+  function persist(patch: Partial<UserPrefs>) {
+    if (!prefs) return;
+    const next: UserPrefs = { ...prefs, ...patch };
+    localStorage.setItem("kstar:prefs", JSON.stringify(next));
+    window.dispatchEvent(new Event("kstar:prefs-updated"));
   }
 
   return (
@@ -92,11 +105,17 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
           <div className="window-frame w-full max-w-md" onClick={(e) => e.stopPropagation()}>
             <div className="title-bar">
               <span className="mr-1.5 text-base">✦</span>
-              <span className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">{copy.resultTitle}</span>
+              <span className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">
+                {mode === "quiz" ? copy.redoQuiz : copy.resultTitle}
+              </span>
               <span className="win-btn win-btn-close" onClick={() => setOpen(false)} style={{ cursor: "pointer" }}>×</span>
             </div>
             <div className="window-body max-h-[85vh] overflow-y-auto p-5">
-              <TastePortraitCard result={result} picks={picks} answers={answers} />
+              {mode === "quiz" ? (
+                <SoulQuiz picks={picks} summaries={summaries} onPersist={persist} onClose={() => setOpen(false)} />
+              ) : (
+                <TastePortraitCard result={result} picks={picks} answers={answers} onRestart={() => setMode("quiz")} />
+              )}
             </div>
           </div>
         </div>,
