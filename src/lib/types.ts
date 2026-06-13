@@ -53,6 +53,29 @@ export interface PickSummary {
   tokens: PickTokens;
 }
 
+// ── Constellation (星圖) — force-graph of the user's picks + similar idols ──
+export interface ConstellationNode {
+  id: string;
+  name: string;
+  name_zh?: string | null;
+  group?: string | null;
+  image_url?: string | null;
+  image_focus?: number | null;
+  anchor: boolean;           // true = one of the user's 4 picks (a hub)
+}
+
+export interface ConstellationEdge {
+  source: string;            // satellite id
+  target: string;            // anchor id
+  weight: number;            // 0..1 similarity
+  layer: ScoreLayer;         // dominant layer for this pair → edge colour
+}
+
+export interface Constellation {
+  nodes: ConstellationNode[];
+  edges: ConstellationEdge[];
+}
+
 // ── Core data types ────────────────────────────────────────────────────
 export interface Artist {
   id: string;

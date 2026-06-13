@@ -1,6 +1,10 @@
 import catalogJson from "@/data/catalog.json";
 import { similarArtists } from "./similarity";
-import type { Artist, SimilarArtist, Catalog, PickSummary, LayerScores } from "./types";
+import { SCORE_LAYERS } from "./types";
+import type {
+  Artist, SimilarArtist, Catalog, PickSummary, LayerScores,
+  ScoreLayer, Constellation, ConstellationNode, ConstellationEdge,
+} from "./types";
 
 const local = catalogJson as unknown as Catalog;
 const artistsById = new Map<string, Artist>(local.artists.map((a) => [a.id, a]));
@@ -91,4 +95,96 @@ export async function getPickSummaries(pickIds: string[]): Promise<PickSummary[]
       },
     };
   });
+}
+
+// ── Constellation (星圖) ────────────────────────────────────────────────
+// SERVER-ONLY. Builds a force-graph: the 4 picks are anchors (hubs), each
+// surrounded by its most-similar idols. Satellites shared by ≥2 picks are
+// "bridges" (the shape of the user's taste). Only the lite node/edge data
+// crosses to the client — never the catalog.
+const SAT_PER_ANCHOR = 8;
+const MAX_SATELLITES = 21;
+
+function dominantLayer(ls: LayerScores): ScoreLayer {
+  let best: ScoreLayer = "aesthetic";
+  let bestV = -Infinity;
+  for (const L of SCORE_LAYERS) if (ls[L] > bestV) { bestV = ls[L]; best = L; }
+  return best;
+}
+const toNode = (a: Artist, anchor: boolean): ConstellationNode => ({
+  id: a.id, name: a.name, name_zh: a.name_zh ?? null, group: a.group ?? null,
+  image_url: a.image_url ?? null, image_focus: a.image_focus ?? null, anchor,
+});
+
+export async function getConstellation(pickIds: string[]): Promise<Constellation> {
+  const pickSet = new Set(pickIds);
+  const anchors = pickIds
+    .map((id) => artistsById.get(id))
+    .filter((a): a is Artist => Boolean(a));
+  if (!anchors.length) return { nodes: [], edges: [] };
+
+  // Per anchor: its top-K similar idols (excluding the other anchors).
+  const satEdges = new Map<string, ConstellationEdge[]>();
+  const satArtist = new Map<string, Artist>();
+  for (const anchor of anchors) {
+    const sims = similarArtists(anchor, local.artists, undefined, SAT_PER_ANCHOR + anchors.length);
+    let added = 0;
+    for (const s of sims) {
+      if (pickSet.has(s.artist.id)) continue;
+      if (added >= SAT_PER_ANCHOR) break;
+      added++;
+      satArtist.set(s.artist.id, s.artist);
+      const arr = satEdges.get(s.artist.id) ?? [];
+      arr.push({
+        source: s.artist.id,
+        target: anchor.id,
+        weight: Math.round(s.score * 1000) / 1000,
+        layer: dominantLayer(s.layerScores),
+      });
+      satEdges.set(s.artist.id, arr);
+    }
+  }
+
+  // Rank satellites: bridges (more anchor links) first, then total weight.
+  const ranked = [...satEdges.entries()]
+    .sort((a, b) => {
+      if (b[1].length !== a[1].length) return b[1].length - a[1].length;
+      const wa = a[1].reduce((s, e) => s + e.weight, 0);
+      const wb = b[1].reduce((s, e) => s + e.weight, 0);
+      return wb - wa;
+    })
+    .slice(0, MAX_SATELLITES);
+
+  const keptSats = ranked.map(([id]) => satArtist.get(id)!);
+  const nodes: ConstellationNode[] = [
+    ...anchors.map((a) => toNode(a, true)),
+    ...keptSats.map((a) => toNode(a, false)),
+  ];
+
+  // Satellite↔satellite edges: non-picks also link to each other by 4-layer
+  // similarity (up to 2 each, deduped, above a threshold) — the web that makes
+  // it feel like a constellation rather than 4 separate spokes.
+  const satIds = new Set(keptSats.map((a) => a.id));
+  const seen = new Set<string>();
+  const satEdgesOut: ConstellationEdge[] = [];
+  if (keptSats.length > 1) {
+    for (const sat of keptSats) {
+      let added = 0;
+      for (const s of similarArtists(sat, keptSats, undefined, 4)) {
+        if (added >= 2) break;
+        if (!satIds.has(s.artist.id) || s.score < 0.14) continue;
+        const key = sat.id < s.artist.id ? `${sat.id}|${s.artist.id}` : `${s.artist.id}|${sat.id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        added++;
+        satEdgesOut.push({
+          source: sat.id, target: s.artist.id,
+          weight: Math.round(s.score * 1000) / 1000, layer: dominantLayer(s.layerScores),
+        });
+      }
+    }
+  }
+
+  const edges: ConstellationEdge[] = [...ranked.flatMap(([, es]) => es), ...satEdgesOut];
+  return { nodes, edges };
 }

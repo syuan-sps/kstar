@@ -4,7 +4,7 @@
 // Card click → the idol's four-layer profile page.
 // Corner 「＋」 → swap the idol into the user's four-cut strip (oldest slot out).
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Weights } from "@/lib/types";
 import type { ArtistLite } from "@/lib/lite";
@@ -14,10 +14,28 @@ import {
 } from "@/lib/browse";
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
+import ConstellationView from "./ConstellationView";
+
+type CodexView = "list" | "star";
 
 export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   const [filters, setFilters] = useState<BrowseFilters>({ gender: "全部", gen: "全部", pos: "全部" });
   const [justAdded, setJustAdded] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [view, setView] = useState<CodexView>("list");
+
+  useEffect(() => {
+    setMounted(true);
+    try {
+      const v = localStorage.getItem("kstar:codexView");
+      if (v === "star" || v === "list") setView(v);
+    } catch { /* ignore */ }
+  }, []);
+
+  function changeView(v: CodexView) {
+    setView(v);
+    try { localStorage.setItem("kstar:codexView", v); } catch { /* ignore */ }
+  }
 
   const matched = artists
     .filter((a) => matchesLite(a, filters))
@@ -67,9 +85,28 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
       <div className="mb-4 flex flex-wrap items-baseline gap-3">
         <h2 className="font-orbitron text-lg font-bold text-[#1c1e24]">偶像圖鑑</h2>
         <span className="text-xs text-[#9aa0aa]"><span className="chrome-text font-orbitron font-bold">{matched.length}</span> 位偶像</span>
+        {mounted && (
+          <div className="ml-auto inline-flex self-center rounded-full border border-[#c8ccd2] bg-white p-0.5">
+            {([["list", "列表"], ["star", "星圖"]] as [CodexView, string][]).map(([v, label]) => (
+              <button
+                key={v}
+                onClick={() => changeView(v)}
+                className={`rounded-full px-3 py-1 text-xs font-bold transition ${
+                  view === v ? "bg-[#b4302b] text-white" : "text-[#7c8088] hover:bg-[#7c8088]/10"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="chrome-divider"><span className="chrome-divider-star">✦</span></div>
 
+      {view === "star" ? (
+        <ConstellationView />
+      ) : (
+      <>
       <div className="mb-5 space-y-2">
         {rows.map(({ label, key, options }) => (
           <div key={key} className="flex flex-wrap items-center gap-1.5">
@@ -122,6 +159,8 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
             </Link>
           ))}
         </div>
+      )}
+      </>
       )}
     </section>
   );
