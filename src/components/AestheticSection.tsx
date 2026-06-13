@@ -40,9 +40,9 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
 
       {/* trait chips */}
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {aes.style_tags.map((t) => (
+        {aes.style_tags.map((t, i) => (
           <span
-            key={t}
+            key={`${t}-${i}`}
             className="rounded-full bg-[#7c8088]/12 px-3 py-1 text-xs font-semibold text-[#1c1e24]"
           >
             {t}
@@ -56,8 +56,8 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
           色彩
         </div>
         <div className="flex flex-wrap gap-3">
-          {aes.color_palette.map((c) => (
-            <div key={c} className="flex items-center gap-1.5">
+          {aes.color_palette.map((c, i) => (
+            <div key={`${c}-${i}`} className="flex items-center gap-1.5">
               <span
                 className="h-4 w-4 rounded-full ring-1 ring-black/10"
                 style={{ backgroundColor: COLOR_HEX[c] ?? FALLBACK }}
@@ -101,9 +101,9 @@ function StyleTrack({
         <span>{label}</span>
       </div>
       <div className="flex flex-wrap gap-1.5">
-        {data.style_tags.map((t) => (
+        {data.style_tags.map((t, i) => (
           <span
-            key={t}
+            key={`${t}-${i}`}
             className="rounded-full bg-[#7c8088]/12 px-3 py-1 text-xs font-semibold text-[#1c1e24]"
           >
             {t}

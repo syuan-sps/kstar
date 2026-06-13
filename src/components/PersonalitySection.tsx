@@ -17,9 +17,9 @@ export default function PersonalitySection({ artist }: { artist: Artist }) {
 
       {p.trait_tags && p.trait_tags.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {p.trait_tags.map((t) => (
+          {p.trait_tags.map((t, i) => (
             <span
-              key={t}
+              key={`${t}-${i}`}
               className="rounded-full bg-[#7c8088]/12 px-3 py-1 text-xs font-semibold text-[#1c1e24]"
             >
               {t}
