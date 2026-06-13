@@ -58,7 +58,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
     <Link
       href={`/artist/${artist.id}`}
       onClick={handleTap}
-      className={`group block overflow-hidden rounded-2xl border-2 border-[#ff00cc]/30 bg-[#1f0533]/85 shadow-[3px_3px_0_rgba(204,0,255,0.25)] transition duration-200 hover:-translate-y-1 hover:border-[#ff00cc]/70 hover:shadow-[0_0_18px_rgba(255,0,204,0.45)] ${
+      className={`chrome-card group block overflow-hidden rounded-2xl border-2 border-[#ff00cc]/30 bg-[#1f0533]/85 shadow-[3px_3px_0_rgba(204,0,255,0.25)] transition duration-200 hover:-translate-y-1 hover:border-[#ff00cc]/70 hover:shadow-[0_0_18px_rgba(255,0,204,0.45)] ${
         isTouch && expanded ? LIFT : ""
       }`}
     >

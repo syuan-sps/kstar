@@ -132,6 +132,7 @@ export default function SimilarSection({
           ))}
         </div>
       </div>
+      <div className="chrome-divider"><span className="chrome-divider-star">✦</span></div>
 
       {candidates.length === 0 ? (
         <p className="text-white/50">{copy.noResults}</p>

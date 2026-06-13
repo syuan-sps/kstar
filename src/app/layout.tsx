@@ -7,6 +7,7 @@ import { copy } from "@/lib/copy";
 import { getAllArtistsLite } from "@/lib/data";
 import SearchBar from "@/components/SearchBar";
 import BgDecor from "@/components/BgDecor";
+import ChromeSparkle from "@/components/ChromeSparkle";
 import Taskbar from "@/components/Taskbar";
 import Onboarding from "@/components/Onboarding";
 
@@ -37,11 +38,13 @@ export default async function RootLayout({
         <Onboarding allArtists={liteArtists} />
         {/* Decorative background — fixed, behind everything */}
         <BgDecor />
+        {/* Y2K Silvercore layer — silver ✦ floating above the pink world */}
+        <ChromeSparkle density="low" zone="background" />
 
         <header className="relative z-20 sticky top-0 border-b border-[#ff00cc]/20 bg-[#1a0028]/85 backdrop-blur">
           <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3">
             <Link href="/" className="shrink-0 text-lg font-black tracking-tight">
-              <span className="font-orbitron bg-gradient-to-r from-[#ff00cc] to-[#00e5ff] bg-clip-text text-transparent">
+              <span className="font-orbitron chrome-text">
                 {copy.appName}
               </span>
             </Link>

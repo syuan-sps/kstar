@@ -66,8 +66,9 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
     <section id="idols" className="scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-baseline gap-3">
         <h2 className="font-orbitron text-lg font-bold text-white">偶像圖鑑</h2>
-        <span className="text-xs text-white/50">{matched.length} 位偶像</span>
+        <span className="text-xs text-white/50"><span className="chrome-text font-orbitron font-bold">{matched.length}</span> 位偶像</span>
       </div>
+      <div className="chrome-divider"><span className="chrome-divider-star">✦</span></div>
 
       <div className="mb-5 space-y-2">
         {rows.map(({ label, key, options }) => (

@@ -200,4 +200,102 @@ body {
 }
 .fourcuts-pop { animation: fourcuts-pop 0.45s ease-out; }
 
+/* ── Y2K Silvercore / Chrome layer ────────────────────── */
+/* Chrome display text — silver gradient fill (logo, hero, counts) */
+.chrome-text {
+  background: linear-gradient(
+    135deg,
+    #888888 0%,
+    #ffffff 35%,
+    #aaaaaa 50%,
+    #ffffff 65%,
+    #888888 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+/* Chrome section divider — thin mirrored line with a clipped silver ✦ */
+.chrome-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 20px;
+}
+.chrome-divider::before,
+.chrome-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 0.6),
+    rgba(255, 255, 255, 0.9),
+    rgba(192, 192, 192, 0.6),
+    transparent
+  );
+}
+.chrome-divider-star {
+  color: transparent;
+  background: linear-gradient(135deg, #888, #fff, #aaa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Chrome card — diagonal shimmer sweep + silver edge on hover/focus.
+   Unlayered so it wins over Tailwind's hover:* utilities. */
+.chrome-card {
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.chrome-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.chrome-card:hover,
+.chrome-card:focus-within {
+  border-color: rgba(192, 192, 192, 0.4);
+  box-shadow: 0 0 12px rgba(192, 192, 192, 0.15), 0 0 24px rgba(255, 0, 204, 0.1);
+  transform: translateY(-2px);
+}
+.chrome-card:hover::after,
+.chrome-card:focus-within::after {
+  transform: translateX(120%);
+}
+
+/* Chrome sparkle float — slow rise + gentle rotate (name/duration/delay set per star) */
+@keyframes chrome-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(20deg); }
+}
+.chrome-sparkle-star {
+  animation-name: chrome-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chrome-sparkle-star { animation: none; }
+  .chrome-card,
+  .chrome-card::after { transition: none; }
+}
+
 html { scroll-behavior: smooth; }
