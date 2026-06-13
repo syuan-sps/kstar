@@ -1202,5 +1202,35 @@
     "author": "Den Oppa",
     "license": "CC BY 4.0",
     "date": "2015-10-16"
+  },
+  "leeteuk": {
+    "file": "File:Leeteuk from acrofan.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "acrofan.com",
+    "source": "https://commons.wikimedia.org/wiki/File:Leeteuk_from_acrofan.jpg"
+  },
+  "eunhyuk": {
+    "file": "File:Eunhyuk from Acrofan (cropped).JPG",
+    "license": "CC BY-SA 3.0",
+    "artist": "acrofan.com",
+    "source": "https://commons.wikimedia.org/wiki/File:Eunhyuk_from_Acrofan_(cropped).JPG"
+  },
+  "youngji": {
+    "file": "File:190511 허영지 (2).jpg",
+    "license": "CC BY 3.0",
+    "artist": "뉴스인스타",
+    "source": "https://commons.wikimedia.org/wiki/File:190511_%ED%97%88%EC%98%81%EC%A7%80_(2).jpg"
+  },
+  "cl": {
+    "file": "File:Lee Chae-Rin.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Diệu Linh from Hanoi, Vietnam\nDerivative work: Cl;nintendods",
+    "source": "https://commons.wikimedia.org/wiki/File:Lee_Chae-Rin.jpg"
+  },
+  "minzy": {
+    "file": "File:Gong Minzy in 2018 3.png",
+    "license": "CC BY 4.0",
+    "artist": "Korean Newspaper Newspaper \"NewsInstar\"",
+    "source": "https://commons.wikimedia.org/wiki/File:Gong_Minzy_in_2018_3.png"
   }
 }

@@ -19029,7 +19029,7 @@
       "generation": 2,
       "popularity": 80,
       "followers": 8000000,
-      "image_url": null,
+      "image_url": "/idols/cl.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19113,7 +19113,8 @@
           ],
           "summary": "2NE1隊長——最壞女人的女王氣場。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "bom",
@@ -19324,7 +19325,7 @@
       "generation": 2,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/minzy.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19408,7 +19409,8 @@
           ],
           "summary": "2NE1么妹——舞蹈神童的爆發底力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "gyuri",
@@ -19816,7 +19818,7 @@
       "generation": 2,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/youngji.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -19900,7 +19902,8 @@
           ],
           "summary": "KARA忙內——綜藝女王的真誠爽朗。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sunye",
@@ -20404,7 +20407,7 @@
       "generation": 2,
       "popularity": 77,
       "followers": 7700000,
-      "image_url": null,
+      "image_url": "/idols/leeteuk.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20488,7 +20491,8 @@
           ],
           "summary": "SuJu隊長——國民MC與20年責任感。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "heechul",
@@ -20600,7 +20604,7 @@
       "generation": 2,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/eunhyuk.jpg",
       "instagram": null,
       "profile": {
         "aesthetic": {
@@ -20684,7 +20688,8 @@
           ],
           "summary": "SuJu主舞——鯷魚自嘲與舞蹈機器。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "donghae",
