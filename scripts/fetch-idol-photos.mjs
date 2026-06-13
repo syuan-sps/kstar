@@ -122,6 +122,27 @@ const SEARCH = {
   "soobin-wjsn": 'Soobin WJSN Cosmic Girls', luda: 'Luda WJSN Cosmic Girls', dawon: 'Dawon WJSN Cosmic Girls',
   eunseo: 'Eunseo WJSN Cosmic Girls', dayoung: 'Dayoung WJSN Cosmic Girls', yeoreum: 'Yeoreum WJSN Cosmic Girls',
   yeonjung: 'Yeonjung WJSN Cosmic Girls',
+  // batch 5 — soloists
+  chungha: 'Kim Chung-ha singer', hyuna: 'HyunA singer', jessi: 'Jessi rapper singer',
+  leehi: 'Lee Hi singer', heize: 'Heize singer', zico: 'Zico rapper', crush: 'Crush Shin Hyo-seob singer',
+  dean: 'Dean Kwon Hyuk singer', jaypark: 'Jay Park singer', somi: 'Jeon Somi singer',
+  bibi: 'BIBI Kim Hyung-seo singer', kangdaniel: 'Kang Daniel singer', yena: 'Choi Yena singer',
+  kwoneunbi: 'Kwon Eun-bi singer', joyuri: 'Jo Yu-ri singer', suhyun: 'Lee Su-hyun Akmu',
+  younha: 'Younha singer', ailee: 'Ailee singer', boa: 'BoA Korean singer', rain: 'Rain Jung Ji-hoon singer',
+  psy: 'Psy musician Gangnam', bol4: 'Bolbbalgan4 Ahn Ji-young', leeyoungji: 'Lee Young-ji rapper',
+  "lee-mujin": 'Lee Mu-jin singer', punch: 'Punch Bae Jin-young singer', gummy: 'Gummy Park Ji-yeon singer',
+  // batch 6 — 日系
+  jurin: 'Jurin XG', chisa: 'Chisa XG', harvey: 'Harvey XG', hinata: 'Hinata XG',
+  juria: 'Juria XG', "maya-xg": 'Maya XG group', cocona: 'Cocona XG',
+  mako: 'Mako NiziU', rio: 'Rio NiziU', "maya-niziu": 'Maya NiziU', riku: 'Riku NiziU',
+  ayaka: 'Ayaka NiziU', mayuka: 'Mayuka NiziU', rima: 'Rima NiziU', miihi: 'Miihi NiziU', nina: 'Nina NiziU',
+  ej: 'EJ and TEAM', fuma: 'Fuma and TEAM', "k-andteam": 'K and TEAM', nicholas: 'Nicholas and TEAM',
+  yuma: 'Yuma and TEAM', "jo-andteam": 'Jo and TEAM', harua: 'Harua and TEAM', taki: 'Taki and TEAM', maki: 'Maki and TEAM',
+  issei: 'Issei Mamehara JO1', sukai: 'Sukai Kimata JO1', shion: 'Shion Tsurubo JO1', shosei: 'Shosei Ohira JO1',
+  sho: 'Sho Yonashiro JO1', junki: 'Junki Kono JO1', "ren-jo1": 'Ren Kawashiri JO1', takumi: 'Takumi Kawanishi JO1',
+  keigo: 'Keigo Sato JO1', syoya: 'Syoya Kimata JO1', ruki: 'Ruki Shiroiwa JO1',
+  sota: 'Sota BE:FIRST', shunto: 'Shunto BE:FIRST', manato: 'Manato BE:FIRST', ryuhei: 'Ryuhei BE:FIRST',
+  junon: 'Junon BE:FIRST', ryoki: 'Ryoki BE:FIRST', leo: 'Leo BE:FIRST',
 };
 
 const FREE_LICENSE = /^(cc0|cc[ -]by(?:[ -]sa)?(?:[ -]\d|\b)|public domain|pd)/i;
