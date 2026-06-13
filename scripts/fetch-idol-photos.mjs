@@ -37,6 +37,19 @@ const SEARCH = {
   sullyoon: 'Sullyoon NMIXX', natty: 'Natty Kiss of Life singer',
   niki: 'Ni-ki Enhypen', wonbin: 'Park Won-bin RIIZE', "sung-hanbin": 'Sung Han-bin Zerobaseone',
   san: 'Choi San Ateez', mark: 'Mark Lee NCT',
+  jeongyeon: 'Yoo Jeong-yeon TWICE', jihyo: 'Park Ji-hyo TWICE', mina: 'Myoui Mina TWICE',
+  dahyun: 'Kim Da-hyun TWICE', chaeyoung: 'Son Chae-young TWICE',
+  "lee-know": 'Lee Know Stray Kids Minho', changbin: 'Seo Chang-bin Stray Kids', han: 'Han Ji-sung Stray Kids',
+  seungmin: 'Kim Seung-min Stray Kids', "i-n": 'I.N Yang Jeong-in Stray Kids',
+  heeseung: 'Lee Hee-seung Enhypen', jay: 'Jay Enhypen Park', jake: 'Jake Enhypen Sim',
+  sunghoon: 'Park Sung-hoon Enhypen', sunoo: 'Kim Sun-oo Enhypen', jungwon: 'Yang Jung-won Enhypen',
+  lia: 'Lia ITZY Choi', ryujin: 'Shin Ryu-jin ITZY', chaeryeong: 'Lee Chae-ryeong ITZY', yuna: 'Shin Yu-na ITZY',
+  gaeul: 'Gaeul IVE', rei: 'Rei IVE Naoi', liz: 'Liz IVE Kim Jiwon', leeseo: 'Lee-seo IVE',
+  "huh-yunjin": 'Huh Yun-jin LE SSERAFIM', kazuha: 'Nakamura Kazuha', "hong-eunchae": 'Hong Eun-chae',
+  miyeon: 'Cho Mi-yeon G-IDLE', minnie: 'Minnie G-IDLE Nicha', yuqi: 'Song Yu-qi', shuhua: 'Yeh Shu-hua',
+  beomgyu: 'Choi Beom-gyu TXT', taehyun: 'Kang Tae-hyun TXT', hueningkai: 'Huening Kai',
+  giselle: 'Giselle aespa Uchinaga', danielle: 'Danielle NewJeans Marsh', hyein: 'Hyein NewJeans',
+  suga: 'Suga BTS Min Yoon-gi',
 };
 
 const FREE_LICENSE = /^(cc0|cc[ -]by(?:[ -]sa)?(?:[ -]\d|\b)|public domain|pd)/i;
