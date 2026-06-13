@@ -8,7 +8,7 @@
 //   layer  → only that layer's full card
 
 import { useState } from "react";
-import type { Artist, LayerFilter } from "@/lib/types";
+import type { Artist, SimilarArtist, LayerFilter } from "@/lib/types";
 import AestheticSection from "./AestheticSection";
 import PersonalitySection from "./PersonalitySection";
 import AnalysisCard from "./AnalysisCard";
@@ -16,10 +16,12 @@ import SimilarSection from "./SimilarSection";
 
 export default function ProfileExplorer({
   artist,
-  allArtists,
+  recsByLayer,
+  personalBySrc,
 }: {
   artist: Artist;
-  allArtists: Artist[];
+  recsByLayer: Record<LayerFilter, SimilarArtist[]>;
+  personalBySrc: Record<string, string | null>;
 }) {
   const [filter, setFilter] = useState<LayerFilter>("all");
   const profile = artist.profile;
@@ -65,7 +67,8 @@ export default function ProfileExplorer({
 
       <SimilarSection
         sourceArtist={artist}
-        allArtists={allArtists}
+        recsByLayer={recsByLayer}
+        personalBySrc={personalBySrc}
         filter={filter}
         onFilterChange={setFilter}
       />

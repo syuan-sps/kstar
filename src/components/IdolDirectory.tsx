@@ -6,20 +6,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Artist, Weights } from "@/lib/types";
+import type { Weights } from "@/lib/types";
+import type { ArtistLite } from "@/lib/lite";
 import {
   GENDER_OPTIONS, GEN_OPTIONS, POS_OPTIONS,
-  matchesFilters, type BrowseFilters,
+  matchesLite, type BrowseFilters,
 } from "@/lib/browse";
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
 
-export default function IdolDirectory({ artists }: { artists: Artist[] }) {
+export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   const [filters, setFilters] = useState<BrowseFilters>({ gender: "全部", gen: "全部", pos: "全部" });
   const [justAdded, setJustAdded] = useState<string | null>(null);
 
   const matched = artists
-    .filter((a) => matchesFilters(a, filters))
+    .filter((a) => matchesLite(a, filters))
     .sort((a, b) => b.popularity - a.popularity);
 
   function addToFourCuts(e: React.MouseEvent, id: string) {

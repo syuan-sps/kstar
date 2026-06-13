@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Artist } from "@/lib/types";
+import type { CardArtist } from "@/lib/lite";
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
 
@@ -7,7 +7,7 @@ export default function ArtistCard({
   artist,
   reasons,
 }: {
-  artist: Artist;
+  artist: CardArtist;
   reasons?: string[];
   variant?: "default" | "sticker";
 }) {

@@ -9,8 +9,6 @@ export const copy = {
   featuredArtists: "精選偶像",
   similarArtistsTitle: "喜歡這位偶像，你可能也會喜歡…",
   discoverSimilar: "探索相似偶像 →",
-  followers: "粉絲",
-  popularity: "人氣",
   genres: "曲風",
   noResults: "找不到結果",
   searchResultsFor: (q: string) => `「${q}」的搜尋結果`,

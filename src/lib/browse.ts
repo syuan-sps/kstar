@@ -40,3 +40,14 @@ export function matchesFilters(a: Artist, f: BrowseFilters): boolean {
   if (f.pos !== "全部" && !positionsOf(a).includes(f.pos)) return false;
   return true;
 }
+
+// Lite-variant matcher for the client directory (uses precomputed fields).
+export function matchesLite(
+  a: { gender: string; generation?: number; positions: string[] },
+  f: BrowseFilters
+): boolean {
+  if (f.gender !== "全部" && a.gender !== f.gender) return false;
+  if (f.gen !== "全部" && `${a.generation}代` !== f.gen) return false;
+  if (f.pos !== "全部" && !a.positions.includes(f.pos)) return false;
+  return true;
+}

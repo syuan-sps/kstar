@@ -3,16 +3,13 @@
 import { useEffect, useState } from "react";
 import type { UserPrefs } from "@/lib/types";
 import { DEFAULT_WEIGHTS } from "@/lib/types";
-import catalogJson from "@/data/catalog.json";
-import type { Artist, Catalog } from "@/lib/types";
+import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
-
-const catalog = catalogJson as unknown as Catalog;
 
 type Step = 1 | 2;
 const MAX_PICKS = 4;
 
-export default function Onboarding() {
+export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] }) {
   const [show, setShow] = useState(false);
   const [step, setStep] = useState<Step>(1);
   const [search, setSearch] = useState("");
@@ -26,8 +23,8 @@ export default function Onboarding() {
 
   // ── Search ──────────────────────────────────────────────────────────
   const q = search.trim().toLowerCase();
-  const results: Artist[] = q
-    ? catalog.artists.filter(
+  const results: ArtistLite[] = q
+    ? allArtists.filter(
         (a) => a.name.toLowerCase().includes(q) || (a.name_zh ?? "").toLowerCase().includes(q)
       ).slice(0, 6)
     : [];
@@ -56,8 +53,8 @@ export default function Onboarding() {
   }
 
   const selectedArtists = selected
-    .map((id) => catalog.artists.find((a) => a.id === id))
-    .filter(Boolean) as Artist[];
+    .map((id) => allArtists.find((a) => a.id === id))
+    .filter(Boolean) as ArtistLite[];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">

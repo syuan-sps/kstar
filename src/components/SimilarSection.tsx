@@ -1,10 +1,13 @@
 "use client";
 
+// Recommendation grid — lists are precomputed server-side per layer
+// (top 6 by match value). This component only switches between them,
+// fetches AI reasons, and decides whether personalized reasons apply
+// (only when the page's idol is one of the user's four picks).
+
 import { useEffect, useState, useCallback } from "react";
 import type { Artist, SimilarArtist, Weights, LayerFilter } from "@/lib/types";
 import { DEFAULT_WEIGHTS } from "@/lib/types";
-import { similarArtists } from "@/lib/similarity";
-import { personalReason } from "@/lib/cardMeta";
 import SimilarIdolCard from "./SimilarIdolCard";
 import { copy } from "@/lib/copy";
 
@@ -18,52 +21,37 @@ const PILL_LABELS: Record<LayerFilter, string> = {
 
 const FILTERS: LayerFilter[] = ["all", "aesthetic", "personality", "performance", "content"];
 
-function filterWeights(f: LayerFilter, allWeights: Weights = DEFAULT_WEIGHTS): Weights {
-  if (f === "all") return allWeights;  // 全部 honors the user's stored weights
+function filterWeights(f: LayerFilter): Weights {
+  if (f === "all") return DEFAULT_WEIGHTS;
   return { aesthetic: 0, personality: 0, performance: 0, content: 0, [f]: 1 };
 }
 
 function SkeletonCard() {
-  return (
-    <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-64 w-full" />
-  );
+  return <div className="animate-pulse rounded-2xl bg-[#ff00cc]/10 h-64 w-full" />;
 }
 
 interface Props {
   sourceArtist: Artist;
-  allArtists: Artist[];
-  // Controlled filter — owned by ProfileExplorer so the pills also drive the analysis cards
+  recsByLayer: Record<LayerFilter, SimilarArtist[]>;
+  personalBySrc: Record<string, string | null>;
   filter: LayerFilter;
   onFilterChange: (f: LayerFilter) => void;
 }
 
-export default function SimilarSection({ sourceArtist, allArtists, filter, onFilterChange }: Props) {
+export default function SimilarSection({
+  sourceArtist,
+  recsByLayer,
+  personalBySrc,
+  filter,
+  onFilterChange,
+}: Props) {
   const [mounted, setMounted] = useState(false);
   const [topIdols, setTopIdols] = useState<string[]>([]);
-  const [userWeights, setUserWeights] = useState<Weights>(DEFAULT_WEIGHTS);
-  const [candidates, setCandidates] = useState<SimilarArtist[]>([]);
   const [reasons, setReasons] = useState<Record<string, string>>({});
   const [reasonsLoading, setReasonsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [fallbackNote, setFallbackNote] = useState(false);
 
-  // Score candidates based on current filter
-  const score = useCallback((f: LayerFilter, weights?: Weights) => {
-    const w = weights ?? filterWeights(f, userWeights);
-    const results = similarArtists(sourceArtist, allArtists, w);
+  const candidates = recsByLayer[filter] ?? [];
 
-    // If filtering by a single layer and all score 0, fall back
-    if (f !== "all" && results.every((r) => r.score < 0.01)) {
-      setFallbackNote(true);
-      const fallback = similarArtists(sourceArtist, allArtists, DEFAULT_WEIGHTS);
-      setCandidates(fallback.slice(0, 6));
-    } else {
-      setFallbackNote(false);
-      setCandidates(results.slice(0, 6));
-    }
-  }, [sourceArtist, allArtists, userWeights]);
-
-  // Fetch AI reasons for displayed candidates
   const fetchReasons = useCallback(async (artists: SimilarArtist[], weights: Weights) => {
     setReasonsLoading(true);
     const results = await Promise.allSettled(
@@ -78,57 +66,36 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
             topTraits: s.topTraits,
           }),
         });
-        const data = await res.json() as { reason: string };
+        const data = (await res.json()) as { reason: string };
         return { id: s.artist.id, reason: data.reason };
       })
     );
     const newReasons: Record<string, string> = {};
     for (const r of results) {
-      if (r.status === "fulfilled") {
-        newReasons[r.value.id] = r.value.reason;
-      }
+      if (r.status === "fulfilled") newReasons[r.value.id] = r.value.reason;
     }
     setReasons((prev) => ({ ...prev, ...newReasons }));
     setReasonsLoading(false);
   }, [sourceArtist]);
 
-  // On mount: load prefs, score, fetch reasons
-  const init = useCallback(() => {
-    setError(false);
-    setReasons({});
-    try {
-      let weights = DEFAULT_WEIGHTS;
-      const raw = localStorage.getItem("kstar:prefs");
-      if (raw) {
-        const prefs = JSON.parse(raw) as { weights: Weights; topIdols?: string[] };
-        if (prefs.weights) { weights = prefs.weights; setUserWeights(prefs.weights); }
-        if (Array.isArray(prefs.topIdols)) setTopIdols(prefs.topIdols);
-      }
-      const results = similarArtists(sourceArtist, allArtists, weights);
-      const top6 = results.slice(0, 6);
-      setCandidates(top6);
-      fetchReasons(top6, weights);
-    } catch {
-      setError(true);
-    }
-  }, [sourceArtist, allArtists, fetchReasons]);
-
   useEffect(() => {
     setMounted(true);
-    init();
-  }, [init]);
+    try {
+      const raw = localStorage.getItem("kstar:prefs");
+      if (raw) {
+        const prefs = JSON.parse(raw) as { topIdols?: string[] };
+        if (Array.isArray(prefs.topIdols)) setTopIdols(prefs.topIdols);
+      }
+    } catch { /* ignore */ }
+    fetchReasons(recsByLayer.all ?? [], DEFAULT_WEIGHTS);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sourceArtist.id]);
 
-  // Re-score on filter change (synchronous, instant)
   const handleFilter = (f: LayerFilter) => {
     onFilterChange(f);
-    score(f);
-    // Fetch new reasons for the re-scored list
-    const w = filterWeights(f, userWeights);
-    const results = similarArtists(sourceArtist, allArtists, w);
-    const validResults = f !== "all" && results.every((r) => r.score < 0.01)
-      ? similarArtists(sourceArtist, allArtists, DEFAULT_WEIGHTS).slice(0, 6)
-      : results.slice(0, 6);
-    fetchReasons(validResults, w);
+    const list = recsByLayer[f] ?? [];
+    const unfetched = list.filter((s) => !reasons[s.artist.id]);
+    if (unfetched.length) fetchReasons(unfetched, filterWeights(f));
   };
 
   if (!mounted) {
@@ -142,22 +109,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
     );
   }
 
-  if (error) {
-    return (
-      <section>
-        <h2 className="mb-4 font-orbitron text-lg font-bold text-white">{copy.similarArtistsTitle}</h2>
-        <div className="rounded-xl border border-[#ff00cc]/20 bg-[#ff00cc]/5 p-6 text-center">
-          <p className="text-white/60 mb-3">無法載入推薦</p>
-          <button
-            onClick={init}
-            className="rounded-full bg-[#ff00cc] px-4 py-1.5 text-sm font-bold text-white hover:brightness-110"
-          >
-            請重試
-          </button>
-        </div>
-      </section>
-    );
-  }
+  const isBiasPage = topIdols.includes(sourceArtist.id);
 
   return (
     <section>
@@ -181,10 +133,6 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
         </div>
       </div>
 
-      {fallbackNote && (
-        <p className="mb-3 text-xs text-white/40">此偶像資料不足，顯示綜合推薦</p>
-      )}
-
       {candidates.length === 0 ? (
         <p className="text-white/50">{copy.noResults}</p>
       ) : (
@@ -194,13 +142,7 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
               key={s.artist.id}
               similar={s}
               reason={reasons[s.artist.id] ?? null}
-              personal={
-                // Personalize ONLY on the user's own bias pages, anchored to
-                // that page's idol; elsewhere show pure similarity reasons.
-                topIdols.includes(sourceArtist.id)
-                  ? personalReason(s.artist, [sourceArtist.id], allArtists)
-                  : null
-              }
+              personal={isBiasPage ? personalBySrc[s.artist.id] ?? null : null}
               loading={!reasons[s.artist.id] && reasonsLoading}
             />
           ))}

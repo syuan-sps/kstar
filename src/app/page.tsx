@@ -1,10 +1,10 @@
-import { getAllArtists } from "@/lib/data";
+import { getAllArtistsLite } from "@/lib/data";
 import { copy } from "@/lib/copy";
 import MyFourCuts from "@/components/MyFourCuts";
 import IdolDirectory from "@/components/IdolDirectory";
 
 export default async function Home() {
-  const artists = await getAllArtists();
+  const artists = await getAllArtistsLite();
 
   return (
     <>
@@ -19,7 +19,7 @@ export default async function Home() {
 
         {/* Personalized 인생네컷 — pinned to the center of the desktop */}
         <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-          <MyFourCuts frameClassName="w-[clamp(320px,38vh,480px)]" />
+          <MyFourCuts allArtists={artists} frameClassName="w-[clamp(320px,38vh,480px)]" />
         </div>
 
         {/* Scroll hint toward the directory */}
@@ -33,7 +33,7 @@ export default async function Home() {
 
       {/* ── Mobile: hero + tagline ────────────────────────────── */}
       <div className="space-y-8 md:hidden">
-        <MyFourCuts className="pt-2" />
+        <MyFourCuts allArtists={artists} className="pt-2" />
 
         <section className="rounded-2xl border border-[#ff00cc]/25 bg-[#ff00cc]/5 p-6 text-center">
           <h1 className="font-orbitron text-2xl font-black tracking-tight text-[#ff00cc]">

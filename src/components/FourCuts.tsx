@@ -1,7 +1,7 @@
 // 인생네컷 — "Life in 4 Cuts" photobooth strip. Pure presentational.
 
 import Link from "next/link";
-import type { Artist } from "@/lib/types";
+import type { CardArtist } from "@/lib/lite";
 import Thumb from "@/components/Thumb";
 
 export default function FourCuts({
@@ -9,7 +9,7 @@ export default function FourCuts({
   className = "",
   linked = false,
 }: {
-  artists: Artist[];
+  artists: CardArtist[];
   className?: string;
   linked?: boolean;
 }) {

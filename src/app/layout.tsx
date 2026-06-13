@@ -4,6 +4,7 @@ import { Noto_Sans_TC, Orbitron } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { copy } from "@/lib/copy";
+import { getAllArtistsLite } from "@/lib/data";
 import SearchBar from "@/components/SearchBar";
 import BgDecor from "@/components/BgDecor";
 import Taskbar from "@/components/Taskbar";
@@ -26,13 +27,14 @@ export const metadata: Metadata = {
   description: copy.tagline,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const liteArtists = await getAllArtistsLite();
   return (
     <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
       <body className="relative min-h-full flex flex-col pb-10">
-        <Onboarding />
+        <Onboarding allArtists={liteArtists} />
         {/* Decorative background — fixed, behind everything */}
         <BgDecor />
 

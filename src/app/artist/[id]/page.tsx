@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getArtist, getAllArtists } from "@/lib/data";
+import { similarArtists } from "@/lib/similarity";
+import { personalReason } from "@/lib/cardMeta";
+import { DEFAULT_WEIGHTS, type LayerFilter, type SimilarArtist, type Weights } from "@/lib/types";
 import { copy } from "@/lib/copy";
 import Thumb from "@/components/Thumb";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -14,6 +17,30 @@ export default async function ArtistPage({
   const { id } = await params;
   const [artist, allArtists] = await Promise.all([getArtist(id), getAllArtists()]);
   if (!artist) notFound();
+
+  // Precompute top-6 recommendations per layer server-side — the client
+  // only switches between these lists (keeps the full catalog out of the payload).
+  const LAYERS: LayerFilter[] = ["all", "aesthetic", "personality", "performance", "content"];
+  const recsByLayer = Object.fromEntries(
+    LAYERS.map((l) => {
+      const w: Weights =
+        l === "all"
+          ? DEFAULT_WEIGHTS
+          : { aesthetic: 0, personality: 0, performance: 0, content: 0, [l]: 1 };
+      return [l, similarArtists(artist, allArtists, w, 6)];
+    })
+  ) as Record<LayerFilter, SimilarArtist[]>;
+
+  // Personalized reason vs THIS page idol, per unique candidate (client
+  // shows it only when this idol is one of the user's four picks).
+  const personalBySrc: Record<string, string | null> = {};
+  for (const l of LAYERS) {
+    for (const s of recsByLayer[l]) {
+      if (!(s.artist.id in personalBySrc)) {
+        personalBySrc[s.artist.id] = personalReason(s.artist, [artist.id], allArtists);
+      }
+    }
+  }
 
   return (
     <div className="space-y-10">
@@ -55,10 +82,6 @@ export default async function ArtistPage({
               </span>
             ))}
           </div>
-          <div className="mt-3 text-sm text-white/50">
-            {copy.popularity} {artist.popularity}
-            {artist.followers ? ` · ${copy.followers} ${artist.followers.toLocaleString()}` : ""}
-          </div>
           <div className="mt-4">
             <FavoriteButton id={artist.id} />
           </div>
@@ -66,7 +89,7 @@ export default async function ArtistPage({
       </section>
 
       {/* Analysis cards + similar artists — shared 全部/美學/個性/表演/內容 filter */}
-      <ProfileExplorer artist={artist} allArtists={allArtists} />
+      <ProfileExplorer artist={artist} recsByLayer={recsByLayer} personalBySrc={personalBySrc} />
 
       <Link href="/" className="inline-block text-sm text-white/50 hover:text-white">
         ← {copy.backHome}

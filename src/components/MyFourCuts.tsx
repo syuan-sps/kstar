@@ -1,16 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import catalogJson from "@/data/catalog.json";
-import type { Artist, Catalog } from "@/lib/types";
+import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
 
-const catalog = catalogJson as unknown as Catalog;
-
 export default function MyFourCuts({
+  allArtists,
   className = "",
   frameClassName = "w-full max-w-[300px]",
 }: {
+  allArtists: ArtistLite[];
   className?: string;
   frameClassName?: string;
 }) {
@@ -47,8 +46,8 @@ export default function MyFourCuts({
   if (!ids || ids.length !== 4) return null;
 
   const artists = ids
-    .map((id) => catalog.artists.find((a) => a.id === id))
-    .filter(Boolean) as Artist[];
+    .map((id) => allArtists.find((a) => a.id === id))
+    .filter(Boolean) as ArtistLite[];
   if (artists.length !== 4) return null;
 
   function repick() {

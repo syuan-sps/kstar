@@ -32,3 +32,8 @@ export async function searchArtists(query: string): Promise<Artist[]> {
       (a.name_zh ?? "").toLowerCase().includes(q),
   );
 }
+
+export async function getAllArtistsLite(): Promise<import("./lite").ArtistLite[]> {
+  const { toLite } = await import("./lite");
+  return local.artists.map(toLite);
+}

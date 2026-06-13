@@ -6,8 +6,6 @@ import FavoriteButton from "./FavoriteButton";
 import { copy } from "@/lib/copy";
 
 export default function ArtistWindow({ artist }: { artist: Artist }) {
-  const popPct = artist.popularity;
-
   return (
     <OSWindow title={artist.name} icon="★" className="w-64">
       <div className="flex flex-col gap-3 p-3">
@@ -36,20 +34,6 @@ export default function ArtistWindow({ artist }: { artist: Artist }) {
               {g}
             </span>
           ))}
-        </div>
-
-        {/* Popularity bar */}
-        <div>
-          <div className="mb-0.5 flex justify-between text-[10px] text-[#660066]">
-            <span>{copy.popularity}</span>
-            <span>{popPct}</span>
-          </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-[#f0c0e0]">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-[#ff00cc] to-[#9933ff]"
-              style={{ width: `${popPct}%` }}
-            />
-          </div>
         </div>
 
         {/* Actions */}

@@ -1,7 +1,7 @@
 // 偶像小卡 — idol photocard-holder frame with cute themed decorations.
 // Group name banner on top, scattered motifs around the photo slot.
 
-import type { Artist } from "@/lib/types";
+import type { CardArtist } from "@/lib/lite";
 import Thumb from "./Thumb";
 
 type Theme = { motifs: string[]; accent: string; soft: string };
@@ -40,7 +40,7 @@ export default function IdolFrame({
   artist,
   className = "",
 }: {
-  artist: Artist;
+  artist: CardArtist;
   className?: string;
 }) {
   const theme = pickTheme(artist.id);
