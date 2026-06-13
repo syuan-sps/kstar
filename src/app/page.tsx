@@ -1,14 +1,14 @@
-import { getPopularArtists } from "@/lib/data";
+import { getAllArtists } from "@/lib/data";
 import { copy } from "@/lib/copy";
-import ArtistCard from "@/components/ArtistCard";
 import MyFourCuts from "@/components/MyFourCuts";
+import IdolDirectory from "@/components/IdolDirectory";
 
 export default async function Home() {
-  const artists = await getPopularArtists(12);
+  const artists = await getAllArtists();
 
   return (
     <>
-      {/* ── Desktop: 인생네컷 centerpiece ─────────────────────── */}
+      {/* ── Desktop: 인생네컷 centerpiece — THE selling point ──── */}
       <div className="hidden md:block relative" style={{ height: "calc(100vh - 3.5rem - 2.5rem)" }}>
         {/* Hero text */}
         <div className="absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0">
@@ -21,11 +21,18 @@ export default async function Home() {
         <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
           <MyFourCuts frameClassName="w-[clamp(320px,38vh,480px)]" />
         </div>
+
+        {/* Scroll hint toward the directory */}
+        <a
+          href="#idols"
+          className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-xs text-pink-300/60 transition hover:text-pink-200"
+        >
+          ↓ 偶像圖鑑
+        </a>
       </div>
 
-      {/* ── Mobile: hero + card grid ──────────────────────────── */}
+      {/* ── Mobile: hero + tagline ────────────────────────────── */}
       <div className="space-y-8 md:hidden">
-        {/* Personalized 인생네컷 */}
         <MyFourCuts className="pt-2" />
 
         <section className="rounded-2xl border border-[#ff00cc]/25 bg-[#ff00cc]/5 p-6 text-center">
@@ -34,17 +41,11 @@ export default async function Home() {
           </h1>
           <p className="mt-2 text-sm text-white/60">{copy.tagline}</p>
         </section>
+      </div>
 
-        <section>
-          <h2 className="mb-4 font-orbitron text-sm font-bold tracking-widest text-[#ff00cc]/70 uppercase">
-            {copy.featuredArtists}
-          </h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {artists.map((a) => (
-              <ArtistCard key={a.id} artist={a} />
-            ))}
-          </div>
-        </section>
+      {/* ── 偶像圖鑑 — browse everyone, slot anyone into your four cuts ── */}
+      <div className="mt-8 md:mt-0">
+        <IdolDirectory artists={artists} />
       </div>
     </>
   );

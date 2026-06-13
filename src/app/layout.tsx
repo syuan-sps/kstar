@@ -49,6 +49,12 @@ export default function RootLayout({
               </Suspense>
             </div>
             <Link
+              href="/#idols"
+              className="shrink-0 rounded-full border border-[#ff00cc]/30 px-3 py-1.5 text-sm font-medium text-pink-300 hover:bg-[#ff00cc]/10"
+            >
+              ✦ 偶像圖鑑
+            </Link>
+            <Link
               href="/favorites"
               className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-pink-300 hover:bg-[#ff00cc]/10"
             >

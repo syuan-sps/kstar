@@ -113,7 +113,8 @@
           "summary": "舞台上是主唱兼領舞兼center的「黃金么弟」，現場穩定度堪比錄音室；舞台下是Weverse深夜煮拉麵、隨口翻唱就破千萬觀看的鄰家男孩。黑白簡約的時尚品味、對健身與遊戲的熱愛，加上永遠在練習的努力哲學，構成這位全能偶像毫無偶像包袱的反差魅力。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "bts-v",
@@ -244,7 +245,8 @@
         }
       },
       "instagram": "thv",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "jimin",
@@ -358,7 +360,8 @@
         }
       },
       "instagram": "j.m",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "rm",
@@ -471,7 +474,8 @@
         }
       },
       "instagram": "rkive",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "lisa",
@@ -589,7 +593,8 @@
         }
       },
       "instagram": "lalalalisa_m",
-      "image_focus": 0.13
+      "image_focus": 0.13,
+      "generation": 3
     },
     {
       "id": "jennie",
@@ -702,7 +707,8 @@
         }
       },
       "instagram": "jennierubyjane",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "rose",
@@ -813,7 +819,8 @@
         }
       },
       "instagram": "roses_are_rosie",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "jisoo",
@@ -925,7 +932,8 @@
         }
       },
       "instagram": "sooyaaa__",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "wonyoung",
@@ -1043,7 +1051,8 @@
         }
       },
       "instagram": "for_everyoung10",
-      "image_focus": 0.1
+      "image_focus": 0.1,
+      "generation": 4
     },
     {
       "id": "karina",
@@ -1181,7 +1190,8 @@
         }
       },
       "instagram": "katarinabluu",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "hanni",
@@ -1291,7 +1301,8 @@
           "summary": "NewJeans「自然勝於刻意」哲學最具說服力的示範者，《Attention》直拍的細微表情被稱為不費力卻致命。Phoning直播以英韓越三語自然切換，無濾鏡的鄰家感是真實系內容的代表；翻唱《Blue & Black》帶動原曲回榜更是教科書案例。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "nayeon",
@@ -1404,7 +1415,8 @@
         }
       },
       "instagram": "nayeonyny",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "minji",
@@ -1519,7 +1531,8 @@
           "summary": "藍白色系的乾淨美學、鬆弛自然的舞台魅力、少而精的內容品味——Minji以安靜而堅定的方式，成為NewJeans最令人安心的存在。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "winter",
@@ -1649,7 +1662,8 @@
         }
       },
       "instagram": "imwinter",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "hyunjin",
@@ -1761,7 +1775,8 @@
           "summary": "Stray Kids編舞的核心靈感來源，「MIROH」「神메뉴」的複雜群舞以他的身體極限為基準，Versace秀場被時尚圈形容為行走的藝術品。私下是安靜畫畫、寫深夜隨筆的美學少年，舞台爆發力與居家文藝感的反差是STAY最愛的組合。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "taeyeon",
@@ -1876,7 +1891,8 @@
         }
       },
       "instagram": "taeyeon_ss",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 2
     },
     {
       "id": "sakura",
@@ -1987,7 +2003,8 @@
         }
       },
       "instagram": "39saku_chan",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "tzuyu",
@@ -2097,7 +2114,8 @@
         }
       },
       "instagram": "thinkaboutzu",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "felix",
@@ -2231,7 +2249,8 @@
         }
       },
       "instagram": "yong.lixx",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "soyeon",
@@ -2343,7 +2362,8 @@
           "summary": "(G)I-DLE的隊長兼大腦，《TOMBOY》從詞曲到舞台概念幾乎都由她親自設計，說唱爆發力讓選秀導師席同時震驚。對《英雄聯盟》的熱愛直接變成職業履歷——拳頭遊戲K/DA虛擬女團主唱，遊戲與音樂在她身上完美合流。"
         }
       },
-      "instagram": "tiny.pretty.j"
+      "instagram": "tiny.pretty.j",
+      "generation": 4
     },
     {
       "id": "sana",
@@ -2452,7 +2472,8 @@
         }
       },
       "instagram": "m.by__sana",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "jeonghan",
@@ -2581,7 +2602,8 @@
         }
       },
       "instagram": "jeonghaniyoo_n",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "yeonjun",
@@ -2693,7 +2715,8 @@
         }
       },
       "instagram": "yawnzzn",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "iu",
@@ -2806,7 +2829,8 @@
         }
       },
       "instagram": "dlwlrma",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 2
     },
     {
       "id": "yeji",
@@ -2915,7 +2939,8 @@
           "summary": "舞台上是《DALLA DALLA》貓眼直拍爆紅、動作精準如尺量的ITZY隊長兼主舞；私下卻輕聲細語、練習到最晚、被稱讚就害羞搗臉。銳利與溫柔的反差加上從不間斷的努力，讓她成為第四代最具說服力的隊長範本。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "ahyeon",
@@ -3023,7 +3048,8 @@
           ],
           "summary": "出道前翻唱《Dangerously》就千萬觀看的YG全能王牌，rap、vocal、dance三棲俱佳，舞台上是「Bae-mon」，鏡頭外是撒嬌不停的團寵么妹。健康暫退再回歸的經歷讓她的正向與真誠格外有重量，是第五代最受期待的名字。"
         }
-      }
+      },
+      "generation": 5
     },
     {
       "id": "seulgi",
@@ -3131,7 +3157,8 @@
         }
       },
       "instagram": "hi_sseulgi",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "sullyoon",
@@ -3239,7 +3266,8 @@
           "summary": "被韓網封為「第四代奇蹟臉蛋」的NMIXX門面，黑髮紅唇的古典美在辣妹時代獨樹一格；高音穩定度卻長期被臉蛋光環掩蓋，是被聲樂頻道平反的實力派。端正優雅與大口吃飯的反差，是她最圈粉的內容公式。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "natty",
@@ -3346,7 +3374,8 @@
           ],
           "summary": "SIXTEEN落選、出道團解散、八年後終於以KISS OF LIFE主舞站穩舞台的泰國女孩，《Sugarcoat》直拍被編舞師圈稱為「新人裡最完成的身體」。小麥肌的自信美學與打不倒的太陽能量，讓她成為K-pop最勵志的逆襲敘事本人。"
         }
-      }
+      },
+      "generation": 5
     },
     {
       "id": "niki",
@@ -3455,7 +3484,8 @@
           "summary": "六歲習舞、SHINee伴舞出身、《I-LAND》舞蹈評價第一出道的ENHYPEN么弟，MAMA solo dance break讓Taemin親自認證「神童長成怪物」。舞台上是暗黑概念的銳利剪影，舞台下是毒舌冷笑話不斷的四次元，反差感正是他的圈粉公式。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "wonbin",
@@ -3564,7 +3594,8 @@
           "summary": "出道即引爆「SM世紀美顏」討論的RIIZE門面，飯拍像膠片電影截圖；《Get A Guitar》center的律動讓編舞師認證「身體比臉更會說話」。話少行動派的溫柔與被稱讚就耳朵變紅的害羞，是清冷外表下最圈粉的反差。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 5
     },
     {
       "id": "sung-hanbin",
@@ -3672,7 +3703,8 @@
           "summary": "Boys Planet以斷層人氣1位出道的ZEROBASEONE隊長，比落選選手哭得更傷心的共感力是他的人設原點。絲滑主舞實力配上記得住粉絲ID的服務精神，把「溫柔也是一種領導力」演成了第五代的隊長範本。"
         }
       },
-      "image_focus": 0.18
+      "image_focus": 0.18,
+      "generation": 5
     },
     {
       "id": "san",
@@ -3781,7 +3813,8 @@
           "summary": "ATEEZ「表演系男團」名聲的核心，每個killing part都用全身演戲，Coachella 2024後fancam登上全球趨勢。舞台下卻是抱著玩偶Shiber、演唱會感言必哭的軟萌大男孩——「上台像換了靈魂」的反差正是他的代名詞。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "mark",
@@ -3891,7 +3924,8 @@
         }
       },
       "instagram": "onyourm__ark",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "ningning",
@@ -4000,7 +4034,8 @@
         }
       },
       "instagram": "imnotningning",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "haerin",
@@ -4108,7 +4143,8 @@
           "summary": "NewJeans天然系美學的最佳載體，《Ditto》裡望向鏡頭的眼神成為Y2K懷舊的代表畫面。平時安靜如觀察中的貓，開口卻是讓成員愣住的四次元語錄；不費力卻精準踩點的表演智商，讓她成為靜中帶刺的氛圍中心。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "an-yujin",
@@ -4217,7 +4253,8 @@
         }
       },
       "instagram": "_yujin_an",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "kim-chaewon",
@@ -4327,7 +4364,8 @@
         }
       },
       "instagram": "_chaechae_1",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "momo",
@@ -4436,7 +4474,8 @@
         }
       },
       "instagram": "momo",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "j-hope",
@@ -4547,7 +4586,8 @@
         }
       },
       "instagram": "uarmyhope",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "jin",
@@ -4676,7 +4716,8 @@
         }
       },
       "instagram": "jin",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "bang-chan",
@@ -4786,7 +4827,8 @@
           "summary": "JYP練習七年、親手把Stray Kids保到出道的隊長兼3RACHA製作核心，《God's Menu》的暴烈聲響出自他手。每週日雷打不動的Chan's Room直播累積數百集，用三種語言安慰各國粉絲——STAY說他不只做音樂，還做了一個家。"
         }
       },
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     },
     {
       "id": "hoshi",
@@ -4896,7 +4938,8 @@
         }
       },
       "instagram": "ho5hi_kwon",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 3
     },
     {
       "id": "soobin",
@@ -5024,7 +5067,8 @@
         }
       },
       "instagram": "page.soobin",
-      "image_focus": 0.3
+      "image_focus": 0.3,
+      "generation": 4
     }
   ],
   "tracks": []

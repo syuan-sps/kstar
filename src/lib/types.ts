@@ -36,6 +36,7 @@ export interface Artist {
   name_zh?: string | null;
   group?: string | null;
   genres: string[];
+  generation?: 2 | 3 | 4 | 5;  // idol generation for 圖鑑 browsing
   popularity: number;
   followers?: number | null;
   image_url?: string | null;

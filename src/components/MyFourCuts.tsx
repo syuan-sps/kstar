@@ -61,7 +61,9 @@ export default function MyFourCuts({
       <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#ff00cc]/80 uppercase">
         你的人生四格 ✦
       </h2>
-      <FourCuts artists={artists} className={frameClassName} linked />
+      <div key={ids.join(",")} className="fourcuts-pop">
+        <FourCuts artists={artists} className={frameClassName} linked />
+      </div>
       <button
         onClick={repick}
         className="text-xs text-pink-300/70 hover:text-pink-200 transition"
