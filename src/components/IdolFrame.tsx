@@ -2,6 +2,7 @@
 // Group name banner on top, scattered motifs around the photo slot.
 
 import type { CardArtist } from "@/lib/lite";
+import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "./Thumb";
 
 type Theme = { motifs: string[]; accent: string; soft: string };
@@ -45,6 +46,8 @@ export default function IdolFrame({
 }) {
   const theme = pickTheme(artist.id);
   const topLabel = artist.group ?? "✦ SOLO ✦";
+  const frameSymbol = getGroupSymbol(artist.group);
+  const isLong = frameSymbol.length > 2;
 
   return (
     <div
@@ -62,20 +65,21 @@ export default function IdolFrame({
         {topLabel}
       </div>
 
-      {/* scattered cute motifs */}
+      {/* scattered group symbols */}
       {SPOTS.map((m, i) => (
         <span
           key={i}
-          className="pointer-events-none absolute z-10 select-none drop-shadow-sm"
+          className={`frame-symbol${isLong ? " frame-symbol--long" : ""} pointer-events-none absolute z-10 select-none drop-shadow-sm`}
           style={{
             top: m.top,
             left: m.left,
             right: m.right,
-            fontSize: m.s,
+            fontSize: isLong ? m.s * 0.65 : m.s,
             transform: `rotate(${m.rot}deg)`,
+            color: theme.accent,
           }}
         >
-          {theme.motifs[i % theme.motifs.length]}
+          {frameSymbol}
         </span>
       ))}
 

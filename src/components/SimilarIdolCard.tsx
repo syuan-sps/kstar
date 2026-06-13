@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { SimilarArtist, LayerScores } from "@/lib/types";
 import { emojiTags, zhTrait } from "@/lib/cardMeta";
+import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "./Thumb";
 import FavoriteButton from "./FavoriteButton";
 
@@ -39,6 +40,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
 
   const collapsed = isTouch && !expanded;
   const emojis = emojiTags(artist);
+  const groupSym = getGroupSymbol(artist.group);
   const fallbackTraits = similar.topTraits.length
     ? `相似特質：${similar.topTraits.slice(0, 2).map(zhTrait).join("、")}`
     : similar.reasons[0] ?? "";
@@ -63,6 +65,13 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
       {/* Top zone — photo */}
       <div className="relative aspect-[3/4] overflow-hidden">
         <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-none" focusY={artist.image_focus} />
+        {/* group symbol badge */}
+        <span
+          className={`frame-symbol${groupSym.length > 2 ? " frame-symbol--long" : ""} pointer-events-none absolute left-1.5 top-1.5 z-20 flex h-5 min-w-5 items-center justify-center rounded-full bg-black/40 px-1 text-white drop-shadow backdrop-blur-sm`}
+          style={{ fontSize: groupSym.length > 2 ? 9 : 13 }}
+        >
+          {groupSym}
+        </span>
         <div className="absolute right-1.5 top-1.5 z-20">
           <FavoriteButton id={artist.id} size="sm" />
         </div>

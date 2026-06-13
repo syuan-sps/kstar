@@ -35,6 +35,16 @@ body {
   font-family: var(--font-orbitron), "Orbitron", monospace;
 }
 
+/* ── Photocard group symbols ──────────────────────────── */
+.frame-symbol {
+  font-family: "Noto Sans TC", "Apple Symbols", "Segoe UI Symbol", sans-serif;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.frame-symbol--long {
+  font-size: 0.65em; /* multi-char symbols (>2) — components also scale inline */
+}
+
 /* ── OS window chrome ─────────────────────────────────── */
 .window-frame {
   border: 2px solid #cc00ff;

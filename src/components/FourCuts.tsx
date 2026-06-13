@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { CardArtist } from "@/lib/lite";
+import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "@/components/Thumb";
 
 export default function FourCuts({
@@ -19,12 +20,16 @@ export default function FourCuts({
     >
       <div className="grid grid-cols-2 gap-1.5">
         {artists.map((a) => {
+          const sym = getGroupSymbol(a.group);
           const inner = (
             <>
               <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-lg" focusY={a.image_focus} />
-              {/* sparkle accent */}
-              <span className="pointer-events-none absolute right-1 top-1 text-xs text-white/70 drop-shadow">
-                ✦
+              {/* group symbol accent */}
+              <span
+                className={`frame-symbol${sym.length > 2 ? " frame-symbol--long" : ""} pointer-events-none absolute right-1 top-1 text-white/80 drop-shadow`}
+                style={{ fontSize: sym.length > 2 ? 9 : 13 }}
+              >
+                {sym}
               </span>
               {/* name overlay */}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-1.5 pt-4 pb-1">
