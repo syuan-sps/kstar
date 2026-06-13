@@ -193,7 +193,13 @@ export default function SimilarSection({ sourceArtist, allArtists, filter, onFil
               key={s.artist.id}
               similar={s}
               reason={reasons[s.artist.id] ?? null}
-              personal={personalReason(s.artist, topIdols, allArtists)}
+              personal={
+                // Personalize ONLY on the user's own bias pages, anchored to
+                // that page's idol; elsewhere show pure similarity reasons.
+                topIdols.includes(sourceArtist.id)
+                  ? personalReason(s.artist, [sourceArtist.id], allArtists)
+                  : null
+              }
               loading={!reasons[s.artist.id] && reasonsLoading}
             />
           ))}
