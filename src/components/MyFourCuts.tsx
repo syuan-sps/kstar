@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
+import SoulPortraitButton from "@/components/SoulPortraitButton";
 
 export default function MyFourCuts({
   allArtists,
@@ -63,6 +64,7 @@ export default function MyFourCuts({
       <div key={ids.join(",")} className="fourcuts-pop">
         <FourCuts artists={artists} className={frameClassName} linked />
       </div>
+      <SoulPortraitButton allArtists={allArtists} />
       <button
         onClick={repick}
         className="text-xs text-[#5e636d]/70 hover:text-[#7c8088] transition"

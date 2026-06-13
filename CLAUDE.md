@@ -18,6 +18,9 @@ npx tsx scripts/audit-recs.ts          # asserts every idol × layer shows exact
 node scripts/check-completeness.mjs    # asserts every idol has full Tier-2 data; prints 缺照清單; exit 1 on hard gaps
 node scripts/fetch-idol-photos.mjs [ids…]  # CC-only photo fetch from Wikimedia Commons (see Photo pipeline)
 node scripts/sync-idol-photos.mjs      # links public/idols/<id>.jpg files into catalog.json
+node scripts/gen-token-stats.mjs       # regenerates src/lib/tokenStats.ts (IDF token counts) — re-run after any catalog change
+npx tsx scripts/calibrate-archetypes.ts # re-tunes 追星靈魂 SCALE/FLOOR/HIGH_THRESHOLD against the live score distribution
+npx tsx scripts/smoke-soul.ts          # smoke-tests the archetype engine on sample picks (coherent vs diverse)
 
 # Legacy (need .env.local creds; compute-similarity.ts is stale and excluded from typecheck)
 npm run ingest / npm run similarity
@@ -25,7 +28,7 @@ npm run ingest / npm run similarity
 
 The app runs **completely without credentials**. `ANTHROPIC_API_KEY` (optional) enables AI-written similarity reasons via `/api/similarity-reason`; without it the route returns local zh-TW fallbacks.
 
-After any catalog data change, the required gate is: `audit-recs` → `check-completeness` → `npm run build`.
+After any catalog data change, the required gate is: `audit-recs` → `check-completeness` → `npm run build` (and re-run `gen-token-stats` so the questionnaire's IDF weights stay in sync).
 
 ---
 
@@ -47,6 +50,14 @@ All data lives in `src/data/catalog.json` (**~355 idols**; the batch roadmap liv
 - `lifestyle_topics` (zh): 時尚 美食 遊戲 健身 旅遊 動物 藝術 攝影 音樂創作 美妝 居家日常 戶外活動
 - `value_topics` (zh): 自信表達 心理健康倡議 真誠待粉 家庭觀 努力哲學 自我認同 公益環保 幽默自嘲 專業職人精神 自由奔放 正向思考
 - All aesthetic/trait/vibe strings are 繁體中文; `roles` are English (`main vocalist`, `leader`, `maknae`…), mapped to zh display via `zhTrait()` in `src/lib/cardMeta.ts`.
+
+### 追星靈魂 (taste archetype) & 入坑問卷 (adaptive questionnaire)
+A 16-type MBTI-style result **derived from the user's 4 picks**, not a separate quiz. Onboarding flow: pick 4 → 人生四格 reveal → opt-in CTA → rank the 4 layers (入坑優先序) → adaptive questions → shareable 追星卡.
+- **Server boundary**: `getPickSummaries(ids)` in `data.ts` (+ `POST /api/pick-scores`) returns, per pick, its **mean pairwise layer cohesion vs the other 3 picks** (intra-pick cohesion = your taste's defining axes) plus a small token summary. Cached to `kstar:pick-summaries`. The catalog never reaches the client; everything downstream runs on these summaries.
+- **`src/lib/archetypes.ts`** — `getArchetype(picks, weights)`: `score[L] = scaledStrength × recurrence × (1 + onboardingWeight)` per layer; `≥ HIGH_THRESHOLD` → that layer's letter is UPPERCASE. Code order is **A·P·S·R** (美學/個性/表演/內容) → one of 16 `ARCHETYPES`. Also `soulmateCodes` (Hamming-1), `expandCode` (complement = 互補/discovery), `compatibilityPct`, `wallClimbType` (hidden face → 1-high purist), `recWeightMask` (UPPERCASE ×1.5 / lowercase ×0.7 — **built but not yet wired into recs**). Calibration constants come from `scripts/calibrate-archetypes.ts`; the raw per-layer Jaccards differ ~5× in magnitude (denim aesthetic ~0.12 vs exact-match personality ~0.59), so each is normalised to its own p90 before thresholding.
+- **`src/lib/questionnaire.ts`** — Q1–Q7 fan-voice defs (controlled-vocab tokens underneath), `rankToWeights`, IDF via `tokenStats.ts`, and the four adaptive mechanics: **pick-grounded framing** (names a pick), **weight-driven depth** (`selectQuestionIds` skips low-ranked layers' questions), **confirm-or-refine** (`agreedToken`/`agreedMood` when ≥3 picks agree), **outlier** (`energyOutlier` → 隱藏面 flavour). Q7 = **7 visual moods** (`MOODS`/`MOOD_TOKENS`, base-token substring + accent-colour match, intentionally ignoring near-universal 白/黑).
+- **Share card**: `TastePortraitCard.tsx` (the screenshot target: chrome code, hero name, 隱藏面 line, 4 mini photocards, layer bars, discovery loop) rendered inside `SoulQuiz.tsx` (flow) and re-opened by `SoulPortraitButton.tsx` (persistent home entry, **portaled to `document.body`** — a `position:fixed` modal inside the desktop hero's `-translate` transform collapses otherwise). PNG export via `html-to-image`: **must** pass `skipFonts`/empty `fontEmbedCSS` (the full Noto Sans TC face is ~22MB and stalls rasterisation) **and** `includeStyleProperties` (an allowlist — otherwise Tailwind v4's hundreds of inherited custom properties make export take 10s+); also waits for `<img>` decode + retries 3×, with a screenshot fallback.
+- `UserPrefs` gained optional `layerRank` / `tokenPrefs` / `hiddenFace` / `archetype` — all readers parse leniently, so they're backward-compatible.
 
 ### Personalization rules (user-confirmed product decisions)
 - `kstar:prefs` in localStorage holds `topIdols` (4 ids) + `weights`. Onboarding picks them; the 圖鑑's 「＋」 button swaps an idol in, rotating out index 0 (oldest), then dispatches `kstar:prefs-updated`.

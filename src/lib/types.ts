@@ -29,6 +29,30 @@ export interface LayerScores {
   aesthetic: number; personality: number; performance: number; content: number;
 }
 
+// Score-bearing layer keys (excludes "all"), in the canonical A·P·S·R code order.
+export type ScoreLayer = "aesthetic" | "personality" | "performance" | "content";
+export const SCORE_LAYERS: ScoreLayer[] = ["aesthetic", "personality", "performance", "content"];
+
+// ── Pick summaries (questionnaire / archetype engine) ──────────────────
+// Computed server-side from the user's 4 picks and shipped to the client so
+// the archetype + questionnaire run WITHOUT importing the catalog.
+export interface PickTokens {
+  energy_type?: string;
+  fan_interaction?: string;
+  dance_style?: string;
+  content_tone?: string;
+  lifestyle_topics: string[];
+  value_topics: string[];
+  style_tags: string[];     // base + official + personal
+  color_palette: string[];
+}
+
+export interface PickSummary {
+  id: string;
+  layerScores: LayerScores;  // mean pairwise similarity vs the OTHER picks, per layer
+  tokens: PickTokens;
+}
+
 // ── Core data types ────────────────────────────────────────────────────
 export interface Artist {
   id: string;
@@ -65,7 +89,18 @@ export interface Catalog {
 }
 
 // ── User preferences (onboarding) ─────────────────────────────────────
+// `topIdols` + `weights` are the original contract; the rest are added by
+// the adaptive questionnaire and are all OPTIONAL so old prefs keep working.
+export interface StoredArchetype {
+  code: string;             // 4-letter A·P·S·R code, e.g. "APsr"
+  hiddenLayer: ScoreLayer;  // 隱藏面 (2nd-highest layer)
+}
+
 export interface UserPrefs {
   topIdols: string[];
   weights: Weights;
+  layerRank?: ScoreLayer[];            // user's #1→#4 layer ranking (入坑優先序)
+  tokenPrefs?: Record<string, number>; // IDF-weighted desired tokens from Q1–Q7
+  hiddenFace?: ScoreLayer | null;      // outlier-derived hidden bias
+  archetype?: StoredArchetype | null;  // computed 追星靈魂
 }
