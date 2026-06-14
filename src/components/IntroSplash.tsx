@@ -10,16 +10,16 @@
 // Onboarding so its effect runs first).
 //
 // All visual styling + timing lives in globals.css (the "FIRST-LAUNCH
-// PHOTOBOOTH SPLASH" block). The animation timeline is ~4.7s; the constants
+// PHOTOBOOTH SPLASH" block). The animation timeline is ~6.2s; the constants
 // below must stay in sync with the CSS delays:
-//   hint settles at ~4.65s  →  HANDOFF at 4700ms  →  UNMOUNT at 5200ms.
+//   hint settles at ~6.2s  →  HANDOFF at 6400ms  →  UNMOUNT at 6900ms.
 
 import { useEffect, useState } from "react";
 
 type Phase = "idle" | "play" | "out";
 
-const HANDOFF_MS = 4700; // begin fade + hand the picker its cue
-const UNMOUNT_MS = 5200; // clear the flag + unmount
+const HANDOFF_MS = 6400; // begin fade + hand the picker its cue
+const UNMOUNT_MS = 6900; // clear the flag + unmount
 
 export default function IntroSplash() {
   const [phase, setPhase] = useState<Phase>("idle");

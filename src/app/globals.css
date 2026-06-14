@@ -396,20 +396,20 @@ body {
    has Reduce Motion on. Auto-play for real new visitors still respects Reduce
    Motion — the component simply never mounts it. (Print/PDF/no-JS fall back to
    the resting end-state poster, since CSS animations don't run there.) */
-.intro-cam { animation: cam-in .7s var(--ease-out-expo) both; }
-.intro-rec { animation: rec-pulse .7s var(--ease-soft) .5s 6 both; }
-.intro-glint { animation: lens-glint 1s var(--ease-out-expo) .5s both; }
-.intro-count.c3 { animation: count-pop .5s var(--ease-soft) 1.0s both; }
-.intro-count.c2 { animation: count-pop .5s var(--ease-soft) 1.5s both; }
-.intro-count.c1 { animation: count-pop .5s var(--ease-soft) 2.0s both; }
-.intro-strip { animation: strip-print 1.4s var(--ease-out-expo) 2.5s both; }
-.intro-pcut { animation: cut-develop .55s var(--ease-out-expo) both; }
-.intro-pcut.pp0 { animation-delay: 2.85s; }
-.intro-pcut.pp1 { animation-delay: 3.15s; }
-.intro-pcut.pp2 { animation-delay: 3.45s; }
-.intro-pcut.pp3 { animation-delay: 3.75s; }
-.intro-pcap { animation: hint-in .5s var(--ease-soft) 3.95s both; }
-.intro-flash4 { animation: intro-flash4 .7s var(--ease-soft) 2.45s both; }
-.intro-hint { animation: hint-rise .55s var(--ease-out-expo) 4.1s both; }
+.intro-cam { animation: cam-in .85s var(--ease-out-expo) both; }
+.intro-rec { animation: rec-pulse .7s var(--ease-soft) .5s 8 both; }
+.intro-glint { animation: lens-glint 1.1s var(--ease-out-expo) .6s both; }
+.intro-count.c3 { animation: count-pop .7s var(--ease-soft) 1.2s both; }
+.intro-count.c2 { animation: count-pop .7s var(--ease-soft) 2.05s both; }
+.intro-count.c1 { animation: count-pop .7s var(--ease-soft) 2.9s both; }
+.intro-strip { animation: strip-print 1.7s var(--ease-out-expo) 3.6s both; }
+.intro-pcut { animation: cut-develop .6s var(--ease-out-expo) both; }
+.intro-pcut.pp0 { animation-delay: 4.05s; }
+.intro-pcut.pp1 { animation-delay: 4.45s; }
+.intro-pcut.pp2 { animation-delay: 4.85s; }
+.intro-pcut.pp3 { animation-delay: 5.25s; }
+.intro-pcap { animation: hint-in .55s var(--ease-soft) 5.45s both; }
+.intro-flash4 { animation: intro-flash4 .8s var(--ease-soft) 3.5s both; }
+.intro-hint { animation: hint-rise .6s var(--ease-out-expo) 5.6s both; }
 
 html { scroll-behavior: smooth; }
