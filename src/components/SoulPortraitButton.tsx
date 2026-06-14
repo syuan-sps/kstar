@@ -1,8 +1,8 @@
 "use client";
 
-// Persistent "我的追星靈魂" entry — re-opens the shareable 追星卡 after
-// onboarding (re-fetches pick scores + recomputes the archetype from stored
-// weights). Renders nothing until the user has completed the quiz.
+// Persistent "我的追星靈魂" entry on the home hero. Once the user has 4 picks it
+// always shows: if they've taken the quiz it re-opens the shareable 追星卡; if not
+// (e.g. after 重新挑選), it becomes a "測我的追星靈魂" CTA that launches the quiz.
 
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -43,12 +43,14 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
     };
   }, [read]);
 
-  if (!prefs?.archetype || !Array.isArray(prefs.topIdols) || prefs.topIdols.length !== 4) return null;
+  if (!prefs || !Array.isArray(prefs.topIdols) || prefs.topIdols.length !== 4) return null;
 
   const picks = prefs.topIdols
     .map((id) => allArtists.find((a) => a.id === id))
     .filter(Boolean) as ArtistLite[];
   if (picks.length !== 4) return null;
+
+  const hasArchetype = !!prefs.archetype;
 
   // Rebuild the report's answer-reflection from stored prefs.
   const answers: ResultAnswers = {
@@ -61,19 +63,41 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
       .map(([t]) => t),
   };
 
+  async function loadSummaries(): Promise<PickSummary[]> {
+    if (!prefs) return [];
+    const res = await fetch("/api/pick-scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pickIds: prefs.topIdols }),
+    });
+    const data = (await res.json()) as { summaries?: PickSummary[] };
+    return data.summaries ?? [];
+  }
+
+  // Existing result → re-open the shareable 追星卡.
   async function openCard() {
     if (loading || !prefs) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/pick-scores", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pickIds: prefs.topIdols }),
-      });
-      const data = (await res.json()) as { summaries?: PickSummary[] };
-      setSummaries(data.summaries ?? []);
-      setResult(getArchetype(data.summaries ?? [], prefs.weights));
+      const s = await loadSummaries();
+      setSummaries(s);
+      setResult(getArchetype(s, prefs.weights));
       setMode("card");
+      setOpen(true);
+    } catch {
+      /* ignore */
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // No archetype yet (e.g. after 重新挑選) → launch the quiz directly.
+  async function openQuiz() {
+    if (loading || !prefs) return;
+    setLoading(true);
+    try {
+      setSummaries(await loadSummaries());
+      setMode("quiz");
       setOpen(true);
     } catch {
       /* ignore */
@@ -93,20 +117,24 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
   return (
     <>
       <button
-        onClick={openCard}
+        onClick={hasArchetype ? openCard : openQuiz}
         disabled={loading}
         className="rounded-full border border-[#56789f]/40 bg-[#56789f]/8 px-4 py-1.5 font-orbitron text-xs font-bold tracking-wide text-[#56789f] transition hover:bg-[#56789f]/15 disabled:opacity-50"
       >
-        {loading ? "讀取中…" : `✦ ${copy.reshareEntry} · ${prefs.archetype.code}`}
+        {loading
+          ? "讀取中…"
+          : hasArchetype
+            ? `✦ ${copy.reshareEntry} · ${prefs.archetype!.code}`
+            : `✦ ${copy.takeQuiz}`}
       </button>
 
-      {open && result && typeof document !== "undefined" && createPortal(
+      {open && (mode === "quiz" || result) && typeof document !== "undefined" && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm" onClick={() => setOpen(false)}>
           <div className="window-frame w-full max-w-md" onClick={(e) => e.stopPropagation()}>
             <div className="title-bar">
               <span className="mr-1.5 text-base">✦</span>
               <span className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">
-                {mode === "quiz" ? copy.redoQuiz : copy.resultTitle}
+                {mode === "quiz" ? (hasArchetype ? copy.redoQuiz : copy.resultTitle) : copy.resultTitle}
               </span>
               <span className="win-btn win-btn-close" onClick={() => setOpen(false)} style={{ cursor: "pointer" }}>×</span>
             </div>
@@ -114,7 +142,7 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
               {mode === "quiz" ? (
                 <SoulQuiz picks={picks} summaries={summaries} onPersist={persist} onClose={() => setOpen(false)} />
               ) : (
-                <TastePortraitCard result={result} picks={picks} answers={answers} onRestart={() => setMode("quiz")} />
+                <TastePortraitCard result={result!} picks={picks} answers={answers} onRestart={() => setMode("quiz")} />
               )}
             </div>
           </div>

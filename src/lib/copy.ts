@@ -43,6 +43,7 @@ export const copy = {
   shareShare: "分享 ✦",
   shareHint: "截圖分享到限動，讓朋友也測一張",
   reshareEntry: "我的追星靈魂",
+  takeQuiz: "測我的追星靈魂",
   soulEvolving: "你的追星靈魂正在進化",
   // result views (toggle + report)
   viewStory: "限動卡",
