@@ -2,7 +2,7 @@
 
 // 偶像圖鑑 — full filterable directory below the 인생네컷 hero.
 // Card click → the idol's four-layer profile page.
-// Corner 「＋」 → swap the idol into the user's four-cut strip (oldest slot out).
+// Corner 「＋」 → open the 人生四格 picker to choose which cut to replace.
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -15,6 +15,7 @@ import {
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
 import ConstellationView from "./ConstellationView";
+import ReplacePickerModal from "./ReplacePickerModal";
 
 type CodexView = "list" | "star";
 
@@ -23,6 +24,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   const [justAdded, setJustAdded] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [view, setView] = useState<CodexView>("list");
+  const [pending, setPending] = useState<{ newcomer: ArtistLite; current: ArtistLite[] } | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -63,14 +65,44 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
         setTimeout(() => setJustAdded(null), 900);
         return;
       }
-      // Oldest slot (index 0) out, newcomer in at the end
-      prefs.topIdols = [...prefs.topIdols.slice(1), id];
-      localStorage.setItem("kstar:prefs", JSON.stringify(prefs));
-      window.dispatchEvent(new Event("kstar:prefs-updated"));
-      setJustAdded(id);
-      setTimeout(() => setJustAdded(null), 900);
+      const newcomer = artists.find((a) => a.id === id);
+      const current = prefs.topIdols
+        .map((pid) => artists.find((a) => a.id === pid))
+        .filter(Boolean) as ArtistLite[];
+      if (!newcomer || current.length !== 4) {
+        // Fallback to the old behaviour if a pick can't be resolved.
+        prefs.topIdols = [...prefs.topIdols.slice(1), id];
+        localStorage.setItem("kstar:prefs", JSON.stringify(prefs));
+        window.dispatchEvent(new Event("kstar:prefs-updated"));
+        setJustAdded(id);
+        setTimeout(() => setJustAdded(null), 900);
+        return;
+      }
+      // Let the user choose which of the four cuts to replace.
+      setPending({ newcomer, current });
     } catch {
       /* ignore */
+    }
+  }
+
+  // Swap the newcomer into the chosen four-cut slot.
+  function doReplace(slotIndex: number) {
+    if (!pending) return;
+    const addedId = pending.newcomer.id;
+    try {
+      const raw = localStorage.getItem("kstar:prefs");
+      if (!raw) return;
+      const prefs = JSON.parse(raw) as { topIdols?: string[] };
+      if (!Array.isArray(prefs.topIdols) || prefs.topIdols.length !== 4) return;
+      prefs.topIdols = prefs.topIdols.map((pid, i) => (i === slotIndex ? addedId : pid));
+      localStorage.setItem("kstar:prefs", JSON.stringify(prefs));
+      window.dispatchEvent(new Event("kstar:prefs-updated"));
+    } catch {
+      /* ignore */
+    } finally {
+      setPending(null);
+      setJustAdded(addedId);
+      setTimeout(() => setJustAdded(null), 900);
     }
   }
 
@@ -146,8 +178,8 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               </div>
               <button
                 onClick={(e) => addToFourCuts(e, a.id)}
-                aria-label={`把 ${a.name} 放進四格`}
-                title="放進人生四格"
+                aria-label={`把 ${a.name} 換進人生四格`}
+                title="換進人生四格"
                 className={`absolute bottom-9 right-2 z-20 flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold transition ${
                   justAdded === a.id
                     ? "bg-[#b4302b] text-white"
@@ -161,6 +193,15 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
         </div>
       )}
       </>
+      )}
+
+      {pending && (
+        <ReplacePickerModal
+          newcomer={pending.newcomer}
+          current={pending.current}
+          onPick={doReplace}
+          onClose={() => setPending(null)}
+        />
       )}
     </section>
   );
