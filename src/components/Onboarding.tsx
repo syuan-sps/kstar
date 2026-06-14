@@ -21,7 +21,16 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("kstar:onboarding") !== "done") setShow(true);
+    if (localStorage.getItem("kstar:onboarding") === "done") return;
+    // If the photobooth splash is playing, hold the picker until it hands off so
+    // it pops in on the crossfade; otherwise show immediately.
+    const intro = window as unknown as { __kstarIntroPlaying?: boolean };
+    if (intro.__kstarIntroPlaying) {
+      const onDone = () => setShow(true);
+      window.addEventListener("kstar:intro-done", onDone, { once: true });
+      return () => window.removeEventListener("kstar:intro-done", onDone);
+    }
+    setShow(true);
   }, []);
 
   if (!show) return null;
@@ -96,7 +105,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
   const titleByStep = step === 1 ? "選出你的 TOP 4" : step === 2 ? "你的人生四格" : "追星靈魂測驗";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">
+    <div className="picker-enter fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">
       <div className="window-frame w-full max-w-md">
         {/* Title bar */}
         <div className="title-bar">

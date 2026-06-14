@@ -15,6 +15,7 @@ export default function MyFourCuts({
   frameClassName?: string;
 }) {
   const [ids, setIds] = useState<string[] | null>(null);
+  const [entry, setEntry] = useState(true); // one-time camera-flash on real page entry
 
   const read = useCallback(() => {
     try {
@@ -44,6 +45,13 @@ export default function MyFourCuts({
     };
   }, [read]);
 
+  // The camera-flash plays only on a fresh page entry, not on pick swaps
+  // (swaps update `ids` without remounting, so `entry` is already false).
+  useEffect(() => {
+    const t = setTimeout(() => setEntry(false), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
   if (!ids || ids.length !== 4) return null;
 
   const artists = ids
@@ -61,7 +69,7 @@ export default function MyFourCuts({
       <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
         你的人生四格 ✦
       </h2>
-      <div key={ids.join(",")} className="fourcuts-pop">
+      <div key={ids.join(",")} className={`fourcuts-pop${entry ? " intro-flash" : ""}`}>
         <FourCuts artists={artists} className={frameClassName} linked />
       </div>
       <SoulPortraitButton allArtists={allArtists} />

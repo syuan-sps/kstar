@@ -43,7 +43,7 @@ export default function FourCuts({
             </>
           );
           const cutClass =
-            "group relative block aspect-[3/4] overflow-hidden rounded-lg ring-1 ring-white/10";
+            "fc-cut group relative block aspect-[3/4] overflow-hidden rounded-lg ring-1 ring-white/10";
           return linked ? (
             <Link
               key={a.id}

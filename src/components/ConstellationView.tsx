@@ -209,7 +209,7 @@ export default function ConstellationView() {
   return (
     <div
       ref={wrapRef}
-      className="relative overflow-hidden rounded-2xl"
+      className="constel-enter relative overflow-hidden rounded-2xl"
       style={{
         height: h || 460,
         background: GALAXY_BG,
@@ -232,7 +232,7 @@ export default function ConstellationView() {
       </div>
 
       {/* edges */}
-      <svg className="absolute inset-0 z-10" width={w} height={h} aria-hidden="true">
+      <svg className="constel-edges-in absolute inset-0 z-10" width={w} height={h} aria-hidden="true">
         <defs>
           <filter id="edgeGlow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="2.2" />
@@ -260,7 +260,7 @@ export default function ConstellationView() {
       </svg>
 
       {/* nodes (idol-stars) */}
-      {nodesRef.current.map((n) => (
+      {nodesRef.current.map((n, i) => (
         <button
           key={n.id}
           onClick={() => router.push(`/artist/${n.id}`)}
@@ -273,8 +273,9 @@ export default function ConstellationView() {
           style={{ left: n.x ?? 0, top: n.y ?? 0, width: n.r * 2, height: n.r * 2 }}
         >
           <div
-            className="h-full w-full overflow-hidden rounded-full"
+            className="cstar-in h-full w-full overflow-hidden rounded-full"
             style={{
+              animationDelay: `${(i % 12) * 0.05}s`,
               boxShadow: n.anchor
                 ? "0 0 0 2px rgba(255,255,255,0.95), 0 0 0 4px rgba(180,48,43,0.45), 0 0 22px 6px rgba(225,130,100,0.42)"
                 : "0 0 0 1.5px rgba(255,255,255,0.85), 0 0 11px 2px rgba(205,218,245,0.5), 0 0 22px 6px rgba(150,175,220,0.3)",

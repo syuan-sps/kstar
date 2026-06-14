@@ -10,6 +10,7 @@ import BgDecor from "@/components/BgDecor";
 import ChromeSparkle from "@/components/ChromeSparkle";
 import Taskbar from "@/components/Taskbar";
 import Onboarding from "@/components/Onboarding";
+import IntroSplash from "@/components/IntroSplash";
 
 const notoTC = Noto_Sans_TC({
   variable: "--font-noto-tc",
@@ -35,6 +36,9 @@ export default async function RootLayout({
   return (
     <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
       <body className="relative min-h-full flex flex-col pb-10">
+        {/* Photobooth splash for first-time visitors — mounts before Onboarding so its
+            effect runs first and can hold the picker until the handoff. */}
+        <IntroSplash />
         <Onboarding allArtists={liteArtists} />
         {/* Decorative background — fixed, behind everything */}
         <BgDecor />
