@@ -35,7 +35,10 @@ export default async function RootLayout({
   const liteArtists = await getAllArtistsLite();
   return (
     <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
-      <body className="relative min-h-full flex flex-col pb-10">
+      {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
+          attributes onto <body> before React hydrates — ignore that one-level
+          attribute mismatch; real mismatches deeper in the tree still surface. */}
+      <body className="relative min-h-full flex flex-col pb-10" suppressHydrationWarning>
         {/* Photobooth splash for first-time visitors — mounts before Onboarding so its
             effect runs first and can hold the picker until the handoff. */}
         <IntroSplash />

@@ -390,22 +390,29 @@ body {
   .constel-edges-in { animation: constel-edges 1.1s var(--ease-soft) .4s both; }
   .cstar-in { animation: node-glow .55s var(--ease-spring) both; }
 
-  /* First-launch photobooth splash — cinematic ~5.1s, plays once */
-  .intro-cam { animation: cam-in .7s var(--ease-out-expo) both; }
-  .intro-rec { animation: rec-pulse .7s var(--ease-soft) .5s 6 both; }
-  .intro-glint { animation: lens-glint 1s var(--ease-out-expo) .5s both; }
-  .intro-count.c3 { animation: count-pop .5s var(--ease-soft) 1.0s both; }
-  .intro-count.c2 { animation: count-pop .5s var(--ease-soft) 1.5s both; }
-  .intro-count.c1 { animation: count-pop .5s var(--ease-soft) 2.0s both; }
-  .intro-strip { animation: strip-print 1.4s var(--ease-out-expo) 2.5s both; }
-  .intro-pcut { animation: cut-develop .55s var(--ease-out-expo) both; }
-  .intro-pcut.pp0 { animation-delay: 2.85s; }
-  .intro-pcut.pp1 { animation-delay: 3.15s; }
-  .intro-pcut.pp2 { animation-delay: 3.45s; }
-  .intro-pcut.pp3 { animation-delay: 3.75s; }
-  .intro-pcap { animation: hint-in .5s var(--ease-soft) 3.95s both; }
-  .intro-flash4 { animation: intro-flash4 .7s var(--ease-soft) 2.45s both; }
-  .intro-hint { animation: hint-rise .55s var(--ease-out-expo) 4.1s both; }
 }
+
+/* First-launch photobooth splash — ALWAYS-ON motion (intentionally NOT behind
+   the reduced-motion query). The splash element is JS-gated: it mounts only for
+   a motion-OK new visitor OR when explicitly replayed via ?intro. In both cases
+   the user is opting in to watch it, so a ?intro demo animates even when the OS
+   has Reduce Motion on. Auto-play for real new visitors still respects Reduce
+   Motion — the component simply never mounts it. (Print/PDF/no-JS fall back to
+   the resting end-state poster, since CSS animations don't run there.) */
+.intro-cam { animation: cam-in .7s var(--ease-out-expo) both; }
+.intro-rec { animation: rec-pulse .7s var(--ease-soft) .5s 6 both; }
+.intro-glint { animation: lens-glint 1s var(--ease-out-expo) .5s both; }
+.intro-count.c3 { animation: count-pop .5s var(--ease-soft) 1.0s both; }
+.intro-count.c2 { animation: count-pop .5s var(--ease-soft) 1.5s both; }
+.intro-count.c1 { animation: count-pop .5s var(--ease-soft) 2.0s both; }
+.intro-strip { animation: strip-print 1.4s var(--ease-out-expo) 2.5s both; }
+.intro-pcut { animation: cut-develop .55s var(--ease-out-expo) both; }
+.intro-pcut.pp0 { animation-delay: 2.85s; }
+.intro-pcut.pp1 { animation-delay: 3.15s; }
+.intro-pcut.pp2 { animation-delay: 3.45s; }
+.intro-pcut.pp3 { animation-delay: 3.75s; }
+.intro-pcap { animation: hint-in .5s var(--ease-soft) 3.95s both; }
+.intro-flash4 { animation: intro-flash4 .7s var(--ease-soft) 2.45s both; }
+.intro-hint { animation: hint-rise .55s var(--ease-out-expo) 4.1s both; }
 
 html { scroll-behavior: smooth; }
