@@ -20,7 +20,7 @@ export const copy = {
   backHome: "回首頁",
   loginCta: "登入以跨裝置同步收藏",
   viewArtist: "查看偶像",
-  startBtn: "✦ 開始",
+  startBtn: "重新開始",
   taskbarLabel: "♪ K-pop 推薦",
 
   // ── 追星靈魂 / 入坑問卷 ────────────────────────────────────────────
