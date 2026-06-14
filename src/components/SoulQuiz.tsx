@@ -170,7 +170,7 @@ export default function SoulQuiz({
       <>
         <p className="font-orbitron text-sm font-bold text-[#1c1e24]">{copy.rankTitle}</p>
         <p className="text-xs text-[#5e636d]">{copy.rankSub}</p>
-        <div className="space-y-1.5">
+        <div className="space-y-2.5">
           {rank.map((L, i) => (
             <div key={L} className="flex items-center gap-2 rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2">
               <span className="font-orbitron text-xs font-black text-[#9aa0aa]">#{i + 1}</span>
