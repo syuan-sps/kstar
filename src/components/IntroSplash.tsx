@@ -16,11 +16,17 @@ export default function IntroSplash() {
   useEffect(() => {
     let play = false;
     try {
+      // ?intro in the URL force-replays the splash (demo / re-watch), bypassing the gate.
+      const force = new URLSearchParams(window.location.search).has("intro");
       const seen = localStorage.getItem("kstar:seenIntro");
       const done = localStorage.getItem("kstar:onboarding") === "done";
       const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-      if (!seen && !done && !reduce) play = true;
-      if (!seen) localStorage.setItem("kstar:seenIntro", "1");
+      if (force) {
+        play = true;
+      } else {
+        if (!seen && !done && !reduce) play = true;
+        if (!seen) localStorage.setItem("kstar:seenIntro", "1");
+      }
     } catch {
       /* ignore */
     }
