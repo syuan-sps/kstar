@@ -7,15 +7,18 @@ import Thumb from "./Thumb";
 
 type Theme = { motifs: string[]; accent: string; soft: string };
 
+// Muted, low-saturation tints that sit in the same calm grey-white family as the
+// home-page 인생네컷 collage (FourCuts: #aeb3bb border / #e9ebee bg / #7c8088 text).
+// Each idol still gets a distinct soft hue, just heavily desaturated.
 const THEMES: Theme[] = [
-  { motifs: ["🍎", "🍏"], accent: "#ff5a7a", soft: "#ffe3ea" },
-  { motifs: ["🍀", "☘️"], accent: "#5cc46a", soft: "#def6e2" },
-  { motifs: ["🍓", "🍓"], accent: "#ff77ab", soft: "#ffe1ef" },
-  { motifs: ["⭐", "✦"], accent: "#5aa6ff", soft: "#dcebff" },
-  { motifs: ["💎", "✦"], accent: "#8a93a8", soft: "#e7e9f0" },
-  { motifs: ["🎀", "💗"], accent: "#ff7ec6", soft: "#ffe0f2" },
-  { motifs: ["🌸", "🌷"], accent: "#ff8fb0", soft: "#ffe6ec" },
-  { motifs: ["🍒", "❤️"], accent: "#ff5566", soft: "#ffe0e3" },
+  { motifs: ["🍎", "🍏"], accent: "#bf8b96", soft: "#efe8ea" }, // dusty rose
+  { motifs: ["🍀", "☘️"], accent: "#8fae93", soft: "#e8efe9" }, // muted sage
+  { motifs: ["🍓", "🍓"], accent: "#c294ac", soft: "#f0e9ee" }, // muted pink
+  { motifs: ["⭐", "✦"], accent: "#8ca1c0", soft: "#e7ecf2" }, // muted slate blue
+  { motifs: ["💎", "✦"], accent: "#9298a8", soft: "#e9ebf0" }, // blue grey
+  { motifs: ["🎀", "💗"], accent: "#bf97b6", soft: "#efe9ef" }, // muted orchid
+  { motifs: ["🌸", "🌷"], accent: "#c19aa3", soft: "#f0eaec" }, // muted mauve
+  { motifs: ["🍒", "❤️"], accent: "#bf9094", soft: "#efe9ea" }, // muted clay
 ];
 
 function hash(s: string) {
