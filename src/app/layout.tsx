@@ -11,6 +11,8 @@ import ChromeSparkle from "@/components/ChromeSparkle";
 import Taskbar from "@/components/Taskbar";
 import Onboarding from "@/components/Onboarding";
 import IntroSplash from "@/components/IntroSplash";
+import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const notoTC = Noto_Sans_TC({
   variable: "--font-noto-tc",
@@ -79,6 +81,8 @@ export default async function RootLayout({
           {copy.appName} · 以曲風與後設資料推薦 · 資料來源 Spotify
         </footer>
         <Taskbar />
+        <Analytics />
+        <Analytics />
       </body>
     </html>
   );
