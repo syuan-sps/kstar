@@ -31,11 +31,12 @@ export default function IntroSplash() {
       const force = new URLSearchParams(window.location.search).has("intro");
       const seen = localStorage.getItem("kstar:seenIntro");
       const done = localStorage.getItem("kstar:onboarding") === "done";
-      const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
       if (force) {
         play = true;
       } else {
-        if (!seen && !done && !reduce) play = true;
+        // Auto-play on a brand-new visit (once). Reduce Motion is intentionally
+        // NOT checked — motion is on site-wide by product decision.
+        if (!seen && !done) play = true;
         if (!seen) localStorage.setItem("kstar:seenIntro", "1");
       }
     } catch {
