@@ -14740,7 +14740,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/youngjae.jpg",
       "instagram": "tws_pledis",
       "profile": {
         "aesthetic": {
@@ -14828,7 +14828,8 @@
           ],
           "summary": "TWS的元氣擔當——校園陽光的能量輸出。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hanjin",
