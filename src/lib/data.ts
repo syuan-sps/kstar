@@ -1,6 +1,7 @@
 import catalogJson from "@/data/catalog.json";
 import { similarArtists } from "./similarity";
 import { SCORE_LAYERS } from "./types";
+import { getApprovedPhotos } from "./submissions";
 import type {
   Artist, SimilarArtist, Catalog, PickSummary, LayerScores,
   ScoreLayer, Constellation, ConstellationNode, ConstellationEdge,
@@ -9,8 +10,24 @@ import type {
 const local = catalogJson as unknown as Catalog;
 const artistsById = new Map<string, Artist>(local.artists.map((a) => [a.id, a]));
 
+async function withPhotoOverride(artist: Artist): Promise<Artist> {
+  const photos = await getApprovedPhotos();
+  const o = photos.get(artist.id);
+  return o ? { ...artist, image_url: o.url, image_focus: o.focus } : artist;
+}
+
+async function applyPhotoOverrides(list: Artist[]): Promise<Artist[]> {
+  const photos = await getApprovedPhotos();
+  if (photos.size === 0) return list;
+  return list.map((a) => {
+    const o = photos.get(a.id);
+    return o ? { ...a, image_url: o.url, image_focus: o.focus } : a;
+  });
+}
+
 export async function getArtist(id: string): Promise<Artist | null> {
-  return artistsById.get(id) ?? null;
+  const a = artistsById.get(id);
+  return a ? withPhotoOverride(a) : null;
 }
 
 export async function getPopularArtists(limit = 12): Promise<Artist[]> {
@@ -24,7 +41,7 @@ export async function getSimilarArtists(id: string): Promise<SimilarArtist[]> {
 }
 
 export async function getAllArtists(): Promise<Artist[]> {
-  return local.artists;
+  return applyPhotoOverrides(local.artists);
 }
 
 export async function searchArtists(query: string): Promise<Artist[]> {
@@ -39,7 +56,8 @@ export async function searchArtists(query: string): Promise<Artist[]> {
 
 export async function getAllArtistsLite(): Promise<import("./lite").ArtistLite[]> {
   const { toLite } = await import("./lite");
-  return local.artists.map(toLite);
+  const artists = await applyPhotoOverrides(local.artists);
+  return artists.map(toLite);
 }
 
 // ── Pick summaries for the questionnaire / archetype engine ────────────
