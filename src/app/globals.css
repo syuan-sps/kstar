@@ -19,6 +19,18 @@
   --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-spring: cubic-bezier(0.34, 1.42, 0.5, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  /* ── ib-* intro-engine tokens (SOULCUTS hero intro) ── */
+  --ib-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ib-ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --ib-spring:    cubic-bezier(0.34, 1.42, 0.5, 1);
+  --ib-soft:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ib-cherry:    #b4302b;
+  --ib-blue:      #56789f;
+  --ib-aesthetic:   #e7eaef;
+  --ib-personality: #ef6f68;
+  --ib-performance: #86b6f0;
+  --ib-content:     #b8bec9;
+  --ib-chrome: linear-gradient(180deg, #ffffff 0%, #e6e9ee 18%, #aeb3bb 42%, #7c8088 52%, #c0c4ca 70%, #f4f6f8 100%);
 }
 
 @theme inline {
@@ -254,15 +266,11 @@ body {
 @keyframes constel-edges { from { opacity: 0; } to { opacity: 1; } }
 @keyframes node-glow     { 0% { opacity: 0; transform: scale(.15); } 65% { opacity: 1; transform: scale(1.18); } 100% { opacity: 1; transform: scale(1); } }
 
-@keyframes splash-out    { to { opacity: 0; visibility: hidden; } }
 @keyframes cam-in        { 0% { opacity: 0; transform: translateX(-50%) translateY(16px) scale(.9); } 100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
 @keyframes rec-pulse     { 0%,100% { opacity: .3; transform: scale(.85); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes lens-glint    { 0% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
-@keyframes count-pop     { 0% { opacity: 0; transform: translate(-50%,-50%) scale(1.85); } 22% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%,-50%) scale(.55); } }
 @keyframes strip-print   { 0% { opacity: 0; transform: translate(-50%,-86px); } 22% { opacity: 1; } 100% { opacity: 1; transform: translate(-50%,0); } }
 @keyframes intro-flash4  { 0% { opacity: 0; } 15% { opacity: .95; } 35% { opacity: .1; } 52% { opacity: .5; } 72% { opacity: 0; } 100% { opacity: 0; } }
-@keyframes hint-in       { from { opacity: 0; } to { opacity: 1; } }
-@keyframes hint-rise     { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
 /* ════════════════════════════════════════════════════════════════════════
    2 · RESTING STATES  (visible end-state — what shows with motion OFF)
@@ -311,56 +319,6 @@ body {
 
 /* 星圖 — nodes & edges rest visible */
 
-/* ── First-launch splash (resting = the developed poster) ─────────────── */
-.intro-splash { position: fixed; inset: 0; z-index: 60; overflow: hidden; display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(120% 95% at 50% -8%, #fff, #eef1f4 50%, #e1e5ea 100%); }
-.intro-splash.is-out { animation: splash-out .5s var(--ease-in-expo) forwards; }
-.intro-stage { position: relative; width: 300px; height: 396px; }
-
-.intro-cam {
-  position: absolute; left: 50%; top: 6px; transform: translateX(-50%); z-index: 3; width: 184px; padding: 13px 14px 11px;
-  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,0) 20%),
-    linear-gradient(135deg, #f6f8fa 0%, #d6dade 28%, #aeb3bb 52%, #cdd1d7 72%, #9aa0aa 100%);
-  border: 2px solid #aeb3bb; border-radius: 20px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.4), 4px 7px 0 rgba(74,74,74,.24), 0 12px 34px rgba(124,128,136,.32);
-}
-.intro-rec { position: absolute; right: 16px; top: 13px; width: 8px; height: 8px; border-radius: 50%; background: #e0584f; box-shadow: 0 0 9px rgba(224,88,79,.95); z-index: 5; }
-.intro-rec::after { content: "REC"; position: absolute; right: 13px; top: -1px; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 7px; font-weight: 700; letter-spacing: .12em; color: #b4302b; opacity: .85; }
-.intro-cam-top { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 10px; }
-.intro-dial { position: relative; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 38% 30%, #fff, #c4c8ce 46%, #7c8088 100%); box-shadow: inset 0 0 0 2px rgba(255,255,255,.5), 0 1px 2px rgba(0,0,0,.28); }
-.intro-dial::after { content: ""; position: absolute; left: 50%; top: 3px; width: 2px; height: 7px; background: #5e636d; border-radius: 1px; transform: translateX(-50%); }
-.intro-shoe { width: 30px; height: 11px; border-radius: 3px; background: linear-gradient(180deg, #eef0f3, #9aa0aa); box-shadow: inset 0 0 0 1px rgba(255,255,255,.45), 0 1px 1px rgba(0,0,0,.22); }
-.intro-shutter { width: 19px; height: 19px; border-radius: 50%; background: radial-gradient(circle at 38% 30%, #ef7a72, #b4302b 60%, #8f231f 100%); box-shadow: inset 0 1px 1px rgba(255,255,255,.55), 0 0 9px rgba(180,48,43,.5); }
-.intro-lenswrap { display: flex; justify-content: center; }
-.intro-lens { position: relative; width: 108px; height: 108px; border-radius: 50%; overflow: hidden;
-  background: radial-gradient(circle at 50% 38%, #3b4048 0%, #1a1c21 46%, #0a0b0d 100%);
-  box-shadow: 0 0 0 3px #d0d4da, 0 0 0 6px #aeb3bb, 0 0 0 8px #8a8f97, 0 0 0 9px #6f747c, inset 0 3px 9px rgba(255,255,255,.22), inset 0 -7px 16px rgba(0,0,0,.62); }
-.intro-lens::before { content: ""; position: absolute; inset: 19px; border-radius: 50%;
-  background: radial-gradient(circle at 42% 34%, rgba(167,192,220,.6), rgba(86,120,159,.16) 42%, transparent 62%);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), inset 0 0 20px rgba(0,0,0,.72); }
-.intro-lens::after { content: ""; position: absolute; right: 30px; bottom: 30px; width: 7px; height: 7px; border-radius: 50%; background: rgba(224,88,79,.6); filter: blur(.5px); }
-.intro-glint { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; z-index: 3; transform: translateX(-130%);
-  background: linear-gradient(118deg, transparent 42%, rgba(255,255,255,.72) 50%, transparent 58%); }
-.intro-count { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 4; opacity: 0;
-  font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 54px; font-weight: 700; color: #fff;
-  text-shadow: 0 0 20px rgba(167,192,220,.95), 0 2px 7px rgba(0,0,0,.5); }
-.intro-cam-label { text-align: center; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 11px; letter-spacing: .22em; color: #6f747c; margin-top: 9px; }
-
-.intro-strip { position: absolute; left: 50%; top: 150px; z-index: 1; width: 150px; transform: translate(-50%,0);
-  background: linear-gradient(180deg, #fff, #eef0f3); border: 1px solid #d3d7dd; border-radius: 14px; padding: 9px 9px 7px;
-  box-shadow: 5px 7px 0 rgba(124,128,136,.28), 0 10px 26px rgba(124,128,136,.26); }
-.intro-pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.intro-pcut { position: relative; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
-.intro-sil { position: absolute; inset: 0; background: radial-gradient(circle 13px at 50% 33%, var(--sil) 96%, transparent 100%), radial-gradient(35px 27px at 50% 106%, var(--sil) 70%, transparent 72%); }
-.intro-pcut::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(122deg, transparent 42%, rgba(255,255,255,.5) 50%, transparent 58%); }
-.intro-pcut.pp0 { background: linear-gradient(160deg, #d9dde2, #9aa0aa); --sil: rgba(58,62,70,.5); }
-.intro-pcut.pp1 { background: linear-gradient(160deg, #bcd0e6, #56789f); --sil: rgba(28,40,64,.46); }
-.intro-pcut.pp2 { background: linear-gradient(160deg, #ecb9b6, #b4302b); --sil: rgba(80,20,18,.46); }
-.intro-pcut.pp3 { background: linear-gradient(160deg, #d0d4da, #7c8088); --sil: rgba(50,54,62,.5); }
-.intro-pcap { text-align: center; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 10px; letter-spacing: .24em; color: #6f747c; margin-top: 7px; }
-.intro-flash4 { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 40%, #fff, #eef3f9 58%, #e0e7ef); }
-.intro-hint { position: absolute; left: 50%; bottom: -2px; transform: translateX(-50%); white-space: nowrap; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 12px; font-weight: 700; color: #5e636d; }
-
 /* ════════════════════════════════════════════════════════════════════════
    3 · MOTION  (ALWAYS-ON — by product decision, animations play regardless of
    the OS Reduce Motion setting; the prefers-reduced-motion gate was removed.)
@@ -389,27 +347,241 @@ body {
 .constel-edges-in { animation: constel-edges 1.1s var(--ease-soft) .4s both; }
 .cstar-in { animation: node-glow .55s var(--ease-spring) both; }
 
-/* First-launch photobooth splash — ALWAYS-ON motion (intentionally NOT behind
-   the reduced-motion query). The splash element is JS-gated: it mounts only for
-   a motion-OK new visitor OR when explicitly replayed via ?intro. In both cases
-   the user is opting in to watch it, so a ?intro demo animates even when the OS
-   has Reduce Motion on. Auto-play for real new visitors still respects Reduce
-   Motion — the component simply never mounts it. (Print/PDF/no-JS fall back to
-   the resting end-state poster, since CSS animations don't run there.) */
-.intro-cam { animation: cam-in .85s var(--ease-out-expo) both; }
-.intro-rec { animation: rec-pulse .7s var(--ease-soft) .5s 8 both; }
-.intro-glint { animation: lens-glint 1.1s var(--ease-out-expo) .6s both; }
-.intro-count.c3 { animation: count-pop .7s var(--ease-soft) 1.2s both; }
-.intro-count.c2 { animation: count-pop .7s var(--ease-soft) 2.05s both; }
-.intro-count.c1 { animation: count-pop .7s var(--ease-soft) 2.9s both; }
-.intro-strip { animation: strip-print 1.7s var(--ease-out-expo) 3.6s both; }
-.intro-pcut { animation: cut-develop .6s var(--ease-out-expo) both; }
-.intro-pcut.pp0 { animation-delay: 4.05s; }
-.intro-pcut.pp1 { animation-delay: 4.45s; }
-.intro-pcut.pp2 { animation-delay: 4.85s; }
-.intro-pcut.pp3 { animation-delay: 5.25s; }
-.intro-pcap { animation: hint-in .55s var(--ease-soft) 5.45s both; }
-.intro-flash4 { animation: intro-flash4 .8s var(--ease-soft) 3.5s both; }
-.intro-hint { animation: hint-rise .6s var(--ease-out-expo) 5.6s both; }
+/* ── Camera-print on the four-cut reveal (DevelopFourCuts, ~3.5s) ─────── */
+.dev-splash { position: relative; display: flex; align-items: center; justify-content: center; padding: 6px 0 2px; }
+.dev-stage { position: relative; width: 250px; height: 320px; }
+.dev-cam { position: absolute; left: 50%; top: 2px; transform: translateX(-50%); z-index: 3; width: 150px; padding: 10px 12px 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,0) 20%),
+    linear-gradient(135deg, #f6f8fa 0%, #d6dade 28%, #aeb3bb 52%, #cdd1d7 72%, #9aa0aa 100%);
+  border: 2px solid #aeb3bb; border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 3px 5px 0 rgba(74,74,74,.22), 0 10px 28px rgba(124,128,136,.3);
+  animation: cam-in .6s var(--ease-out-expo) both; }
+.dev-rec { position: absolute; right: 13px; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: #e0584f; box-shadow: 0 0 8px rgba(224,88,79,.95);
+  animation: rec-pulse .6s var(--ease-soft) .3s 4 both; }
+.dev-lens { position: relative; width: 84px; height: 84px; margin: 0 auto; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, #3b4048 0%, #1a1c21 46%, #0a0b0d 100%);
+  box-shadow: 0 0 0 3px #d0d4da, 0 0 0 6px #aeb3bb, inset 0 3px 9px rgba(255,255,255,.22), inset 0 -7px 16px rgba(0,0,0,.62); }
+.dev-glint { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; transform: translateX(-130%);
+  background: linear-gradient(118deg, transparent 42%, rgba(255,255,255,.72) 50%, transparent 58%);
+  animation: lens-glint 1s var(--ease-out-expo) .4s both; }
+.dev-cam-label { text-align: center; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 9px; letter-spacing: .22em; color: #6f747c; margin-top: 7px; }
+.dev-strip { position: absolute; left: 50%; top: 118px; z-index: 1; width: 150px; transform: translate(-50%,0);
+  background: linear-gradient(180deg, #fff, #eef0f3); border: 1px solid #d3d7dd; border-radius: 14px; padding: 9px 9px 7px;
+  box-shadow: 5px 7px 0 rgba(124,128,136,.28), 0 10px 26px rgba(124,128,136,.26);
+  animation: strip-print 1.1s var(--ease-out-expo) 1.0s both; }
+.dev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.dev-cut { position: relative; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+  animation: cut-develop .55s var(--ease-out-expo) both; }
+.dev-cut0 { animation-delay: 1.9s; } .dev-cut1 { animation-delay: 2.2s; }
+.dev-cut2 { animation-delay: 2.5s; } .dev-cut3 { animation-delay: 2.8s; }
+.dev-cap { text-align: center; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 10px; letter-spacing: .24em; color: #6f747c; margin-top: 7px; }
+.dev-flash { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 40%, #fff, #eef3f9 58%, #e0e7ef);
+  animation: intro-flash4 .7s var(--ease-soft) .85s both; }
 
 html { scroll-behavior: smooth; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   SOUL-INTRO  SOULCUTS first-visit hero intro + flash-consent gate
+   All stage/lockup selectors are prefixed `.soul-intro` to prevent collisions.
+   Keyframes are copied as-is (global scope — no prefix needed).
+   Variables live in :root above (--ib-* tokens).
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper: fills screen above everything ────────────────────────────── */
+.soul-intro {
+  position: fixed; inset: 0; z-index: 60;
+}
+.soul-intro.is-out {
+  animation: ib-fade-out 0.55s var(--ib-ease-in) forwards;
+  pointer-events: none;
+}
+/* consent gate backdrop */
+.soul-intro-overlay {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(28,30,36,0.55); backdrop-filter: blur(3px); padding: 20px;
+}
+
+/* ── Stage ────────────────────────────────────────────────────────────── */
+.soul-intro .ib-stage {
+  position: relative; width: 100%; height: 100%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+.soul-intro .ib-scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+
+/* ── Shared: wordmark ─────────────────────────────────────────────────── */
+.soul-intro .ib-wordmark {
+  position: relative; text-align: center; line-height: 0.96;
+  font-weight: 900; letter-spacing: 0.02em;
+}
+.soul-intro .ib-wordmark .ib-mark {
+  display: block; font-size: 46px; text-transform: uppercase;
+  background: var(--ib-chrome); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6)) drop-shadow(0 3px 6px rgba(40,44,52,0.35));
+}
+.soul-intro .ib-wordmark .ib-mark-zh {
+  display: block; margin-top: 4px; font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 17px; font-weight: 900; letter-spacing: 0.32em; color: #5e636d; text-indent: 0.32em;
+}
+.soul-intro .ib-wordmark .ib-glint {
+  content: ""; position: absolute; inset: -8% -4%; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.9) 50%, transparent 60%);
+  -webkit-mask: linear-gradient(#000, #000); mix-blend-mode: screen;
+}
+
+/* ── Shared: slogan ───────────────────────────────────────────────────── */
+.soul-intro .ib-slogan { text-align: center; }
+.soul-intro .ib-slogan .ib-en {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--ib-cherry);
+}
+.soul-intro .ib-slogan .ib-zh {
+  margin-top: 5px; font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em; color: #6f747c;
+}
+
+/* ── Shared: soul-card teaser ─────────────────────────────────────────── */
+.soul-intro .ib-soulcard {
+  width: 150px; border-radius: 13px; padding: 12px 12px 11px; position: relative; overflow: hidden;
+  background: linear-gradient(157deg, #ffffff, #eef0f3 55%, #dfe3e8);
+  border: 1px solid #d3d7dd;
+  box-shadow: 4px 6px 0 rgba(124,128,136,0.26), 0 10px 26px rgba(124,128,136,0.28), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.soul-intro .ib-soulcard::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.0;
+  background: conic-gradient(from 200deg at 30% 20%,
+    rgba(231,234,239,0) 0deg, rgba(134,182,240,0.35) 70deg, rgba(239,111,104,0.25) 150deg,
+    rgba(184,190,201,0.3) 230deg, rgba(255,255,255,0.5) 300deg, rgba(231,234,239,0) 360deg);
+  mix-blend-mode: screen;
+}
+.soul-intro .ib-sc-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.soul-intro .ib-sc-code { font-size: 19px; font-weight: 900; letter-spacing: 0.1em; color: #1c1e24; }
+.soul-intro .ib-sc-tier { flex-shrink: 0; white-space: nowrap; font-family: var(--font-noto-tc), system-ui, sans-serif; font-size: 9px; font-weight: 900; color: #fff; background: var(--ib-cherry); border-radius: 999px; padding: 3px 7px; }
+.soul-intro .ib-sc-cuts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin: 10px 0 7px; }
+.soul-intro .ib-sc-cuts .cut { height: 7px; border-radius: 3px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 0 0 1px rgba(124,128,136,0.12); }
+.soul-intro .ib-sc-cuts .c0 { background: var(--ib-aesthetic); }
+.soul-intro .ib-sc-cuts .c1 { background: var(--ib-personality); }
+.soul-intro .ib-sc-cuts .c2 { background: var(--ib-performance); }
+.soul-intro .ib-sc-cuts .c3 { background: var(--ib-content); }
+.soul-intro .ib-sc-hex { width: 92px; height: 92px; margin: 0 auto 6px; }
+.soul-intro .ib-sc-hex svg { width: 100%; height: 100%; overflow: visible; }
+.soul-intro .ib-sc-hex .ring { fill: none; stroke: #c2c7ce; stroke-width: 0.9; stroke-opacity: 0.75; }
+.soul-intro .ib-sc-hex .poly { fill: rgba(180,48,43,0.14); stroke: var(--ib-cherry); stroke-width: 1.5; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; }
+.soul-intro .ib-sc-hex .dot { fill: #fff; stroke-width: 1.3; }
+.soul-intro .ib-sc-hex .dot.d0 { stroke: #9aa0aa; } .soul-intro .ib-sc-hex .dot.d1 { stroke: var(--ib-personality); }
+.soul-intro .ib-sc-hex .dot.d2 { stroke: var(--ib-performance); } .soul-intro .ib-sc-hex .dot.d3 { stroke: var(--ib-cherry); }
+.soul-intro .ib-sc-hex .dot.d4 { stroke: #7c8088; } .soul-intro .ib-sc-hex .dot.d5 { stroke: var(--ib-blue); }
+.soul-intro .ib-sc-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+.soul-intro .ib-sc-labels span { font-family: var(--font-noto-tc), system-ui, sans-serif; font-size: 10px; font-weight: 700; color: #9aa0aa; text-align: center; }
+.soul-intro .ib-sc-foot { margin-top: 9px; padding-top: 8px; border-top: 1px solid #e1e4e8; display: flex; align-items: center; justify-content: space-between; }
+.soul-intro .ib-sc-foot b { font-size: 8.5px; font-weight: 700; letter-spacing: 0.18em; color: #6f747c; }
+.soul-intro .ib-sc-foot em { font-family: var(--font-noto-tc), system-ui, sans-serif; font-style: normal; font-size: 9px; color: #9aa0aa; }
+
+/* ── Skip control ─────────────────────────────────────────────────────── */
+.soul-intro .ib-skip {
+  position: absolute; right: 12px; bottom: 11px; z-index: 9; cursor: pointer;
+  font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  color: #6f747c; background: rgba(255,255,255,0.55); border: 1px solid rgba(124,128,136,0.4); border-radius: 999px;
+  padding: 5px 12px; backdrop-filter: blur(4px); transition: color .2s, border-color .2s, background .2s;
+}
+.soul-intro .ib-skip:hover { color: #1c1e24; border-color: #7c8088; background: rgba(255,255,255,0.85); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   KEYFRAMES  (global — no prefix)
+   ════════════════════════════════════════════════════════════════════════ */
+@keyframes ib-fade-out      { to { opacity: 0; visibility: hidden; } }
+@keyframes ib-forge-mark    { 0% { opacity: 0; filter: blur(13px) brightness(2.4); transform: translateY(8px) scaleY(1.12); letter-spacing: 0.3em; } 60% { opacity: 1; } 100% { opacity: 1; filter: blur(0) brightness(1); transform: translateY(0) scaleY(1); letter-spacing: 0.02em; } }
+@keyframes ib-zh-in         { from { opacity: 0; letter-spacing: 0.7em; } to { opacity: 1; letter-spacing: 0.32em; } }
+@keyframes ib-glint-sweep   { 0% { opacity: 0; transform: translateX(-60%); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateX(60%); } }
+@keyframes ib-slogan-in     { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ib-card-flip     { 0% { opacity: 0; transform: perspective(700px) rotateX(72deg) translateY(-30px) scale(0.9); } 60% { opacity: 1; } 100% { opacity: 1; transform: perspective(700px) rotateX(0) translateY(0) scale(1); } }
+@keyframes ib-card-rise     { from { opacity: 0; transform: translateY(20px) scale(0.92); filter: blur(8px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes ib-holo-drift    { 0%,100% { opacity: 0.35; transform: translate(-6%, -4%) rotate(0deg); } 50% { opacity: 0.9; transform: translate(6%, 4%) rotate(8deg); } }
+/* D · shutter keyframes */
+@keyframes ib-reticle-in   { 0% { opacity: 0; transform: scale(1.5) rotate(-6deg); } 40% { opacity: 0.9; } 100% { opacity: 0; transform: scale(0.9) rotate(0deg); } }
+@keyframes ib-shutter-flash{ 0%,7%{opacity:0} 9%{opacity:0.92} 13%{opacity:0} 25%{opacity:0} 27%{opacity:0.92} 31%{opacity:0} 43%{opacity:0} 45%{opacity:0.92} 49%{opacity:0} 61%{opacity:0} 63%{opacity:0.92} 67%{opacity:0} 100%{opacity:0} }
+@keyframes ib-frame-pop    { 0% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.55); filter: blur(7px); } 55% { opacity: 1; } 100% { opacity: 1; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1); filter: blur(0); } }
+@keyframes ib-strip-collapse{ from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-26px) scale(0.62); filter: blur(3px); } }
+@keyframes ib-cut-in { 0% { opacity: 0; transform: translateY(-12px) scaleX(0.35); } 55% { opacity: 1; transform: translateY(0) scaleX(1); } 100% { opacity: 1; } }
+@keyframes ib-poly-pop     { 0% { opacity: 0; transform: scale(0); } 70% { opacity: 1; transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes ib-dot-ping     { 0% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); } 100% { opacity: 1; transform: scale(1); } }
+/* E · hexagon keyframes */
+@keyframes ib-hex-in       { 0% { opacity: 0; transform: scale(0.55) rotate(-22deg); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+@keyframes ib-ring-draw    { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes ib-hex-out      { from { opacity: 1; transform: scale(1) rotate(0deg); } to { opacity: 0; transform: scale(0.35) rotate(14deg); } }
+
+/* ════════════════════════════════════════════════════════════════════════
+   D · SHUTTER STRIP  快門四格  (resting + motion)
+   ════════════════════════════════════════════════════════════════════════ */
+.soul-intro .ibD { background: radial-gradient(120% 92% at 50% 18%, #2a2c33 0%, #14161b 58%, #090a0d 100%); }
+.soul-intro .ibD .ib-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; mix-blend-mode: screen; }
+.soul-intro .ibD .ib-reticle { position: absolute; left: 50%; top: 50%; width: 118px; height: 118px; margin: -59px 0 0 -59px; opacity: 0; pointer-events: none;
+  background:
+    linear-gradient(#e7eaef,#e7eaef) left top/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) left top/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) right top/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) right top/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) left bottom/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) left bottom/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) right bottom/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) right bottom/2px 22px no-repeat; }
+.soul-intro .ibD .ib-reticle::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 1.5px solid rgba(180,48,43,0.85); border-radius: 50%; }
+.soul-intro .ibD .ib-strip { position: absolute; inset: 0; pointer-events: none; }
+.soul-intro .ibD .ib-frame { position: absolute; left: 50%; top: 50%; width: 76px; height: 94px; margin: -47px 0 0 -38px; border-radius: 7px; padding: 5px 5px 16px; opacity: 0;
+  background: #f6f7f9; border: 1px solid #cfd3d9; box-shadow: 0 10px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.9);
+  transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); }
+.soul-intro .ibD .ib-frame i { display: block; width: 100%; height: 100%; border-radius: 4px; }
+.soul-intro .ibD .ib-frame.f0 i { background: radial-gradient(120% 90% at 30% 20%, #fff, var(--ib-aesthetic) 60%, #c7ccd4); }
+.soul-intro .ibD .ib-frame.f1 i { background: radial-gradient(120% 90% at 30% 20%, #ffd9d6, var(--ib-personality) 65%, #c75850); }
+.soul-intro .ibD .ib-frame.f2 i { background: radial-gradient(120% 90% at 30% 20%, #d8ebff, var(--ib-performance) 65%, #5a86bc); }
+.soul-intro .ibD .ib-frame.f3 i { background: radial-gradient(120% 90% at 30% 20%, #fff, var(--ib-content) 60%, #969ca7); }
+.soul-intro .ibD .ib-wordmark .ib-mark { background: linear-gradient(180deg,#fff 0%,#dfe3e8 16%,#aeb3bb 42%,#7c8088 52%,#c8ccd2 70%,#fff 100%); -webkit-background-clip: text; background-clip: text; }
+.soul-intro .ibD .ib-wordmark .ib-mark-zh, .soul-intro .ibD .ib-slogan .ib-zh { color: #aeb3bb; }
+/* resting: decoration hidden */
+.soul-intro .ibD .ib-flash, .soul-intro .ibD .ib-reticle, .soul-intro .ibD .ib-frame { opacity: 0; }
+/* motion */
+.soul-intro .ibD.ib-play .ib-reticle { animation: ib-reticle-in 1.0s var(--ib-ease-out) 0.1s both; }
+.soul-intro .ibD.ib-play .ib-flash   { animation: ib-shutter-flash 3.0s linear 0.45s both; }
+.soul-intro .ibD.ib-play .ib-frame   { animation: ib-frame-pop 0.55s var(--ib-spring) both; }
+.soul-intro .ibD.ib-play .ib-frame.f0{ animation-delay: 0.55s; } .soul-intro .ibD.ib-play .ib-frame.f1{ animation-delay: 1.05s; }
+.soul-intro .ibD.ib-play .ib-frame.f2{ animation-delay: 1.55s; } .soul-intro .ibD.ib-play .ib-frame.f3{ animation-delay: 2.05s; }
+.soul-intro .ibD.ib-play .ib-strip   { animation: ib-strip-collapse 0.7s var(--ib-ease-in) 2.75s both; }
+.soul-intro .ibD.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-forge-mark 1.1s var(--ib-ease-out) 2.95s both; }
+.soul-intro .ibD.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 3.55s both; }
+.soul-intro .ibD.ib-play .ib-wordmark .ib-glint   { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 3.5s both; }
+.soul-intro .ibD.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.7s both; }
+.soul-intro .ibD.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-flip 1.0s var(--ib-spring) 4.05s both; }
+.soul-intro .ibD.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 4.7s infinite; }
+.soul-intro .ibD.ib-play .ib-sc-cuts .cut { opacity: 0; animation: ib-cut-in 0.45s var(--ib-spring) both; }
+.soul-intro .ibD.ib-play .ib-sc-cuts .c0 { animation-delay: 4.35s; } .soul-intro .ibD.ib-play .ib-sc-cuts .c1 { animation-delay: 4.45s; }
+.soul-intro .ibD.ib-play .ib-sc-cuts .c2 { animation-delay: 4.55s; } .soul-intro .ibD.ib-play .ib-sc-cuts .c3 { animation-delay: 4.65s; }
+.soul-intro .ibD.ib-play .ib-sc-hex .poly { animation: ib-poly-pop 0.7s var(--ib-spring) 4.9s both; }
+.soul-intro .ibD.ib-play .ib-sc-hex .dot  { opacity: 0; animation: ib-dot-ping 0.45s var(--ib-spring) both; }
+.soul-intro .ibD.ib-play .ib-sc-hex .dot.d0 { animation-delay: 5.0s; } .soul-intro .ibD.ib-play .ib-sc-hex .dot.d1 { animation-delay: 5.08s; }
+.soul-intro .ibD.ib-play .ib-sc-hex .dot.d2 { animation-delay: 5.16s; } .soul-intro .ibD.ib-play .ib-sc-hex .dot.d3 { animation-delay: 5.24s; }
+.soul-intro .ibD.ib-play .ib-sc-hex .dot.d4 { animation-delay: 5.32s; } .soul-intro .ibD.ib-play .ib-sc-hex .dot.d5 { animation-delay: 5.4s; }
+/* ════════════════════════════════════════════════════════════════════════
+   E · HEXAGON RADAR  六邊形戰士  (resting + motion)
+   ════════════════════════════════════════════════════════════════════════ */
+.soul-intro .ibE { background: radial-gradient(120% 95% at 50% 14%, #ffffff 0%, #eef1f4 54%, #dbdfe5 100%); }
+.soul-intro .ibE .ib-hex { position: absolute; left: 50%; top: 50%; width: 244px; height: 244px; margin: -122px 0 0 -122px; opacity: 0; pointer-events: none; }
+.soul-intro .ibE .ib-hex svg { width: 100%; height: 100%; overflow: visible; }
+.soul-intro .ibE .ib-hex .ring { fill: none; stroke: #aeb3bb; stroke-width: 0.6; stroke-opacity: 0.7; }
+.soul-intro .ibE .ib-hex .spoke { stroke: #c2c7ce; stroke-width: 0.5; stroke-opacity: 0.8; }
+.soul-intro .ibE .ib-hex .poly { fill: rgba(180,48,43,0.12); stroke: var(--ib-cherry); stroke-width: 1.1; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; }
+.soul-intro .ibE .ib-hex .dot { fill: #fff; stroke: var(--ib-cherry); stroke-width: 1; transform-box: fill-box; transform-origin: center; }
+.soul-intro .ibE .ib-hex .dot.d0 { stroke: #9aa0aa; } .soul-intro .ibE .ib-hex .dot.d1 { stroke: var(--ib-personality); }
+.soul-intro .ibE .ib-hex .dot.d2 { stroke: var(--ib-performance); } .soul-intro .ibE .ib-hex .dot.d3 { stroke: var(--ib-cherry); }
+.soul-intro .ibE .ib-hex .dot.d4 { stroke: #7c8088; } .soul-intro .ibE .ib-hex .dot.d5 { stroke: var(--ib-blue); }
+.soul-intro .ibE .ib-wordmark .ib-mark { filter: drop-shadow(0 1px 0 rgba(255,255,255,0.85)) drop-shadow(0 3px 7px rgba(124,128,136,0.42)); }
+/* motion */
+.soul-intro .ibE.ib-play .ib-hex { animation: ib-hex-in 0.9s var(--ib-ease-out) 0.1s both, ib-hex-out 0.6s var(--ib-ease-in) 2.55s forwards; }
+.soul-intro .ibE.ib-play .ib-hex .ring  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ib-ring-draw 0.75s var(--ib-ease-out) both; }
+.soul-intro .ibE.ib-play .ib-hex .ring.r0 { animation-delay: 0.35s; } .soul-intro .ibE.ib-play .ib-hex .ring.r1 { animation-delay: 0.5s; } .soul-intro .ibE.ib-play .ib-hex .ring.r2 { animation-delay: 0.65s; }
+.soul-intro .ibE.ib-play .ib-hex .spoke { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ib-ring-draw 0.6s var(--ib-ease-out) 0.8s both; }
+.soul-intro .ibE.ib-play .ib-hex .poly  { animation: ib-poly-pop 0.8s var(--ib-spring) 1.25s both; }
+.soul-intro .ibE.ib-play .ib-hex .dot   { opacity: 0; animation: ib-dot-ping 0.5s var(--ib-spring) both; }
+.soul-intro .ibE.ib-play .ib-hex .dot.d0 { animation-delay: 1.55s; } .soul-intro .ibE.ib-play .ib-hex .dot.d1 { animation-delay: 1.65s; } .soul-intro .ibE.ib-play .ib-hex .dot.d2 { animation-delay: 1.75s; }
+.soul-intro .ibE.ib-play .ib-hex .dot.d3 { animation-delay: 1.85s; } .soul-intro .ibE.ib-play .ib-hex .dot.d4 { animation-delay: 1.95s; } .soul-intro .ibE.ib-play .ib-hex .dot.d5 { animation-delay: 2.05s; }
+.soul-intro .ibE.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-forge-mark 1.0s var(--ib-ease-out) 2.85s both; }
+.soul-intro .ibE.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 3.45s both; }
+.soul-intro .ibE.ib-play .ib-wordmark .ib-glint   { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 3.5s both; }
+.soul-intro .ibE.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.6s both; }
+.soul-intro .ibE.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-rise 0.9s var(--ib-ease-out) 3.95s both; }
+.soul-intro .ibE.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 4.6s infinite; }
