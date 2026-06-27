@@ -29,9 +29,11 @@ const BUG_MAILTO =
 export default function Taskbar() {
   return (
     <div className="taskbar hidden md:flex fixed bottom-0 left-0 right-0 z-30 items-center gap-3 px-4 h-10">
-      {/* 重新開始 — full reload back to the home intro animation */}
+      {/* 重新開始 — full reset: wipe the saved 4 picks + onboarding, then replay
+          the intro (which re-asks the flash gate) and reopen the picker. */}
       <a
         href="/?intro=1"
+        onClick={() => { try { localStorage.removeItem("kstar:prefs"); localStorage.removeItem("kstar:onboarding"); } catch { /* ignore */ } }}
         className="start-btn flex items-center gap-1.5 rounded-full border border-[#b4302b] bg-[#b4302b] px-4 py-1 text-xs font-black text-white shadow-[0_0_10px_rgba(180,48,43,0.4)] hover:brightness-110"
       >
         <span>✦</span>
