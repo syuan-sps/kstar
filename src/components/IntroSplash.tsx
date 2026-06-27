@@ -14,11 +14,6 @@ type Variant = "flash" | "calm";
 const HANDOFF_MS = 5200; // begin fade + cue the picker
 const UNMOUNT_MS = 5700;
 
-function prefersReduced() {
-  return typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-}
-
 export default function IntroSplash() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [variant, setVariant] = useState<Variant>("flash");
@@ -40,26 +35,25 @@ export default function IntroSplash() {
 
     (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = true;
 
+    // Always ask on first visit (no stored choice) — the gate is the explicit
+    // flash consent, so nothing animates until the user picks. A stored choice
+    // skips straight to that variant.
     const stored = (() => { try { return localStorage.getItem("kstar:flashChoice"); } catch { return null; } })();
-    if (prefersReduced()) { setVariant("calm"); setPhase("play"); }
-    else if (stored === "flash" || stored === "calm") { setVariant(stored as Variant); setPhase("play"); }
+    if (stored === "flash" || stored === "calm") { setVariant(stored as Variant); setPhase("play"); }
     else { setPhase("gate"); }
   }, []);
 
   // run the play→out→unmount timeline once we enter "play"
   useEffect(() => {
     if (phase !== "play") return;
-    // Reduced-motion shows a static poster (no animation), so it doesn't need
-    // the full motion timeline — hand off quickly instead of dwelling ~5.2s.
-    const handoff = prefersReduced() ? 2000 : HANDOFF_MS;
     const t1 = setTimeout(() => {
       setPhase("out");
       window.dispatchEvent(new Event("kstar:intro-done"));
-    }, handoff);
+    }, HANDOFF_MS);
     const t2 = setTimeout(() => {
       (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = false;
       setPhase("idle");
-    }, handoff + (UNMOUNT_MS - HANDOFF_MS));
+    }, UNMOUNT_MS);
     timersRef.current = { t1, t2 };
     return () => { clearTimeout(t1); clearTimeout(t2); timersRef.current = {}; };
   }, [phase]);
@@ -107,7 +101,7 @@ export default function IntroSplash() {
 
   // play / out
   const dir = variant === "flash" ? "ibD" : "ibE";
-  const playing = phase === "play" && !prefersReduced();
+  const playing = phase === "play";
   return (
     <div className={`soul-intro${phase === "out" ? " is-out" : ""}`} aria-hidden="true">
       <button className="ib-skip" onClick={handleSkip} aria-label="Skip intro">SKIP ✕</button>
