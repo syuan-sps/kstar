@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KStar · Hero Intro — 7 directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="intro-brand-x.css" />
+<style>
+  :root{
+    --font-orbitron:"Orbitron"; --font-noto-tc:"Noto Sans TC";
+    --bg:#dfe2e7; --ink:#1c1e24; --ink2:#5e636d; --ink3:#9aa0aa; --line:#c8ccd2; --steel:#7c8088; --cherry:#b4302b; --blue:#56789f;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; color:var(--ink); font-family:"Noto Sans TC",system-ui,sans-serif;
+    background-color:var(--bg);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+      radial-gradient(70rem 50rem at 50% 0%, rgba(255,255,255,0.55), transparent 60%),
+      radial-gradient(52rem 42rem at 100% 20%, rgba(167,192,220,0.28), transparent 55%),
+      radial-gradient(45rem 35rem at 0% 80%, rgba(180,48,43,0.06), transparent 55%);
+    min-height:100vh; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:38px 26px 90px; }
+
+  header.mast{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:18px; }
+  .eyebrow{ font-family:"Orbitron"; font-size:11px; letter-spacing:0.34em; color:var(--steel); text-transform:uppercase; }
+  h1{ font-family:"Orbitron"; font-weight:900; font-size:32px; margin:6px 0 6px; }
+  .sub{ margin:0; color:var(--ink2); font-size:14px; max-width:62ch; line-height:1.55; }
+
+  .toolbar{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; margin:24px 0 28px; padding:14px 16px;
+    background:rgba(255,255,255,0.6); border:1.5px solid #aeb3bb; border-radius:12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 3px 3px 0 rgba(124,128,136,0.2); }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-family:"Orbitron"; font-size:9.5px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; }
+  .seg{ display:flex; gap:4px; background:#e4e7ec; border:1px solid #aeb3bb; border-radius:999px; padding:3px; }
+  .seg button{ cursor:pointer; border:none; background:transparent; border-radius:999px; padding:6px 12px; font-family:"Orbitron"; font-size:11px; font-weight:700; color:var(--ink2); }
+  .seg button[aria-pressed="true"]{ background:linear-gradient(180deg,#fff,#dfe3e8); color:var(--ink); box-shadow:1px 1px 0 rgba(124,128,136,0.3); }
+  .grow{ flex:1; }
+  .btn{ cursor:pointer; font-family:"Orbitron"; font-size:11px; font-weight:700; letter-spacing:0.04em; color:#fff;
+    background:linear-gradient(180deg,#e0584f,#b4302b); border:1.5px solid #8f231f; border-radius:999px; padding:9px 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 2px 2px 0 rgba(124,128,136,0.25); }
+  .btn:active{ transform:translateY(1px); }
+
+  .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  @media (max-width:1080px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:720px){ .grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+
+  .panel{ background:#f4f5f7; border:2px solid #aeb3bb; border-radius:10px; overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7), 4px 4px 0 rgba(74,74,74,0.16), 0 0 20px rgba(124,128,136,0.14); }
+  .pbar{ display:flex; align-items:center; gap:8px; padding:8px 11px;
+    background:linear-gradient(180deg,#f4f6f8,#c8ccd2 48%,#9aa0aa); text-shadow:0 1px 0 rgba(255,255,255,0.5); }
+  .pbar .idx{ font-family:"Orbitron"; font-weight:900; font-size:12px; color:var(--cherry); }
+  .pbar .nm{ font-family:"Orbitron"; font-weight:700; font-size:12px; flex:1; }
+  .pbar .nm small{ display:block; font-weight:500; font-size:9.5px; letter-spacing:0.04em; color:var(--ink2); }
+  .replay{ cursor:pointer; font-size:10px; font-weight:700; background:linear-gradient(180deg,#fff,#c0c4ca);
+    border:1px solid #9aa0aa; border-radius:5px; padding:4px 10px; color:var(--ink); }
+  .replay:active{ transform:translateY(1px); }
+  .chosen{ font-family:"Orbitron"; font-size:9px; font-weight:900; letter-spacing:0.1em; color:#fff;
+    background:linear-gradient(180deg,#e0584f,#b4302b); border:1px solid #8f231f; border-radius:5px; padding:3px 7px; }
+  .panel.is-chosen{ border-color:var(--cherry); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7), 4px 4px 0 rgba(180,48,43,0.28), 0 0 22px rgba(180,48,43,0.18); }
+  .chosen.calm{ background:linear-gradient(180deg,#6f93bd,#56789f); border-color:#3f5f86; }
+
+  /* ── flash-consent modal (mirrors the four-idol selection window) ── */
+  .consent-overlay{ position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center;
+    background:rgba(28,30,36,0.55); backdrop-filter:blur(3px); padding:20px; }
+  .consent-overlay.open{ display:flex; }
+  .consent{ width:min(420px,92vw); background:#f4f5f7; border:2px solid #8f231f; border-radius:12px; overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7), 6px 6px 0 rgba(74,74,74,0.28), 0 0 40px rgba(180,48,43,0.25);
+    animation: pop .28s cubic-bezier(0.34,1.42,0.5,1) both; }
+  @keyframes pop{ from{ opacity:0; transform:translateY(10px) scale(0.94); } to{ opacity:1; transform:none; } }
+  .consent .title-bar{ display:flex; align-items:center; gap:8px; padding:9px 12px;
+    background:linear-gradient(180deg,#e0584f,#b4302b); color:#fff; text-shadow:0 1px 0 rgba(0,0,0,0.2); }
+  .consent .title-bar .tt{ font-family:"Orbitron"; font-weight:900; font-size:12px; letter-spacing:0.08em; flex:1; }
+  .consent .title-bar .x{ cursor:pointer; font-size:12px; font-weight:700; opacity:0.9; background:rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.4); border-radius:5px; padding:2px 8px; color:#fff; }
+  .consent .body{ padding:18px 18px 8px; }
+  .consent .warn{ font-size:30px; text-align:center; margin-bottom:6px; }
+  .consent h3{ font-family:"Orbitron"; font-weight:900; font-size:15px; margin:0 0 4px; text-align:center; color:var(--ink); }
+  .consent p{ margin:0 auto 4px; font-size:13px; line-height:1.55; color:var(--ink2); text-align:center; max-width:34ch; }
+  .consent p.en{ font-size:11.5px; color:var(--ink3); }
+  .consent .acts{ display:flex; flex-direction:column; gap:9px; padding:14px 18px 18px; }
+  .consent .acts button{ cursor:pointer; font-family:"Orbitron"; font-weight:700; font-size:12px; border-radius:999px; padding:12px 16px; }
+  .consent .acts .play{ color:#fff; background:linear-gradient(180deg,#e0584f,#b4302b); border:1.5px solid #8f231f;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 2px 2px 0 rgba(124,128,136,0.25); }
+  .consent .acts .calm{ color:var(--ink); background:linear-gradient(180deg,#fff,#dfe3e8); border:1.5px solid #aeb3bb; }
+  .consent .acts button small{ display:block; font-family:"Noto Sans TC"; font-weight:500; font-size:10px; opacity:0.85; margin-top:2px; letter-spacing:0; }
+  .consent .acts button:active{ transform:translateY(1px); }
+  .consent .foot{ padding:0 18px 16px; text-align:center; }
+  .consent .foot label{ font-size:11px; color:var(--ink2); cursor:pointer; display:inline-flex; gap:6px; align-items:center; }
+
+  .screen{ position:relative; width:100%; aspect-ratio:3/4; }
+  .pnote{ padding:11px 13px 14px; font-size:11.5px; color:var(--ink2); line-height:1.5; }
+  .pnote b{ color:var(--ink); }
+
+  /* the SVG defs holder */
+  .defs{ position:absolute; width:0; height:0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="eyebrow">追星靈魂 · KStar</div>
+      <h1>Hero Intro — 7 Directions</h1>
+      <p class="sub">A high-stakes brand moment that plays once on first visit, <b>before</b> the photobooth splash. Each reveals the <b>wordmark</b>, the <b>slogan</b>, and a teaser of the <b>追星靈魂 soul-card</b>. The first three are the original set; <b>D–G</b> push the motion further — photobooth shutter, the radar hexagon, a VHS signal, and a fan lightstick ocean. Swap the featured name live to A/B both the name and the motion. Open in a normal browser tab to watch them play.</p>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="field">
+      <label>Featured name</label>
+      <div class="seg" id="nameSeg"></div>
+    </div>
+    <div class="field">
+      <label>Motion</label>
+      <div class="seg" id="motionSeg">
+        <button data-fm="1" aria-pressed="true">On</button>
+        <button data-fm="0" aria-pressed="false">Reduced</button>
+      </div>
+    </div>
+    <div class="grow"></div>
+    <button class="btn" id="simVisit" style="background:linear-gradient(180deg,#6f93bd,#56789f);border-color:#3f5f86">▶ Simulate first visit</button>
+    <button class="btn" id="playAll">▶ Replay all</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- flash-consent modal: shown on first visit, before the intro plays -->
+<div class="consent-overlay" id="consentOverlay" role="dialog" aria-modal="true" aria-labelledby="consentTitle">
+  <div class="consent">
+    <div class="title-bar"><span class="tt" id="consentTitle">⚠ 動畫含閃光 · FLASH WARNING</span><button class="x" id="consentX" aria-label="close">✕</button></div>
+    <div class="body">
+      <div class="warn" aria-hidden="true">⚡</div>
+      <h3>開場動畫包含閃爍效果</h3>
+      <p>SOULCUTS 的開場動畫含有閃光，可能影響光敏感族群。要播放嗎？</p>
+      <p class="en">The opening animation contains flashing lights. Play it, or use the calm version?</p>
+    </div>
+    <div class="acts">
+      <button class="play" id="consentPlay">播放動畫<small>Play with effects · 04</small></button>
+      <button class="calm" id="consentCalm">平靜版本<small>Use the calm, flash-free version · 06</small></button>
+    </div>
+    <div class="foot"><label><input type="checkbox" id="consentRemember" checked> 記住我的選擇 · Remember my choice</label></div>
+  </div>
+</div>
+
+<svg class="defs" aria-hidden="true">
+  <linearGradient id="ibEdgeA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7eaef"/><stop offset="1" stop-color="#86b6f0"/></linearGradient>
+</svg>
+
+<script>
+/* ── name candidates (swap target for the wordmark) ───────────────────── */
+const NAMES = [
+  { key:"soulcuts", mark:"SOULCUTS", zh:"靈魂四格" },
+  { key:"starsoul", mark:"STARSOUL", zh:"星魂" },
+  { key:"bias",     mark:"BIAS",     zh:"偏愛" },
+  { key:"kstar",    mark:"KSTAR",    zh:"追星" },
+];
+let current = NAMES[0];
+const SLOGAN = { en:"FOUR PICKS · ONE SOUL", zh:"四格定格，靈魂顯影" };
+
+/* ── shared sub-markup ────────────────────────────────────────────────── */
+function wordmark(){ return `
+  <div class="ib-wordmark">
+    <span class="ib-glint"></span>
+    <span class="ib-mark">${current.mark}</span>
+    <span class="ib-mark-zh">${current.zh}</span>
+  </div>`; }
+function slogan(){ return `
+  <div class="ib-slogan"><div class="ib-en">${SLOGAN.en}</div><div class="ib-zh">${SLOGAN.zh}</div></div>`; }
+/* mini hexagon radar for the soul-card teaser (reuses hexPt geometry) */
+function scHex(){
+  const radii=[40,30,38,26,36,31];
+  const data=radii.map((r,i)=>hexPt(r,i).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const ring=[0,1,2,3,4,5].map(i=>hexPt(42,i).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const dots=radii.map((r,i)=>{ const [x,y]=hexPt(r,i); return `<circle class="dot d${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.1"/>`; }).join("");
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><polygon class="ring" points="${ring}"/><polygon class="poly" points="${data}"/>${dots}</svg>`;
+}
+function soulcard(extra=""){ return `
+  <div class="ib-soulcard ${extra}">
+    <div class="ib-sc-top"><span class="ib-sc-code">APSR</span><span class="ib-sc-tier">六邊形戰士</span></div>
+    <div class="ib-sc-cuts" aria-hidden="true"><i class="cut c0"></i><i class="cut c1"></i><i class="cut c2"></i><i class="cut c3"></i></div>
+    <div class="ib-sc-hex">${scHex()}</div>
+    <div class="ib-sc-labels"><span>美學</span><span>個性</span><span>表演</span><span>內容</span></div>
+    <div class="ib-sc-foot"><b>追星靈魂</b><em>THE HEXAGON</em></div>
+  </div>`; }
+
+/* burst stars for direction B */
+function burstStars(){
+  let s=7, out=""; const rnd=()=>((s=(s*1103515245+12345)&0x7fffffff)/0x7fffffff);
+  for(let i=0;i<26;i++){ const ang=rnd()*Math.PI*2, dist=60+rnd()*150;
+    const tx=Math.cos(ang)*dist, ty=Math.sin(ang)*dist, sz=0.5+rnd()*1.6, op=(0.4+rnd()*0.6).toFixed(2), bd=(rnd()*0.45).toFixed(2);
+    out+=`<span class="ib-bstar" style="--tx:${tx.toFixed(0)}px;--ty:${ty.toFixed(0)}px;--s:${sz.toFixed(2)};--o:${op};--bd:${bd}s;width:${(3+rnd()*3).toFixed(1)}px;height:${(3+rnd()*3).toFixed(1)}px"></span>`; }
+  return out;
+}
+/* 4 anchors + edges for direction B (positions in % of a 100x100 box) */
+const ANCH = [[30,32],[72,30],[74,68],[30,70]];
+function anchors(){ return ANCH.map((p,i)=>`<span class="ib-anchor a${i}" style="left:${p[0]}%;top:${p[1]}%;width:${i<2?16:14}px;height:${i<2?16:14}px"></span>`).join(""); }
+function edges(){
+  const E=[[0,1],[1,2],[2,3],[3,0]];
+  const C=["#e7eaef","#ef6f68","#86b6f0","#b8bec9"];
+  return `<svg class="ib-edges" viewBox="0 0 100 100" preserveAspectRatio="none">${
+    E.map((e,i)=>`<line x1="${ANCH[e[0]][0]}" y1="${ANCH[e[0]][1]}" x2="${ANCH[e[1]][0]}" y2="${ANCH[e[1]][1]}" pathLength="1" stroke="${C[i]}" stroke-opacity="0.7" stroke-width="0.8" stroke-linecap="round"/>`).join("")
+  }</svg>`;
+}
+
+/* ── the three scenes ─────────────────────────────────────────────────── */
+function sceneA(){ return `
+  <div class="ib-stage ibA">
+    <div class="ib-spec"></div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+function sceneB(){ return `
+  <div class="ib-stage ibB">
+    <span class="ib-core"></span>
+    <div class="ib-burst">${burstStars()}${anchors()}${edges()}</div>
+    <div class="ib-scene ib-lockup">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+function sceneC(){ return `
+  <div class="ib-stage ibC">
+    <div class="ib-fan"><i></i><i></i><i></i><i></i></div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+/* ── D · SHUTTER STRIP — four scattered polaroids ─────────────────────── */
+const FRAMES = [
+  { tx:"-72px", ty:"-46px", rot:"-8deg" },
+  { tx:"66px",  ty:"-52px", rot:"7deg"  },
+  { tx:"-60px", ty:"48px",  rot:"6deg"  },
+  { tx:"74px",  ty:"42px",  rot:"-6deg" },
+];
+function frames(){ return FRAMES.map((f,i)=>`<span class="ib-frame f${i}" style="--tx:${f.tx};--ty:${f.ty};--rot:${f.rot}"><i></i></span>`).join(""); }
+function sceneD(){ return `
+  <div class="ib-stage ibD">
+    <div class="ib-strip">${frames()}</div>
+    <div class="ib-reticle"></div>
+    <div class="ib-flash"></div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+/* ── E · HEXAGON RADAR — generated SVG web + data polygon ──────────────── */
+function hexPt(r, i){ const a=(-90+60*i)*Math.PI/180; return [50+r*Math.cos(a), 50+r*Math.sin(a)]; }
+function hexRing(r, cls){ const p=[0,1,2,3,4,5].map(i=>hexPt(r,i).map(n=>n.toFixed(1)).join(",")).join(" "); return `<polygon class="ring ${cls}" points="${p}" pathLength="1"/>`; }
+function hexSVG(){
+  const radii=[40,33,38,28,36,30];                      // a believable stat shape
+  const data=radii.map((r,i)=>hexPt(r,i).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const spokes=[0,1,2,3,4,5].map(i=>{ const [x,y]=hexPt(40,i); return `<line class="spoke" x1="50" y1="50" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" pathLength="1"/>`; }).join("");
+  const dots=radii.map((r,i)=>{ const [x,y]=hexPt(r,i); return `<circle class="dot d${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.4"/>`; }).join("");
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">${hexRing(40,"r0")}${hexRing(27,"r1")}${hexRing(14,"r2")}${spokes}<polygon class="poly" points="${data}"/>${dots}</svg>`;
+}
+function sceneE(){ return `
+  <div class="ib-stage ibE">
+    <div class="ib-hex">${hexSVG()}</div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+/* ── F · SIGNAL GLITCH — scanlines + sweep bar ────────────────────────── */
+function sceneF(){ return `
+  <div class="ib-stage ibF">
+    <div class="ib-scan"></div>
+    <div class="ib-scanbar"></div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+/* ── G · LIGHTSTICK OCEAN — rising bokeh field ────────────────────────── */
+function sparks(){
+  let s=29, out=""; const rnd=()=>((s=(s*1103515245+12345)&0x7fffffff)/0x7fffffff);
+  const COL=["#ffd58a","#ffd58a","#fff0d6","#ff9aa0","#86b6f0","#c9b6d8","#e7eaef","#ef6f68"];
+  for(let i=0;i<46;i++){
+    const x=rnd()*100, sz=(5+rnd()*9).toFixed(1), c=COL[(rnd()*COL.length)|0];
+    const dist=(120+rnd()*200).toFixed(0), sway=((rnd()-0.5)*60).toFixed(0);
+    const dur=(3.4+rnd()*3.2).toFixed(2), sd=(rnd()*-6).toFixed(2), o=(0.45+rnd()*0.5).toFixed(2);
+    out+=`<span class="ib-spark" style="left:${x.toFixed(1)}%;width:${sz}px;height:${sz}px;--c:${c};--dist:${dist}px;--sway:${sway}px;--dur:${dur}s;--sd:${sd}s;--o:${o}"></span>`;
+  }
+  return out;
+}
+function sceneG(){ return `
+  <div class="ib-stage ibG">
+    <div class="ib-ocean">${sparks()}</div>
+    <div class="ib-halo"></div>
+    <div class="ib-scene">
+      ${wordmark()}
+      ${slogan()}
+      ${soulcard()}
+    </div>
+    <button class="ib-skip">SKIP ✕</button>
+  </div>`; }
+
+const DIRS = [
+  { key:"A", scene:sceneA, name:"Chrome Forge", zh:"鉻金鑄字", note:"Liquid silver coalesces into the wordmark with a glint sweep; the slogan stamps in; the 追星靈魂 card flips up from behind. <b>Material, title-sequence energy.</b>" },
+  { key:"B", scene:sceneB, name:"Big Bang", zh:"星圖爆發", note:"One core star bursts into the 星圖, four anchor-stars ignite and connect, then the web collapses into the wordmark. The soul-card rises from the centre. <b>Cosmic, scale, awe.</b>" },
+  { key:"C", scene:sceneC, name:"Holo Bloom", zh:"靈魂顯影", note:"A holographic soul-card spins in and fans its four A·P·S·R layer-colours up into the wordmark, then settles to centre. <b>Card-forward, the soul as hero.</b>" },
+  { key:"D", scene:sceneD, name:"Shutter Strip", zh:"快門四格", chosen:true, tag:"★ FLASH · 04", note:"Four camera flashes fire in sequence — polaroids snap into a scattered 四格, then collapse upward as the wordmark forges through; the soul-card rises and its four layer-cuts assemble into the hexagon. <b>Contains flashing — gated behind the consent popup.</b>" },
+  { key:"F", scene:sceneF, name:"Signal Glitch", zh:"訊號顯影", note:"The wordmark tunes in through RGB-split static and scanlines; a sweep bar wipes; the slogan types on and the soul-card snaps with chromatic shadow. <b>VHS / poster edge.</b>" },
+  { key:"E", scene:sceneE, name:"Hexagon Radar", zh:"六邊形戰士", chosen:true, tag:"★ NO-FLASH · 06", note:"The flash-free calm intro: a radar web draws ring by ring, the data-hexagon springs out and its six vertices ping, then recedes into the wordmark and the soul-card. <b>No strobe — safe for photosensitive viewers.</b>" },
+  { key:"G", scene:sceneG, name:"Lightstick Ocean", zh:"應援海", note:"A field of glowing fan lightsticks rises and sways like a concert 應援海; a halo pulses and the wordmark blooms warm above it. <b>Fan culture, awe and glow.</b>" },
+];
+
+/* ── build panels ─────────────────────────────────────────────────────── */
+const grid = document.getElementById("grid");
+function buildPanels(){
+  grid.innerHTML = DIRS.map((d,i)=>`
+    <div class="panel${d.chosen?' is-chosen':''}">
+      <div class="pbar"><span class="idx">0${i+1}</span><span class="nm">${d.name}<small>${d.zh}</small></span>${d.tag?'<span class="chosen'+(d.key==='E'?' calm':'')+'">'+d.tag+'</span>':''}<button class="replay" data-dir="${i}">▶ Replay</button></div>
+      <div class="screen" id="screen-${d.key}"></div>
+      <div class="pnote">${d.note}</div>
+    </div>`).join("");
+  DIRS.forEach(mountDir);
+  grid.querySelectorAll("[data-dir]").forEach(b=> b.addEventListener("click", ()=> mountDir(DIRS[+b.dataset.dir], true)) );
+}
+
+let fm = true;          // force motion (default on)
+const HANDOFF_MS = 5200;
+const timers = {};
+function mountDir(d, withSound){
+  const host = document.getElementById("screen-"+d.key);
+  host.innerHTML = d.scene();
+  const stage = host.firstElementChild;
+  // wire skip
+  host.querySelector(".ib-skip").addEventListener("click", ()=>{ stage.classList.add("ib-handoff"); });
+  // drive motion
+  clearTimeout(timers[d.key]);
+  if(fm){
+    stage.classList.remove("ib-play"); void stage.offsetWidth; stage.classList.add("ib-play");
+    // loop the demo so motion is always visible in the harness
+    timers[d.key] = setTimeout(()=>{ if(fm) mountDir(d); }, 6400);
+  }
+}
+
+/* ── name segmented control ───────────────────────────────────────────── */
+const nameSeg = document.getElementById("nameSeg");
+nameSeg.innerHTML = NAMES.map((n,i)=>`<button data-name="${i}" aria-pressed="${i===0}">${n.mark}</button>`).join("");
+nameSeg.addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return;
+  current = NAMES[+b.dataset.name];
+  nameSeg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", String(x===b)));
+  buildPanels();
+});
+
+/* ── motion segmented control ─────────────────────────────────────────── */
+document.getElementById("motionSeg").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return;
+  fm = b.dataset.fm === "1";
+  document.getElementById("motionSeg").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", String(x===b)));
+  buildPanels();
+});
+
+document.getElementById("playAll").addEventListener("click", ()=> DIRS.forEach(d=>mountDir(d)) );
+
+/* ── flash-consent gate (first-visit: choose flash 04 or calm 06) ──────── */
+const FLASH_KEY = "kstar:flashChoice";
+const overlay = document.getElementById("consentOverlay");
+const openConsent  = ()=> overlay.classList.add("open");
+const closeConsent = ()=> overlay.classList.remove("open");
+function playChosen(key){
+  const i = DIRS.findIndex(d=>d.key===key); if(i<0) return;
+  const panel = document.querySelectorAll(".panel")[i];
+  if(panel) panel.scrollIntoView({ behavior:"smooth", block:"center" });
+  mountDir(DIRS[i], true);
+}
+function choose(kind){                      // kind: "flash" → D/04, "calm" → E/06
+  if(document.getElementById("consentRemember").checked) localStorage.setItem(FLASH_KEY, kind);
+  closeConsent();
+  playChosen(kind === "flash" ? "D" : "E");
+}
+document.getElementById("simVisit").addEventListener("click", ()=>{ localStorage.removeItem(FLASH_KEY); openConsent(); });
+document.getElementById("consentX").addEventListener("click", closeConsent);
+overlay.addEventListener("click", e=>{ if(e.target === overlay) closeConsent(); });
+document.getElementById("consentPlay").addEventListener("click", ()=> choose("flash"));
+document.getElementById("consentCalm").addEventListener("click", ()=> choose("calm"));
+
+buildPanels();
+
+/* simulate a real first visit: auto-open the gate once if no choice is stored */
+if(!localStorage.getItem(FLASH_KEY)) openConsent();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#14161b"/><circle cx="50" cy="44" r="6" fill="#fff"/><g stroke="#86b6f0" stroke-width="1.5" opacity="0.8"><line x1="30" y1="30" x2="70" y2="30"/><line x1="70" y1="30" x2="70" y2="64"/><line x1="70" y1="64" x2="30" y2="64"/><line x1="30" y1="64" x2="30" y2="30"/></g><circle cx="30" cy="30" r="4" fill="#e7eaef"/><circle cx="70" cy="30" r="4" fill="#bcd0e6"/><circle cx="70" cy="64" r="4" fill="#ecb9b6"/><circle cx="30" cy="64" r="4" fill="#d0d4da"/><text x="50" y="88" font-size="12" font-family="monospace" font-weight="bold" fill="#fff" text-anchor="middle">★</text></svg>
+</template>
+</body>
+</html>
