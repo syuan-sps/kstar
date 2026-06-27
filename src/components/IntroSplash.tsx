@@ -49,14 +49,17 @@ export default function IntroSplash() {
   // run the play→out→unmount timeline once we enter "play"
   useEffect(() => {
     if (phase !== "play") return;
+    // Reduced-motion shows a static poster (no animation), so it doesn't need
+    // the full motion timeline — hand off quickly instead of dwelling ~5.2s.
+    const handoff = prefersReduced() ? 2000 : HANDOFF_MS;
     const t1 = setTimeout(() => {
       setPhase("out");
       window.dispatchEvent(new Event("kstar:intro-done"));
-    }, HANDOFF_MS);
+    }, handoff);
     const t2 = setTimeout(() => {
       (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = false;
       setPhase("idle");
-    }, UNMOUNT_MS);
+    }, handoff + (UNMOUNT_MS - HANDOFF_MS));
     timersRef.current = { t1, t2 };
     return () => { clearTimeout(t1); clearTimeout(t2); timersRef.current = {}; };
   }, [phase]);
