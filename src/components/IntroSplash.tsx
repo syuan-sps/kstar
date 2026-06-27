@@ -26,14 +26,16 @@ export default function IntroSplash() {
   // decide whether to run at all (first visit / ?intro), and whether to show the gate
   useEffect(() => {
     let run = false;
+    let seen: string | null = null;
     try {
       const force = new URLSearchParams(window.location.search).has("intro");
-      const seen = localStorage.getItem("kstar:seenIntro");
+      seen = localStorage.getItem("kstar:seenIntro");
       const done = localStorage.getItem("kstar:onboarding") === "done";
       run = force || (!seen && !done);
-      if (!seen) localStorage.setItem("kstar:seenIntro", "1");
     } catch { /* ignore */ }
     if (!run) return;
+    // stamp seenIntro only now that the intro will actually play
+    try { if (!seen) localStorage.setItem("kstar:seenIntro", "1"); } catch { /* ignore */ }
 
     (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = true;
 
