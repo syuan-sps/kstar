@@ -14945,7 +14945,7 @@
       "generation": 5,
       "popularity": 73,
       "followers": 7300000,
-      "image_url": null,
+      "image_url": "/idols/jihoon-tws.jpg",
       "instagram": "tws_pledis",
       "profile": {
         "aesthetic": {
@@ -15032,7 +15032,8 @@
           ],
           "summary": "TWS的甜笑擔當——奶油系親和力。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kyungmin",
@@ -16687,7 +16688,7 @@
       "generation": 5,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/shotaro.jpg",
       "instagram": "riize_official",
       "profile": {
         "aesthetic": {
@@ -16775,7 +16776,8 @@
           ],
           "summary": "RIIZE主舞——治癒微笑與絲滑舞線。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "eunseok",
@@ -16789,7 +16791,7 @@
       "generation": 5,
       "popularity": 74,
       "followers": 7400000,
-      "image_url": null,
+      "image_url": "/idols/eunseok.jpg",
       "instagram": "riize_official",
       "profile": {
         "aesthetic": {
@@ -16876,7 +16878,8 @@
           ],
           "summary": "RIIZE的安定軸——冷感沉穩低音。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "sungchan",
@@ -17402,7 +17405,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/seok-matthew.jpg",
       "instagram": "zb1official",
       "profile": {
         "aesthetic": {
@@ -17490,7 +17493,8 @@
           ],
           "summary": "ZB1的陽光——加系笑容與律動饒舌。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kim-taerae",
@@ -17606,7 +17610,7 @@
       "generation": 5,
       "popularity": 76,
       "followers": 7600000,
-      "image_url": null,
+      "image_url": "/idols/ricky.jpg",
       "instagram": "zb1official",
       "profile": {
         "aesthetic": {
@@ -17693,7 +17697,8 @@
           ],
           "summary": "ZB1門面——清冷貴公子與直球反差。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kim-gyuvin",
@@ -18427,7 +18432,7 @@
       "generation": 3,
       "popularity": 79,
       "followers": 7900000,
-      "image_url": null,
+      "image_url": "/idols/lay.jpg",
       "instagram": "layzhang",
       "profile": {
         "aesthetic": {
@@ -18515,7 +18520,8 @@
           ],
           "summary": "EXO中國成員——小綿羊外表下的音樂職人。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "baekhyun",
@@ -32509,7 +32515,7 @@
       "generation": 4,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/yena.jpg",
       "instagram": "yena.jigumina",
       "profile": {
         "aesthetic": {
@@ -32596,7 +32602,8 @@
           ],
           "summary": "IZONE出身soloist——古靈精怪與繽紛能量。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "kwoneunbi",
@@ -34001,7 +34008,7 @@
       "generation": 5,
       "popularity": 78,
       "followers": 7800000,
-      "image_url": null,
+      "image_url": "/idols/jurin.jpg",
       "instagram": "xgofficial",
       "profile": {
         "aesthetic": {
@@ -34090,7 +34097,8 @@
           ],
           "summary": "XG隊長——街頭嘻哈與沉穩力量。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "chisa",
@@ -34209,7 +34217,7 @@
       "generation": 5,
       "popularity": 75,
       "followers": 7500000,
-      "image_url": null,
+      "image_url": "/idols/harvey.jpg",
       "instagram": "xgofficial",
       "profile": {
         "aesthetic": {
@@ -34296,7 +34304,8 @@
           ],
           "summary": "XG饒舌——美式groove與大膽氣勢。"
         }
-      }
+      },
+      "image_focus": 0.3
     },
     {
       "id": "hinata",
