@@ -52,10 +52,9 @@ export default function MyFourCuts({
     return () => clearTimeout(t);
   }, []);
 
-  // Re-open the onboarding picker (clears the "done" flag so Onboarding mounts).
+  // Re-open the onboarding picker in place (no reload → no intro replay, no flash).
   function repick() {
-    localStorage.removeItem("kstar:onboarding");
-    location.reload();
+    window.dispatchEvent(new Event("kstar:open-onboarding"));
   }
 
   if (ids === null) return null; // still reading localStorage — render nothing

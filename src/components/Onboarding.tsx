@@ -35,6 +35,15 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
     setShow(true);
   }, []);
 
+  // Re-open the picker from anywhere (home 選出你的 TOP 4 / 重新挑選 / 星圖) without a
+  // page reload — so the intro never replays and there's no flash. The intro only
+  // shows on true first entry or via 重新開始 (/?intro=1).
+  useEffect(() => {
+    const open = () => { setStep(1); setSelected([]); setSummaries([]); setShow(true); };
+    window.addEventListener("kstar:open-onboarding", open);
+    return () => window.removeEventListener("kstar:open-onboarding", open);
+  }, []);
+
   if (!show) return null;
 
   // ── Search ──────────────────────────────────────────────────────────

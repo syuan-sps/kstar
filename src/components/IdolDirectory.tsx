@@ -50,14 +50,12 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
       const raw = localStorage.getItem("kstar:prefs");
       if (!raw) {
         // Not onboarded yet — open the picker flow
-        localStorage.removeItem("kstar:onboarding");
-        location.reload();
+        window.dispatchEvent(new Event("kstar:open-onboarding"));
         return;
       }
       const prefs = JSON.parse(raw) as { topIdols?: string[]; weights?: Weights };
       if (!Array.isArray(prefs.topIdols) || prefs.topIdols.length !== 4) {
-        localStorage.removeItem("kstar:onboarding");
-        location.reload();
+        window.dispatchEvent(new Event("kstar:open-onboarding"));
         return;
       }
       if (prefs.topIdols.includes(id)) {

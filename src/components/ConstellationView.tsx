@@ -196,7 +196,7 @@ export default function ConstellationView() {
       <div className="flex h-60 flex-col items-center justify-center gap-3 rounded-2xl border border-[#c8ccd2]/30 bg-[#7c8088]/5 text-center">
         <p className="text-sm text-[#5e636d]">先選出你的 Top 4，才能看你的專屬星圖 ✦</p>
         <button
-          onClick={() => { localStorage.removeItem("kstar:onboarding"); location.reload(); }}
+          onClick={() => window.dispatchEvent(new Event("kstar:open-onboarding"))}
           className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white hover:brightness-110"
         >
           開始挑選 →
