@@ -16,10 +16,11 @@ export async function approveAction(formData: FormData) {
   if (!row) redirect("/admin");
   const ext = row.storage_path.split(".").pop() ?? "jpg";
   const dest = `approved/${row.idol_id}.${ext}`;
-  // copy pending → approved (overwrite any prior approved photo for this idol)
-  await sb.storage.from(SUBMISSIONS_BUCKET).copy(row.storage_path, dest).catch(() => {});
-  await sb.storage.from(SUBMISSIONS_BUCKET).remove([dest]).then(() =>
-    sb.storage.from(SUBMISSIONS_BUCKET).copy(row.storage_path, dest)).catch(() => {});
+  // remove any prior approved file for this idol; ignore 404
+  await sb.storage.from(SUBMISSIONS_BUCKET).remove([dest]).catch(() => {});
+  // copy pending → dest; if the copy hard-fails, bail without corrupting the DB row
+  const { error: copyErr } = await sb.storage.from(SUBMISSIONS_BUCKET).copy(row.storage_path, dest);
+  if (copyErr) redirect("/admin");
 
   await sb.from("photo_submissions").update({
     status: "approved", storage_path: dest, image_focus: focus, reviewed_at: new Date().toISOString(),
@@ -29,7 +30,7 @@ export async function approveAction(formData: FormData) {
   await sb.from("photo_submissions").update({ status: "rejected", reject_reason: "superseded" })
     .eq("idol_id", row.idol_id).eq("status", "approved").neq("id", id);
 
-  revalidateTag(APPROVED_PHOTOS_TAG, {});
+  revalidateTag(APPROVED_PHOTOS_TAG, "max");
   redirect("/admin");
 }
 
@@ -40,6 +41,6 @@ export async function rejectAction(formData: FormData) {
   const id = String(formData.get("id"));
   const reason = (formData.get("reason") as string | null)?.trim() || null;
   await sb.from("photo_submissions").update({ status: "rejected", reject_reason: reason, reviewed_at: new Date().toISOString() }).eq("id", id);
-  revalidateTag(APPROVED_PHOTOS_TAG, {});
+  revalidateTag(APPROVED_PHOTOS_TAG, "max");
   redirect("/admin");
 }
