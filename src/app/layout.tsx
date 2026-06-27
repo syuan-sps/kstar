@@ -78,6 +78,8 @@ export default async function RootLayout({
         <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
         <footer className="relative z-10 border-t border-[#c8ccd2]/15 px-4 py-6 text-center text-xs text-[#9aa0aa]">
           {copy.appName} · 以曲風與後設資料推薦 · 資料來源 Spotify
+          {" · "}
+          <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">✦ 投稿偶像照片</a>
         </footer>
         <Taskbar />
         <Analytics />
