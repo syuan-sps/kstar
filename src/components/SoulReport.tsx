@@ -66,15 +66,29 @@ export default function SoulReport({
       {/* export target — the card itself (the known-good export shape) */}
       <div
         ref={reportRef}
-        className="w-full max-w-[340px] overflow-hidden rounded-[24px] p-5"
+        className="relative w-full max-w-[340px] overflow-hidden rounded-[24px] p-5"
         style={{
-          background: "linear-gradient(175deg, #ffffff 0%, #f4f5f7 60%, #e9ebee 100%)",
+          // Silvercore: faint silver grid + chrome sheen over the frost gradient (inline so html-to-image rasterises it)
+          backgroundColor: "#f4f5f7",
+          backgroundImage: [
+            "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
+            "repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
+            "radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 45%)",
+            "radial-gradient(90% 50% at 100% 12%, rgba(167,192,220,0.20) 0%, transparent 50%)",
+            `radial-gradient(90% 50% at 0% 96%, ${accent}12 0%, transparent 50%)`,
+            "linear-gradient(175deg, #ffffff 0%, #f4f5f7 60%, #e9ebee 100%)",
+          ].join(", "),
           border: `2px solid ${accent}55`,
-          boxShadow: `0 9px 24px rgba(80,85,95,0.20), 3px 4px 0 ${accent}26`,
+          // signature hard "sticker" offset shadow (accent + steel echo) instead of a soft drop
+          boxShadow: `3px 4px 0 ${accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
         }}
       >
+        {/* corner ✦ stickers — the 圖鑑 card signature (steel TL / cherry BR) */}
+        <span className="absolute left-3 top-2.5 text-[11px] leading-none text-[#7c8088]">✦</span>
+        <span className="absolute bottom-2.5 right-3 text-[10px] leading-none" style={{ color: accent }}>✦</span>
+
         {/* hero */}
-        <div className="text-center font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦ 你的追星靈魂 ✦</div>
+        <div className="whitespace-nowrap text-center font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;你的追星靈魂&nbsp;✦</div>
         <div className="mt-2 flex justify-center gap-1 font-orbitron text-[30px] font-black leading-none">
           {code.split("").map((ch, i) => {
             const isHigh = ch === ch.toUpperCase();
@@ -149,7 +163,7 @@ export default function SoulReport({
         </div>
 
         {/* footer */}
-        <div className="mt-4 flex items-center justify-center gap-1.5 font-orbitron text-[9px] font-bold tracking-[0.28em] text-[#7c8088]">
+        <div className="mt-4 flex items-center justify-center gap-1.5 whitespace-nowrap font-orbitron text-[9px] font-bold tracking-[0.28em] text-[#7c8088]">
           <span>✦</span><span>{copy.storyCta}　KSTAR · 2026</span><span>✦</span>
         </div>
       </div>

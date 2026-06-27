@@ -57,25 +57,45 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
       {/* export target — the card itself (fixed size; the known-good export shape) */}
       <div
         ref={cardRef}
-        className="flex w-[270px] flex-col items-center justify-between overflow-hidden rounded-[24px]"
+        className="relative flex w-[270px] flex-col items-center justify-between overflow-hidden rounded-[24px]"
         style={{
           height: 480, // explicit 9:16 (270×16/9) — html-to-image needs explicit dimensions
-          background: "linear-gradient(165deg, #ffffff 0%, #f4f5f7 52%, #e6e9ed 100%)",
+          // Silvercore: faint silver grid + chrome sheen over the frost gradient (all inline so html-to-image rasterises it)
+          backgroundColor: "#f4f5f7",
+          backgroundImage: [
+            "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
+            "repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
+            "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 55%)",
+            "radial-gradient(90% 70% at 100% 18%, rgba(167,192,220,0.22) 0%, transparent 55%)",
+            `radial-gradient(90% 70% at 0% 90%, ${accent}14 0%, transparent 55%)`,
+            "linear-gradient(165deg, #ffffff 0%, #f4f5f7 52%, #e6e9ed 100%)",
+          ].join(", "),
           border: `2px solid ${accent}55`,
-          boxShadow: `0 9px 24px rgba(80,85,95,0.20), 3px 4px 0 ${accent}26`,
+          // signature hard "sticker" offset shadow (steel + accent) instead of a soft drop
+          boxShadow: `3px 4px 0 ${accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
           padding: "22px 18px",
         }}
       >
+          {/* corner ✦ stickers — the 圖鑑 card signature (steel TL / cherry BR) */}
+          <span className="absolute left-2.5 top-2 text-[11px] leading-none text-[#7c8088]">✦</span>
+          <span className="absolute bottom-2 right-2.5 text-[10px] leading-none" style={{ color: accent }}>✦</span>
+
           {/* top: identity */}
           <div className="flex flex-col items-center">
-            <div className="font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦ 你的追星靈魂 ✦</div>
+            <div className="whitespace-nowrap font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;你的追星靈魂&nbsp;✦</div>
             <div className="mt-3 flex justify-center gap-1.5 font-orbitron text-[46px] font-black leading-none">
               {code.split("").map((ch, i) => {
                 const isHigh = ch === ch.toUpperCase();
                 return <span key={i} style={{ color: isHigh ? accent : GHOST, textShadow: isHigh ? "0 1px 0 #fff" : undefined }}>{ch}</span>;
               })}
             </div>
-            <div className="mt-3 text-center">
+            {/* chrome divider — mirrored hairline with a clipped ✦ */}
+            <div className="mt-2.5 flex w-[120px] items-center gap-1.5">
+              <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(124,128,136,0.55), rgba(28,30,36,0.45))" }} />
+              <span className="text-[8px] leading-none text-[#7c8088]">✦</span>
+              <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(28,30,36,0.45), rgba(124,128,136,0.55), transparent)" }} />
+            </div>
+            <div className="mt-2 text-center">
               <div className="text-[26px] font-black leading-tight tracking-tight text-[#1c1e24]">{archetype.zhName}</div>
               <div className="mt-1 font-orbitron text-[9px] uppercase tracking-[0.22em] text-[#9aa0aa]">{archetype.enName}</div>
             </div>
@@ -103,8 +123,8 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
 
           {/* bottom: CTA */}
           <div className="text-center">
-            <div className="font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent }}>{copy.storyCta}</div>
-            <div className="mt-1 font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦ KSTAR · 2026 ✦</div>
+            <div className="whitespace-nowrap font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent }}>{copy.storyCta}</div>
+            <div className="mt-1 whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;KSTAR&nbsp;·&nbsp;2026&nbsp;✦</div>
           </div>
         </div>
 

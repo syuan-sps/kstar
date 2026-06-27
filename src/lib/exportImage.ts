@@ -39,12 +39,11 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
   const { fileName, pixelRatio = 2, kind = "download", shareTitle = "我的追星靈魂", shareText = "" } = opts;
   try {
     const htmlToImage = await import("html-to-image");
-    // Light surface tone (close to the card's gradient edge) so the rounded 3D
-    // card sits cleanly on it — like a 圖鑑 photocard on the app background,
-    // no harsh grey corner wedges.
+    // Transparent canvas so the rounded card exports with see-through corners
+    // (PNG alpha) instead of a filled square wedge behind the border radius.
     const o = {
       pixelRatio,
-      backgroundColor: "#f1f3f6",
+      backgroundColor: undefined,
       skipFonts: true,
       fontEmbedCSS: "",
       includeStyleProperties: EXPORT_STYLE_PROPS,
