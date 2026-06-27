@@ -23,8 +23,9 @@ export default function IntroSplash() {
   useEffect(() => {
     let run = false;
     let seen: string | null = null;
+    let force = false;
     try {
-      const force = new URLSearchParams(window.location.search).has("intro");
+      force = new URLSearchParams(window.location.search).has("intro");
       seen = localStorage.getItem("kstar:seenIntro");
       const done = localStorage.getItem("kstar:onboarding") === "done";
       run = force || (!seen && !done);
@@ -35,11 +36,10 @@ export default function IntroSplash() {
 
     (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = true;
 
-    // Always ask on first visit (no stored choice) — the gate is the explicit
-    // flash consent, so nothing animates until the user picks. A stored choice
-    // skips straight to that variant.
+    // A forced replay (重新開始 → /?intro) always re-asks via the gate. Otherwise a
+    // stored choice skips straight to that variant; first visit with no choice asks.
     const stored = (() => { try { return localStorage.getItem("kstar:flashChoice"); } catch { return null; } })();
-    if (stored === "flash" || stored === "calm") { setVariant(stored as Variant); setPhase("play"); }
+    if (!force && (stored === "flash" || stored === "calm")) { setVariant(stored as Variant); setPhase("play"); }
     else { setPhase("gate"); }
   }, []);
 
