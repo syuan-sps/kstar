@@ -6,6 +6,7 @@ import { DEFAULT_WEIGHTS } from "@/lib/types";
 import type { PickSummary } from "@/lib/types";
 import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
+import DevelopFourCuts from "@/components/DevelopFourCuts";
 import SoulQuiz from "@/components/SoulQuiz";
 import { copy } from "@/lib/copy";
 
@@ -19,6 +20,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
   const [selected, setSelected] = useState<string[]>([]); // idol ids
   const [summaries, setSummaries] = useState<PickSummary[]>([]);
   const [loading, setLoading] = useState(false);
+  const [developing, setDeveloping] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("kstar:onboarding") === "done") return;
@@ -120,7 +122,13 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
 
         {/* Body */}
         <div className="window-body max-h-[85vh] space-y-4 overflow-y-auto p-5">
-          {step === 1 && (
+          {developing && (
+            <DevelopFourCuts
+              artists={selectedArtists}
+              onDone={() => { setDeveloping(false); setStep(2); }}
+            />
+          )}
+          {step === 1 && !developing && (
             <>
               <p className="font-orbitron text-sm font-bold text-[#1c1e24]">你最喜歡的四位偶像？</p>
               <p className="text-xs text-[#5e636d]">選出你的 Top 4 · 已選 {selected.length}/{MAX_PICKS}</p>
@@ -175,7 +183,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
                 <button onClick={closeModal} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">先跳過</button>
                 <button
                   disabled={selected.length !== MAX_PICKS}
-                  onClick={() => setStep(2)}
+                  onClick={() => setDeveloping(true)}
                   className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white disabled:opacity-40"
                 >
                   沖洗照片 →
