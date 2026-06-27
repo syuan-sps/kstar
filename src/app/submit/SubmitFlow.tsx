@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import Script from "next/script";
 import Thumb from "@/components/Thumb";
 import { LICENSES, type License } from "@/lib/submissions";
 
@@ -118,7 +119,8 @@ function SubmitForm({ artist, onBack, turnstileSiteKey }: { artist: SubmitArtist
         <label className="block text-[10px] font-bold uppercase tracking-widest text-[#9aa0aa]">署名（選填）
           <input name="credit" placeholder="你的名字／IG，會顯示為 credit" className="mt-1 w-full rounded-lg border-2 border-[#c8ccd2] px-3 py-2 text-sm" />
         </label>
-        {turnstileSiteKey && <div className="cf-turnstile" data-sitekey={turnstileSiteKey} />}
+        {turnstileSiteKey && <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
+        {turnstileSiteKey && <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-response-field-name="turnstileToken" />}
         <button disabled={state === "busy"} className="w-full rounded-full bg-[#b4302b] py-3 text-sm font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.35)] disabled:opacity-50">
           {state === "busy" ? "送出中…" : "送出投稿 → 等待審核"}
         </button>

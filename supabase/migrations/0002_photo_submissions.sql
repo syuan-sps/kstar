@@ -38,3 +38,10 @@ insert into storage.buckets (id, name, public)
 create policy "approved photos public read" on storage.objects
   for select to public
   using (bucket_id = 'submissions' and (storage.foldername(name))[1] = 'approved');
+
+create policy "anon upload pending" on storage.objects
+  for insert to anon
+  with check (
+    bucket_id = 'submissions'
+    and (storage.foldername(name))[1] = 'pending'
+  );

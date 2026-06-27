@@ -18,8 +18,8 @@ export default async function AdminPage() {
 
   const enriched = await Promise.all(rows.map(async (r) => {
     const artist = await getArtist(r.idol_id);
-    const { data: pub } = sb.storage.from(SUBMISSIONS_BUCKET).getPublicUrl(r.storage_path);
-    return { r, artist, pendingUrl: pub.publicUrl, flagged: looksNonFree(r.source_url) };
+    const { data: signed } = await sb.storage.from(SUBMISSIONS_BUCKET).createSignedUrl(r.storage_path, 600);
+    return { r, artist, pendingUrl: signed?.signedUrl ?? "", flagged: looksNonFree(r.source_url) };
   }));
 
   return (
