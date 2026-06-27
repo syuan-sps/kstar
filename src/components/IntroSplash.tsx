@@ -6,7 +6,7 @@
 // `kstar:intro-done` and unmounts, so Onboarding pops in on the handoff.
 // Styles/timeline live in globals.css (the ".soul-intro" / ".ib-*" block).
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Phase = "idle" | "gate" | "play" | "out";
 type Variant = "flash" | "calm";
@@ -22,6 +22,7 @@ function prefersReduced() {
 export default function IntroSplash() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [variant, setVariant] = useState<Variant>("flash");
+  const timersRef = useRef<{ t1?: ReturnType<typeof setTimeout>; t2?: ReturnType<typeof setTimeout> }>({});
 
   // decide whether to run at all (first visit / ?intro), and whether to show the gate
   useEffect(() => {
@@ -56,8 +57,20 @@ export default function IntroSplash() {
       (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = false;
       setPhase("idle");
     }, UNMOUNT_MS);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    timersRef.current = { t1, t2 };
+    return () => { clearTimeout(t1); clearTimeout(t2); timersRef.current = {}; };
   }, [phase]);
+
+  function handleSkip() {
+    // clear any pending timeline timers so they don't call setState after we do
+    clearTimeout(timersRef.current.t1);
+    clearTimeout(timersRef.current.t2);
+    timersRef.current = {};
+    window.dispatchEvent(new Event("kstar:intro-done"));
+    (window as unknown as { __kstarIntroPlaying?: boolean }).__kstarIntroPlaying = false;
+    setPhase("out");
+    setTimeout(() => setPhase("idle"), UNMOUNT_MS - HANDOFF_MS);
+  }
 
   function choose(v: Variant) {
     try { localStorage.setItem("kstar:flashChoice", v); } catch { /* ignore */ }
@@ -94,6 +107,7 @@ export default function IntroSplash() {
   const playing = phase === "play" && !prefersReduced();
   return (
     <div className={`soul-intro${phase === "out" ? " is-out" : ""}`} aria-hidden="true">
+      <button className="ib-skip" onClick={handleSkip} aria-label="Skip intro">SKIP ✕</button>
       <div className={`ib-stage ${dir}${playing ? " ib-play" : ""}`}>
         {variant === "flash" ? (
           <>
