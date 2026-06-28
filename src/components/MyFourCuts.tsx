@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
 import SoulPortraitButton from "@/components/SoulPortraitButton";
@@ -16,6 +16,8 @@ export default function MyFourCuts({
 }) {
   const [ids, setIds] = useState<string[] | null>(null);
   const [entry, setEntry] = useState(true); // one-time camera-flash on real page entry
+  const [developId, setDevelopId] = useState<string | null>(null); // cut to re-develop after a swap
+  const prevIdsRef = useRef<string[] | null>(null);
 
   const read = useCallback(() => {
     try {
@@ -45,12 +47,24 @@ export default function MyFourCuts({
     };
   }, [read]);
 
-  // The camera-flash plays only on a fresh page entry, not on pick swaps
-  // (swaps update `ids` without remounting, so `entry` is already false).
+  // The camera-flash plays only on a fresh page entry, not on pick swaps.
   useEffect(() => {
     const t = setTimeout(() => setEntry(false), 1200);
     return () => clearTimeout(t);
   }, []);
+
+  // When exactly one cut's idol changed (an in-place 圖鑑 ＋ swap), re-develop just
+  // that cut. First load and full re-picks (0 or >1 changed) don't trigger it.
+  useEffect(() => {
+    const prev = prevIdsRef.current;
+    prevIdsRef.current = ids;
+    if (!ids || ids.length !== 4 || !prev || prev.length !== 4) return;
+    const changed = ids.filter((id, i) => id !== prev[i]);
+    if (changed.length !== 1) return;
+    setDevelopId(changed[0]);
+    const t = setTimeout(() => setDevelopId(null), 800);
+    return () => clearTimeout(t);
+  }, [ids]);
 
   // Re-open the onboarding picker in place (no reload → no intro replay, no flash).
   function repick() {
@@ -86,8 +100,8 @@ export default function MyFourCuts({
       <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
         你的人生四格 ✦
       </h2>
-      <div key={ids.join(",")} className={`fourcuts-pop${entry ? " intro-flash" : ""}`}>
-        <FourCuts artists={artists} className={frameClassName} linked />
+      <div className={entry ? "intro-flash" : undefined}>
+        <FourCuts artists={artists} className={frameClassName} linked developId={developId} />
       </div>
       <SoulPortraitButton allArtists={allArtists} />
       <button

@@ -9,10 +9,13 @@ export default function FourCuts({
   artists,
   className = "",
   linked = false,
+  developId = null,
 }: {
   artists: CardArtist[];
   className?: string;
   linked?: boolean;
+  /** id of a cut to play the single-cut re-develop animation on (e.g. after a swap) */
+  developId?: string | null;
 }) {
   return (
     <div
@@ -43,7 +46,8 @@ export default function FourCuts({
             </>
           );
           const cutClass =
-            "fc-cut group relative block aspect-[3/4] overflow-hidden rounded-lg ring-1 ring-white/10";
+            "fc-cut group relative block aspect-[3/4] overflow-hidden rounded-lg ring-1 ring-white/10" +
+            (developId && a.id === developId ? " fc-redevelop" : "");
           return linked ? (
             <Link
               key={a.id}
