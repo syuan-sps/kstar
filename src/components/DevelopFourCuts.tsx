@@ -9,7 +9,9 @@ import { useEffect } from "react";
 import type { CardArtist } from "@/lib/lite";
 import Thumb from "@/components/Thumb";
 
-const DONE_MS = 3500; // keep in sync with the .dev-* CSS timeline
+// Lingers ~1s past the last cut-develop (delay 2.8s + 0.55s ≈ 3.35s) so the
+// finished four-cut holds before handing off to the Step 2 reveal.
+const DONE_MS = 4400;
 
 export default function DevelopFourCuts({
   artists,
