@@ -1,7 +1,7 @@
 // src/app/api/submit/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { validateIntake, hashIp } from "@/lib/submissions";
-import { supabaseAdmin, SUBMISSIONS_BUCKET, isPortalConfigured } from "@/lib/supabase";
+import { supabaseAnon, SUBMISSIONS_BUCKET, isPortalConfigured } from "@/lib/supabase";
 import { getArtist } from "@/lib/data";
 
 export const runtime = "nodejs";
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
   if (!ext) return NextResponse.json({ error: "jpg/png only" }, { status: 400 });
   if (file.size > MAX_BYTES) return NextResponse.json({ error: "file too large" }, { status: 400 });
 
-  const sb = supabaseAdmin()!;
+  const sb = supabaseAnon()!;
   const id = crypto.randomUUID();
   const path = `pending/${id}.${ext}`;
   const up = await sb.storage.from(SUBMISSIONS_BUCKET).upload(path, file, { contentType: file.type });
