@@ -50,31 +50,35 @@ export function hashIp(ip: string, salt: string): string {
 
 export const APPROVED_PHOTOS_TAG = "approved-photos";
 
-async function queryApprovedPhotos(): Promise<Map<string, { url: string; focus: number }>> {
+// Returns a PLAIN object (not a Map) because unstable_cache JSON-serializes its
+// return value — a Map would come back as `{}` and break `.get()`.
+async function queryApprovedPhotos(): Promise<Record<string, { url: string; focus: number }>> {
   const sb = supabaseAdmin();
-  if (!sb) return new Map();
+  if (!sb) return {};
   const { data, error } = await sb
     .from("photo_submissions")
     .select("idol_id, storage_path, image_focus, created_at")
     .eq("status", "approved")
     .order("created_at", { ascending: false });
-  if (error || !data) return new Map();
-  const map = new Map<string, { url: string; focus: number }>();
+  if (error || !data) return {};
+  const out: Record<string, { url: string; focus: number }> = {};
   for (const row of data) {
-    if (map.has(row.idol_id)) continue; // newest already taken (desc order)
+    if (out[row.idol_id]) continue; // newest already taken (desc order)
     const { data: pub } = sb.storage.from(SUBMISSIONS_BUCKET).getPublicUrl(row.storage_path);
-    map.set(row.idol_id, { url: pub.publicUrl, focus: row.image_focus ?? 0.3 });
+    out[row.idol_id] = { url: pub.publicUrl, focus: row.image_focus ?? 0.3 };
   }
-  return map;
+  return out;
 }
 
-export function getApprovedPhotos(): Promise<Map<string, { url: string; focus: number }>> {
-  if (!isPortalConfigured()) return Promise.resolve(new Map());
+export async function getApprovedPhotos(): Promise<Map<string, { url: string; focus: number }>> {
+  if (!isPortalConfigured()) return new Map();
   // Cache so we don't hit Supabase on every render; busted on approve/reject.
-  return unstable_cache(queryApprovedPhotos, ["approved-photos"], {
+  // The cache stores a plain object; we rebuild the Map after retrieval.
+  const obj = await unstable_cache(queryApprovedPhotos, ["approved-photos"], {
     revalidate: 60,
     tags: [APPROVED_PHOTOS_TAG],
   })();
+  return new Map(Object.entries(obj));
 }
 
 export function validateIntake(
