@@ -19,13 +19,8 @@ export default function DevelopFourCuts({
   onDone: () => void;
 }) {
   useEffect(() => {
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      onDone();
-      return;
-    }
+    // The camera-print plays on every 沖洗照片 tap — the user explicitly triggered
+    // it — including under prefers-reduced-motion, where it used to be skipped.
     const t = setTimeout(onDone, DONE_MS);
     return () => clearTimeout(t);
   }, [onDone]);
