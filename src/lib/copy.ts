@@ -74,6 +74,7 @@ export const copy = {
   passMember: "MEMBER",
   passSince: (y: number) => `since ${y}`,
   passFooter: "✦ 應援中 ✦",
+  passSeal: "應援中",
   passSolo: "✦ SOLO ✦",
   passDownload: "下載應援卡",
 } as const;
