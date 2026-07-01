@@ -233,7 +233,7 @@ export default function SoulQuiz({
       {screen.kind === "question" && (
         <Choices
           title={screen.q.pickGrounded ? framing.q1(topName) : screen.q.title}
-          options={screen.q.options.map((o) => ({ id: o.id, label: o.label, sub: o.sub }))}
+          options={screen.q.options.map((o) => ({ id: o.id, label: o.label, sub: o.sub, group: o.group }))}
           selected={selected}
           onPick={(id) => answer(screen.key, id)}
         />
@@ -274,29 +274,35 @@ function Choices({
   title, options, selected, onPick,
 }: {
   title: string;
-  options: { id: string; label: string; sub?: string }[];
+  options: { id: string; label: string; sub?: string; group?: string }[];
   selected?: string;
   onPick: (id: string) => void;
 }) {
+  const grouped = options.some((o) => o.group);
   return (
     <>
       <p className="text-sm font-bold leading-snug text-[#1c1e24]">{title}</p>
       <div className="space-y-1.5">
-        {options.map((o) => {
+        {options.map((o, i) => {
           const isSel = selected === o.id;
+          const showHeader = grouped && !!o.group && o.group !== options[i - 1]?.group;
           return (
-            <button
-              key={o.id}
-              onClick={() => onPick(o.id)}
-              className={`block w-full rounded-xl border px-3 py-2 text-left transition ${
-                isSel
-                  ? "border-[#b4302b] bg-[#b4302b]/10"
-                  : "border-[#c8ccd2]/50 bg-white hover:border-[#56789f] hover:bg-[#56789f]/5"
-              }`}
-            >
-              <span className="text-sm font-semibold text-[#1c1e24]">{o.label}</span>
-              {o.sub && <span className="ml-1.5 text-[11px] text-[#9aa0aa]">{o.sub}</span>}
-            </button>
+            <div key={o.id} className="space-y-1.5">
+              {showHeader && (
+                <p className="px-1 pt-1 font-orbitron text-[10px] font-bold uppercase tracking-[0.18em] text-[#9aa0aa]">{o.group}</p>
+              )}
+              <button
+                onClick={() => onPick(o.id)}
+                className={`block w-full rounded-xl border px-3 py-2 text-left transition ${
+                  isSel
+                    ? "border-[#b4302b] bg-[#b4302b]/10"
+                    : "border-[#c8ccd2]/50 bg-white hover:border-[#56789f] hover:bg-[#56789f]/5"
+                }`}
+              >
+                <span className="text-sm font-semibold text-[#1c1e24]">{o.label}</span>
+                {o.sub && <span className="ml-1.5 text-[11px] text-[#9aa0aa]">{o.sub}</span>}
+              </button>
+            </div>
           );
         })}
       </div>
