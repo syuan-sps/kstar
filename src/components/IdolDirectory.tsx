@@ -19,12 +19,17 @@ import ReplacePickerModal from "./ReplacePickerModal";
 
 type CodexView = "list" | "star";
 
+const PER_OPTIONS = [12, 24, 48] as const;
+const DEFAULT_PER = 12;
+
 export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   const [filters, setFilters] = useState<BrowseFilters>({ gender: "全部", gen: "全部", pos: "全部" });
   const [justAdded, setJustAdded] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [view, setView] = useState<CodexView>("list");
   const [pending, setPending] = useState<{ newcomer: ArtistLite; current: ArtistLite[] } | null>(null);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState<number>(DEFAULT_PER);
 
   useEffect(() => {
     setMounted(true);
@@ -32,7 +37,54 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
       const v = localStorage.getItem("kstar:codexView");
       if (v === "star" || v === "list") setView(v);
     } catch { /* ignore */ }
+    // Initialise page + per from the URL (?page / ?per) so pages are shareable.
+    try {
+      const sp = new URLSearchParams(window.location.search);
+      const per = Number(sp.get("per"));
+      if (PER_OPTIONS.includes(per as (typeof PER_OPTIONS)[number])) setPerPage(per);
+      const p = Number(sp.get("page"));
+      if (Number.isFinite(p) && p >= 1) setPage(Math.floor(p));
+    } catch { /* ignore */ }
+    // Keep state in sync when the user navigates back/forward through pages.
+    const onPop = () => {
+      const sp = new URLSearchParams(window.location.search);
+      const per = Number(sp.get("per"));
+      setPerPage(PER_OPTIONS.includes(per as (typeof PER_OPTIONS)[number]) ? per : DEFAULT_PER);
+      const p = Number(sp.get("page"));
+      setPage(Number.isFinite(p) && p >= 1 ? Math.floor(p) : 1);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
+
+  // Write page/per to the URL. push = new history entry (so Back steps through
+  // pages); replace = quiet update (e.g. clamping / filter reset).
+  function writeUrl(nextPage: number, nextPer: number, mode: "push" | "replace") {
+    try {
+      const u = new URL(window.location.href);
+      u.searchParams.set("page", String(nextPage));
+      u.searchParams.set("per", String(nextPer));
+      u.hash = "idols";
+      window.history[mode === "push" ? "pushState" : "replaceState"](null, "", u.toString());
+    } catch { /* ignore */ }
+  }
+
+  function scrollToGridTop() {
+    document.getElementById("idols")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function goToPage(next: number) {
+    setPage(next);
+    writeUrl(next, perPage, "push");
+    scrollToGridTop();
+  }
+
+  function changePer(next: number) {
+    setPerPage(next);
+    setPage(1);
+    writeUrl(1, next, "push");
+    scrollToGridTop();
+  }
 
   function changeView(v: CodexView) {
     setView(v);
@@ -110,6 +162,32 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
     { label: "定位", key: "pos", options: POS_OPTIONS },
   ];
 
+  // Changing a filter resets to page 1 (and clears the page param).
+  function applyFilter(key: keyof BrowseFilters, opt: string) {
+    setFilters((f) => ({ ...f, [key]: opt }));
+    setPage(1);
+    writeUrl(1, perPage, "replace");
+  }
+
+  // ── Pagination (list view) ──────────────────────────────────────────
+  const totalPages = Math.max(1, Math.ceil(matched.length / perPage));
+  const safePage = Math.min(Math.max(1, page), totalPages);
+  const startIdx = (safePage - 1) * perPage;
+  const pageItems = matched.slice(startIdx, startIdx + perPage);
+
+  // Compact page list with ellipses: 1 … (p-1) p (p+1) … last
+  function pageList(): (number | "…")[] {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    const out: (number | "…")[] = [1];
+    const lo = Math.max(2, safePage - 1);
+    const hi = Math.min(totalPages - 1, safePage + 1);
+    if (lo > 2) out.push("…");
+    for (let i = lo; i <= hi; i++) out.push(i);
+    if (hi < totalPages - 1) out.push("…");
+    out.push(totalPages);
+    return out;
+  }
+
   return (
     <section id="idols" className="scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-baseline gap-3">
@@ -144,7 +222,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
             {options.map((opt) => (
               <button
                 key={opt}
-                onClick={() => setFilters((f) => ({ ...f, [key]: opt }))}
+                onClick={() => applyFilter(key, opt)}
                 className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                   filters[key] === opt
                     ? "bg-[#b4302b] text-white shadow-[0_0_8px_rgba(180,48,43,0.4)]"
@@ -163,8 +241,30 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
           沒有符合的偶像 — 放寬一下篩選吧
         </p>
       ) : (
+        <>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <span className="text-xs text-[#9aa0aa]">
+            顯示 <span className="font-orbitron font-bold text-[#5e636d]">{startIdx + 1}–{Math.min(startIdx + perPage, matched.length)}</span> / {matched.length}
+          </span>
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-[#9aa0aa]">每頁</span>
+            {PER_OPTIONS.map((n) => (
+              <button
+                key={n}
+                onClick={() => changePer(n)}
+                className={`rounded-full px-2.5 py-1 text-xs font-semibold transition ${
+                  perPage === n
+                    ? "bg-[#b4302b] text-white shadow-[0_0_8px_rgba(180,48,43,0.4)]"
+                    : "border border-[#c8ccd2] text-[#5e636d] hover:bg-[#7c8088]/10"
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {matched.map((a) => (
+          {pageItems.map((a) => (
             <Link
               key={a.id}
               href={`/artist/${a.id}`}
@@ -189,6 +289,43 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
             </Link>
           ))}
         </div>
+        {totalPages > 1 && (
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-1.5">
+            <button
+              disabled={safePage === 1}
+              onClick={() => goToPage(safePage - 1)}
+              className="rounded-full border border-[#c8ccd2] px-3 py-1 text-xs font-semibold text-[#5e636d] transition hover:bg-[#7c8088]/10 disabled:opacity-40 disabled:hover:bg-transparent"
+            >
+              ‹ 上一頁
+            </button>
+            {pageList().map((p, i) =>
+              p === "…" ? (
+                <span key={`e${i}`} className="px-1 text-xs text-[#9aa0aa]">…</span>
+              ) : (
+                <button
+                  key={p}
+                  onClick={() => goToPage(p)}
+                  aria-current={p === safePage ? "page" : undefined}
+                  className={`min-w-[2rem] rounded-full px-3 py-1 text-xs font-semibold transition ${
+                    p === safePage
+                      ? "bg-[#b4302b] text-white shadow-[0_0_8px_rgba(180,48,43,0.4)]"
+                      : "border border-[#c8ccd2] text-[#5e636d] hover:bg-[#7c8088]/10"
+                  }`}
+                >
+                  {p}
+                </button>
+              )
+            )}
+            <button
+              disabled={safePage === totalPages}
+              onClick={() => goToPage(safePage + 1)}
+              className="rounded-full border border-[#c8ccd2] px-3 py-1 text-xs font-semibold text-[#5e636d] transition hover:bg-[#7c8088]/10 disabled:opacity-40 disabled:hover:bg-transparent"
+            >
+              下一頁 ›
+            </button>
+          </div>
+        )}
+        </>
       )}
       </>
       )}
