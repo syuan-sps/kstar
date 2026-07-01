@@ -29,6 +29,10 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Fan photo submissions
+
+Users can submit free-license idol photos via `/submit`. The portal requires Supabase + Cloudflare Turnstile (see `.env.example`); without those vars the page shows a "not configured" state and the rest of the site is unaffected. Design spec: `docs/superpowers/specs/2026-06-27-fan-photo-submission-portal-design.md`. DB migration: `supabase/migrations/0002_photo_submissions.sql`.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
