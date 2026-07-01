@@ -68,6 +68,17 @@ function SubmitForm({ artist, onBack, turnstileSiteKey }: { artist: SubmitArtist
   const [license, setLicense] = useState<License>("cc-by");
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
   const [msg, setMsg] = useState("");
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  function onPickFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0] ?? null;
+    setFileName(f ? f.name : null);
+    setPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return f ? URL.createObjectURL(f) : null;
+    });
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -103,9 +114,27 @@ function SubmitForm({ artist, onBack, turnstileSiteKey }: { artist: SubmitArtist
       </div>
 
       <form onSubmit={onSubmit} className="mt-4 space-y-3">
-        <label className="block text-[10px] font-bold uppercase tracking-widest text-[#9aa0aa]">照片
-          <input name="photo" type="file" accept="image/jpeg,image/png" required className="mt-1 block w-full text-sm" />
-        </label>
+        <div className="text-[10px] font-bold uppercase tracking-widest text-[#9aa0aa]">照片
+          <label
+            htmlFor="photo"
+            className="mt-1 flex cursor-pointer items-center gap-3 rounded-lg border-2 border-dashed border-[#c8ccd2] bg-white px-3 py-3 transition hover:border-[#b4302b]"
+          >
+            {preview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={preview} alt="預覽" className="h-14 w-11 shrink-0 rounded object-cover" />
+            ) : (
+              <span className="flex h-14 w-11 shrink-0 items-center justify-center rounded bg-[#eceef2] text-xl text-[#9aa0aa]">＋</span>
+            )}
+            <span className="flex-1 truncate text-sm font-medium normal-case tracking-normal text-[#1c1e24]">
+              {fileName ?? "選擇照片"}
+            </span>
+            <span className="shrink-0 rounded-full bg-[#7c8088]/90 px-3 py-1 text-[11px] font-bold normal-case tracking-normal text-white">
+              {fileName ? "更換" : "瀏覽"}
+            </span>
+          </label>
+          <input id="photo" name="photo" type="file" accept="image/jpeg,image/png" required onChange={onPickFile} className="sr-only" />
+          <p className="mt-1 text-[10px] font-normal normal-case tracking-normal text-[#9aa0aa]">JPG／PNG · 單人正面為佳</p>
+        </div>
         <label className="block text-[10px] font-bold uppercase tracking-widest text-[#9aa0aa]">出處連結（必填）
           <input name="sourceUrl" type="url" required placeholder="https://commons.wikimedia.org/…" className="mt-1 w-full rounded-lg border-2 border-[#c8ccd2] px-3 py-2 text-sm" />
         </label>
