@@ -1,7 +1,7 @@
 "use client";
 
-// Result wrapper — toggles between the 限動卡 (9:16 share card) and the
-// 完整報告 (detailed text report), both rendered from the same archetype result.
+// Result wrapper — toggles between the 限動卡 (9:16 share card), the 完整報告
+// (detailed text report), and the 應援卡 (fan pass), all from the same result.
 // Keeps the original export name so SoulQuiz / SoulPortraitButton import it as-is.
 
 import { useState } from "react";
@@ -10,8 +10,9 @@ import type { ArchetypeResult } from "@/lib/archetypes";
 import { copy } from "@/lib/copy";
 import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
+import FanPassCard from "@/components/FanPassCard";
 
-type View = "story" | "report";
+type View = "story" | "report" | "pass";
 
 export default function TastePortraitCard({
   result, picks, answers, onRestart,
@@ -22,7 +23,7 @@ export default function TastePortraitCard({
   onRestart?: () => void;
 }) {
   const [view, setView] = useState<View>("story");
-  const tabs: [View, string][] = [["story", copy.viewStory], ["report", copy.viewReport]];
+  const tabs: [View, string][] = [["story", copy.viewStory], ["report", copy.viewReport], ["pass", copy.viewPass]];
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -43,8 +44,10 @@ export default function TastePortraitCard({
 
       {view === "story" ? (
         <SoulStoryCard result={result} picks={picks} />
-      ) : (
+      ) : view === "report" ? (
         <SoulReport result={result} picks={picks} answers={answers} />
+      ) : (
+        <FanPassCard result={result} picks={picks} />
       )}
 
       {onRestart && (
