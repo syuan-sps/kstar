@@ -197,6 +197,16 @@ body {
   color: #b4302b;
 }
 
+/* ── 補照片 gap-card CTA — gentle heartbeat (motion-safe) ─ */
+@keyframes kstar-heartbeat {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.18); }
+  60% { transform: scale(1.02); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-heartbeat { animation: kstar-heartbeat 2.2s ease-in-out infinite; }
+}
+
 /* ── Y2K Silvercore / Chrome layer ────────────────────── */
 /* Chrome display text — brushed-metal gradient readable on the light base */
 .chrome-text {

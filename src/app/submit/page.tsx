@@ -4,7 +4,7 @@ import SubmitFlow, { type SubmitArtist } from "./SubmitFlow";
 
 export const metadata = { title: "投稿偶像照片 · KSTAR" };
 
-export default async function SubmitPage() {
+export default async function SubmitPage({ searchParams }: { searchParams: Promise<{ idol?: string }> }) {
   if (!isPortalConfigured()) {
     return (
       <main className="mx-auto max-w-md px-6 py-20 text-center text-[#5e636d]">
@@ -19,5 +19,12 @@ export default async function SubmitPage() {
     image_url: a.image_url ?? null, image_focus: a.image_focus ?? null,
     hasPhoto: Boolean(a.image_url),
   }));
-  return <SubmitFlow artists={artists} turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? null} />;
+  const { idol } = await searchParams;
+  return (
+    <SubmitFlow
+      artists={artists}
+      turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? null}
+      initialIdolId={typeof idol === "string" ? idol : null}
+    />
+  );
 }

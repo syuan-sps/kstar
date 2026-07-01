@@ -13,8 +13,11 @@ const LICENSE_LABEL: Record<License, string> = {
   "cc-by": "CC BY", "cc-by-sa": "CC BY-SA", "cc0-pd": "CC0／PD", own: "我本人拍攝",
 };
 
-export default function SubmitFlow({ artists, turnstileSiteKey }: { artists: SubmitArtist[]; turnstileSiteKey: string | null }) {
-  const [selected, setSelected] = useState<SubmitArtist | null>(null);
+export default function SubmitFlow({ artists, turnstileSiteKey, initialIdolId }: { artists: SubmitArtist[]; turnstileSiteKey: string | null; initialIdolId?: string | null }) {
+  // Deep-link from a gap card (/submit?idol=…) opens straight on that idol's form.
+  const [selected, setSelected] = useState<SubmitArtist | null>(
+    () => (initialIdolId ? artists.find((a) => a.id === initialIdolId) ?? null : null),
+  );
   const [query, setQuery] = useState("");
   const gaps = useMemo(() => artists.filter((a) => !a.hasPhoto), [artists]);
   const results = useMemo(() => {
