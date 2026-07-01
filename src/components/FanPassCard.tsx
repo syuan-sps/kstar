@@ -208,7 +208,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
           className="pass-develop relative overflow-hidden rounded-[16px]"
           style={{
             width: 300,
-            height: 196,
+            height: 212,
             backgroundColor: "#f4f5f7",
             backgroundImage: [
               "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
@@ -249,11 +249,12 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
           </div>
 
           {/* ── member row (secondary: the fan) — join date included ── */}
-          <div className="relative z-10 flex items-center gap-3 px-3.5 pt-3">
+          {/* gap-3.5 == px-3.5 so left-margin / photo↔text / text↔seal / right-margin are all 14px */}
+          <div className="relative z-10 flex items-center gap-3.5 px-3.5 pt-3">
             {/* fan ID photo — small, clearly secondary */}
             <div
               className="shrink-0 overflow-hidden rounded-[9px] border-2 shadow-[2px_2px_0_rgba(124,128,136,0.28)]"
-              style={{ width: 56, borderColor: `${theme.accent}66`, background: "linear-gradient(180deg,#fff,#eceef2)" }}
+              style={{ width: 50, borderColor: `${theme.accent}66`, background: "linear-gradient(180deg,#fff,#eceef2)" }}
             >
               <div className="m-[2px] overflow-hidden rounded-[6px]">
                 <div className="relative aspect-[3/4]">
@@ -281,7 +282,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
           </div>
 
           {/* ── barcode + serial (generous gap above) ── */}
-          <div className="absolute inset-x-3.5 bottom-3 z-10 flex items-center gap-3">
+          <div className="absolute inset-x-3.5 bottom-[15px] z-10 flex items-center gap-3.5">
             <div
               className="h-[24px] flex-1 rounded-[2px]"
               style={{ opacity: 0.78, backgroundImage: "repeating-linear-gradient(90deg, #1c1e24 0 2px, transparent 2px 4px, #1c1e24 4px 5px, transparent 5px 8px)" }}
