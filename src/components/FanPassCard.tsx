@@ -64,8 +64,6 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const year = new Date().getFullYear();
-
   // Join date printed on the pass — stamped once (today for existing users who
   // never had it), then stable across visits. Persisted to prefs like fanName.
   const [joinedAt] = useState<string>(() => {
@@ -202,92 +200,122 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
   if (step === "card" && idol && theme) {
     return (
       <div className="flex flex-col items-center gap-4">
-        {/* export target — the landscape membership pass. pass-develop plays the shared develop ramp */}
+        {/* export target — luxury/metallic membership pass, fan-photo hero on the
+            right, idol foil coin at the seam. pass-develop plays the shared ramp.
+            HERO_W is the full-height fan-photo panel; BODY_W the left info column. */}
         <div
           ref={cardRef}
           className="pass-develop relative overflow-hidden rounded-[16px]"
           style={{
             width: 300,
             height: 212,
-            backgroundColor: "#f4f5f7",
+            backgroundColor: "#eef0f3",
+            // brushed-metal base + guilloché security texture (fine radial + hatch)
             backgroundImage: [
-              "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-              "repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-              "radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 55%)",
-              "linear-gradient(165deg, #ffffff 0%, #f4f5f7 55%, #e6e9ed 100%)",
+              "repeating-conic-gradient(from 0deg at 82% 40%, rgba(124,128,136,0.045) 0deg, rgba(124,128,136,0.045) 4deg, transparent 4deg, transparent 8deg)",
+              "repeating-radial-gradient(circle at 82% 40%, transparent 0, transparent 5px, rgba(124,128,136,0.05) 5px, rgba(124,128,136,0.05) 6px)",
+              "repeating-linear-gradient(115deg, transparent 0, transparent 2px, rgba(255,255,255,0.35) 2px, rgba(255,255,255,0.35) 3px, transparent 3px, transparent 7px)",
+              "linear-gradient(160deg, #ffffff 0%, #eef0f3 46%, #dfe3e9 100%)",
             ].join(", "),
-            border: `2px solid ${theme.accent}55`,
-            boxShadow: `3px 4px 0 ${theme.accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
+            border: `1.5px solid ${theme.accent}80`,
+            boxShadow: `2px 3px 0 ${theme.accent}38, 0 12px 30px rgba(70,78,92,0.20), inset 0 0 0 1px rgba(255,255,255,0.7), inset 0 1px 0 rgba(255,255,255,0.9)`,
           }}
         >
-          {/* corner ✦ stickers + faint group-symbol watermark */}
-          <span className="absolute left-2.5 top-1.5 z-20 text-[11px] leading-none text-[#7c8088]">✦</span>
-          <span className="absolute bottom-1.5 right-2.5 z-20 text-[11px] leading-none" style={{ color: theme.accent }}>✦</span>
-          <span className="pointer-events-none absolute font-orbitron font-black leading-none" style={{ right: 4, bottom: 44, fontSize: 82, color: `${theme.accent}1a` }}>✦</span>
+          {/* corner ✦ sticker */}
+          <span className="absolute left-2 top-1.5 z-30 text-[10px] leading-none text-[#7c8088]">✦</span>
 
-          {/* ── idol banner (dominant) ── */}
+          {/* ── header band (idol accent + holo streak) ── */}
           <div
-            className="relative overflow-hidden px-3.5 pb-2 pt-2.5"
-            style={{ height: 72, background: `linear-gradient(140deg, ${theme.accent} 0%, #33363d 125%)` }}
+            className="relative overflow-hidden px-3.5 pb-2 pt-2"
+            style={{
+              height: 60,
+              background: `linear-gradient(135deg, #ffffff44 0%, ${theme.accent} 48%, #2f333b 128%)`,
+              borderBottom: "1.5px solid rgba(255,255,255,0.55)",
+            }}
           >
-            {/* holo streak */}
-            <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.22) 50%, transparent 60%)" }} />
-            <div className="relative z-10 font-orbitron text-[8px] font-bold uppercase tracking-[0.32em] text-white/70">FAN PASS ✦</div>
-            <div className="relative z-10 mt-1.5 flex items-end gap-2">
-              <div className="max-w-[150px] truncate font-orbitron text-[24px] font-black uppercase leading-none tracking-tight text-white" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.35)" }}>
+            {/* holo streak + fine vertical hatch */}
+            <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.4) 50%, transparent 62%)" }} />
+            <div className="pointer-events-none absolute inset-0 opacity-50" style={{ background: "repeating-linear-gradient(90deg, transparent 0, transparent 3px, rgba(255,255,255,0.06) 3px, rgba(255,255,255,0.06) 4px)" }} />
+            <div className="relative z-10 font-orbitron text-[7.5px] font-bold uppercase tracking-[0.34em] text-white/80">✦ FAN PASS ✦</div>
+            <div className="relative z-10 mt-1 flex items-end gap-2">
+              <div className="max-w-[130px] truncate font-orbitron text-[23px] font-black uppercase leading-none tracking-tight text-white" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.5)" }}>
                 {topLabel}
               </div>
-              <div className="truncate pb-0.5 text-[11px] font-bold text-white/90" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>
+              <div className="truncate pb-0.5 text-[11px] font-bold text-white/95" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.35)" }}>
                 {idol.name}
-                {idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[10px] font-medium text-white/70">{idol.name_zh}</span>}
+                {idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[10px] font-medium text-white/75">{idol.name_zh}</span>}
               </div>
             </div>
-            {/* circular idol badge, banner corner */}
-            <div className="absolute right-3 top-3 z-10 h-[48px] w-[48px] overflow-hidden rounded-full border-[3px] border-white/85 shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+          </div>
+
+          {/* ── fan-photo hero (full-height right panel) ── */}
+          <div
+            className="absolute right-0 top-0 z-10 h-full overflow-hidden"
+            style={{
+              width: 98,
+              borderLeft: "1.5px solid rgba(255,255,255,0.75)",
+              boxShadow: "inset 2px 0 6px rgba(70,78,92,0.18)",
+              background: "linear-gradient(160deg,#d9dde2,#9aa0aa)",
+            }}
+          >
+            {photo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={photo} alt="member" className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-[10px] text-white/70">✦</div>
+            )}
+            {/* gloss */}
+            <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.28), transparent 45%)" }} />
+          </div>
+
+          {/* ── idol foil coin (straddles header/photo seam) ── */}
+          <div
+            className="absolute z-20 rounded-full"
+            style={{
+              top: 44, right: 104, width: 44, height: 44, padding: 2.5,
+              background: "conic-gradient(from 210deg, #e9eef5, #9fb1cc, #f4f6fa, #56789f, #cdd6e4, #e9eef5)",
+              boxShadow: "0 3px 8px rgba(0,0,0,0.32), inset 0 0 0 1px rgba(255,255,255,0.6)",
+            }}
+          >
+            <div className="h-full w-full overflow-hidden rounded-full border-[1.5px] border-white">
               <Thumb src={idol.image_url} seed={idol.id} label={idol.name} rounded="rounded-full" focusY={idol.image_focus} />
             </div>
           </div>
 
-          {/* ── member row (secondary: the fan) — join date included ── */}
-          {/* gap-3.5 == px-3.5 so left-margin / photo↔text / text↔seal / right-margin are all 14px */}
-          <div className="relative z-10 flex items-center gap-3.5 px-3.5 pt-3">
-            {/* fan ID photo — small, clearly secondary */}
-            <div
-              className="shrink-0 overflow-hidden rounded-[9px] border-2 shadow-[2px_2px_0_rgba(124,128,136,0.28)]"
-              style={{ width: 50, borderColor: `${theme.accent}66`, background: "linear-gradient(180deg,#fff,#eceef2)" }}
-            >
-              <div className="m-[2px] overflow-hidden rounded-[6px]">
-                <div className="relative aspect-[3/4]">
-                  {photo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={photo} alt="member" className="h-full w-full rounded-none object-cover" />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-[#e9ebee] text-[10px] text-[#9aa0aa]">—</div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="font-orbitron text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: theme.accent }}>{copy.passMember}</div>
-              <div className="truncate text-[18px] font-black leading-tight text-[#1c1e24]">{fanName || "—"}</div>
-              <div className="mt-1 font-orbitron text-[9px] tracking-[0.12em] text-[#9aa0aa]">SINCE {joinedAt}</div>
-            </div>
-            {/* 應援中 seal */}
-            <div
-              className="shrink-0 -rotate-6 rounded-full border-2 px-2.5 py-1 font-orbitron text-[9px] font-extrabold tracking-[0.12em]"
-              style={{ borderColor: theme.accent, color: theme.accent, opacity: 0.9 }}
-            >
-              {copy.passSeal}
+          {/* ── left info column ── */}
+          <div className="absolute left-0 top-[60px] z-10 px-3.5 pt-3" style={{ width: 202 }}>
+            {/* embossed hairline */}
+            <div className="mb-2.5" style={{ height: 0, borderTop: "1px solid rgba(124,128,136,0.28)", borderBottom: "1px solid rgba(255,255,255,0.85)" }} />
+            <div className="font-orbitron text-[8px] font-bold uppercase tracking-[0.24em]" style={{ color: theme.accent }}>{copy.passMember}</div>
+            {fanName ? (
+              <div className="max-w-[168px] truncate text-[17px] font-black leading-tight text-[#1c1e24]">{fanName}</div>
+            ) : (
+              <div className="text-[13px] font-medium leading-tight text-[#aab0ba]">{copy.passNamePlaceholder}</div>
+            )}
+            <div className="mt-1.5 font-orbitron text-[8px] tracking-[0.1em] text-[#9aa0aa]">SINCE {joinedAt}</div>
+            <div className="mt-2 flex items-baseline gap-1.5">
+              <span
+                className="font-orbitron text-[19px] font-black tracking-[0.1em]"
+                style={{ background: `linear-gradient(135deg, ${theme.accent}, #9fb1cc)`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
+              >
+                {result.code.toUpperCase()}
+              </span>
+              <span className="text-[8px] tracking-[0.06em] text-[#7c8088]">追星靈魂</span>
             </div>
           </div>
 
-          {/* ── barcode + serial (generous gap above) ── */}
-          <div className="absolute inset-x-3.5 bottom-[15px] z-10 flex items-center gap-3.5">
+          {/* ── barcode + 應援中 seal (bottom of left column) ── */}
+          <div className="absolute bottom-3 left-0 z-10 flex items-center gap-2.5 px-3.5" style={{ width: 202 }}>
             <div
               className="h-[24px] flex-1 rounded-[2px]"
-              style={{ opacity: 0.78, backgroundImage: "repeating-linear-gradient(90deg, #1c1e24 0 2px, transparent 2px 4px, #1c1e24 4px 5px, transparent 5px 8px)" }}
+              style={{ opacity: 0.8, backgroundImage: "repeating-linear-gradient(90deg, #1c1e24 0 2px, transparent 2px 4px, #1c1e24 4px 5px, transparent 5px 8px)" }}
             />
-            <div className="whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.12em] text-[#7c8088]">追星靈魂 {result.code.toUpperCase()} · KSTAR {year}</div>
+            <div
+              className="shrink-0 -rotate-[5deg] rounded-full border-[1.5px] px-2 py-0.5 font-orbitron text-[9px] font-extrabold tracking-[0.1em]"
+              style={{ borderColor: theme.accent, color: theme.accent, opacity: 0.92 }}
+            >
+              {copy.passSeal}
+            </div>
           </div>
         </div>
 
