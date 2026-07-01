@@ -129,5 +129,4 @@ export interface UserPrefs {
   contrast?: boolean | null;           // Q4: 反差萌 (true) vs 始終如一 (false)
   visualMood?: string | null;          // Q7 mood id (for the report's 視覺型)
   fanName?: string;                    // display name printed on the 應援卡 (fan pass)
-  joinedAt?: string;                   // YYYY.MM.DD stamped once — 應援卡 "SINCE" date
 }
