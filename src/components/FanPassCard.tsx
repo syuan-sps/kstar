@@ -66,6 +66,24 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
 
   const year = new Date().getFullYear();
 
+  // Join date printed on the pass — stamped once (today for existing users who
+  // never had it), then stable across visits. Persisted to prefs like fanName.
+  const [joinedAt] = useState<string>(() => {
+    const today = () => {
+      const d = new Date();
+      return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+    };
+    if (typeof window === "undefined") return today();
+    try {
+      const p = JSON.parse(localStorage.getItem("kstar:prefs") || "{}");
+      if (typeof p.joinedAt === "string" && p.joinedAt) return p.joinedAt;
+      const t = today();
+      p.joinedAt = t;
+      localStorage.setItem("kstar:prefs", JSON.stringify(p));
+      return t;
+    } catch { return today(); }
+  });
+
   function saveFanName(name: string) {
     try {
       const p = JSON.parse(localStorage.getItem("kstar:prefs") || "{}");
@@ -184,13 +202,13 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
   if (step === "card" && idol && theme) {
     return (
       <div className="flex flex-col items-center gap-4">
-        {/* export target — the pass. `pass-develop` plays the shared develop ramp */}
+        {/* export target — the landscape membership pass. pass-develop plays the shared develop ramp */}
         <div
           ref={cardRef}
-          className="pass-develop relative overflow-hidden rounded-[20px]"
+          className="pass-develop relative overflow-hidden rounded-[16px]"
           style={{
             width: 300,
-            height: 400,
+            height: 196,
             backgroundColor: "#f4f5f7",
             backgroundImage: [
               "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
@@ -202,33 +220,42 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
             boxShadow: `3px 4px 0 ${theme.accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
           }}
         >
+          {/* corner ✦ stickers + faint group-symbol watermark */}
+          <span className="absolute left-2.5 top-1.5 z-20 text-[11px] leading-none text-[#7c8088]">✦</span>
+          <span className="absolute bottom-1.5 right-2.5 z-20 text-[11px] leading-none" style={{ color: theme.accent }}>✦</span>
+          <span className="pointer-events-none absolute font-orbitron font-black leading-none" style={{ right: 4, bottom: 44, fontSize: 82, color: `${theme.accent}1a` }}>✦</span>
+
           {/* ── idol banner (dominant) ── */}
           <div
-            className="relative px-4 pb-3 pt-3"
-            style={{ height: 132, background: `linear-gradient(140deg, ${theme.accent} 0%, #33363d 125%)` }}
+            className="relative overflow-hidden px-3.5 pb-2 pt-2.5"
+            style={{ height: 72, background: `linear-gradient(140deg, ${theme.accent} 0%, #33363d 125%)` }}
           >
-            <div className="font-orbitron text-[8px] font-bold uppercase tracking-[0.32em] text-white/70">FAN PASS ✦</div>
-            <div className="mt-4 max-w-[190px] truncate font-orbitron text-[26px] font-black uppercase leading-none tracking-tight text-white" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.35)" }}>
-              {topLabel}
-            </div>
-            <div className="mt-1.5 truncate text-[13px] font-bold text-white/90" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>
-              {idol.name}
-              {idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[11px] font-medium text-white/70">{idol.name_zh}</span>}
+            {/* holo streak */}
+            <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.22) 50%, transparent 60%)" }} />
+            <div className="relative z-10 font-orbitron text-[8px] font-bold uppercase tracking-[0.32em] text-white/70">FAN PASS ✦</div>
+            <div className="relative z-10 mt-1.5 flex items-end gap-2">
+              <div className="max-w-[150px] truncate font-orbitron text-[24px] font-black uppercase leading-none tracking-tight text-white" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.35)" }}>
+                {topLabel}
+              </div>
+              <div className="truncate pb-0.5 text-[11px] font-bold text-white/90" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>
+                {idol.name}
+                {idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[10px] font-medium text-white/70">{idol.name_zh}</span>}
+              </div>
             </div>
             {/* circular idol badge, banner corner */}
-            <div className="absolute right-4 top-4 h-[60px] w-[60px] overflow-hidden rounded-full border-[3px] border-white/85 shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+            <div className="absolute right-3 top-3 z-10 h-[48px] w-[48px] overflow-hidden rounded-full border-[3px] border-white/85 shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
               <Thumb src={idol.image_url} seed={idol.id} label={idol.name} rounded="rounded-full" focusY={idol.image_focus} />
             </div>
           </div>
 
-          {/* ── member row (secondary: the fan) ── */}
-          <div className="flex items-start gap-3 px-4 pt-4">
+          {/* ── member row (secondary: the fan) — join date included ── */}
+          <div className="relative z-10 flex items-center gap-3 px-3.5 pt-3">
             {/* fan ID photo — small, clearly secondary */}
             <div
-              className="shrink-0 overflow-hidden rounded-[10px] border-2 shadow-[2px_2px_0_rgba(124,128,136,0.28)]"
-              style={{ width: 78, borderColor: `${theme.accent}66`, background: "linear-gradient(180deg,#fff,#eceef2)" }}
+              className="shrink-0 overflow-hidden rounded-[9px] border-2 shadow-[2px_2px_0_rgba(124,128,136,0.28)]"
+              style={{ width: 56, borderColor: `${theme.accent}66`, background: "linear-gradient(180deg,#fff,#eceef2)" }}
             >
-              <div className="m-[3px] overflow-hidden rounded-[7px]">
+              <div className="m-[2px] overflow-hidden rounded-[6px]">
                 <div className="relative aspect-[3/4]">
                   {photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -239,18 +266,27 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
                 </div>
               </div>
             </div>
-            <div className="min-w-0 flex-1 pt-0.5">
+            <div className="min-w-0 flex-1">
               <div className="font-orbitron text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: theme.accent }}>{copy.passMember}</div>
-              <div className="mt-1 truncate text-[17px] font-black text-[#1c1e24]">{fanName || "—"}</div>
-              <div className="mt-0.5 font-orbitron text-[9px] tracking-[0.14em] text-[#9aa0aa]">{copy.passSince(year)}</div>
-              <div className="mt-2 font-orbitron text-[8.5px] font-bold tracking-[0.1em] text-[#7c8088]">會員 · {result.code}</div>
+              <div className="truncate text-[18px] font-black leading-tight text-[#1c1e24]">{fanName || "—"}</div>
+              <div className="mt-1 font-orbitron text-[9px] tracking-[0.12em] text-[#9aa0aa]">SINCE {joinedAt}</div>
+            </div>
+            {/* 應援中 seal */}
+            <div
+              className="shrink-0 -rotate-6 rounded-full border-2 px-2.5 py-1 font-orbitron text-[9px] font-extrabold tracking-[0.12em]"
+              style={{ borderColor: theme.accent, color: theme.accent, opacity: 0.9 }}
+            >
+              {copy.passSeal}
             </div>
           </div>
 
-          {/* ── footer ── */}
-          <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-0.5 pb-3">
-            <div className="font-orbitron text-[11px] font-black tracking-[0.2em]" style={{ color: theme.accent }}>{copy.passFooter}</div>
-            <div className="font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;KSTAR&nbsp;·&nbsp;{year}&nbsp;✦</div>
+          {/* ── barcode + serial (generous gap above) ── */}
+          <div className="absolute inset-x-3.5 bottom-3 z-10 flex items-center gap-3">
+            <div
+              className="h-[24px] flex-1 rounded-[2px]"
+              style={{ opacity: 0.78, backgroundImage: "repeating-linear-gradient(90deg, #1c1e24 0 2px, transparent 2px 4px, #1c1e24 4px 5px, transparent 5px 8px)" }}
+            />
+            <div className="whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.12em] text-[#7c8088]">追星靈魂 {result.code.toUpperCase()} · KSTAR {year}</div>
           </div>
         </div>
 
