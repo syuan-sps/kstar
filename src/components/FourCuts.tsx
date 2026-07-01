@@ -10,19 +10,36 @@ export default function FourCuts({
   className = "",
   linked = false,
   developId = null,
+  onPickEmpty,
 }: {
   artists: CardArtist[];
   className?: string;
   linked?: boolean;
   /** id of a cut to play the single-cut re-develop animation on (e.g. after a swap) */
   developId?: string | null;
+  /** when set and there are no picks, render 4 tappable empty slots that call this */
+  onPickEmpty?: () => void;
 }) {
+  const empty = artists.length === 0 && Boolean(onPickEmpty);
   return (
     <div
       className={`rounded-[22px] border-2 border-[#aeb3bb] bg-[#e9ebee] p-3 shadow-[5px_5px_0_rgba(124,128,136,0.3)] ${className}`}
     >
       <div className="grid grid-cols-2 gap-1.5">
-        {artists.map((a) => {
+        {empty
+          ? [0, 1, 2, 3].map((i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={onPickEmpty}
+                aria-label="選出你的 TOP 4"
+                className="group flex aspect-[3/4] cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border-2 border-dashed border-[#aeb3bb]/70 bg-gradient-to-br from-[#dfe2e7] to-[#cfd3da] text-[#7c8088] transition hover:border-[#b4302b]/60 hover:text-[#b4302b]"
+              >
+                <span className="text-2xl font-black leading-none">＋</span>
+                <span className="font-orbitron text-[9px] font-bold tracking-widest">選擇</span>
+              </button>
+            ))
+          : artists.map((a) => {
           const sym = getGroupSymbol(a.group);
           const inner = (
             <>

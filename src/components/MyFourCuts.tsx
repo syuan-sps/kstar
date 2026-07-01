@@ -77,20 +77,15 @@ export default function MyFourCuts({
     .map((id) => allArtists.find((a) => a.id === id))
     .filter(Boolean) as ArtistLite[];
 
-  // No (valid) picks yet — e.g. the user skipped onboarding. Offer a way in.
+  // No (valid) picks yet — fresh visitor or right after 重新開始. Show the empty
+  // photobooth strip; tapping any slot opens the picker.
   if (artists.length !== 4) {
     return (
       <section className={`flex flex-col items-center gap-3 ${className}`}>
         <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
           你的人生四格 ✦
         </h2>
-        <p className="text-xs text-[#5e636d]/80">還沒選出你的 TOP 4</p>
-        <button
-          onClick={repick}
-          className="rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110"
-        >
-          選出你的 TOP 4 →
-        </button>
+        <FourCuts artists={[]} onPickEmpty={repick} className={frameClassName} />
       </section>
     );
   }
