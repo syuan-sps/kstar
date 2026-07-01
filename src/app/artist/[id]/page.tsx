@@ -6,6 +6,7 @@ import { personalReason } from "@/lib/cardMeta";
 import { DEFAULT_WEIGHTS, type LayerFilter, type SimilarArtist, type Weights } from "@/lib/types";
 import { copy } from "@/lib/copy";
 import Thumb from "@/components/Thumb";
+import AddPhotoCTA from "@/components/AddPhotoCTA";
 import FavoriteButton from "@/components/FavoriteButton";
 import ProfileExplorer from "@/components/ProfileExplorer";
 
@@ -46,8 +47,11 @@ export default async function ArtistPage({
     <div className="space-y-10">
       {/* Artist header */}
       <section className="flex flex-col gap-5 sm:flex-row sm:items-end">
-        <div className="h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#c8ccd2]/40">
+        <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#c8ccd2]/40">
           <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" focusY={artist.image_focus} />
+          {!artist.image_url && (
+            <AddPhotoCTA idolId={artist.id} name={artist.name} className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2" />
+          )}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">

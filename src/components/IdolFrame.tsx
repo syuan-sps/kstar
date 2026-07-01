@@ -4,6 +4,7 @@
 import type { CardArtist } from "@/lib/lite";
 import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "./Thumb";
+import AddPhotoCTA from "./AddPhotoCTA";
 
 type Theme = { motifs: string[]; accent: string; soft: string };
 
@@ -43,10 +44,13 @@ const SPOTS: { top: string; left?: string; right?: string; rot: number; s: numbe
 export default function IdolFrame({
   artist,
   className = "",
+  showAddCTA = false,
 }: {
   artist: CardArtist;
   className?: string;
+  showAddCTA?: boolean;
 }) {
+  const gapCTA = showAddCTA && !artist.image_url;
   const theme = pickTheme(artist.id);
   const topLabel = artist.group ?? "✦ SOLO ✦";
   const frameSymbol = getGroupSymbol(artist.group);
@@ -91,7 +95,14 @@ export default function IdolFrame({
         className="relative aspect-[3/4] overflow-hidden rounded-xl border"
         style={{ borderColor: theme.accent + "55" }}
       >
-        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-xl" focusY={artist.image_focus} />
+        <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-xl" focusY={artist.image_focus} hideInitials={gapCTA} />
+        {gapCTA && (
+          <AddPhotoCTA
+            idolId={artist.id}
+            name={artist.name}
+            className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+          />
+        )}
       </div>
 
       {/* name */}

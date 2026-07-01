@@ -6,7 +6,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import type { Weights } from "@/lib/types";
 import type { ArtistLite } from "@/lib/lite";
 import {
@@ -21,7 +20,6 @@ import ReplacePickerModal from "./ReplacePickerModal";
 type CodexView = "list" | "star";
 
 export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
-  const router = useRouter();
   const [filters, setFilters] = useState<BrowseFilters>({ gender: "全部", gen: "全部", pos: "全部" });
   const [justAdded, setJustAdded] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -172,7 +170,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               href={`/artist/${a.id}`}
               className="group relative block transition hover:-translate-y-0.5"
             >
-              <IdolFrame artist={a} />
+              <IdolFrame artist={a} showAddCTA />
               <div className="absolute right-2 top-7 z-20">
                 <FavoriteButton id={a.id} size="sm" />
               </div>
@@ -188,24 +186,6 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               >
                 {justAdded === a.id ? "✓" : "＋"}
               </button>
-              {!a.image_url && (
-                <>
-                  <span
-                    aria-hidden
-                    className="cta-heartbeat pointer-events-none absolute bottom-[38px] left-3 z-20 text-[13px] leading-none text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
-                  >
-                    ♥
-                  </span>
-                  <button
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push(`/submit?idol=${a.id}`); }}
-                    aria-label={`幫 ${a.name} 補照片`}
-                    title="補照片"
-                    className="absolute bottom-2 left-2 z-20 cursor-pointer rounded-full bg-[#b4302b] px-2.5 py-1.5 text-[10px] font-bold leading-none text-white shadow-[0_2px_7px_rgba(180,48,43,0.4)] transition hover:brightness-110"
-                  >
-                    補照片
-                  </button>
-                </>
-              )}
             </Link>
           ))}
         </div>

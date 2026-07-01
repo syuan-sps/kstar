@@ -21,12 +21,14 @@ export default function Thumb({
   label,
   rounded = "rounded-2xl",
   focusY,
+  hideInitials = false,
 }: {
   src?: string | null;
   seed: string;
   label: string;
   rounded?: string;
   focusY?: number | null;  // vertical focal point 0..1 — keeps faces at a consistent height across crops
+  hideInitials?: boolean;  // render an empty gradient (e.g. when an overlay CTA fills the slot)
 }) {
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
@@ -44,7 +46,7 @@ export default function Thumb({
     <div
       className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${pick(seed)} ${rounded} text-2xl font-black text-white/90`}
     >
-      {initials || "♪"}
+      {hideInitials ? "" : initials || "♪"}
     </div>
   );
 }
