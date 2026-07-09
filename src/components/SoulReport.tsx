@@ -173,9 +173,10 @@ export default function SoulReport({
 function SectionHeader({ label, accent }: { label: string; accent: string }) {
   return (
     <div className="mb-2 mt-4 flex items-center gap-2">
-      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: accent }} />
-      <span className="font-orbitron text-[10px] font-black uppercase tracking-[0.18em] text-[#1c1e24]">{label}</span>
-      <span className="h-px flex-1" style={{ backgroundColor: "#c8ccd2" }} />
+      {/* label can never wrap: it truncates instead, and the divider keeps a floor width */}
+      <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: accent }} />
+      <span className="min-w-0 truncate font-orbitron text-[10px] font-black uppercase tracking-[0.18em] text-[#1c1e24]">{label}</span>
+      <span className="h-px min-w-3 flex-1" style={{ backgroundColor: "#c8ccd2" }} />
     </div>
   );
 }
