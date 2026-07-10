@@ -97,7 +97,7 @@ export default function MyFourCuts({
 
   return (
     <section className={`flex flex-col items-center gap-3 ${className}`}>
-      <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
+      <h2 className="font-orbitron text-[11px] font-bold tracking-[0.28em] text-[#5e636d] uppercase">
         你的人生四格 ✦
       </h2>
       <div className={entry ? "intro-flash" : undefined}>

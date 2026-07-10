@@ -7,6 +7,7 @@
 // Styles/timeline live in globals.css (the ".soul-intro" / ".ib-*" block).
 
 import { useEffect, useRef, useState } from "react";
+import { setAmbientMode } from "@/components/AmbientMotion";
 
 type Phase = "idle" | "gate" | "play" | "out";
 type Variant = "flash" | "calm";
@@ -39,7 +40,11 @@ export default function IntroSplash() {
     // A forced replay (重新開始 → /?intro) always re-asks via the gate. Otherwise a
     // stored choice skips straight to that variant; first visit with no choice asks.
     const stored = (() => { try { return localStorage.getItem("kstar:flashChoice"); } catch { return null; } })();
-    if (!force && (stored === "flash" || stored === "calm")) { setVariant(stored as Variant); setPhase("play"); }
+    if (!force && (stored === "flash" || stored === "calm")) {
+      setVariant(stored as Variant);
+      setAmbientMode(stored as Variant);
+      setPhase("play");
+    }
     else { setPhase("gate"); }
   }, []);
 
@@ -70,7 +75,7 @@ export default function IntroSplash() {
   }
 
   function choose(v: Variant) {
-    try { localStorage.setItem("kstar:flashChoice", v); } catch { /* ignore */ }
+    setAmbientMode(v); // persists flashChoice + toggles ambient motion site-wide
     setVariant(v);
     setPhase("play");
   }
@@ -85,13 +90,13 @@ export default function IntroSplash() {
             <span className="flex-1 truncate text-xs font-bold tracking-wide font-orbitron">⚠ 動畫含閃光 · FLASH WARNING</span>
           </div>
           <div className="window-body space-y-3 p-5 text-center">
-            <div className="text-3xl">⚡</div>
+            <div className="chrome-text font-orbitron text-2xl font-black tracking-widest">✦</div>
             <p className="font-orbitron text-sm font-bold text-[#1c1e24]">開場動畫包含閃爍效果</p>
-            <p className="text-xs text-[#5e636d]">SOULCUTS 的開場動畫含有閃光，可能影響光敏感族群。要播放嗎？</p>
-            <p className="text-[11px] text-[#9aa0aa]">The opening animation contains flashing lights.</p>
+            <p className="text-xs text-[#5e636d]">SOULCUTS 的開場動畫含有閃光，可能影響光敏感族群。選「播放」也會開啟全站動態光澤；選「平靜」則保持靜態。</p>
+            <p className="text-[11px] text-[#9aa0aa]">Flash also enables ambient chrome motion site-wide.</p>
             <div className="flex flex-col gap-2 pt-1">
-              <button onClick={() => choose("flash")} className="rounded-full bg-[#b4302b] px-5 py-2.5 text-xs font-bold text-white">播放動畫 · Play with effects</button>
-              <button onClick={() => choose("calm")} className="rounded-full border border-[#aeb3bb] bg-white px-5 py-2.5 text-xs font-bold text-[#1c1e24]">平靜版本 · Use the calm version</button>
+              <button onClick={() => choose("flash")} className="rounded-full bg-[#b4302b] px-5 py-2.5 text-xs font-bold text-white shadow-[0_0_14px_rgba(180,48,43,0.35)] transition hover:brightness-110">播放動畫 · Play with effects</button>
+              <button onClick={() => choose("calm")} className="rounded-full border border-[#aeb3bb] bg-white px-5 py-2.5 text-xs font-bold text-[#1c1e24] transition hover:border-[#7c8088]">平靜版本 · Use the calm version</button>
             </div>
           </div>
         </div>
