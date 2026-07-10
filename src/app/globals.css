@@ -316,41 +316,63 @@ html[data-ambient="flash"] .poster-spark {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   width: 100%;
 }
-.hero-kicker {
-  font-family: var(--font-soft), "Fredoka", system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(90,100,120,0.65);
-  margin-bottom: 2px;
-}
-.hero-zh {
+.hero-chip-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 100%;
-  max-width: 280px;
-  margin: 2px auto 0;
-  font-family: var(--font-noto-tc), system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.42em;
-  color: rgba(60,70,90,0.62);
-  text-indent: 0.42em;
-}
-.hero-zh-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(124,128,136,0.45), transparent);
-  max-width: 48px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -2px 0 2px;
 }
 
-/* Asset brand marks */
+/* Tiny sticker chips — fun, compact, no vertical sprawl */
+.sticker-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-soft), "Fredoka", system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #3a3d44;
+  background: linear-gradient(180deg, #ffffff 0%, #e8ebf0 100%);
+  border: 1.5px solid rgba(174,179,187,0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    0 2px 0 rgba(124,128,136,0.18),
+    0 4px 10px rgba(90,100,120,0.12);
+  transform: rotate(-2deg);
+}
+.sticker-chip--zh {
+  letter-spacing: 0.2em;
+  text-indent: 0.08em;
+  text-transform: none;
+  font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 11px;
+  transform: rotate(2.5deg);
+  color: #5e636d;
+}
+.sticker-chip--mini {
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 0.12em;
+  transform: rotate(-1deg);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 0 rgba(124,128,136,0.15);
+}
+.soul-intro .ibD .sticker-chip {
+  background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(200,210,220,0.12));
+  border-color: rgba(255,255,255,0.35);
+  color: #e8ebf0;
+  box-shadow: 0 0 12px rgba(255,255,255,0.12);
+}
+
+/* Melted mercury KSTAR — tight shadow only (no spindle glow) */
 .brand-mark {
   display: inline-flex;
   align-items: center;
@@ -362,56 +384,20 @@ html[data-ambient="flash"] .poster-spark {
   height: auto;
   max-width: 100%;
   display: block;
-  filter: drop-shadow(0 10px 22px rgba(40,50,70,0.22));
+  filter: drop-shadow(0 8px 14px rgba(40,50,70,0.28));
 }
 .brand-mark.bm-hero .brand-mark-img {
-  width: min(78vw, 480px);
+  width: min(82vw, 500px);
   height: auto;
 }
 .brand-mark.bm-nav .brand-mark-img {
   width: 96px;
   height: auto;
-  filter: drop-shadow(0 2px 6px rgba(40,50,70,0.22));
+  filter: drop-shadow(0 2px 5px rgba(40,50,70,0.25));
 }
 .brand-mark.bm-intro .brand-mark-img {
-  width: min(78vw, 460px);
+  width: min(80vw, 480px);
   height: auto;
-}
-
-/* Quiet SOULCUTS — neutral mercury type, readable, no candy fills */
-.quiet-chrome {
-  font-family: var(--font-soft), "Fredoka", system-ui, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;
-  text-transform: uppercase;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #d8dde6 28%,
-    #8a909a 52%,
-    #c8ccd2 72%,
-    #f4f5f7 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  filter:
-    drop-shadow(0 1px 0 rgba(255,255,255,0.75))
-    drop-shadow(0 2px 6px rgba(60,70,90,0.22));
-}
-.brand-mark.bm-sub.quiet-chrome {
-  font-size: clamp(0.95rem, 2.4vw, 1.35rem);
-  line-height: 1.2;
-}
-.soul-intro .ibD .quiet-chrome {
-  background: linear-gradient(180deg, #ffffff 0%, #c8ccd2 40%, #8a909a 70%, #e8ebf0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter:
-    drop-shadow(0 1px 0 rgba(255,255,255,0.4))
-    drop-shadow(0 0 12px rgba(255,255,255,0.25));
 }
 
 /* Onboarding backdrop — same candy sky as home */
@@ -927,27 +913,17 @@ html { scroll-behavior: smooth; }
   position: relative; text-align: center; line-height: 0.96;
   display: flex; flex-direction: column; align-items: center; gap: 2px;
 }
-.soul-intro .ib-wordmark .ib-mark-zh {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  margin-top: 8px; font-family: var(--font-noto-tc), system-ui, sans-serif;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.4em; color: rgba(200,210,220,0.78); text-indent: 0.4em;
-}
-.soul-intro .ibE .ib-wordmark .ib-mark-zh { color: rgba(90,100,120,0.7); }
 .soul-intro .ib-candy-marks > .brand-mark,
-.soul-intro .ib-candy-marks > .ib-mark-zh {
+.soul-intro .ib-candy-marks > .hero-chip-row {
   opacity: 0;
 }
-.soul-intro .ibD.ib-play .ib-candy-marks > .brand-mark:nth-child(1),
-.soul-intro .ibE.ib-play .ib-candy-marks > .brand-mark:nth-child(1) {
+.soul-intro .ibD.ib-play .ib-candy-marks > .brand-mark,
+.soul-intro .ibE.ib-play .ib-candy-marks > .brand-mark {
   animation: hero-strip-pop 0.85s var(--ease-pop) 2.85s forwards;
 }
-.soul-intro .ibD.ib-play .ib-candy-marks > .brand-mark:nth-child(2),
-.soul-intro .ibE.ib-play .ib-candy-marks > .brand-mark:nth-child(2) {
+.soul-intro .ibD.ib-play .ib-candy-marks > .hero-chip-row,
+.soul-intro .ibE.ib-play .ib-candy-marks > .hero-chip-row {
   animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.25s forwards;
-}
-.soul-intro .ibD.ib-play .ib-candy-marks > .ib-mark-zh,
-.soul-intro .ibE.ib-play .ib-candy-marks > .ib-mark-zh {
-  animation: ib-zh-in 0.9s var(--ib-ease-out) 3.5s forwards;
 }
 
 /* ── Shared: slogan ───────────────────────────────────────────────────── */
@@ -1250,11 +1226,10 @@ html[data-ambient="flash"] .hero-scroll {
 .fourcuts-chrome-inner {
   border-radius: 24px;
   background:
-    radial-gradient(90% 70% at 50% 0%, rgba(255,255,255,0.9) 0%, transparent 55%),
-    radial-gradient(70% 55% at 92% 18%, rgba(106,167,232,0.16) 0%, transparent 55%),
-    radial-gradient(55% 45% at 8% 85%, rgba(212,184,240,0.12) 0%, transparent 55%),
-    radial-gradient(50% 40% at 70% 100%, rgba(255,196,184,0.1) 0%, transparent 55%),
-    linear-gradient(180deg, #f7f9fc 0%, #eef1f6 100%);
+    radial-gradient(90% 70% at 50% 0%, rgba(255,255,255,0.95) 0%, transparent 55%),
+    radial-gradient(60% 50% at 100% 30%, rgba(174,179,187,0.18) 0%, transparent 55%),
+    radial-gradient(55% 45% at 0% 80%, rgba(124,128,136,0.1) 0%, transparent 55%),
+    linear-gradient(180deg, #f8f9fb 0%, #eef0f4 100%);
   border: 1px solid rgba(255,255,255,0.85);
   padding: 12px;
   position: relative;
@@ -1263,7 +1238,24 @@ html[data-ambient="flash"] .hero-scroll {
 .fourcuts-chrome-inner::before {
   content: none;
 }
-.fourcuts-chrome-inner > * { position: relative; z-index: 1; }
+.fourcuts-chrome-inner > *:not(.fc-silver-motifs) { position: relative; z-index: 1; }
+
+/* Medium silver-only motifs behind the photo grid */
+.fc-silver-motifs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fc-motif {
+  position: absolute;
+  color: #7c8088;
+  line-height: 1;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  user-select: none;
+}
 .fourcuts-chrome .fc-cut {
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,0.35),

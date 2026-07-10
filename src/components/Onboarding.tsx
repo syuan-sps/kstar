@@ -203,10 +203,11 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
 
           {step === 2 && (
             <div className="ob-reveal">
-              <div>
-                <p className="ob-reveal-title">你的人生四格 ✦</p>
-                <p className="ob-reveal-sub">和你的本命合照一張</p>
+              <div className="hero-chip-row">
+                <span className="sticker-chip sticker-chip--zh">靈魂四格</span>
+                <span className="sticker-chip">SOULCUTS</span>
               </div>
+              <p className="ob-reveal-sub">和你的本命合照一張</p>
 
               <FourCuts artists={selectedArtists} className="w-full max-w-[280px]" />
 

@@ -1,5 +1,5 @@
-// KSTAR = liquid-mercury sculpture asset.
-// SOULCUTS = quieter readable chrome type (neutral steel, no blue/purple fills).
+// KSTAR = melted liquid-mercury sculpture asset (half-logo / half-blob).
+// SOULCUTS = tiny sticker chip (fun, compact).
 
 type Mark = "kstar" | "soulcuts";
 
@@ -13,7 +13,7 @@ export default function BrandMark({
 }) {
   if (mark === "soulcuts") {
     return (
-      <span className={`brand-mark brand-mark--soulcuts quiet-chrome ${className}`} aria-label="SOULCUTS">
+      <span className={`sticker-chip sticker-chip--en ${className}`} aria-label="SOULCUTS">
         SOULCUTS
       </span>
     );

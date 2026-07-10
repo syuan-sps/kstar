@@ -126,12 +126,10 @@ export default function IntroSplash() {
         <div className="ib-scene">
           <div className="ib-wordmark ib-candy-marks">
             <BrandMark mark="kstar" className="bm-intro" />
-            <BrandMark mark="soulcuts" className="bm-sub mt-1" />
-            <span className="ib-mark-zh">
-              <span className="hero-zh-line" />
-              <span>靈魂四格</span>
-              <span className="hero-zh-line" />
-            </span>
+            <div className="hero-chip-row ib-chip-row">
+              <BrandMark mark="soulcuts" />
+              <span className="sticker-chip sticker-chip--zh">靈魂四格</span>
+            </div>
           </div>
           <div className="ib-slogan">
             <div className="ib-en">FOUR PICKS · ONE SOUL</div>

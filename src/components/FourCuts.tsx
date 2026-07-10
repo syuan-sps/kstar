@@ -1,10 +1,22 @@
-// 인생네컷 — "Life in 4 Cuts" photobooth strip. Pure presentational.
-// Chrome bezel elevates imperfect CC idol photos into a cohesive collectible.
+// 인생네컷 — photobooth strip with silver-only sticker motifs in the card wash.
 
 import Link from "next/link";
 import type { CardArtist } from "@/lib/lite";
 import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "@/components/Thumb";
+
+const MOTIFS = [
+  { t: "✦", x: "5%", y: "8%", r: -12, s: 15, o: 0.38 },
+  { t: "✧", x: "90%", y: "7%", r: 18, s: 12, o: 0.32 },
+  { t: "◎", x: "93%", y: "40%", r: 0, s: 17, o: 0.26 },
+  { t: "✦", x: "3%", y: "46%", r: 22, s: 11, o: 0.3 },
+  { t: "◇", x: "91%", y: "70%", r: -8, s: 14, o: 0.28 },
+  { t: "✧", x: "7%", y: "76%", r: 14, s: 13, o: 0.34 },
+  { t: "○", x: "48%", y: "5%", r: 0, s: 10, o: 0.22 },
+  { t: "✦", x: "50%", y: "90%", r: -20, s: 12, o: 0.26 },
+  { t: "✧", x: "22%", y: "92%", r: 8, s: 10, o: 0.22 },
+  { t: "◇", x: "78%", y: "93%", r: -14, s: 11, o: 0.22 },
+] as const;
 
 export default function FourCuts({
   artists,
@@ -15,12 +27,29 @@ export default function FourCuts({
   artists: CardArtist[];
   className?: string;
   linked?: boolean;
-  /** id of a cut to play the single-cut re-develop animation on (e.g. after a swap) */
   developId?: string | null;
 }) {
   return (
     <div className={`fourcuts-chrome ${className}`}>
       <div className="fourcuts-chrome-inner">
+        <div className="fc-silver-motifs" aria-hidden="true">
+          {MOTIFS.map((m, i) => (
+            <span
+              key={i}
+              className="fc-motif"
+              style={{
+                left: m.x,
+                top: m.y,
+                fontSize: m.s,
+                opacity: m.o,
+                transform: `rotate(${m.r}deg)`,
+              }}
+            >
+              {m.t}
+            </span>
+          ))}
+        </div>
+
         <div className="grid grid-cols-2 gap-1.5">
           {artists.map((a) => {
             const sym = getGroupSymbol(a.group);
@@ -68,7 +97,7 @@ export default function FourCuts({
             <i style={{ height: 3 }} /><i style={{ height: 7 }} /><i style={{ height: 5 }} />
             <i style={{ height: 8 }} /><i style={{ height: 4 }} /><i style={{ height: 6 }} />
           </span>
-          <span className="font-soft tracking-[0.14em]">✦ KSTAR · SOULCUTS ✦</span>
+          <span className="sticker-chip sticker-chip--mini">SOULCUTS</span>
           <span className="font-soft tracking-[0.12em] text-[#9aa0aa]">01/04</span>
         </div>
       </div>
