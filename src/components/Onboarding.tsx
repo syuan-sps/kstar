@@ -116,12 +116,12 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
   const titleByStep = step === 1 ? "選出你的 TOP 4" : step === 2 ? "你的人生四格" : "追星靈魂測驗";
 
   return (
-    <div className="picker-enter fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">
+    <div className="picker-enter onboarding-sky fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="window-frame w-full max-w-md">
         {/* Title bar */}
         <div className="title-bar">
           <span className="mr-1.5 text-base">✦</span>
-          <span className="flex-1 truncate text-xs font-bold tracking-wide font-orbitron">{titleByStep}</span>
+          <span className="flex-1 truncate text-xs font-bold tracking-wide">{titleByStep}</span>
           <div className="flex gap-0.5">
             <span className="win-btn">_</span>
             <span className="win-btn">□</span>
@@ -139,15 +139,15 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
           )}
           {step === 1 && !developing && (
             <>
-              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">你最喜歡的四位偶像？</p>
-              <p className="text-xs text-[#5e636d]">選出你的 Top 4 · 已選 {selected.length}/{MAX_PICKS}</p>
+              <p className="font-soft text-center text-base font-bold text-[#1c1e24]">你最喜歡的四位偶像？</p>
+              <p className="text-center text-xs text-[#5e636d]">選出你的 Top 4 · 已選 {selected.length}/{MAX_PICKS}</p>
 
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="搜尋偶像…"
-                className="w-full rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2 text-sm text-[#1c1e24] outline-none focus:border-[#56789f] focus:ring-1 focus:ring-[#56789f]/30"
+                className="w-full rounded-full border border-[#c8ccd2]/50 bg-white px-4 py-2.5 text-sm text-[#1c1e24] outline-none focus:border-[#6aa7e8] focus:ring-2 focus:ring-[#6aa7e8]/25"
               />
 
               {results.length > 0 && (
@@ -189,11 +189,11 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
               )}
 
               <div className="flex items-center justify-between pt-1">
-                <button onClick={closeModal} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">先跳過</button>
+                <button onClick={closeModal} className="text-xs text-[#7c8088]/70 hover:text-[#e0456f]">先跳過</button>
                 <button
                   disabled={selected.length !== MAX_PICKS}
                   onClick={() => setDeveloping(true)}
-                  className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white disabled:opacity-40"
+                  className="bubble-pill candy px-5 py-2 text-xs font-bold disabled:opacity-40"
                 >
                   沖洗照片 →
                 </button>
@@ -202,30 +202,32 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
           )}
 
           {step === 2 && (
-            <>
-              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">你的人生四格 ✦</p>
-              <p className="text-xs text-[#5e636d]">和你的本命合照一張</p>
+            <div className="ob-reveal">
+              <div className="hero-chip-row">
+                <span className="sticker-chip sticker-chip--zh">靈魂四格</span>
+                <span className="sticker-chip">SOULCUTS</span>
+              </div>
+              <p className="ob-reveal-sub">和你的本命合照一張</p>
 
-              <FourCuts artists={selectedArtists} className="mx-auto w-full max-w-[280px]" />
+              <FourCuts artists={selectedArtists} className="w-full max-w-[280px]" />
 
-              {/* 追星靈魂 CTA */}
-              <div className="rounded-2xl border border-[#56789f]/30 bg-[#56789f]/8 p-3 text-center">
-                <p className="font-orbitron text-sm font-bold text-[#1c1e24]">{copy.soulCtaTitle}</p>
-                <p className="mt-1 text-[11px] text-[#5e636d]">{copy.soulCtaSub}</p>
+              <div className="ob-soul-cta">
+                <h3>{copy.soulCtaTitle}</h3>
+                <p>{copy.soulCtaSub}</p>
                 <button
                   onClick={beginQuiz}
                   disabled={loading}
-                  className="mt-2.5 rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50"
+                  className="bubble-pill candy mt-3 px-6 py-2.5 text-xs font-bold disabled:opacity-50"
                 >
                   {loading ? "分析你的品味中…" : copy.soulCtaStart}
                 </button>
               </div>
 
-              <div className="flex items-center justify-between pt-1">
-                <button onClick={() => setStep(1)} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">← 重選</button>
-                <button onClick={completeBasic} className="text-xs text-[#7c8088]/70 hover:text-[#7c8088]">{copy.soulCtaSkip}</button>
+              <div className="flex w-full items-center justify-between pt-1">
+                <button onClick={() => setStep(1)} className="text-xs text-[#7c8088]/70 hover:text-[#e0456f]">← 重選</button>
+                <button onClick={completeBasic} className="text-xs text-[#7c8088]/70 hover:text-[#e0456f]">{copy.soulCtaSkip}</button>
               </div>
-            </>
+            </div>
           )}
 
           {step === 3 && (

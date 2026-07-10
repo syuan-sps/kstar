@@ -8,7 +8,7 @@ export default function BgDecor() {
   return (
     <div
       aria-hidden="true"
-      className="bg-decor fixed inset-0 z-0 overflow-hidden pointer-events-none select-none"
+      className="bg-decor fixed inset-0 z-0 overflow-hidden pointer-events-none select-none opacity-[0.95]"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

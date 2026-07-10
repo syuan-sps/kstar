@@ -1,5 +1,6 @@
-// Y2K Silvercore layer — floating chrome ✦ sparkles that sit on top of the
-// pink/cyan BgDecor world. Pure SVG + CSS (server component, no hooks).
+// Y2K Silvercore layer — floating chrome ✦ sparkles over BgDecor.
+// Pure SVG + CSS (server component, no hooks). Animation only runs when
+// html[data-ambient="flash"] (see globals.css) — calm mode keeps them static.
 // Positions are a DETERMINISTIC precomputed list (never Math.random at render)
 // to avoid SSR/client hydration mismatch — same pattern as BgDecor's DOTS.
 

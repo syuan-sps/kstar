@@ -9,10 +9,16 @@ export default function MyFourCuts({
   allArtists,
   className = "",
   frameClassName = "w-full max-w-[300px]",
+  hideTitle = false,
+  stripOnly = false,
 }: {
   allArtists: ArtistLite[];
   className?: string;
   frameClassName?: string;
+  /** Hide the 人生四格 heading when the parent already brands the strip */
+  hideTitle?: boolean;
+  /** Render only the photobooth strip (no title / soul CTA / repick) */
+  stripOnly?: boolean;
 }) {
   const [ids, setIds] = useState<string[] | null>(null);
   const [entry, setEntry] = useState(true); // one-time camera-flash on real page entry
@@ -81,13 +87,13 @@ export default function MyFourCuts({
   if (artists.length !== 4) {
     return (
       <section className={`flex flex-col items-center gap-3 ${className}`}>
-        <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
+        <h2 className="font-soft text-sm font-bold tracking-[0.18em] text-[#5e636d]">
           你的人生四格 ✦
         </h2>
         <p className="text-xs text-[#5e636d]/80">還沒選出你的 TOP 4</p>
         <button
           onClick={repick}
-          className="rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110"
+          className="bubble-pill candy px-6 py-2.5 text-xs font-bold"
         >
           選出你的 TOP 4 →
         </button>
@@ -95,18 +101,30 @@ export default function MyFourCuts({
     );
   }
 
+  if (stripOnly) {
+    return (
+      <div className={className}>
+        <div className={entry ? "intro-flash" : undefined}>
+          <FourCuts artists={artists} className={frameClassName} linked developId={developId} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section className={`flex flex-col items-center gap-3 ${className}`}>
-      <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
-        你的人生四格 ✦
-      </h2>
+      {!hideTitle && (
+        <h2 className="font-soft text-[12px] font-bold tracking-[0.2em] text-[#5e636d]">
+          你的人生四格 ✦
+        </h2>
+      )}
       <div className={entry ? "intro-flash" : undefined}>
         <FourCuts artists={artists} className={frameClassName} linked developId={developId} />
       </div>
       <SoulPortraitButton allArtists={allArtists} />
       <button
         onClick={repick}
-        className="text-xs text-[#5e636d]/70 hover:text-[#7c8088] transition"
+        className="font-soft text-xs text-[#5e636d]/70 transition hover:text-[#e0456f]"
       >
         重新挑選 ✎
       </button>
