@@ -1,12 +1,7 @@
-// Asset-based brand marks — liquid-mercury KSTAR sculpture + quieter chrome SOULCUTS.
-// Plain <img> (not next/image) so transparent PNGs stay crisp in intro overlays.
+// KSTAR = liquid-mercury sculpture asset.
+// SOULCUTS = quieter readable chrome type (neutral steel, no blue/purple fills).
 
 type Mark = "kstar" | "soulcuts";
-
-const SRC: Record<Mark, { src: string; alt: string }> = {
-  kstar: { src: "/brand/kstar-mercury.png", alt: "KSTAR" },
-  soulcuts: { src: "/brand/soulcuts-chrome.png", alt: "SOULCUTS" },
-};
 
 export default function BrandMark({
   mark = "kstar",
@@ -16,11 +11,23 @@ export default function BrandMark({
   className?: string;
   priority?: boolean;
 }) {
-  const m = SRC[mark];
+  if (mark === "soulcuts") {
+    return (
+      <span className={`brand-mark brand-mark--soulcuts quiet-chrome ${className}`} aria-label="SOULCUTS">
+        SOULCUTS
+      </span>
+    );
+  }
+
   return (
-    <span className={`brand-mark brand-mark--${mark} ${className}`}>
+    <span className={`brand-mark brand-mark--kstar ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={m.src} alt={m.alt} className="brand-mark-img" draggable={false} />
+      <img
+        src="/brand/kstar-mercury.png"
+        alt="KSTAR"
+        className="brand-mark-img"
+        draggable={false}
+      />
     </span>
   );
 }
