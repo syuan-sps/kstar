@@ -116,7 +116,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
   const titleByStep = step === 1 ? "選出你的 TOP 4" : step === 2 ? "你的人生四格" : "追星靈魂測驗";
 
   return (
-    <div className="picker-enter fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">
+    <div className="picker-enter onboarding-sky fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="window-frame w-full max-w-md">
         {/* Title bar */}
         <div className="title-bar">

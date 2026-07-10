@@ -215,18 +215,17 @@ html[data-ambient="flash"] .liquid-chrome-mark.lcm-live .lcm-sheen {
     0 14px 26px rgba(224,69,111,0.45);
 }
 
-/* FLOW poster frame */
+/* FLOW poster frame — silver rim; sky wash lives inside, not on the edge */
 .poster-frame {
   position: relative;
   width: min(92vw, 720px);
   margin: 0 auto;
   padding: 2px;
   border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(174,179,187,0.55), rgba(212,184,240,0.45), rgba(106,167,232,0.5), rgba(255,255,255,0.9));
+  background: linear-gradient(145deg, #ffffff 0%, #d5dae3 40%, #9aa0aa 55%, #e8ebf0 100%);
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.8) inset,
-    0 24px 60px rgba(90,100,130,0.22),
-    0 0 40px rgba(106,167,232,0.15);
+    0 1px 0 rgba(255,255,255,0.85) inset,
+    0 24px 60px rgba(90,100,130,0.2);
 }
 .poster-frame-inner {
   position: relative;
@@ -330,12 +329,78 @@ html[data-ambient="flash"] .poster-spark {
   margin-bottom: 2px;
 }
 .hero-zh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin: 2px auto 0;
   font-family: var(--font-noto-tc), system-ui, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.36em;
-  color: rgba(60,70,90,0.68);
-  text-indent: 0.36em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  color: rgba(60,70,90,0.62);
+  text-indent: 0.42em;
+}
+.hero-zh-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,128,136,0.45), transparent);
+  max-width: 48px;
+}
+
+/* Asset brand marks */
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.brand-mark-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(40,50,70,0.22));
+}
+.brand-mark.bm-hero .brand-mark-img {
+  width: min(78vw, 480px);
+  height: auto;
+}
+.brand-mark.bm-sub .brand-mark-img {
+  width: min(58vw, 300px);
+  height: auto;
+  filter:
+    drop-shadow(0 1px 0 rgba(255,255,255,0.8))
+    drop-shadow(0 4px 12px rgba(40,50,70,0.22))
+    drop-shadow(0 0 10px rgba(255,255,255,0.35));
+}
+.brand-mark.bm-nav .brand-mark-img {
+  width: 96px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(40,50,70,0.22));
+}
+.brand-mark.bm-intro .brand-mark-img {
+  width: min(78vw, 460px);
+  height: auto;
+}
+.soul-intro .ibD .brand-mark.bm-sub .brand-mark-img {
+  filter:
+    drop-shadow(0 1px 0 rgba(255,255,255,0.55))
+    drop-shadow(0 0 16px rgba(255,255,255,0.35))
+    drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+}
+
+/* Onboarding backdrop — same candy sky as home */
+.onboarding-sky {
+  background:
+    radial-gradient(80rem 55rem at 50% -10%, rgba(255,255,255,0.55) 0%, transparent 55%),
+    radial-gradient(55rem 45rem at 100% 10%, rgba(106,167,232,0.28) 0%, transparent 55%),
+    radial-gradient(50rem 40rem at 0% 30%, rgba(212,184,240,0.22) 0%, transparent 55%),
+    radial-gradient(48rem 38rem at 80% 85%, rgba(255,196,184,0.2) 0%, transparent 55%),
+    rgba(232, 236, 244, 0.72);
+  backdrop-filter: blur(10px);
 }
 .hero-strip-wrap {
   width: min(100%, 300px);
@@ -835,27 +900,32 @@ html { scroll-behavior: smooth; }
 }
 .soul-intro .ib-scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
 
-/* ── Shared: wordmark (candy chrome via LiquidChromeMark) ─────────────── */
+/* ── Shared: wordmark (mercury BrandMark assets) ──────────────────────── */
 .soul-intro .ib-wordmark {
   position: relative; text-align: center; line-height: 0.96;
   display: flex; flex-direction: column; align-items: center; gap: 2px;
 }
 .soul-intro .ib-wordmark .ib-mark-zh {
-  display: block; margin-top: 6px; font-family: var(--font-noto-tc), system-ui, sans-serif;
-  font-size: 15px; font-weight: 800; letter-spacing: 0.32em; color: rgba(90,100,120,0.75); text-indent: 0.32em;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-top: 8px; font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.4em; color: rgba(200,210,220,0.78); text-indent: 0.4em;
 }
-.soul-intro .ib-candy-marks .liquid-chrome-mark { opacity: 0; }
-.soul-intro .ibD.ib-play .ib-candy-marks .liquid-chrome-mark:first-child,
-.soul-intro .ibE.ib-play .ib-candy-marks .liquid-chrome-mark:first-child {
-  animation: ib-forge-mark 1.0s var(--ib-ease-out) 2.9s both, hero-strip-pop 0.7s var(--ease-pop) 2.9s both;
+.soul-intro .ibE .ib-wordmark .ib-mark-zh { color: rgba(90,100,120,0.7); }
+.soul-intro .ib-candy-marks > .brand-mark,
+.soul-intro .ib-candy-marks > .ib-mark-zh {
+  opacity: 0;
 }
-.soul-intro .ibD.ib-play .ib-candy-marks .liquid-chrome-mark:nth-child(2),
-.soul-intro .ibE.ib-play .ib-candy-marks .liquid-chrome-mark:nth-child(2) {
-  animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.35s both;
+.soul-intro .ibD.ib-play .ib-candy-marks > .brand-mark:nth-child(1),
+.soul-intro .ibE.ib-play .ib-candy-marks > .brand-mark:nth-child(1) {
+  animation: hero-strip-pop 0.85s var(--ease-pop) 2.85s forwards;
 }
-.soul-intro .ibD.ib-play .ib-candy-marks .ib-mark-zh,
-.soul-intro .ibE.ib-play .ib-candy-marks .ib-mark-zh {
-  opacity: 0; animation: ib-zh-in 0.9s var(--ib-ease-out) 3.55s both;
+.soul-intro .ibD.ib-play .ib-candy-marks > .brand-mark:nth-child(2),
+.soul-intro .ibE.ib-play .ib-candy-marks > .brand-mark:nth-child(2) {
+  animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.25s forwards;
+}
+.soul-intro .ibD.ib-play .ib-candy-marks > .ib-mark-zh,
+.soul-intro .ibE.ib-play .ib-candy-marks > .ib-mark-zh {
+  animation: ib-zh-in 0.9s var(--ib-ease-out) 3.5s forwards;
 }
 
 /* ── Shared: slogan ───────────────────────────────────────────────────── */
@@ -1144,36 +1214,32 @@ html[data-ambient="flash"] .hero-scroll {
   animation: float 2.8s var(--ease-soft) infinite;
 }
 
-/* Photobooth strip — bubbly candy-chrome bezel */
+/* Photobooth strip — silver steel rim + soft home-sky wash (no rainbow edge) */
 .fourcuts-chrome {
   position: relative;
-  border-radius: 28px;
-  padding: 4px;
-  background:
-    linear-gradient(145deg, #ffffff 0%, #dfe8f6 18%, #c4b5d8 40%, #6aa7e8 55%, #ffc4b8 72%, #ffffff 100%);
+  border-radius: 26px;
+  padding: 2px;
+  background: linear-gradient(160deg, #ffffff 0%, #d8dde6 42%, #9aa0aa 58%, #c8ccd2 100%);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.9) inset,
-    0 6px 0 rgba(124,128,136,0.16),
-    0 18px 40px rgba(106,167,232,0.28),
-    0 0 28px rgba(212,184,240,0.2);
+    0 5px 0 rgba(124,128,136,0.14),
+    0 16px 36px rgba(90,100,120,0.2);
 }
 .fourcuts-chrome-inner {
   border-radius: 24px;
   background:
-    linear-gradient(180deg, #ffffff 0%, #f2f4f8 100%);
-  border: 1px solid rgba(255,255,255,0.8);
+    radial-gradient(90% 70% at 50% 0%, rgba(255,255,255,0.9) 0%, transparent 55%),
+    radial-gradient(70% 55% at 92% 18%, rgba(106,167,232,0.16) 0%, transparent 55%),
+    radial-gradient(55% 45% at 8% 85%, rgba(212,184,240,0.12) 0%, transparent 55%),
+    radial-gradient(50% 40% at 70% 100%, rgba(255,196,184,0.1) 0%, transparent 55%),
+    linear-gradient(180deg, #f7f9fc 0%, #eef1f6 100%);
+  border: 1px solid rgba(255,255,255,0.85);
   padding: 12px;
   position: relative;
   overflow: hidden;
 }
 .fourcuts-chrome-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(125deg, rgba(106,167,232,0.14), transparent 40%, rgba(212,184,240,0.12) 70%, rgba(255,196,184,0.1));
-  opacity: 0.85;
-  z-index: 0;
+  content: none;
 }
 .fourcuts-chrome-inner > * { position: relative; z-index: 1; }
 .fourcuts-chrome .fc-cut {

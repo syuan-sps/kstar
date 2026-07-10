@@ -6,7 +6,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { setAmbientMode } from "@/components/AmbientMotion";
-import LiquidChromeMark from "@/components/LiquidChromeMark";
+import BrandMark from "@/components/BrandMark";
 
 type Phase = "idle" | "gate" | "play" | "out";
 type Variant = "flash" | "calm";
@@ -84,7 +84,7 @@ export default function IntroSplash() {
             <span className="flex-1 truncate text-xs font-bold tracking-wide">⚠ 動畫含閃光 · FLASH WARNING</span>
           </div>
           <div className="window-body space-y-3 p-5 text-center">
-            <LiquidChromeMark mark="kstar" className="lcm-nav lcm-live mx-auto" />
+            <BrandMark mark="kstar" className="bm-nav mx-auto" />
             <p className="font-soft text-sm font-bold text-[#1c1e24]">開場動畫包含閃爍效果</p>
             <p className="text-xs text-[#5e636d] leading-relaxed">
               選「播放」開啟糖果鉻動態光澤；選「平靜」保持靜態貼紙世界。
@@ -125,9 +125,13 @@ export default function IntroSplash() {
         )}
         <div className="ib-scene">
           <div className="ib-wordmark ib-candy-marks">
-            <LiquidChromeMark mark="kstar" className="lcm-intro lcm-live" starHole />
-            <LiquidChromeMark mark="soulcuts" className="lcm-hero-sub lcm-live mt-1" />
-            <span className="ib-mark-zh">靈魂四格</span>
+            <BrandMark mark="kstar" className="bm-intro" />
+            <BrandMark mark="soulcuts" className="bm-sub mt-1" />
+            <span className="ib-mark-zh">
+              <span className="hero-zh-line" />
+              <span>靈魂四格</span>
+              <span className="hero-zh-line" />
+            </span>
           </div>
           <div className="ib-slogan">
             <div className="ib-en">FOUR PICKS · ONE SOUL</div>

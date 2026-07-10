@@ -12,7 +12,7 @@ import AmbientMotion from "@/components/AmbientMotion";
 import Taskbar from "@/components/Taskbar";
 import Onboarding from "@/components/Onboarding";
 import IntroSplash from "@/components/IntroSplash";
-import LiquidChromeMark from "@/components/LiquidChromeMark";
+import BrandMark from "@/components/BrandMark";
 import { Analytics } from "@vercel/analytics/next";
 
 const notoTC = Noto_Sans_TC({
@@ -68,7 +68,7 @@ export default async function RootLayout({
         <header className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/25 bg-[#f7f8fb]/80 backdrop-blur-md">
           <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2.5">
             <Link href="/" className="shrink-0" aria-label="KStar home">
-              <LiquidChromeMark mark="kstar" className="lcm-nav" />
+              <BrandMark mark="kstar" className="bm-nav" />
             </Link>
             <div className="flex-1">
               <Suspense fallback={null}>
