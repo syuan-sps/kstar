@@ -68,8 +68,8 @@ export default function FourCuts({
             <i style={{ height: 3 }} /><i style={{ height: 7 }} /><i style={{ height: 5 }} />
             <i style={{ height: 8 }} /><i style={{ height: 4 }} /><i style={{ height: 6 }} />
           </span>
-          <span>✦ KSTAR · 2026 ✦</span>
-          <span className="tracking-[0.12em] text-[#9aa0aa]">01/04</span>
+          <span className="font-soft tracking-[0.14em]">✦ KSTAR · SOULCUTS ✦</span>
+          <span className="font-soft tracking-[0.12em] text-[#9aa0aa]">01/04</span>
         </div>
       </div>
     </div>

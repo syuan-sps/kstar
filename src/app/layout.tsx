@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Noto_Sans_TC, Orbitron } from "next/font/google";
+import { Noto_Sans_TC, Orbitron, Rubik_Bubbles, Fredoka } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { copy } from "@/lib/copy";
@@ -12,6 +12,7 @@ import AmbientMotion from "@/components/AmbientMotion";
 import Taskbar from "@/components/Taskbar";
 import Onboarding from "@/components/Onboarding";
 import IntroSplash from "@/components/IntroSplash";
+import LiquidChromeMark from "@/components/LiquidChromeMark";
 import { Analytics } from "@vercel/analytics/next";
 
 const notoTC = Noto_Sans_TC({
@@ -26,6 +27,18 @@ const orbitron = Orbitron({
   weight: ["400", "700", "900"],
 });
 
+const rubikBubbles = Rubik_Bubbles({
+  variable: "--font-bubble",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fredoka = Fredoka({
+  variable: "--font-soft",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: `${copy.appName} · K-pop 推薦`,
   description: copy.tagline,
@@ -36,7 +49,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const liteArtists = await getAllArtistsLite();
   return (
-    <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
+    <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} ${rubikBubbles.variable} ${fredoka.variable} h-full antialiased`}>
       {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
           attributes onto <body> before React hydrates — ignore that one-level
           attribute mismatch; real mismatches deeper in the tree still surface. */}
@@ -50,14 +63,12 @@ export default async function RootLayout({
         {/* Decorative background — fixed, behind everything; animates only under flash ambient */}
         <BgDecor />
         {/* Y2K Silvercore sparkles — float only when data-ambient="flash" */}
-        <ChromeSparkle density="medium" zone="background" />
+        <ChromeSparkle density="high" zone="background" />
 
-        <header className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/20 bg-[#f4f5f7]/85 backdrop-blur">
-          <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3">
-            <Link href="/" className="shrink-0 text-lg font-black tracking-tight">
-              <span className="font-orbitron chrome-text">
-                {copy.appName}
-              </span>
+        <header className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/25 bg-[#f7f8fb]/80 backdrop-blur-md">
+          <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2.5">
+            <Link href="/" className="shrink-0" aria-label="KStar home">
+              <LiquidChromeMark mark="kstar" className="lcm-nav" />
             </Link>
             <div className="flex-1">
               <Suspense fallback={null}>
@@ -66,13 +77,13 @@ export default async function RootLayout({
             </div>
             <Link
               href="/#idols"
-              className="shrink-0 rounded-full border border-[#c8ccd2]/30 px-3 py-1.5 text-sm font-medium text-[#1c1e24] hover:bg-[#7c8088]/10"
+              className="bubble-pill shrink-0 px-3.5 py-1.5 text-sm font-semibold text-[#1c1e24]"
             >
               ✦ 偶像圖鑑
             </Link>
             <Link
               href="/favorites"
-              className="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium text-[#5e636d] hover:bg-[#7c8088]/10"
+              className="bubble-pill soft shrink-0 px-3.5 py-1.5 text-sm font-semibold text-[#5e636d]"
             >
               ♥ {copy.myFavorites}
             </Link>
@@ -82,7 +93,7 @@ export default async function RootLayout({
         <footer className="relative z-10 border-t border-[#c8ccd2]/15 px-4 py-6 text-center text-xs text-[#9aa0aa]">
           {copy.appName} · 以曲風與後設資料推薦 · 資料來源 Spotify
           {" · "}
-          <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">✦ 投稿偶像照片</a>
+          <a href="/submit" className="font-soft text-[11px] font-bold tracking-wide text-[#7c8088] hover:text-[#b4302b]">✦ 投稿偶像照片</a>
         </footer>
         <Taskbar />
         <Analytics />
