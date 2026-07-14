@@ -28,6 +28,21 @@ export const copyZh = {
   bugReportSubject: "KStar 回報問題",
   bugReportBody: "請描述你遇到的問題（含畫面與重現步驟）：\n\n",
 
+  // ── 偶像圖鑑 (directory) ──────────────────────────────────────────
+  dirCountSuffix: " 位偶像",
+  viewList: "列表",
+  viewStar: "星圖",
+  filterGender: "性別",
+  filterGen: "世代",
+  filterPos: "定位",
+  noMatches: "沒有符合的偶像 — 放寬一下篩選吧",
+  showingPrefix: "顯示 ",
+  perPageLabel: "每頁",
+  prevPage: "‹ 上一頁",
+  nextPage: "下一頁 ›",
+  addToFourCutsAria: (name: string) => `把 ${name} 換進人生四格`,
+  addToFourCutsTitle: "換進人生四格",
+
   // ── 追星靈魂 / 入坑問卷 ────────────────────────────────────────────
   soulCtaTitle: "想知道你的追星靈魂？",
   soulCtaSub: "回答幾題，解鎖你專屬的追星人格卡 ✦",

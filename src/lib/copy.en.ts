@@ -30,6 +30,21 @@ export const copyEn: Copy = {
   bugReportSubject: "KStar problem report",
   bugReportBody: "Describe the problem (with screenshots and steps to reproduce):\n\n",
 
+  // ── idol directory ────────────────────────────────────────────────
+  dirCountSuffix: " idols",
+  viewList: "List",
+  viewStar: "Star map",
+  filterGender: "Type",
+  filterGen: "Gen",
+  filterPos: "Role",
+  noMatches: "No idols match — try loosening the filters",
+  showingPrefix: "Showing ",
+  perPageLabel: "Per page",
+  prevPage: "‹ Prev",
+  nextPage: "Next ›",
+  addToFourCutsAria: (name: string) => `Swap ${name} into your four cuts`,
+  addToFourCutsTitle: "Swap into your four cuts",
+
   // ── fan soul / onboarding quiz ─────────────────────────────────────
   soulCtaTitle: "Curious about your fan soul?",
   soulCtaSub: "Answer a few questions to unlock your fan personality card ✦",
