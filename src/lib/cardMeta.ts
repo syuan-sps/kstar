@@ -3,6 +3,7 @@
 // personalized reasons (from the user's onboarding top idols).
 import type { Artist } from "./types";
 import type { Locale } from "./i18n/config";
+import tokenGlossary from "@/data/token-glossary.en.json";
 
 const LIFESTYLE_EMOJI: Record<string, string> = {
   "時尚": "👗", "美食": "🍜", "遊戲": "🎮", "健身": "💪",
@@ -95,6 +96,8 @@ const TOKEN_EN: Record<string, string> = {
   "lyricist": "Lyricist", "songwriter": "Songwriter", "actress": "Actress",
 };
 
+const GLOSSARY = tokenGlossary as Record<string, string>;
+
 /** Translate a display trait per locale. In EN mode, an untranslated zh
  *  literal (not yet covered by the catalog translation pass) is hidden
  *  rather than leaking Chinese into the UI. */
@@ -102,6 +105,7 @@ export function displayTrait(locale: Locale, token: string): string | null {
   if (locale !== "en") return zhTrait(token);
   if (TOKEN_EN[token]) return TOKEN_EN[token];
   if (TOPIC_EN[token]) return TOPIC_EN[token];
+  if (GLOSSARY[token]) return GLOSSARY[token];
   if (/[一-鿿]/.test(token)) return null;
   return token;
 }

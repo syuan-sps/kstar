@@ -6,6 +6,7 @@ import { personalReason } from "@/lib/cardMeta";
 import { DEFAULT_WEIGHTS, type LayerFilter, type SimilarArtist, type Weights } from "@/lib/types";
 import { getCopy } from "@/lib/copy";
 import { getLocale } from "@/lib/i18n/server";
+import { localizeArtist } from "@/lib/i18n/catalog";
 import Thumb from "@/components/Thumb";
 import AddPhotoCTA from "@/components/AddPhotoCTA";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -46,26 +47,34 @@ export default async function ArtistPage({
     }
   }
 
+  // Localize LAST — similarity + personalReason above always run on raw zh
+  // artists; only the render below (and the reason-API prompt SimilarSection
+  // builds from sourceArtist) should ever see EN-translated profile text.
+  const displayArtist = localizeArtist(artist, locale);
+  const displayRecsByLayer = Object.fromEntries(
+    LAYERS.map((l) => [l, recsByLayer[l].map((s) => ({ ...s, artist: localizeArtist(s.artist, locale) }))]),
+  ) as Record<LayerFilter, SimilarArtist[]>;
+
   return (
     <div className="space-y-10">
       {/* Artist header */}
       <section className="flex flex-col gap-5 sm:flex-row sm:items-end">
         <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-3xl ring-2 ring-[#c8ccd2]/40">
-          <Thumb src={artist.image_url} seed={artist.id} label={artist.name} rounded="rounded-3xl" focusY={artist.image_focus} />
-          {!artist.image_url && (
-            <AddPhotoCTA idolId={artist.id} name={artist.name} className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2" />
+          <Thumb src={displayArtist.image_url} seed={displayArtist.id} label={displayArtist.name} rounded="rounded-3xl" focusY={displayArtist.image_focus} />
+          {!displayArtist.image_url && (
+            <AddPhotoCTA idolId={displayArtist.id} name={displayArtist.name} className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2" />
           )}
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <span className="font-orbitron text-3xl font-black text-[#1c1e24]">{artist.name}</span>
-            {artist.instagram && (
+            <span className="font-orbitron text-3xl font-black text-[#1c1e24]">{displayArtist.name}</span>
+            {displayArtist.instagram && (
               <a
-                href={`https://instagram.com/${artist.instagram}`}
+                href={`https://instagram.com/${displayArtist.instagram}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={`@${artist.instagram}`}
-                aria-label={copy.instagramLabel(artist.instagram)}
+                title={`@${displayArtist.instagram}`}
+                aria-label={copy.instagramLabel(displayArtist.instagram)}
                 className="text-[#9aa0aa] transition hover:text-[#1c1e24]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
@@ -76,27 +85,27 @@ export default async function ArtistPage({
               </a>
             )}
           </div>
-          {locale === "zh" && artist.name_zh && artist.name_zh !== artist.name && (
-            <div className="mt-1 text-[#5e636d]">{artist.name_zh}</div>
+          {displayArtist.name_zh && displayArtist.name_zh !== displayArtist.name && (
+            <div className="mt-1 text-[#5e636d]">{displayArtist.name_zh}</div>
           )}
-          {artist.group && (
-            <div className="mt-0.5 text-sm text-[#5e636d]/70">{artist.group}</div>
+          {displayArtist.group && (
+            <div className="mt-0.5 text-sm text-[#5e636d]/70">{displayArtist.group}</div>
           )}
           <div className="mt-2 flex flex-wrap gap-1">
-            {artist.genres.map((g) => (
+            {displayArtist.genres.map((g) => (
               <span key={g} className="rounded-full bg-[#7c8088]/15 px-2.5 py-0.5 text-xs text-[#5e636d]">
                 {g}
               </span>
             ))}
           </div>
           <div className="mt-4">
-            <FavoriteButton id={artist.id} />
+            <FavoriteButton id={displayArtist.id} />
           </div>
         </div>
       </section>
 
       {/* Analysis cards + similar artists — shared 全部/美學/個性/表演/內容 filter */}
-      <ProfileExplorer artist={artist} recsByLayer={recsByLayer} personalBySrc={personalBySrc} />
+      <ProfileExplorer artist={displayArtist} recsByLayer={displayRecsByLayer} personalBySrc={personalBySrc} />
 
       <Link href="/" className="inline-block text-sm text-[#9aa0aa] hover:text-[#1c1e24]">
         ← {copy.backHome}

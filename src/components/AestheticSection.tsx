@@ -4,7 +4,8 @@
 // Shows 繁中 trait chips, colour-palette swatches, and a style read (when present).
 
 import type { Artist } from "@/lib/types";
-import { useCopy } from "@/lib/i18n/LocaleProvider";
+import { displayTrait } from "@/lib/cardMeta";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 // 繁中 colour name → hex for swatches. Unknown names fall back to a silver tint.
 const COLOR_HEX: Record<string, string> = {
@@ -27,6 +28,7 @@ const FALLBACK = "#b9bdc4";
 
 export default function AestheticSection({ artist }: { artist: Artist }) {
   const copy = useCopy();
+  const locale = useLocale();
   const aes = artist.profile?.aesthetic;
   if (!aes) return null;
 
@@ -60,15 +62,19 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
           {copy.colorLabel}
         </div>
         <div className="flex flex-wrap gap-3">
-          {aes.color_palette.map((c, i) => (
-            <div key={`${c}-${i}`} className="flex items-center gap-1.5">
-              <span
-                className="h-4 w-4 rounded-full ring-1 ring-black/10"
-                style={{ backgroundColor: COLOR_HEX[c] ?? FALLBACK }}
-              />
-              <span className="text-xs text-[#5e636d]">{c}</span>
-            </div>
-          ))}
+          {aes.color_palette.map((c, i) => {
+            const label = displayTrait(locale, c);
+            if (!label) return null;
+            return (
+              <div key={`${c}-${i}`} className="flex items-center gap-1.5">
+                <span
+                  className="h-4 w-4 rounded-full ring-1 ring-black/10"
+                  style={{ backgroundColor: COLOR_HEX[c] ?? FALLBACK }}
+                />
+                <span className="text-xs text-[#5e636d]">{label}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 

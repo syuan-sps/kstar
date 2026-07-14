@@ -1,12 +1,14 @@
 import { getAllArtistsLite } from "@/lib/data";
 import { getCopy } from "@/lib/copy";
 import { getLocale } from "@/lib/i18n/server";
+import { localizeLites } from "@/lib/i18n/catalog";
 import MyFourCuts from "@/components/MyFourCuts";
 import IdolDirectory from "@/components/IdolDirectory";
 
 export default async function Home() {
-  const copy = getCopy(await getLocale());
-  const artists = await getAllArtistsLite();
+  const locale = await getLocale();
+  const copy = getCopy(locale);
+  const artists = localizeLites(await getAllArtistsLite(), locale);
 
   return (
     <>

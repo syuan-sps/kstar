@@ -6,6 +6,7 @@ import "./globals.css";
 import { getCopy } from "@/lib/copy";
 import { getLocale } from "@/lib/i18n/server";
 import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
+import { localizeLites } from "@/lib/i18n/catalog";
 import { getAllArtistsLite } from "@/lib/data";
 import LangToggle from "@/components/LangToggle";
 import LangSync from "@/components/LangSync";
@@ -47,7 +48,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const locale = await getLocale();
   const copy = getCopy(locale);
-  const liteArtists = await getAllArtistsLite();
+  const liteArtists = localizeLites(await getAllArtistsLite(), locale);
   return (
     <html lang={locale === "en" ? "en" : "zh-Hant-TW"} className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
       {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
