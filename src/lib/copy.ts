@@ -2,7 +2,6 @@ export const copy = {
   appName: "KStar",
   appNameFull: "KStar 推薦",
   tagline: "喜歡這位偶像，你也會愛上這些",
-  taglineEn: "FIND YOUR NEXT FAVE",
   searchPlaceholder: "搜尋偶像…",
   search: "搜尋",
   popularArtists: "熱門偶像",

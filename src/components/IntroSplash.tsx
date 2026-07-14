@@ -82,16 +82,15 @@ export default function IntroSplash() {
       <div className="soul-intro-overlay" role="dialog" aria-modal="true" aria-label="Flash warning">
         <div className="window-frame w-full max-w-sm">
           <div className="title-bar">
-            <span className="flex-1 truncate text-xs font-bold tracking-wide font-orbitron">⚠ 動畫含閃光 · FLASH WARNING</span>
+            <span className="flex-1 truncate text-xs font-bold tracking-wide font-orbitron">⚠ 動畫含閃光</span>
           </div>
           <div className="window-body space-y-3 p-5 text-center">
             <div className="text-3xl">⚡</div>
             <p className="font-orbitron text-sm font-bold text-[#1c1e24]">開場動畫包含閃爍效果</p>
             <p className="text-xs text-[#5e636d]">SOULCUTS 的開場動畫含有閃光，可能影響光敏感族群。要播放嗎？</p>
-            <p className="text-[11px] text-[#9aa0aa]">The opening animation contains flashing lights.</p>
             <div className="flex flex-col gap-2 pt-1">
-              <button onClick={() => choose("flash")} className="rounded-full bg-[#b4302b] px-5 py-2.5 text-xs font-bold text-white">播放動畫 · Play with effects</button>
-              <button onClick={() => choose("calm")} className="rounded-full border border-[#aeb3bb] bg-white px-5 py-2.5 text-xs font-bold text-[#1c1e24]">平靜版本 · Use the calm version</button>
+              <button onClick={() => choose("flash")} className="rounded-full bg-[#b4302b] px-5 py-2.5 text-xs font-bold text-white">播放動畫</button>
+              <button onClick={() => choose("calm")} className="rounded-full border border-[#aeb3bb] bg-white px-5 py-2.5 text-xs font-bold text-[#1c1e24]">平靜版本</button>
             </div>
           </div>
         </div>

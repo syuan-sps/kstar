@@ -40,8 +40,8 @@ export default async function Home() {
 
         {/* Hero text */}
         <div className="absolute left-1/2 top-[20%] -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0">
-          <div className="chrome-text font-orbitron text-5xl font-black tracking-widest opacity-30 select-none uppercase">
-            {copy.taglineEn}
+          <div className="chrome-text font-orbitron text-4xl font-black tracking-widest opacity-30 select-none">
+            {copy.tagline}
           </div>
         </div>
 
@@ -65,9 +65,8 @@ export default async function Home() {
 
         <section className="rounded-2xl border border-[#c8ccd2]/25 bg-[#7c8088]/8 p-6 text-center">
           <h1 className="chrome-text font-orbitron text-2xl font-black tracking-tight">
-            {copy.taglineEn}
+            {copy.tagline}
           </h1>
-          <p className="mt-2 text-sm text-[#5e636d]">{copy.tagline}</p>
         </section>
       </div>
 
