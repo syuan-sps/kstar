@@ -1,79 +1,14 @@
-export const copy = {
-  appName: "KStar",
-  appNameFull: "KStar 推薦",
-  tagline: "喜歡這位偶像，你也會愛上這些",
-  searchPlaceholder: "搜尋偶像…",
-  search: "搜尋",
-  popularArtists: "熱門偶像",
-  featuredArtists: "精選偶像",
-  similarArtistsTitle: "喜歡這位偶像，你可能也會喜歡…",
-  discoverSimilar: "探索相似偶像 →",
-  genres: "曲風",
-  noResults: "找不到結果",
-  searchResultsFor: (q: string) => `「${q}」的搜尋結果`,
-  artistsSection: "偶像",
-  favorite: "收藏",
-  favorited: "已收藏",
-  myFavorites: "我的收藏",
-  noFavorites: "你還沒有收藏任何偶像。",
-  backHome: "回首頁",
-  loginCta: "登入以跨裝置同步收藏",
-  viewArtist: "查看偶像",
-  startBtn: "重新開始",
-  taskbarLabel: "♪ K-pop 推薦",
+import type { Locale } from "./i18n/config";
+import { copyZh } from "./copy.zh";
+import { copyEn } from "./copy.en";
 
-  // ── 追星靈魂 / 入坑問卷 ────────────────────────────────────────────
-  soulCtaTitle: "想知道你的追星靈魂？",
-  soulCtaSub: "回答幾題，解鎖你專屬的追星人格卡 ✦",
-  soulCtaStart: "開始測驗 →",
-  soulCtaSkip: "先逛逛就好",
-  rankTitle: "入坑優先序",
-  rankSub: "把你最在意的拖到最前面（點一下往上移）",
-  rankHint: "#1 最重要 → #4 還好",
-  quizProgress: (i: number, n: number) => `第 ${i} / ${n} 題`,
-  quizBack: "← 上一題",
-  resultTitle: "你的追星靈魂",
-  resultHidden: "隱藏面",
-  resultSoulmate: "和你同類的靈魂",
-  resultExpand: "想拓寬世界？試試",
-  resultWallClimb: "你最容易爬牆到",
-  resultRecap: "你的代表偶像",
-  shareDownload: "下載追星卡",
-  shareShare: "分享 ✦",
-  shareHint: "截圖分享到限動，讓朋友也測一張",
-  reshareEntry: "我的追星靈魂",
-  takeQuiz: "測我的追星靈魂",
-  soulEvolving: "你的追星靈魂正在進化",
-  // result views (toggle + report)
-  viewStory: "限動卡",
-  viewReport: "完整報告",
-  storyCta: "測你的追星靈魂 →",
-  reportLayers: "四層拆解",
-  reportAnswers: "你的答案",
-  reportUniverse: "追星宇宙",
-  reportContrast: "反差 vs 始終如一",
-  reportVisual: "電到你的視覺型",
-  reportResonance: "你最有共鳴的",
-  shareDownloadStory: "下載限動卡",
-  shareDownloadReport: "下載報告長圖",
-  redoQuiz: "重做測驗",
-  // 應援卡 (fan pass)
-  viewPass: "應援卡",
-  passPickIdol: "這張應援卡要為哪一位？",
-  passUploadTitle: "放上你的大頭照",
-  passUploadHint: "只留在你的裝置上，不會上傳 ✦",
-  passUploadBtn: "選擇照片",
-  passCropTitle: "調整你的證件照",
-  passCropHint: "拖曳移動、滑桿縮放",
-  passCropConfirm: "完成，生成應援卡 ✦",
-  passRetake: "重新選照片",
-  passChangeIdol: "← 換一位",
-  passNameLabel: "你的名字",
-  passNamePlaceholder: "輸入暱稱…",
-  passMember: "MEMBER",
-  passSince: (y: number) => `since ${y}`,
-  passFooter: "✦ 應援中 ✦",
-  passSeal: "應援中",
-  passSolo: "✦ SOLO ✦",
-  passDownload: "下載應援卡",
-} as const;
+export type Copy = typeof copyZh;
+
+export function getCopy(locale: Locale): Copy {
+  return locale === "en" ? copyEn : copyZh;
+}
+
+// TEMP migration shim — components still importing `copy` directly get zh.
+// Every import site moves to getCopy()/useCopy() during the string migration,
+// then this export is deleted.
+export const copy = copyZh;

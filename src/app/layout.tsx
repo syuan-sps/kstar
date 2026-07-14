@@ -3,8 +3,12 @@ import { Suspense } from "react";
 import { Noto_Sans_TC, Orbitron } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
-import { copy } from "@/lib/copy";
+import { getCopy } from "@/lib/copy";
+import { getLocale } from "@/lib/i18n/server";
+import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
 import { getAllArtistsLite } from "@/lib/data";
+import LangToggle from "@/components/LangToggle";
+import LangSync from "@/components/LangSync";
 import SearchBar from "@/components/SearchBar";
 import BgDecor from "@/components/BgDecor";
 import ChromeSparkle from "@/components/ChromeSparkle";
@@ -25,21 +29,35 @@ const orbitron = Orbitron({
   weight: ["400", "700", "900"],
 });
 
-export const metadata: Metadata = {
-  title: `${copy.appName} · K-pop 推薦`,
-  description: copy.tagline,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const c = getCopy(locale);
+  return {
+    title: locale === "en" ? `${c.appName} · K-pop Discovery` : `${c.appName} · K-pop 推薦`,
+    description: c.tagline,
+    alternates: {
+      canonical: "/",
+      languages: { "zh-Hant": "/", en: "/?lang=en" },
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale();
+  const copy = getCopy(locale);
   const liteArtists = await getAllArtistsLite();
   return (
-    <html lang="zh-Hant-TW" className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
+    <html lang={locale === "en" ? "en" : "zh-Hant-TW"} className={`${notoTC.variable} ${orbitron.variable} h-full antialiased`}>
       {/* suppressHydrationWarning: browser extensions (e.g. Grammarly) inject
           attributes onto <body> before React hydrates — ignore that one-level
           attribute mismatch; real mismatches deeper in the tree still surface. */}
       <body className="relative min-h-full flex flex-col pb-10" suppressHydrationWarning>
+        <LocaleProvider locale={locale}>
+        <Suspense fallback={null}>
+          <LangSync />
+        </Suspense>
         {/* Photobooth splash for first-time visitors — mounts before Onboarding so its
             effect runs first and can hold the picker until the handoff. */}
         <IntroSplash />
@@ -73,6 +91,7 @@ export default async function RootLayout({
             >
               ♥ {copy.myFavorites}
             </Link>
+            <LangToggle />
           </div>
         </header>
         <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
@@ -82,6 +101,7 @@ export default async function RootLayout({
           <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">✦ 投稿偶像照片</a>
         </footer>
         <Taskbar />
+        </LocaleProvider>
         <Analytics />
       </body>
     </html>
