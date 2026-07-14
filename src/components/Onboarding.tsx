@@ -8,12 +8,13 @@ import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
 import DevelopFourCuts from "@/components/DevelopFourCuts";
 import SoulQuiz from "@/components/SoulQuiz";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 type Step = 1 | 2 | 3;
 const MAX_PICKS = 4;
 
 export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] }) {
+  const copy = useCopy();
   const [show, setShow] = useState(false);
   const [step, setStep] = useState<Step>(1);
   const [search, setSearch] = useState("");
@@ -113,7 +114,7 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
     .map((id) => allArtists.find((a) => a.id === id))
     .filter(Boolean) as ArtistLite[];
 
-  const titleByStep = step === 1 ? "選出你的 TOP 4" : step === 2 ? "你的人生四格" : "追星靈魂測驗";
+  const titleByStep = step === 1 ? copy.obTitlePick : step === 2 ? copy.fourCutsTitle : copy.obTitleQuiz;
 
   return (
     <div className="picker-enter fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40">
@@ -139,14 +140,14 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
           )}
           {step === 1 && !developing && (
             <>
-              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">你最喜歡的四位偶像？</p>
-              <p className="text-xs text-[#5e636d]">選出你的 Top 4 · 已選 {selected.length}/{MAX_PICKS}</p>
+              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">{copy.obPickPrompt}</p>
+              <p className="text-xs text-[#5e636d]">{copy.obPickCount(selected.length, MAX_PICKS)}</p>
 
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="搜尋偶像…"
+                placeholder={copy.searchPlaceholder}
                 className="w-full rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2 text-sm text-[#1c1e24] outline-none focus:border-[#56789f] focus:ring-1 focus:ring-[#56789f]/30"
               />
 
@@ -189,13 +190,13 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
               )}
 
               <div className="flex items-center justify-between pt-1">
-                <button onClick={closeModal} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">先跳過</button>
+                <button onClick={closeModal} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">{copy.obSkip}</button>
                 <button
                   disabled={selected.length !== MAX_PICKS}
                   onClick={() => setDeveloping(true)}
                   className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white disabled:opacity-40"
                 >
-                  沖洗照片 →
+                  {copy.obDevelop}
                 </button>
               </div>
             </>
@@ -203,8 +204,8 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
 
           {step === 2 && (
             <>
-              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">你的人生四格 ✦</p>
-              <p className="text-xs text-[#5e636d]">和你的本命合照一張</p>
+              <p className="font-orbitron text-sm font-bold text-[#1c1e24]">{copy.fourCutsTitle} ✦</p>
+              <p className="text-xs text-[#5e636d]">{copy.obFourCutsSub}</p>
 
               <FourCuts artists={selectedArtists} className="mx-auto w-full max-w-[280px]" />
 
@@ -217,12 +218,12 @@ export default function Onboarding({ allArtists }: { allArtists: ArtistLite[] })
                   disabled={loading}
                   className="mt-2.5 rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50"
                 >
-                  {loading ? "分析你的品味中…" : copy.soulCtaStart}
+                  {loading ? copy.obAnalyzing : copy.soulCtaStart}
                 </button>
               </div>
 
               <div className="flex items-center justify-between pt-1">
-                <button onClick={() => setStep(1)} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">← 重選</button>
+                <button onClick={() => setStep(1)} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">{copy.obRepick}</button>
                 <button onClick={completeBasic} className="text-xs text-[#7c8088]/70 hover:text-[#7c8088]">{copy.soulCtaSkip}</button>
               </div>
             </>

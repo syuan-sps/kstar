@@ -43,6 +43,28 @@ export const copyZh = {
   addToFourCutsAria: (name: string) => `把 ${name} 換進人生四格`,
   addToFourCutsTitle: "換進人生四格",
 
+  // ── 人生四格 / onboarding picker ──────────────────────────────────
+  obTitlePick: "選出你的 TOP 4",
+  fourCutsTitle: "你的人生四格",
+  obTitleQuiz: "追星靈魂測驗",
+  obPickPrompt: "你最喜歡的四位偶像？",
+  obPickCount: (n: number, max: number) => `選出你的 Top 4 · 已選 ${n}/${max}`,
+  obSkip: "先跳過",
+  obDevelop: "沖洗照片 →",
+  obFourCutsSub: "和你的本命合照一張",
+  obAnalyzing: "分析你的品味中…",
+  obRepick: "← 重選",
+  noTop4: "還沒選出你的 TOP 4",
+  pickTop4Btn: "選出你的 TOP 4 →",
+  repickBtn: "重新挑選 ✎",
+  swapTitle: "替換人生四格",
+  swapIncoming: "即將換上",
+  swapPrompt: "點一格換掉它 ↓",
+  swapThisCut: "換掉這格",
+  cancel: "取消",
+  addPhoto: "補照片",
+  addPhotoAria: (name: string) => `幫 ${name} 補照片`,
+
   // ── 追星靈魂 / 入坑問卷 ────────────────────────────────────────────
   soulCtaTitle: "想知道你的追星靈魂？",
   soulCtaSub: "回答幾題，解鎖你專屬的追星人格卡 ✦",

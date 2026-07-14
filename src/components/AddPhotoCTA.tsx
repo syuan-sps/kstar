@@ -6,6 +6,7 @@
 // via `className`.
 
 import { useRouter } from "next/navigation";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function AddPhotoCTA({
   idolId,
@@ -16,6 +17,7 @@ export default function AddPhotoCTA({
   name: string;
   className?: string;
 }) {
+  const copy = useCopy();
   const router = useRouter();
   return (
     <button
@@ -24,12 +26,12 @@ export default function AddPhotoCTA({
         e.stopPropagation();
         router.push(`/submit?idol=${idolId}`);
       }}
-      aria-label={`幫 ${name} 補照片`}
-      title="補照片"
+      aria-label={copy.addPhotoAria(name)}
+      title={copy.addPhoto}
       className={`inline-flex cursor-pointer items-center gap-1 rounded-full bg-[#b4302b] px-3 py-1.5 text-[11px] font-bold leading-none text-white shadow-[0_3px_10px_rgba(180,48,43,0.45)] transition hover:brightness-110 ${className}`}
     >
       <span aria-hidden className="cta-heartbeat text-[12px] leading-none">♥</span>
-      補照片
+      {copy.addPhoto}
     </button>
   );
 }

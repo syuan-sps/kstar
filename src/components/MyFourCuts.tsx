@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ArtistLite } from "@/lib/lite";
 import FourCuts from "@/components/FourCuts";
 import SoulPortraitButton from "@/components/SoulPortraitButton";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function MyFourCuts({
   allArtists,
@@ -14,6 +15,7 @@ export default function MyFourCuts({
   className?: string;
   frameClassName?: string;
 }) {
+  const copy = useCopy();
   const [ids, setIds] = useState<string[] | null>(null);
   const [entry, setEntry] = useState(true); // one-time camera-flash on real page entry
   const [developId, setDevelopId] = useState<string | null>(null); // cut to re-develop after a swap
@@ -82,14 +84,14 @@ export default function MyFourCuts({
     return (
       <section className={`flex flex-col items-center gap-3 ${className}`}>
         <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
-          你的人生四格 ✦
+          {copy.fourCutsTitle} ✦
         </h2>
-        <p className="text-xs text-[#5e636d]/80">還沒選出你的 TOP 4</p>
+        <p className="text-xs text-[#5e636d]/80">{copy.noTop4}</p>
         <button
           onClick={repick}
           className="rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110"
         >
-          選出你的 TOP 4 →
+          {copy.pickTop4Btn}
         </button>
       </section>
     );
@@ -98,7 +100,7 @@ export default function MyFourCuts({
   return (
     <section className={`flex flex-col items-center gap-3 ${className}`}>
       <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
-        你的人生四格 ✦
+        {copy.fourCutsTitle} ✦
       </h2>
       <div className={entry ? "intro-flash" : undefined}>
         <FourCuts artists={artists} className={frameClassName} linked developId={developId} />
@@ -108,7 +110,7 @@ export default function MyFourCuts({
         onClick={repick}
         className="text-xs text-[#5e636d]/70 hover:text-[#7c8088] transition"
       >
-        重新挑選 ✎
+        {copy.repickBtn}
       </button>
     </section>
   );

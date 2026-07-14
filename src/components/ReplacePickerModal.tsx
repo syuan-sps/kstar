@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import type { CardArtist } from "@/lib/lite";
 import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "@/components/Thumb";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 // One photobooth cut (matches FourCuts' visual exactly), no link/group of its own.
 function CutInner({ a }: { a: CardArtist }) {
@@ -37,6 +38,7 @@ export default function ReplacePickerModal({
   onPick: (slotIndex: number) => void;
   onClose: () => void;
 }) {
+  const copy = useCopy();
   if (typeof document === "undefined") return null;
   return createPortal(
     <div
@@ -46,7 +48,7 @@ export default function ReplacePickerModal({
       <div className="window-frame w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
         <div className="title-bar">
           <span className="mr-1.5 text-base">✦</span>
-          <span className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">替換人生四格</span>
+          <span className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">{copy.swapTitle}</span>
           <span className="win-btn win-btn-close" onClick={onClose} style={{ cursor: "pointer" }}>×</span>
         </div>
         <div className="window-body p-5">
@@ -56,7 +58,7 @@ export default function ReplacePickerModal({
               <Thumb src={newcomer.image_url} seed={newcomer.id} label={newcomer.name} rounded="rounded-lg" focusY={newcomer.image_focus} />
             </div>
             <div className="min-w-0">
-              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aa0aa]">即將換上</div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aa0aa]">{copy.swapIncoming}</div>
               <div className="truncate text-sm font-black text-[#1c1e24]">{newcomer.name}</div>
               {newcomer.name_zh && newcomer.name_zh !== newcomer.name && (
                 <div className="truncate text-[11px] text-[#7c8088]">{newcomer.name_zh}</div>
@@ -64,7 +66,7 @@ export default function ReplacePickerModal({
             </div>
           </div>
 
-          <p className="mb-2 text-center text-xs font-bold text-[#5e636d]">點一格換掉它 ↓</p>
+          <p className="mb-2 text-center text-xs font-bold text-[#5e636d]">{copy.swapPrompt}</p>
 
           {/* current four cuts — each tappable to swap out */}
           <div className="rounded-[22px] border-2 border-[#aeb3bb] bg-[#e9ebee] p-3 shadow-[5px_5px_0_rgba(124,128,136,0.3)]">
@@ -74,13 +76,13 @@ export default function ReplacePickerModal({
                   key={a.id}
                   type="button"
                   onClick={() => onPick(i)}
-                  aria-label={`換掉 ${a.name}，換上 ${newcomer.name}`}
+                  aria-label={`${copy.swapThisCut}: ${a.name} → ${newcomer.name}`}
                   className="group relative block w-full rounded-lg text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#b4302b]"
                 >
                   <CutInner a={a} />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-lg bg-[#b4302b]/0 opacity-0 transition group-hover:bg-[#b4302b]/70 group-hover:opacity-100">
                     <span className="text-lg text-white">↺</span>
-                    <span className="font-orbitron text-[10px] font-black tracking-wide text-white">換掉這格</span>
+                    <span className="font-orbitron text-[10px] font-black tracking-wide text-white">{copy.swapThisCut}</span>
                   </div>
                 </button>
               ))}
@@ -94,7 +96,7 @@ export default function ReplacePickerModal({
             onClick={onClose}
             className="mt-4 w-full rounded-full border border-[#c8ccd2] bg-white py-2 text-xs font-bold text-[#5e636d] transition hover:bg-[#7c8088]/10"
           >
-            取消
+            {copy.cancel}
           </button>
         </div>
       </div>

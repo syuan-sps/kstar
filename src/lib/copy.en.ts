@@ -45,6 +45,28 @@ export const copyEn: Copy = {
   addToFourCutsAria: (name: string) => `Swap ${name} into your four cuts`,
   addToFourCutsTitle: "Swap into your four cuts",
 
+  // ── four cuts / onboarding picker ─────────────────────────────────
+  obTitlePick: "Pick your TOP 4",
+  fourCutsTitle: "Your Four Cuts",
+  obTitleQuiz: "Fan Soul Quiz",
+  obPickPrompt: "Who are your four favorite idols?",
+  obPickCount: (n: number, max: number) => `Pick your Top 4 · ${n}/${max} selected`,
+  obSkip: "Skip for now",
+  obDevelop: "Develop the photos →",
+  obFourCutsSub: "A booth shot with your biases",
+  obAnalyzing: "Analyzing your taste…",
+  obRepick: "← Re-pick",
+  noTop4: "You haven't picked your TOP 4 yet",
+  pickTop4Btn: "Pick your TOP 4 →",
+  repickBtn: "Re-pick ✎",
+  swapTitle: "Swap a cut",
+  swapIncoming: "Coming in",
+  swapPrompt: "Tap a cut to swap it out ↓",
+  swapThisCut: "Swap this cut",
+  cancel: "Cancel",
+  addPhoto: "Add photo",
+  addPhotoAria: (name: string) => `Add a photo for ${name}`,
+
   // ── fan soul / onboarding quiz ─────────────────────────────────────
   soulCtaTitle: "Curious about your fan soul?",
   soulCtaSub: "Answer a few questions to unlock your fan personality card ✦",
