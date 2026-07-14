@@ -41,6 +41,10 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: "/",
       languages: { "zh-Hant": "/", en: "/?lang=en" },
     },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/opengraph-image.png"],
+    },
   };
 }
 
