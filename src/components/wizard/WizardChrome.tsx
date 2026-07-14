@@ -2,10 +2,8 @@
 
 // Persistent wizard shell: logo, 1–4 stepper with checkmarks, fixed Back/Next.
 // Pure presentation — step logic lives in the page.
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import HomeLogoLink from "@/components/HomeLogoLink";
-
-const STEPS = [copy.wizStep1, copy.wizStep2, copy.wizStep3, copy.wizStep4];
 
 export default function WizardChrome({
   step, canNext, onBack, onNext, nextLabel, children,
@@ -17,12 +15,14 @@ export default function WizardChrome({
   nextLabel?: string;
   children: React.ReactNode;
 }) {
+  const copy = useCopy();
+  const STEPS = [copy.wizStep1, copy.wizStep2, copy.wizStep3, copy.wizStep4];
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col px-4 py-6">
       <HomeLogoLink className="mb-4 self-center font-orbitron text-lg font-black chrome-text">
         {copy.appName}
       </HomeLogoLink>
-      <ol className="mb-6 flex items-center gap-2" aria-label="步驟">
+      <ol className="mb-6 flex items-center gap-2" aria-label={copy.wizStepsAria}>
         {STEPS.map((label, i) => {
           const n = (i + 1) as 1 | 2 | 3 | 4;
           const done = n < step;

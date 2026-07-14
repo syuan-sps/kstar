@@ -13,6 +13,7 @@ import AestheticSection from "./AestheticSection";
 import PersonalitySection from "./PersonalitySection";
 import AnalysisCard from "./AnalysisCard";
 import SimilarSection from "./SimilarSection";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function ProfileExplorer({
   artist,
@@ -23,6 +24,7 @@ export default function ProfileExplorer({
   recsByLayer: Record<LayerFilter, SimilarArtist[]>;
   personalBySrc: Record<string, string | null>;
 }) {
+  const copy = useCopy();
   const [filter, setFilter] = useState<LayerFilter>("all");
   const profile = artist.profile;
   const perf = profile?.performance;
@@ -34,7 +36,7 @@ export default function ProfileExplorer({
       {filter === "all" &&
         (overview ? (
           <AnalysisCard
-            title="偶像分析"
+            title={copy.analysisIdol}
             vibe={overview.vibe}
             tags={overview.trait_tags}
             analysis={overview.summary}
@@ -50,7 +52,7 @@ export default function ProfileExplorer({
       {filter === "personality" && <PersonalitySection artist={artist} />}
       {filter === "performance" && perf?.vibe && (
         <AnalysisCard
-          title="表演分析"
+          title={copy.analysisPerformance}
           vibe={perf.vibe}
           tags={perf.trait_tags}
           analysis={perf.analysis}
@@ -58,7 +60,7 @@ export default function ProfileExplorer({
       )}
       {filter === "content" && cont?.vibe && (
         <AnalysisCard
-          title="內容分析"
+          title={copy.analysisContent}
           vibe={cont.vibe}
           tags={cont.trait_tags}
           analysis={cont.analysis}

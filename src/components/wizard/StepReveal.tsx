@@ -3,6 +3,7 @@
 // Step 3 判定結果: full-screen reveal and the social discovery invitation.
 import { useState } from "react";
 import type { ArchetypeResult } from "@/lib/archetypes";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 
@@ -18,10 +19,11 @@ export default function StepReveal({
   result: ArchetypeResult;
   reportAnswers?: ResultAnswers;
 }) {
+  const copy = useCopy();
   const [shareView, setShareView] = useState<ShareView>("story");
   return (
     <div className="wiz-develop flex flex-col items-center gap-4 py-4 text-center">
-      <div role="tablist" aria-label="選擇分享內容" className="inline-flex rounded-full border border-[#c8ccd2] bg-white p-0.5">
+      <div role="tablist" aria-label={copy.shareTabsAria} className="inline-flex rounded-full border border-[#c8ccd2] bg-white p-0.5">
         <button
           type="button"
           role="tab"
@@ -29,7 +31,7 @@ export default function StepReveal({
           onClick={() => setShareView("story")}
           className={shareView === "story" ? TAB_ACTIVE : TAB_INACTIVE}
         >
-          限動卡
+          {copy.viewStory}
         </button>
         <button
           type="button"
@@ -38,7 +40,7 @@ export default function StepReveal({
           onClick={() => setShareView("report")}
           className={shareView === "report" ? TAB_ACTIVE : TAB_INACTIVE}
         >
-          完整長圖
+          {copy.shareTabReport}
         </button>
       </div>
       <Step3ShareStudio
@@ -59,8 +61,9 @@ export function Step3ShareStudio({
   reportAnswers?: ResultAnswers;
   view: ShareView;
 }) {
+  const copy = useCopy();
   return (
-    <section className="mt-3 flex w-full flex-col items-center gap-4" aria-label="分享追星結果">
+    <section className="mt-3 flex w-full flex-col items-center gap-4" aria-label={copy.shareStudioAria}>
       {view === "story"
         ? <SoulStoryCard result={result} />
         : <SoulReport result={result} answers={reportAnswers} />}

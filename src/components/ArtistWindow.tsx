@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import type { Artist } from "@/lib/types";
 import OSWindow from "./OSWindow";
 import Thumb from "./Thumb";
 import FavoriteButton from "./FavoriteButton";
-import { copy } from "@/lib/copy";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 export default function ArtistWindow({ artist }: { artist: Artist }) {
+  const copy = useCopy();
+  const locale = useLocale();
   return (
     <OSWindow title={artist.name} icon="★" className="w-64">
       <div className="flex flex-col gap-3 p-3">
@@ -17,7 +21,7 @@ export default function ArtistWindow({ artist }: { artist: Artist }) {
         {/* Name */}
         <div className="text-center">
           <div className="font-orbitron text-base font-black text-[#1c1e24]">{artist.name}</div>
-          {artist.name_zh && artist.name_zh !== artist.name && (
+          {locale === "zh" && artist.name_zh && artist.name_zh !== artist.name && (
             <div className="text-xs text-[#5e636d]">{artist.name_zh}</div>
           )}
           {artist.group && (

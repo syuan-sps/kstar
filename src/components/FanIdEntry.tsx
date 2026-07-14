@@ -2,17 +2,18 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import type { ArtistLite } from "@/lib/lite";
 import type { PickSummary, UserPrefs } from "@/lib/types";
 import type { ArchetypeResult } from "@/lib/archetypes";
 import { deriveFanIdResult, fanIdEntryAction } from "@/lib/fanIdAccess";
-import { zhTrait } from "@/lib/cardMeta";
+import { displayTrait } from "@/lib/cardMeta";
 import SoulQuiz from "@/components/SoulQuiz";
 import TastePortraitCard from "@/components/TastePortraitCard";
 import type { ResultAnswers } from "@/components/SoulReport";
 
 export function HeaderFanIdButton() {
+  const copy = useCopy();
   return (
     <button
       type="button"
@@ -27,6 +28,7 @@ export function HeaderFanIdButton() {
 }
 
 export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] }) {
+  const copy = useCopy();
   const busy = useRef(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -126,7 +128,7 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
   const answers: ResultAnswers | undefined = prefs ? {
     contrast: prefs.contrast ?? null,
     visualMood: prefs.visualMood ?? null,
-    valueTokens: Object.entries(prefs.tokenPrefs ?? {}).filter(([token, weight]) => weight > 0 && (/[一-鿿]/.test(token) || zhTrait(token) !== token)).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([token]) => token),
+    valueTokens: Object.entries(prefs.tokenPrefs ?? {}).filter(([token, weight]) => weight > 0 && (/[一-鿿]/.test(token) || displayTrait("zh", token) !== token)).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([token]) => token),
   } : undefined;
 
   if (!open || !prefs || !result || typeof document === "undefined") return null;
@@ -136,7 +138,7 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
         <div className="title-bar">
           <span className="mr-1.5 text-base">✦</span>
           <span id="fanid-dialog-title" className="flex-1 truncate font-orbitron text-xs font-bold tracking-wide">{mode === "quiz" ? copy.redoQuiz : copy.resultTitle}</span>
-          <button ref={closeRef} type="button" aria-label="關閉" className="win-btn win-btn-close" onClick={closeModal}>×</button>
+          <button ref={closeRef} type="button" aria-label={copy.closeAria} className="win-btn win-btn-close" onClick={closeModal}>×</button>
         </div>
         <div className="window-body max-h-[85vh] overflow-y-auto p-5">
           {mode === "quiz"

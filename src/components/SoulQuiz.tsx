@@ -8,15 +8,14 @@ import { useRef, useState } from "react";
 import type { ArtistLite } from "@/lib/lite";
 import type { PickSummary, ScoreLayer, UserPrefs, Weights } from "@/lib/types";
 import { SCORE_LAYERS } from "@/lib/types";
-import {
-  type QToken, energyZh, computeQuizResult, framing,
-} from "@/lib/questionnaire";
-import { getArchetype, LAYER_ZH, LAYER_COLOR, type ArchetypeResult } from "@/lib/archetypes";
-import { zhTrait } from "@/lib/cardMeta";
-import { copy } from "@/lib/copy";
+import { computeQuizResult, energyText, FRAMING } from "@/lib/questionnaire";
+import type { QToken } from "@/lib/questionnaire";
+import { buildScreens, confirmLabel, type Screen } from "@/lib/quizScreens";
+import { getArchetype, layerLabel, LAYER_COLOR, type ArchetypeResult } from "@/lib/archetypes";
+import { displayTrait } from "@/lib/cardMeta";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import TastePortraitCard from "@/components/TastePortraitCard";
 import type { ResultAnswers } from "@/components/SoulReport";
-import { buildScreens, type Screen } from "@/lib/quizScreens";
 
 export default function SoulQuiz({
   picks, summaries, onPersist, onClose,
@@ -26,17 +25,18 @@ export default function SoulQuiz({
   onPersist: (patch: Partial<UserPrefs>) => void;
   onClose: () => void;
 }) {
+  const copy = useCopy();
+  const locale = useLocale();
   const [phase, setPhase] = useState<"rank" | "quiz" | "result">("rank");
   const [rank, setRank] = useState<ScoreLayer[]>([...SCORE_LAYERS]);
   const [screens, setScreens] = useState<Screen[]>([]);
   const [idx, setIdx] = useState(0);
-  const [, force] = useState(0);
   const answersRef = useRef<Record<string, string>>({});
   const [result, setResult] = useState<ArchetypeResult | null>(null);
   const [answers, setAnswers] = useState<ResultAnswers | null>(null);
 
   const nameById = new Map(picks.map((p) => [p.id, p.name]));
-  const topName = picks[0]?.name ?? "他";
+  const topName = picks[0]?.name ?? copy.defaultPickName;
 
   function move(i: number, dir: -1 | 1) {
     const j = i + dir;
@@ -98,7 +98,7 @@ export default function SoulQuiz({
     }
     // top resonant tokens (zh or zh-mappable engine tokens) for the report
     const valueTokens = Object.entries(quiz.tokenPrefs)
-      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || zhTrait(t) !== t))
+      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || displayTrait("zh", t) !== t))
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3)
       .map(([t]) => t);
@@ -128,18 +128,18 @@ export default function SoulQuiz({
             <div key={L} className="flex items-center gap-2 rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2">
               <span className="font-orbitron text-xs font-black text-[#9aa0aa]">#{i + 1}</span>
               <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LAYER_COLOR[L] }} />
-              <span className="flex-1 text-sm font-bold text-[#1c1e24]">{LAYER_ZH[L]}</span>
+              <span className="flex-1 text-sm font-bold text-[#1c1e24]">{layerLabel(locale, L)}</span>
               <button onClick={() => move(i, -1)} disabled={i === 0}
-                className="rounded-md px-1.5 text-[#7c8088] hover:bg-[#7c8088]/10 disabled:opacity-25" aria-label="往上移">▲</button>
+                className="rounded-md px-1.5 text-[#7c8088] hover:bg-[#7c8088]/10 disabled:opacity-25" aria-label={copy.moveUp}>▲</button>
               <button onClick={() => move(i, 1)} disabled={i === rank.length - 1}
-                className="rounded-md px-1.5 text-[#7c8088] hover:bg-[#7c8088]/10 disabled:opacity-25" aria-label="往下移">▼</button>
+                className="rounded-md px-1.5 text-[#7c8088] hover:bg-[#7c8088]/10 disabled:opacity-25" aria-label={copy.moveDown}>▼</button>
             </div>
           ))}
         </div>
         <p className="text-[10px] text-[#9aa0aa]">{copy.rankHint}</p>
         <div className="flex justify-between pt-1">
-          <button onClick={onClose} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">先跳過</button>
-          <button onClick={startQuiz} className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white hover:brightness-110">下一步 →</button>
+          <button onClick={onClose} className="text-xs text-[#7c8088]/60 hover:text-[#7c8088]">{copy.obSkip}</button>
+          <button onClick={startQuiz} className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white hover:brightness-110">{copy.nextStep}</button>
         </div>
       </>
     );
@@ -157,7 +157,7 @@ export default function SoulQuiz({
           onRestart={() => { setRank([...SCORE_LAYERS]); setResult(null); setAnswers(null); setPhase("rank"); }}
         />
         <div className="flex justify-center pt-1">
-          <button onClick={onClose} className="rounded-full border border-[#c8ccd2] px-4 py-1.5 text-xs font-bold text-[#1c1e24] hover:bg-[#7c8088]/10">✦ 完成</button>
+          <button onClick={onClose} className="rounded-full border border-[#c8ccd2] px-4 py-1.5 text-xs font-bold text-[#1c1e24] hover:bg-[#7c8088]/10">{copy.doneBtn}</button>
         </div>
       </div>
     );
@@ -185,8 +185,8 @@ export default function SoulQuiz({
 
       {screen.kind === "question" && (
         <Choices
-          title={screen.q.pickGrounded ? framing.q1(topName) : screen.q.title}
-          options={screen.q.options.map((o) => ({ id: o.id, label: o.label, sub: o.sub, group: o.group }))}
+          title={screen.q.pickGrounded ? FRAMING[locale].q1(topName) : screen.q.title[locale]}
+          options={screen.q.options.map((o) => ({ id: o.id, label: o.label[locale], sub: o.sub?.[locale], group: o.group?.[locale] }))}
           selected={selected}
           onPick={(id) => answer(screen.key, id)}
         />
@@ -194,10 +194,10 @@ export default function SoulQuiz({
 
       {screen.kind === "confirm" && (
         <Choices
-          title={framing.confirmAgree(screen.label)}
+          title={FRAMING[locale].confirmAgree(confirmLabel(locale, screen.field, screen.token))}
           options={[
-            { id: "more", label: framing.confirmMore },
-            { id: "diverse", label: framing.confirmDiverse },
+            { id: "more", label: FRAMING[locale].confirmMore },
+            { id: "diverse", label: FRAMING[locale].confirmDiverse },
           ]}
           selected={selected}
           onPick={(id) => answer(screen.key, id)}
@@ -206,14 +206,14 @@ export default function SoulQuiz({
 
       {screen.kind === "outlier" && (
         <Choices
-          title={framing.outlier(
+          title={FRAMING[locale].outlier(
             picks.map((p) => p.name),
-            nameById.get(summaries[screen.index]?.id ?? "") ?? "其中一位",
-            energyZh(screen.energy),
+            nameById.get(summaries[screen.index]?.id ?? "") ?? copy.defaultOutlierName,
+            energyText(locale, screen.energy),
           )}
           options={[
-            { id: "yes", label: framing.outlierYes },
-            { id: "no", label: framing.outlierNo },
+            { id: "yes", label: FRAMING[locale].outlierYes },
+            { id: "no", label: FRAMING[locale].outlierNo },
           ]}
           selected={selected}
           onPick={(id) => answer(screen.key, id)}

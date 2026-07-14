@@ -1,6 +1,10 @@
+"use client";
+
 import type { Artist } from "@/lib/types";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function PersonalitySection({ artist }: { artist: Artist }) {
+  const copy = useCopy();
   const p = artist.profile?.personality;
   if (!p?.vibe) return null;
 
@@ -9,7 +13,7 @@ export default function PersonalitySection({ artist }: { artist: Artist }) {
       <div className="flex items-center gap-2">
         <span className="text-base">✦</span>
         <h2 className="font-orbitron text-sm font-black uppercase tracking-[0.15em] text-[#1c1e24]">
-          個性分析
+          {copy.analysisPersonality}
         </h2>
       </div>
 

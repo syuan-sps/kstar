@@ -9,13 +9,14 @@ import { createPortal } from "react-dom";
 import type { ArtistLite } from "@/lib/lite";
 import type { PickSummary, UserPrefs } from "@/lib/types";
 import { getArchetype, type ArchetypeResult } from "@/lib/archetypes";
-import { zhTrait } from "@/lib/cardMeta";
-import { copy } from "@/lib/copy";
+import { displayTrait } from "@/lib/cardMeta";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import TastePortraitCard from "@/components/TastePortraitCard";
 import SoulQuiz from "@/components/SoulQuiz";
 import type { ResultAnswers } from "@/components/SoulReport";
 
 export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistLite[] }) {
+  const copy = useCopy();
   const [prefs, setPrefs] = useState<UserPrefs | null>(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
     contrast: prefs.contrast ?? null,
     visualMood: prefs.visualMood ?? null,
     valueTokens: Object.entries(prefs.tokenPrefs ?? {})
-      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || zhTrait(t) !== t))
+      .filter(([t, w]) => w > 0 && (/[一-鿿]/.test(t) || displayTrait("zh", t) !== t))
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3)
       .map(([t]) => t),
@@ -122,7 +123,7 @@ export default function SoulPortraitButton({ allArtists }: { allArtists: ArtistL
         className="rounded-full border border-[#56789f]/40 bg-[#56789f]/8 px-4 py-1.5 font-orbitron text-xs font-bold tracking-wide text-[#56789f] transition hover:bg-[#56789f]/15 disabled:opacity-50"
       >
         {loading
-          ? "讀取中…"
+          ? copy.loadingLabel
           : hasArchetype
             ? `✦ ${copy.reshareEntry} · ${prefs.archetype!.code}`
             : `✦ ${copy.takeQuiz}`}

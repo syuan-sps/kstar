@@ -9,12 +9,12 @@ import Thumb from "@/components/Thumb";
 import {
   ARCHETYPES,
   LAYER_COLOR,
-  LAYER_ZH,
+  layerLabel,
   expandCode,
   type ArchetypeResult,
 } from "@/lib/archetypes";
 import { pickTheme } from "@/lib/cardTheme";
-import { copy } from "@/lib/copy";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import type { CardArtist } from "@/lib/lite";
 import { frameRarity } from "@/lib/rarityFrame";
 import { SCORE_LAYERS } from "@/lib/types";
@@ -59,8 +59,8 @@ const SAMPLE_FAN_ID: FanIdCardProductionProps = {
     archetype: ARCHETYPES.ApSr,
     leadLayer: "aesthetic",
     hiddenLayer: "performance",
-    dualityLine: "示意卡面",
-    colorStory: { accent: "#56789f", soft: "#a7c0dc", label: "丹寧藍 × 鉻銀" },
+    dualityLine: { zh: "示意卡面", en: "Sample card" },
+    colorStory: { accent: "#56789f", soft: "#a7c0dc", label: { zh: "丹寧藍 × 鉻銀", en: "Denim Blue × Chrome Silver" } },
     scores: { aesthetic: 86, personality: 38, performance: 79, content: 31 },
     bars: { aesthetic: 92, personality: 44, performance: 84, content: 36 },
     high: { aesthetic: true, personality: false, performance: true, content: false },
@@ -71,17 +71,27 @@ const SAMPLE_FAN_ID: FanIdCardProductionProps = {
   serial: "0428",
 };
 
+const SAMPLE_FAN_NAME_EN = "Little Star · Sample";
+
 const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   props,
   ref,
 ) {
+  const copy = useCopy();
+  const locale = useLocale();
   const sample = props.sample === true;
-  const card = sample ? SAMPLE_FAN_ID : props;
+  const card = sample
+    ? {
+        ...SAMPLE_FAN_ID,
+        picks: locale === "en" ? SAMPLE_FAN_ID.picks.map((p) => ({ ...p, name_zh: null })) : SAMPLE_FAN_ID.picks,
+        fanName: locale === "en" ? SAMPLE_FAN_NAME_EN : SAMPLE_FAN_ID.fanName,
+      }
+    : props;
   const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial } = card;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const lineup = picks.filter((p) => p.id !== hero.id);
   const theme = pickTheme(hero.id);
-  const rarity = frameRarity(result.code);
+  const rarity = frameRarity(result.code, locale);
   const complement = expandCode(result.code);
   const complementType = ARCHETYPES[complement];
   const date = issuedAt;
@@ -109,7 +119,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           ◆ {copy.fanIdName} · KSTAR FAN ID
         </span>
         <span className="text-right font-mono text-[8px] leading-[1.45] text-[#9aa0aa]">
-          {sample && <>SAMPLE · 示意<br /></>}
+          {sample && <>{copy.fanIdSampleTag}<br /></>}
           KS-{date.slice(0, 4)}<br />#{serial}
         </span>
       </div>
@@ -127,12 +137,12 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           {showFace && facePhoto && (
             <span className="absolute right-1.5 top-1.5 h-[46px] w-[34px] overflow-hidden rounded-[5px] border-2 border-white bg-white shadow-[0_2px_6px_rgba(28,30,36,.3)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={facePhoto} alt="本人" className="h-[37px] w-full object-cover" />
-              <span className="absolute inset-x-0 bottom-0 bg-white/90 text-center text-[6.5px] font-bold tracking-[0.1em] text-[#5e636d]">本人</span>
+              <img src={facePhoto} alt={copy.fanIdSelfLabel} className="h-[37px] w-full object-cover" />
+              <span className="absolute inset-x-0 bottom-0 bg-white/90 text-center text-[6.5px] font-bold tracking-[0.1em] text-[#5e636d]">{copy.fanIdSelfLabel}</span>
             </span>
           )}
           <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1e24]/80 to-transparent px-2 pb-1.5 pt-5 text-[11px] font-bold text-white">
-            本命 · {hero.name_zh ?? hero.name}
+            {copy.fanIdHeroPrefix} · {hero.name_zh ?? hero.name}
           </span>
         </div>
 
@@ -146,9 +156,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
               return <span key={`${letter}-${index}`} style={{ color: high ? INK : "#9aa0aa", fontWeight: high ? 900 : 500 }}>{letter}</span>;
             })}
           </span>
-          <span className="w-full text-[13px] font-black leading-tight">{result.archetype.zhName}</span>
+          <span className="w-full text-[13px] font-black leading-tight">{result.archetype.name[locale]}</span>
           <span className="w-full font-orbitron text-[7.5px] font-bold leading-tight tracking-[0.08em] text-[#7c8088]">
-            {result.archetype.enName}
+            {locale === "zh" ? result.archetype.enName : result.code}
           </span>
           <span className="max-w-full self-center whitespace-nowrap rounded-full border border-[#a8822f] bg-[#d8b45a]/10 px-2 py-0.5 font-mono text-[8px] font-bold text-[#a8822f]">
             ✦ {rarity.label}
@@ -182,16 +192,17 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
                 style={{ width: `${Math.max(6, result.bars[layer])}%`, backgroundColor: LAYER_COLOR[layer] }}
               />
             </div>
-            <p className="mt-0.5 text-center text-[7px] font-bold text-[#7c8088]">{LAYER_ZH[layer]}</p>
+            <p className="mt-0.5 text-center text-[7px] font-bold text-[#7c8088]">{layerLabel(locale, layer)}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-1.5 flex items-baseline gap-1.5 rounded-md border border-[#c8ccd2]/80 bg-white/55 px-2 py-1">
-        <span className="shrink-0 text-[7px] font-bold tracking-[0.12em] text-[#9aa0aa]">互補型 · 發現</span>
+        <span className="shrink-0 text-[7px] font-bold tracking-[0.12em] text-[#9aa0aa]">{copy.fanIdComplementLabel}</span>
         <span className="font-orbitron text-[9px] font-black text-[#4a4f57]">{complement}</span>
         <span className="truncate text-[8px] font-bold text-[#5e636d]">
-          {complementType?.zhName ?? complement} · {complementType?.enName ?? ""}
+          {complementType?.name[locale] ?? complement}
+          {locale === "zh" && complementType ? ` · ${complementType.enName}` : ""}
         </span>
       </div>
 
@@ -214,7 +225,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             className="h-3.5 w-24 opacity-70"
             style={{ backgroundImage: `repeating-linear-gradient(90deg,${INK} 0 1px,transparent 1px 2px,${INK} 2px 4px,transparent 4px 7px)` }}
           />
-          <p className="mt-1.5 font-mono text-[7px] tracking-[0.04em] text-[#9aa0aa]">發證 {date} · KSTAR 發證中心</p>
+          <p className="mt-1.5 font-mono text-[7px] tracking-[0.04em] text-[#9aa0aa]">{copy.fanIdIssuedLine(date)}</p>
         </div>
         <div className="text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}

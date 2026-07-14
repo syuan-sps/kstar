@@ -6,12 +6,13 @@ import type { ArtistLite } from "@/lib/lite";
 import {
   GENDER_OPTIONS,
   GEN_OPTIONS,
+  browseLabel,
   matchesLite,
   type GenderFilter,
   type GenFilter,
 } from "@/lib/browse";
 import Thumb from "@/components/Thumb";
-import { copy } from "@/lib/copy";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 const PAGE = 24;
 
@@ -53,6 +54,8 @@ export default function StepPicker({
   picks: string[];
   onChange: (picks: string[]) => void;
 }) {
+  const copy = useCopy();
+  const locale = useLocale();
   const [q, setQ] = useState("");
   const [gender, setGender] = useState<GenderFilter>("全部");
   const [gen, setGen] = useState<GenFilter>("全部");
@@ -99,7 +102,7 @@ export default function StepPicker({
 
   return (
     <div className={flash ? "wiz-flash" : undefined}>
-      <div className="mb-4 grid grid-cols-4 gap-2" aria-label="本命欄">
+      <div className="mb-4 grid grid-cols-4 gap-2" aria-label={copy.wizPickSlotLabel}>
         {[0, 1, 2, 3].map((i) => {
           const artist = picks[i] ? byId.get(picks[i]) : undefined;
           return artist ? (
@@ -113,7 +116,7 @@ export default function StepPicker({
                 type="button"
                 onClick={() => slotTap(i)}
                 className="h-full w-full"
-                aria-label={`${artist.name} — 點兩格交換位置`}
+                aria-label={copy.wizSwapHint(artist.name)}
                 aria-pressed={swapFrom === i}
               >
                 <Thumb
@@ -128,7 +131,7 @@ export default function StepPicker({
                 type="button"
                 onClick={() => toggle(artist.id)}
                 className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-full bg-black/60 text-xs text-white"
-                aria-label={`移除 ${artist.name}`}
+                aria-label={copy.wizRemoveAria(artist.name)}
               >
                 ×
               </button>
@@ -137,7 +140,7 @@ export default function StepPicker({
             <div
               key={i}
               className="grid aspect-[3/4] place-items-center rounded-lg border border-dashed border-[#c8ccd2] text-[#c8ccd2]"
-              aria-label={`空白本命欄 ${i + 1}`}
+              aria-label={copy.wizEmptySlotAria(i + 1)}
             >
               ＋
             </div>
@@ -167,7 +170,7 @@ export default function StepPicker({
             }`}
             aria-pressed={gender === option}
           >
-            {option}
+            {browseLabel(locale, option)}
           </button>
         ))}
         {GEN_OPTIONS.map((option) => (
@@ -182,7 +185,7 @@ export default function StepPicker({
             }`}
             aria-pressed={gen === option}
           >
-            {option === "全部" ? "全部世代" : option}
+            {option === "全部" ? copy.filterAllGen : browseLabel(locale, option)}
           </button>
         ))}
       </div>
@@ -199,7 +202,7 @@ export default function StepPicker({
                 picked ? "border-[#b4302b] ring-2 ring-[#b4302b]" : "border-[#c8ccd2]/60"
               }`}
               aria-pressed={picked}
-              aria-label={`${picked ? "移除" : "選擇"} ${artist.name}`}
+              aria-label={copy.wizPickToggleAria(picked, artist.name)}
             >
               <Thumb
                 src={artist.image_url}
@@ -222,7 +225,7 @@ export default function StepPicker({
             disabled={page === 0}
             onClick={() => setPage(page - 1)}
             className="rounded border border-[#c8ccd2] px-3 py-1 disabled:opacity-40"
-            aria-label="上一頁"
+            aria-label={copy.pagePrevAria}
           >
             ←
           </button>
@@ -232,7 +235,7 @@ export default function StepPicker({
             disabled={(page + 1) * PAGE >= filtered.length}
             onClick={() => setPage(page + 1)}
             className="rounded border border-[#c8ccd2] px-3 py-1 disabled:opacity-40"
-            aria-label="下一頁"
+            aria-label={copy.pageNextAria}
           >
             →
           </button>

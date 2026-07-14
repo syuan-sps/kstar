@@ -23,6 +23,8 @@ const EXPORT_STYLE_PROPS = [
   "object-fit", "object-position", "transform", "transform-origin",
 ];
 
+const DEFAULT_SHARE_TITLE = { zh: "我的追星靈魂", en: "My fan soul" };
+
 export interface ExportOptions {
   fileName: string;
   pixelRatio?: number;
@@ -30,6 +32,7 @@ export interface ExportOptions {
   shareTitle?: string;
   shareText?: string;
   frame?: { w: number; h: number; bg: string };
+  locale?: "zh" | "en";
 }
 
 // Post-render hook only: without a frame the original blob object is returned,
@@ -125,7 +128,8 @@ export async function prepareExportBlobResult(
 // (so the caller can show a "screenshot instead" hint). A cancelled share
 // resolves ok:true.
 export async function exportNode(node: HTMLElement, opts: ExportOptions): Promise<{ ok: boolean; error?: unknown }> {
-  const { fileName, pixelRatio = 2, kind = "download", shareTitle = "我的追星靈魂", shareText = "", frame } = opts;
+  const { fileName, pixelRatio = 2, kind = "download", shareText = "", frame, locale = "zh" } = opts;
+  const shareTitle = opts.shareTitle ?? DEFAULT_SHARE_TITLE[locale];
   try {
     const htmlToImage = await import("html-to-image");
     // Transparent canvas so the rounded card exports with see-through corners

@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ArtistLite } from "@/lib/lite";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import type { PickSummary } from "@/lib/types";
 import { reconcileStoredArchetype, type ArchetypeResult } from "@/lib/archetypes";
 import { acceptWizardUrlStep, ensureIssueIdentity, hydrateClaimWizard, loadWizard, resetWizardForRetake, saveWizard, type WizardState } from "@/lib/wizardState";
@@ -21,6 +21,7 @@ import StepIssue from "@/components/wizard/StepIssue";
 import FanIdCard from "@/components/FanIdCard";
 
 export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) {
+  const copy = useCopy();
   const router = useRouter();
   const params = useSearchParams();
   const [wiz, setWiz] = useState<WizardState | null>(null);
@@ -104,7 +105,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
   if (wiz.step === 0) {
     return (
       <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-xl flex-col items-center justify-center gap-6 px-4 text-center">
-        <span className="font-orbitron text-2xl font-black chrome-text">{copy.appName} 發證中心</span>
+        <span className="font-orbitron text-2xl font-black chrome-text">{copy.appName} {copy.wizCenterSuffix}</span>
         <div className="fanid-preview-shell fanid-landing-preview">
           <div className="fanid-preview-scale"><FanIdCard sample /></div>
         </div>
@@ -211,7 +212,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
           />
         ) : (
           <div className={`grid min-h-64 place-items-center text-center text-sm ${resultStatus === "error" ? "text-[#b4302b]" : "animate-pulse text-[#9aa0aa]"}`}>
-            {resultStatus === "error" ? "無法載入判定結果，請返回再試一次。" : "顯影中…"}
+            {resultStatus === "error" ? copy.wizResultLoadFailed : copy.wizDeveloping}
           </div>
         )}
       </WizardChrome>
@@ -226,12 +227,12 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
         ) : (
           <div className={`grid min-h-64 place-items-center text-center text-sm ${resultStatus === "error" || selectedArtists.length !== 4 || !wiz.archetype ? "text-[#b4302b]" : "animate-pulse text-[#9aa0aa]"}`}>
             {selectedArtists.length !== 4
-              ? "追星證需要四位本命，請返回重新選擇。"
+              ? copy.wizNeedFourPicks
               : !wiz.archetype
-                ? "尚未完成追星型別判定，請返回測驗。"
+                ? copy.wizNeedArchetype
                 : resultStatus === "error"
-                  ? "無法載入製卡資料，請返回再試一次。"
-                  : "準備製卡資料…"}
+                  ? copy.wizCardLoadFailed
+                  : copy.wizPreparingCard}
           </div>
         )}
       </WizardChrome>
@@ -249,7 +250,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
         className="grid h-64 place-items-center text-[#9aa0aa]"
         data-artist-count={allArtists.length}
       >
-        step {wiz.step} — 施工中
+        step {wiz.step} — {copy.wizUnderConstruction}
       </div>
     </WizardChrome>
   );

@@ -12,8 +12,9 @@ import type { ArtistLite } from "@/lib/lite";
 import { saveWizard } from "@/lib/wizardState";
 import {
   GENDER_OPTIONS, GEN_OPTIONS, POS_OPTIONS,
-  matchesLite, type BrowseFilters,
+  browseLabel, matchesLite, type BrowseFilters,
 } from "@/lib/browse";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import IdolFrame from "./IdolFrame";
 import FavoriteButton from "./FavoriteButton";
 import ConstellationView from "./ConstellationView";
@@ -26,6 +27,8 @@ const DEFAULT_PER = 12;
 
 export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   const router = useRouter();
+  const copy = useCopy();
+  const locale = useLocale();
   const [filters, setFilters] = useState<BrowseFilters>({ gender: "全部", gen: "全部", pos: "全部" });
   const [justAdded, setJustAdded] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -164,9 +167,9 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   }
 
   const rows: { label: string; key: keyof BrowseFilters; options: readonly string[] }[] = [
-    { label: "性別", key: "gender", options: GENDER_OPTIONS },
-    { label: "世代", key: "gen", options: GEN_OPTIONS },
-    { label: "定位", key: "pos", options: POS_OPTIONS },
+    { label: copy.filterGender, key: "gender", options: GENDER_OPTIONS },
+    { label: copy.filterGen, key: "gen", options: GEN_OPTIONS },
+    { label: copy.filterPos, key: "pos", options: POS_OPTIONS },
   ];
 
   // Changing a filter resets to page 1 (and clears the page param).
@@ -198,11 +201,11 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
   return (
     <section id="idols" className="scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-baseline gap-3">
-        <h2 className="font-orbitron text-lg font-bold text-[#1c1e24]">偶像圖鑑</h2>
-        <span className="text-xs text-[#9aa0aa]"><span className="chrome-text font-orbitron font-bold">{matched.length}</span> 位偶像</span>
+        <h2 className="font-orbitron text-lg font-bold text-[#1c1e24]">{copy.navDirectory}</h2>
+        <span className="text-xs text-[#9aa0aa]"><span className="chrome-text font-orbitron font-bold">{matched.length}</span>{copy.dirCountSuffix}</span>
         {mounted && (
           <div className="ml-auto inline-flex self-center rounded-full border border-[#c8ccd2] bg-white p-0.5">
-            {([["list", "列表"], ["star", "星圖"]] as [CodexView, string][]).map(([v, label]) => (
+            {([["list", copy.viewList], ["star", copy.viewStar]] as [CodexView, string][]).map(([v, label]) => (
               <button
                 key={v}
                 onClick={() => changeView(v)}
@@ -236,7 +239,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
                     : "border border-[#c8ccd2] text-[#5e636d] hover:bg-[#7c8088]/10"
                 }`}
               >
-                {opt}
+                {browseLabel(locale, opt)}
               </button>
             ))}
           </div>
@@ -245,16 +248,16 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
 
       {matched.length === 0 ? (
         <p className="rounded-xl border border-[#c8ccd2]/20 bg-[#7c8088]/5 p-6 text-center text-sm text-[#9aa0aa]">
-          沒有符合的偶像 — 放寬一下篩選吧
+          {copy.noMatches}
         </p>
       ) : (
         <>
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <span className="text-xs text-[#9aa0aa]">
-            顯示 <span className="font-orbitron font-bold text-[#5e636d]">{startIdx + 1}–{Math.min(startIdx + perPage, matched.length)}</span> / {matched.length}
+            {copy.showingPrefix}<span className="font-orbitron font-bold text-[#5e636d]">{startIdx + 1}–{Math.min(startIdx + perPage, matched.length)}</span> / {matched.length}
           </span>
           <div className="flex items-center gap-1.5">
-            <span className="text-xs text-[#9aa0aa]">每頁</span>
+            <span className="text-xs text-[#9aa0aa]">{copy.perPageLabel}</span>
             {PER_OPTIONS.map((n) => (
               <button
                 key={n}
@@ -283,8 +286,8 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               </div>
               <button
                 onClick={(e) => addToFourCuts(e, a.id)}
-                aria-label={`把 ${a.name} 換進人生四格`}
-                title="換進人生四格"
+                aria-label={copy.addToFourCutsAria(a.name)}
+                title={copy.addToFourCutsTitle}
                 className={`absolute bottom-9 right-2 z-20 flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold transition ${
                   justAdded === a.id
                     ? "bg-[#b4302b] text-white"
@@ -303,7 +306,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               onClick={() => goToPage(safePage - 1)}
               className="rounded-full border border-[#c8ccd2] px-3 py-1 text-xs font-semibold text-[#5e636d] transition hover:bg-[#7c8088]/10 disabled:opacity-40 disabled:hover:bg-transparent"
             >
-              ‹ 上一頁
+              {copy.prevPage}
             </button>
             {pageList().map((p, i) =>
               p === "…" ? (
@@ -328,7 +331,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               onClick={() => goToPage(safePage + 1)}
               className="rounded-full border border-[#c8ccd2] px-3 py-1 text-xs font-semibold text-[#5e636d] transition hover:bg-[#7c8088]/10 disabled:opacity-40 disabled:hover:bg-transparent"
             >
-              下一頁 ›
+              {copy.nextPage}
             </button>
           </div>
         )}

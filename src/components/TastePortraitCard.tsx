@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { CardArtist } from "@/lib/lite";
 import type { ArchetypeResult } from "@/lib/archetypes";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 import FanIdCard from "@/components/FanIdCard";
@@ -36,6 +36,7 @@ export default function TastePortraitCard({
   answers?: ResultAnswers;
   onRestart?: () => void;
 }) {
+  const copy = useCopy();
   const [view, setView] = useState<View>("story");
   const [prefs, setPrefs] = useState<FanIdPrefs>(loadFanIdPrefs);
   const [showFace, setShowFace] = useState(false);
@@ -81,8 +82,8 @@ export default function TastePortraitCard({
       ) : (
         <div className="flex flex-col items-center gap-3">
           <div className="inline-flex rounded-full border border-[#c8ccd2] bg-white p-0.5">
-            <button type="button" aria-pressed={showFace} onClick={() => setShowFace(true)} className={`rounded-full px-3 py-1 text-xs font-bold ${showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>本人版</button>
-            <button type="button" aria-pressed={!showFace} onClick={() => setShowFace(false)} className={`rounded-full px-3 py-1 text-xs font-bold ${!showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>純分享版</button>
+            <button type="button" aria-pressed={showFace} onClick={() => setShowFace(true)} className={`rounded-full px-3 py-1 text-xs font-bold ${showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionWithPhoto}</button>
+            <button type="button" aria-pressed={!showFace} onClick={() => setShowFace(false)} className={`rounded-full px-3 py-1 text-xs font-bold ${!showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionShareOnly}</button>
           </div>
           {showFace && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
           {heroId && (

@@ -11,6 +11,7 @@
 
 import type { LayerScores, PickSummary, ScoreLayer, StoredArchetype, Weights } from "./types";
 import { SCORE_LAYERS } from "./types";
+import type { Loc, Locale } from "./i18n/config";
 
 // ── Tunables (see scripts/calibrate-archetypes.ts) ─────────────────────
 // Per-layer p90 of the random-pick cohesion distribution. Normalises the very
@@ -32,61 +33,65 @@ export const HIGH_THRESHOLD = 68;
 const CODE_LETTER: Record<ScoreLayer, string> = {
   aesthetic: "A", personality: "P", performance: "S", content: "R",
 };
-export const LAYER_ZH: Record<ScoreLayer, string> = {
-  aesthetic: "美學", personality: "個性", performance: "表演", content: "內容",
+export const LAYER_TEXT: Record<ScoreLayer, Loc> = {
+  aesthetic: { zh: "美學", en: "Aesthetic" },
+  personality: { zh: "個性", en: "Personality" },
+  performance: { zh: "表演", en: "Performance" },
+  content: { zh: "內容", en: "Content" },
 };
+export const layerLabel = (locale: Locale, L: ScoreLayer) => LAYER_TEXT[L][locale];
 
 // ── The 16 archetypes ──────────────────────────────────────────────────
 export interface Archetype {
   code: string;          // canonical mixed-case code, e.g. "APsr"
-  zhName: string;
-  enName: string;
-  tagline: string;
+  enName: string;        // always-English name — the card subtitle in zh mode, the headline in en mode
+  name: Loc;             // zh: the zhName; en: enName (decision: EN mode shows no Chinese)
+  tagline: Loc;
   missing?: ScoreLayer;  // the one charming blind spot (3-high types)
 }
 
 export const ARCHETYPES: Record<string, Archetype> = {
   // 0 high — the omnivore
-  apsr: { code: "apsr", zhName: "雜食型", enName: "Omnivore", tagline: "你什麼都推得下去，雷達全開，沒有不能入的坑。" },
+  apsr: { code: "apsr", enName: "Omnivore", name: { zh: "雜食型", en: "Omnivore" }, tagline: { zh: "你什麼都推得下去，雷達全開，沒有不能入的坑。", en: "You'll fall for anyone — radar always on, no rabbit hole off-limits." } },
   // 1 high — the purists
-  Apsr: { code: "Apsr", zhName: "神顏控", enName: "Visual Purist", tagline: "一眼就淪陷，長相就是一切。" },
-  aPsr: { code: "aPsr", zhName: "人格本命派", enName: "Soul Catcher", tagline: "你愛的是那個人，不是那張臉。" },
-  apSr: { code: "apSr", zhName: "直拍上癮者", enName: "Fancam Addict", tagline: "直拍循環一百遍，根本停不下來。" },
-  apsR: { code: "apsR", zhName: "頻率共鳴控", enName: "Frequency Match", tagline: "他講的每句話，都像在說你。" },
+  Apsr: { code: "Apsr", enName: "Visual Purist", name: { zh: "神顏控", en: "Visual Purist" }, tagline: { zh: "一眼就淪陷，長相就是一切。", en: "One glance and you're gone — the face is everything." } },
+  aPsr: { code: "aPsr", enName: "Soul Catcher", name: { zh: "人格本命派", en: "Soul Catcher" }, tagline: { zh: "你愛的是那個人，不是那張臉。", en: "You love the person, not the face." } },
+  apSr: { code: "apSr", enName: "Fancam Addict", name: { zh: "直拍上癮者", en: "Fancam Addict" }, tagline: { zh: "直拍循環一百遍，根本停不下來。", en: "A hundred fancam replays and counting — you can't stop." } },
+  apsR: { code: "apsR", enName: "Frequency Match", name: { zh: "頻率共鳴控", en: "Frequency Match" }, tagline: { zh: "他講的每句話，都像在說你。", en: "Everything they say feels like it's about you." } },
   // 2 high — the dualities (the screenshot tier)
-  APsr: { code: "APsr", zhName: "高冷反差控", enName: "Gap Hunter", tagline: "為了那張高冷臉留下，結果被私下的脫線樣收服。" },
-  ApSr: { code: "ApSr", zhName: "視覺猛獸派", enName: "Visual Beast", tagline: "畫報級長相＋舞台超狂，直接被雙殺。" },
-  ApsR: { code: "ApsR", zhName: "氛圍生活家", enName: "Aesthetic Soul", tagline: "美得有質感，活得有溫度。" },
-  aPSr: { code: "aPSr", zhName: "個性炸場王", enName: "Charisma Bomb", tagline: "個性先收你，舞台再補一刀。" },
-  aPsR: { code: "aPsR", zhName: "真實共鳴派", enName: "Kindred Spirit", tagline: "頻率對上，個性再補一刀。" },
-  apSR: { code: "apSR", zhName: "台上台下控", enName: "On & Off", tagline: "台上為他尖叫，台下被他融化。" },
+  APsr: { code: "APsr", enName: "Gap Hunter", name: { zh: "高冷反差控", en: "Gap Hunter" }, tagline: { zh: "為了那張高冷臉留下，結果被私下的脫線樣收服。", en: "You stayed for the cool face, then got won over by their goofy side." } },
+  ApSr: { code: "ApSr", enName: "Visual Beast", name: { zh: "視覺猛獸派", en: "Visual Beast" }, tagline: { zh: "畫報級長相＋舞台超狂，直接被雙殺。", en: "Magazine-cover looks plus a killer stage — a double knockout." } },
+  ApsR: { code: "ApsR", enName: "Aesthetic Soul", name: { zh: "氛圍生活家", en: "Aesthetic Soul" }, tagline: { zh: "美得有質感，活得有溫度。", en: "Beautiful with substance, warm in real life." } },
+  aPSr: { code: "aPSr", enName: "Charisma Bomb", name: { zh: "個性炸場王", en: "Charisma Bomb" }, tagline: { zh: "個性先收你，舞台再補一刀。", en: "Their personality gets you first, the stage finishes the job." } },
+  aPsR: { code: "aPsR", enName: "Kindred Spirit", name: { zh: "真實共鳴派", en: "Kindred Spirit" }, tagline: { zh: "頻率對上，個性再補一刀。", en: "The frequency matches, then the personality seals it." } },
+  apSR: { code: "apSR", enName: "On & Off", name: { zh: "台上台下控", en: "On & Off" }, tagline: { zh: "台上為他尖叫，台下被他融化。", en: "You scream for them on stage, melt for them off it." } },
   // 3 high — the near-perfect (one charming blind spot)
-  APSr: { code: "APSr", zhName: "完全巨星型", enName: "Total Star", tagline: "除了沒空陪你聊天，他什麼都有。", missing: "content" },
-  APsR: { code: "APsR", zhName: "戀人感本命", enName: "Soulmate Type", tagline: "不用靠舞台，光是站在那裡你就淪陷。", missing: "performance" },
-  ApSR: { code: "ApSR", zhName: "神級全才", enName: "Triple Threat", tagline: "顏、舞台、共鳴全包，個性就留點神秘。", missing: "personality" },
-  aPSR: { code: "aPSR", zhName: "靈魂全方位", enName: "Soulful All-Rounder", tagline: "你根本不在乎長相，他的一切都對你的胃。", missing: "aesthetic" },
+  APSr: { code: "APSr", enName: "Total Star", name: { zh: "完全巨星型", en: "Total Star" }, tagline: { zh: "除了沒空陪你聊天，他什麼都有。", en: "They have everything — except time to chat with you." }, missing: "content" },
+  APsR: { code: "APsR", enName: "Soulmate Type", name: { zh: "戀人感本命", en: "Soulmate Type" }, tagline: { zh: "不用靠舞台，光是站在那裡你就淪陷。", en: "No stage needed — you fall just from them standing there." }, missing: "performance" },
+  ApSR: { code: "ApSR", enName: "Triple Threat", name: { zh: "神級全才", en: "Triple Threat" }, tagline: { zh: "顏、舞台、共鳴全包，個性就留點神秘。", en: "Face, stage, and resonance all covered — personality stays a little mysterious." }, missing: "personality" },
+  aPSR: { code: "aPSR", enName: "Soulful All-Rounder", name: { zh: "靈魂全方位", en: "Soulful All-Rounder" }, tagline: { zh: "你根本不在乎長相，他的一切都對你的胃。", en: "You don't care about looks — everything else about them is your type." }, missing: "aesthetic" },
   // 4 high — the legend
-  APSR: { code: "APSR", zhName: "六邊形戰士", enName: "Hexagonal Warrior", tagline: "完全沒有死角。能拿到這個結果的人，比你想的還少。" },
+  APSR: { code: "APSR", enName: "Hexagonal Warrior", name: { zh: "六邊形戰士", en: "Hexagonal Warrior" }, tagline: { zh: "完全沒有死角。能拿到這個結果的人，比你想的還少。", en: "No blind spots at all. Fewer people land this result than you'd think." } },
 };
 
 // 隱藏面 duality line — keyed by the hidden-face layer (2nd-highest score).
-export const DUALITY_LINES: Record<ScoreLayer, string> = {
-  aesthetic: "但你嘴上不說 — 那張臉，其實也是你留下來的原因。",
-  personality: "私底下你更在意的，是他到底是個怎樣的人。",
-  performance: "真正讓你回放一百遍的，是他站上舞台的那一刻。",
-  content: "夜深了你還是會點開他的日常 — 那份共鳴騙不了人。",
+export const DUALITY_LINES: Record<ScoreLayer, Loc> = {
+  aesthetic: { zh: "但你嘴上不說 — 那張臉，其實也是你留下來的原因。", en: "You won't admit it, but that face is part of why you stayed." },
+  personality: { zh: "私底下你更在意的，是他到底是個怎樣的人。", en: "Deep down, what you care about most is who they really are." },
+  performance: { zh: "真正讓你回放一百遍的，是他站上舞台的那一刻。", en: "What you replay a hundred times is the moment they take the stage." },
+  content: { zh: "夜深了你還是會點開他的日常 — 那份共鳴騙不了人。", en: "Late at night you're still opening their daily posts — that resonance doesn't lie." },
 };
 
 // Colour story — follows the single highest layer (rest stays neutral chrome).
-export interface ColorStory { accent: string; soft: string; label: string }
+export interface ColorStory { accent: string; soft: string; label: Loc }
 export const COLOR_STORIES: Record<ScoreLayer, ColorStory> = {
-  aesthetic:   { accent: "#56789f", soft: "#a7c0dc", label: "丹寧藍 × 鉻銀" },   // cool, editorial
-  personality: { accent: "#b4302b", soft: "#e6a6b8", label: "桃紅 × 螢光紫" },   // warm, loud
-  performance: { accent: "#2f6fae", soft: "#7fb0dd", label: "青藍 × 鉻銀" },     // electric, sharp
-  content:     { accent: "#b0894e", soft: "#e8d6ad", label: "暖金 × 柔白" },     // intimate, cosy
+  aesthetic:   { accent: "#56789f", soft: "#a7c0dc", label: { zh: "丹寧藍 × 鉻銀", en: "Denim Blue × Chrome Silver" } },   // cool, editorial
+  personality: { accent: "#b4302b", soft: "#e6a6b8", label: { zh: "桃紅 × 螢光紫", en: "Hot Pink × Neon Violet" } },       // warm, loud
+  performance: { accent: "#2f6fae", soft: "#7fb0dd", label: { zh: "青藍 × 鉻銀", en: "Electric Blue × Chrome Silver" } }, // electric, sharp
+  content:     { accent: "#b0894e", soft: "#e8d6ad", label: { zh: "暖金 × 柔白", en: "Warm Gold × Soft White" } },        // intimate, cosy
 };
 // 六邊形戰士 uses the full chrome-rainbow story.
-export const LEGEND_STORY: ColorStory = { accent: "#7c8088", soft: "#c8ccd2", label: "全鉻虹彩" };
+export const LEGEND_STORY: ColorStory = { accent: "#7c8088", soft: "#c8ccd2", label: { zh: "全鉻虹彩", en: "Full Chrome Spectrum" } };
 
 // Per-layer bar colours (match SimilarIdolCard for consistency).
 export const LAYER_COLOR: Record<ScoreLayer, string> = {
@@ -94,16 +99,19 @@ export const LAYER_COLOR: Record<ScoreLayer, string> = {
 };
 
 // Plain-語 meaning of each axis being high vs low — for the detailed report.
-export const LAYER_MEANINGS: Record<ScoreLayer, { high: string; low: string }> = {
-  aesthetic:   { high: "顏值與造型是你入坑的第一道門 — 你超吃視覺。", low: "長相不是重點，你看的是別的東西。" },
-  personality: { high: "你愛的是「那個人」本身 — 性格、為人、互動方式。", low: "個性怎樣你沒那麼在意。" },
-  performance: { high: "舞台與直拍才是你的命 — 實力派收割機。", low: "舞台強不強，對你不是關鍵。" },
-  content:     { high: "日常、共鳴、私下的他 — 你要的是陪伴感。", low: "他發什麼內容，你比較不執著。" },
+export const LAYER_MEANINGS: Record<ScoreLayer, { high: Loc; low: Loc }> = {
+  aesthetic:   { high: { zh: "顏值與造型是你入坑的第一道門 — 你超吃視覺。", en: "Looks and styling are your first door in — you're all about the visual." }, low: { zh: "長相不是重點，你看的是別的東西。", en: "Looks aren't the point — you're drawn to something else." } },
+  personality: { high: { zh: "你愛的是「那個人」本身 — 性格、為人、互動方式。", en: "You love the person themselves — their character, who they are, how they interact." }, low: { zh: "個性怎樣你沒那麼在意。", en: "Their personality isn't something you weigh that heavily." } },
+  performance: { high: { zh: "舞台與直拍才是你的命 — 實力派收割機。", en: "The stage and fancams are your lifeblood — a skill-first stan." }, low: { zh: "舞台強不強，對你不是關鍵。", en: "How strong the stage is isn't the deciding factor for you." } },
+  content:     { high: { zh: "日常、共鳴、私下的他 — 你要的是陪伴感。", en: "Daily life, resonance, who they are off-camera — you want that sense of companionship." }, low: { zh: "他發什麼內容，你比較不執著。", en: "What content they post matters less to you." } },
 };
 
 /** Coarse 高/中/低 label from a 0–100 bar value (for the report). */
-export function barLabel(pct: number): string {
-  return pct >= 60 ? "高" : pct >= 33 ? "中" : "低";
+export function barLabel(locale: Locale, pct: number): string {
+  const tier = pct >= 60 ? "high" : pct >= 33 ? "mid" : "low";
+  return locale === "en"
+    ? { high: "High", mid: "Mid", low: "Low" }[tier]
+    : { high: "高", mid: "中", low: "低" }[tier];
 }
 
 // ── Scoring ────────────────────────────────────────────────────────────
@@ -112,7 +120,7 @@ export interface ArchetypeResult {
   archetype: Archetype;
   leadLayer: ScoreLayer;            // single highest layer → colour story
   hiddenLayer: ScoreLayer;          // 2nd-highest → 隱藏面 / wall-climb seed
-  dualityLine: string;
+  dualityLine: Loc;
   colorStory: ColorStory;
   scores: Record<ScoreLayer, number>;   // 0–~140 score[L]
   bars: Record<ScoreLayer, number>;     // 0–100 scaled strength (for the card bars)

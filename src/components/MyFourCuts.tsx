@@ -7,6 +7,7 @@ import { saveWizard } from "@/lib/wizardState";
 import { homeEntryMotionClass } from "@/lib/motionConsent";
 import FourCuts from "@/components/FourCuts";
 import FanIdCard from "@/components/FanIdCard";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function MyFourCuts({
   allArtists,
@@ -18,6 +19,7 @@ export default function MyFourCuts({
   frameClassName?: string;
 }) {
   const router = useRouter();
+  const copy = useCopy();
   const [ids, setIds] = useState<string[] | null>(null);
   const [entry, setEntry] = useState(true); // one-time camera-flash on real page entry
   const [flashOk] = useState(() => typeof window !== "undefined" ? localStorage.getItem("kstar:flashOk") : null);
@@ -92,9 +94,9 @@ export default function MyFourCuts({
       <section className={`flex flex-col items-center gap-4 ${className}`}>
         <div className="text-center">
           <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
-            KSTAR 發證中心
+            {copy.fanIdBrandHeading}
           </h2>
-          <p className="mt-1 text-xs text-[#5e636d]/80">先建立你的追星檔案</p>
+          <p className="mt-1 text-xs text-[#5e636d]/80">{copy.fanIdBrandSub}</p>
         </div>
         <div className="fanid-preview-shell fanid-landing-preview relative py-1.5">
           <div
@@ -108,7 +110,7 @@ export default function MyFourCuts({
           onClick={repick}
           className="rounded-full bg-[#b4302b] px-5 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110"
         >
-          開始建立追星檔案 →
+          {copy.wizStartCta} →
         </button>
       </section>
     );
@@ -117,7 +119,7 @@ export default function MyFourCuts({
   return (
     <section className={`flex flex-col items-center gap-3 ${className}`}>
       <h2 className="font-orbitron text-sm font-bold tracking-widest text-[#5e636d] uppercase">
-        你的人生四格 ✦
+        {copy.fourCutsTitle} ✦
       </h2>
       <div className={homeEntryMotionClass(flashOk, entry)}>
         <FourCuts artists={artists} className={frameClassName} linked developId={developId} />
@@ -126,7 +128,7 @@ export default function MyFourCuts({
         onClick={repick}
         className="text-xs text-[#5e636d]/70 hover:text-[#7c8088] transition"
       >
-        重新挑選 ✎
+        {copy.repickBtn}
       </button>
     </section>
   );

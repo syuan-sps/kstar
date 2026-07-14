@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useFavorites } from "@/lib/useFavorites";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import ArtistCard from "@/components/ArtistCard";
 import type { ArtistLite } from "@/lib/lite";
 
 export default function FavoritesList({ allArtists }: { allArtists: ArtistLite[] }) {
+  const copy = useCopy();
   const { list } = useFavorites();
   const byId = new Map(allArtists.map((a) => [a.id, a]));
   const favArtists = list
@@ -18,7 +19,7 @@ export default function FavoritesList({ allArtists }: { allArtists: ArtistLite[]
       <h1 className="font-orbitron text-xl font-bold text-[#1c1e24]">{copy.myFavorites}</h1>
 
       <p className="rounded-xl border border-[#c8ccd2]/20 bg-[#7c8088]/5 px-4 py-3 text-xs text-[#9aa0aa]">
-        收藏目前儲存在這個瀏覽器中。（設定 Supabase 後可跨裝置同步）
+        {copy.favoritesStorageNote}
       </p>
 
       {favArtists.length === 0 && (

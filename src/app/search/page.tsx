@@ -1,5 +1,7 @@
 import { searchArtists } from "@/lib/data";
-import { copy } from "@/lib/copy";
+import { getCopy } from "@/lib/copy";
+import { getLocale } from "@/lib/i18n/server";
+import { localizeArtists } from "@/lib/i18n/catalog";
 import ArtistCard from "@/components/ArtistCard";
 
 export default async function SearchPage({
@@ -7,8 +9,10 @@ export default async function SearchPage({
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
+  const locale = await getLocale();
+  const copy = getCopy(locale);
   const { q = "" } = await searchParams;
-  const artists = await searchArtists(q);
+  const artists = localizeArtists(await searchArtists(q), locale);
 
   return (
     <div className="space-y-8">

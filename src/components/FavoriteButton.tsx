@@ -1,7 +1,7 @@
 "use client";
 
 import { useFavorites } from "@/lib/useFavorites";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function FavoriteButton({
   id,
@@ -10,6 +10,7 @@ export default function FavoriteButton({
   id: string;
   size?: "sm" | "md";
 }) {
+  const copy = useCopy();
   const { isFavorite, toggle } = useFavorites();
   const active = isFavorite(id);
   const pad = size === "sm" ? "h-7 w-7 text-sm" : "px-3 py-1.5 text-sm gap-1";

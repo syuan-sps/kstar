@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 type ClaimPrefs = { topIdols?: string[]; fanIdClaimed?: boolean };
 
@@ -19,6 +19,7 @@ function canClaim(): boolean {
 }
 
 export default function ClaimChip() {
+  const copy = useCopy();
   const [visible, setVisible] = useState(canClaim);
   const refresh = useCallback(() => setVisible(canClaim()), []);
 
