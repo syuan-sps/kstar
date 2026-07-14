@@ -83,7 +83,7 @@ export default async function RootLayout({
               href="/#idols"
               className="shrink-0 rounded-full border border-[#c8ccd2]/30 px-3 py-1.5 text-sm font-medium text-[#1c1e24] hover:bg-[#7c8088]/10"
             >
-              ✦ 偶像圖鑑
+              ✦ {copy.navDirectory}
             </Link>
             <Link
               href="/favorites"
@@ -96,9 +96,9 @@ export default async function RootLayout({
         </header>
         <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
         <footer className="relative z-10 border-t border-[#c8ccd2]/15 px-4 py-6 text-center text-xs text-[#9aa0aa]">
-          {copy.appName} · 以曲風與後設資料推薦 · 資料來源 Spotify
+          {copy.appName} · {copy.footerCredit}
           {" · "}
-          <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">✦ 投稿偶像照片</a>
+          <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">{copy.footerSubmit}</a>
         </footer>
         <Taskbar />
         </LocaleProvider>

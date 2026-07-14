@@ -1,9 +1,11 @@
 import { getAllArtistsLite } from "@/lib/data";
-import { copy } from "@/lib/copy";
+import { getCopy } from "@/lib/copy";
+import { getLocale } from "@/lib/i18n/server";
 import MyFourCuts from "@/components/MyFourCuts";
 import IdolDirectory from "@/components/IdolDirectory";
 
 export default async function Home() {
+  const copy = getCopy(await getLocale());
   const artists = await getAllArtistsLite();
 
   return (
@@ -55,7 +57,7 @@ export default async function Home() {
           href="#idols"
           className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 text-xs text-[#56789f]/60 transition hover:text-[#56789f]"
         >
-          ↓ 偶像圖鑑
+          ↓ {copy.navDirectory}
         </a>
       </div>
 

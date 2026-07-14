@@ -2,9 +2,10 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function SearchBar() {
+  const copy = useCopy();
   const router = useRouter();
   const params = useSearchParams();
   const [q, setQ] = useState(params.get("q") ?? "");

@@ -23,6 +23,12 @@ export const copyEn: Copy = {
   viewArtist: "View idol",
   startBtn: "Start over",
   taskbarLabel: "♪ K-pop picks",
+  navDirectory: "Idol directory",
+  footerCredit: "Recommendations from genres & metadata · Data from Spotify",
+  footerSubmit: "✦ Submit idol photos",
+  bugReportLabel: "Report a problem",
+  bugReportSubject: "KStar problem report",
+  bugReportBody: "Describe the problem (with screenshots and steps to reproduce):\n\n",
 
   // ── fan soul / onboarding quiz ─────────────────────────────────────
   soulCtaTitle: "Curious about your fan soul?",

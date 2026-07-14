@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 function Clock() {
   const [time, setTime] = useState("--:--");
@@ -19,14 +19,14 @@ function Clock() {
   return <span className="font-mono tabular-nums text-[#7c8088]">{time}</span>;
 }
 
-// Pre-filled email so anyone can report a bug from the taskbar.
-const BUG_MAILTO =
-  "mailto:ss7306@columbia.edu?subject=" +
-  encodeURIComponent("KStar 回報問題") +
-  "&body=" +
-  encodeURIComponent("請描述你遇到的問題（含畫面與重現步驟）：\n\n");
-
 export default function Taskbar() {
+  const copy = useCopy();
+  // Pre-filled email so anyone can report a bug from the taskbar.
+  const bugMailto =
+    "mailto:ss7306@columbia.edu?subject=" +
+    encodeURIComponent(copy.bugReportSubject) +
+    "&body=" +
+    encodeURIComponent(copy.bugReportBody);
   return (
     <div className="taskbar hidden md:flex fixed bottom-0 left-0 right-0 z-30 items-center gap-3 px-4 h-10">
       {/* 重新開始 — full reset: wipe the saved 4 picks + onboarding, then replay
@@ -49,7 +49,7 @@ export default function Taskbar() {
 
       {/* Report a bug — search + favourites already live in the top header */}
       <div className="flex items-center gap-1">
-        <a href={BUG_MAILTO} className="taskbar-icon" title="回報問題" aria-label="回報問題">
+        <a href={bugMailto} className="taskbar-icon" title={copy.bugReportLabel} aria-label={copy.bugReportLabel}>
           <span>🐞</span>
         </a>
       </div>

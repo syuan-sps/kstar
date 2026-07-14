@@ -21,6 +21,12 @@ export const copyZh = {
   viewArtist: "查看偶像",
   startBtn: "重新開始",
   taskbarLabel: "♪ K-pop 推薦",
+  navDirectory: "偶像圖鑑",
+  footerCredit: "以曲風與後設資料推薦 · 資料來源 Spotify",
+  footerSubmit: "✦ 投稿偶像照片",
+  bugReportLabel: "回報問題",
+  bugReportSubject: "KStar 回報問題",
+  bugReportBody: "請描述你遇到的問題（含畫面與重現步驟）：\n\n",
 
   // ── 追星靈魂 / 入坑問卷 ────────────────────────────────────────────
   soulCtaTitle: "想知道你的追星靈魂？",

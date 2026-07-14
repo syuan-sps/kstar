@@ -25,7 +25,7 @@ export default function ArtistCard({
 
       {reasons && reasons.length > 0 && (
         <div className="mt-1.5 px-1 text-center text-[11px] leading-relaxed text-[#7c8088]/80">
-          {reasons.join("・")}
+          {reasons.join(" · ")}
         </div>
       )}
     </Link>
