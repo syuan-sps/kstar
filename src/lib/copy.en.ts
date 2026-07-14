@@ -175,6 +175,17 @@ export const copyEn: Copy = {
   shareDownloadStory: "Download story card",
   shareDownloadReport: "Download full report",
   redoQuiz: "Retake the quiz",
+  // 16 fan-soul types explanation page
+  soulTypesTitle: "The 16 Fan-Soul Types",
+  soulTypesIntro: "Each type is built from whether 4 layers score \"high\": Aesthetic (A) / Personality (P) / Stage (S) / Resonance (R). Your type is derived from the 4 idols you pick — it isn't a separate quiz.",
+  soulTypesCta: "Back home to find yours →",
+  soulTypesMissingLabel: "One blind spot",
+  tierOmnivore: "Zero highs · The omnivore",
+  tierPurist: "One high · The purists",
+  tierDuality: "Two highs · The dualities",
+  tierNearPerfect: "Three highs · The near-perfect",
+  tierLegend: "Four highs · The legend",
+  footerSoulTypes: "✦ The 16 fan-soul types",
   // fan pass
   viewPass: "Fan pass",
   passPickIdol: "Who is this fan pass for?",

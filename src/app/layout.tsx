@@ -104,6 +104,8 @@ export default async function RootLayout({
           {copy.appName} · {copy.footerCredit}
           {" · "}
           <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">{copy.footerSubmit}</a>
+          {" · "}
+          <a href="/soul-types" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">{copy.footerSoulTypes}</a>
         </footer>
         <Taskbar />
         </LocaleProvider>
