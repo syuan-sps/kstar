@@ -1,0 +1,13 @@
+{
+  "description": "Curated roster of K-pop acts popular in Taiwan. Edit freely; ingestion resolves each name against Spotify. Expand toward 150-300 for production.",
+  "artists": [
+    "NewJeans", "IVE", "LE SSERAFIM", "aespa", "(G)I-DLE", "ITZY",
+    "BLACKPINK", "TWICE", "Red Velvet", "MAMAMOO", "STAYC", "Kep1er",
+    "BTS", "SEVENTEEN", "Stray Kids", "TOMORROW X TOGETHER", "ENHYPEN",
+    "ATEEZ", "NCT 127", "NCT DREAM", "TREASURE", "RIIZE", "ZEROBASEONE",
+    "IU", "TAEYEON", "Jung Kook", "Jimin", "V", "Agust D", "BIBI",
+    "Lee Hi", "HEIZE", "Sunmi", "CHUNG HA", "Jessi", "Hwa Sa",
+    "EXO", "BIGBANG", "Girls' Generation", "f(x)", "GOT7", "MONSTA X",
+    "fromis_9", "NMIXX", "BABYMONSTER", "ILLIT", "Billlie", "Purple Kiss"
+  ]
+}

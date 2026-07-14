@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>追星證 · 卡面設計 mock (Silvercore)</title>
+<!-- Design mock only — same pattern as vocab app/design/bopo: one file, no build.
+     Tokens copied VERBATIM from src/app/globals.css (Y2K Silvercore). -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  /* ═══ tokens: verbatim from src/app/globals.css ═══ */
+  :root {
+    --background: #dfe2e7; --foreground: #1c1e24; --surface: #f4f5f7; --card: #ffffff;
+    --ink-2: #5e636d; --ink-3: #9aa0aa; --line: #c8ccd2; --steel: #7c8088;
+    --cherry: #b4302b; --lacquer: #d23a33; --blue: #56789f; --powder: #a7c0dc;
+    --ease-out-expo: cubic-bezier(0.16,1,0.3,1); --ease-spring: cubic-bezier(0.34,1.42,0.5,1);
+    --gold: #a8822f; --gold-hi: #d8b45a; /* NEW proposal: foil accents for the 證件 layer */
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--foreground);
+    font-family: "Noto Sans TC", system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--background);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(124,128,136,0.05) 39px, rgba(124,128,136,0.05) 40px),
+      radial-gradient(70rem 50rem at 50% 0%, rgba(255,255,255,0.55) 0%, transparent 60%);
+    padding: 32px 16px 80px;
+  }
+  .font-orbitron { font-family: "Orbitron", monospace; }
+  .chrome-text {
+    background: linear-gradient(135deg, #7c8088 0%, #14151a 24%, #c0c4ca 48%, #14151a 72%, #7c8088 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .window-frame {
+    border: 2px solid #aeb3bb;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7), 4px 4px 0 rgba(74,74,74,0.35), 0 0 20px rgba(124,128,136,0.22);
+    background: var(--surface); border-radius: 4px; overflow: hidden;
+  }
+  .title-bar {
+    display: flex; align-items: center; gap: .25rem; padding: .2rem .4rem;
+    background: linear-gradient(180deg, #f4f6f8 0%, #c8ccd2 48%, #9aa0aa 100%);
+    min-height: 22px; font-size: 11px; font-weight: 700; text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  }
+  .win-btn { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 14px;
+    background: linear-gradient(180deg, #fff 0%, #c0c4ca 100%); border: 1px solid #9aa0aa; border-radius: 2px;
+    font-size: 9px; font-weight: bold; line-height: 1; margin-left: auto; }
+  .win-btn + .win-btn { margin-left: 2px; }
+
+  /* verbatim motion */
+  @keyframes cut-develop { 0% { opacity: .05; filter: brightness(2.6) saturate(.25) contrast(.85); } 60% { opacity: 1; } 100% { opacity: 1; filter: brightness(1) saturate(1) contrast(1); } }
+  @keyframes intro-flash { 0% { opacity: 0; } 14% { opacity: .92; } 40% { opacity: .08; } 56% { opacity: .42; } 100% { opacity: 0; } }
+  /* NEW proposal keyframes (Task 4 of the plan) */
+  @keyframes fanid-stamp {
+    0% { transform: scale(2.2) rotate(-14deg); opacity: 0; filter: brightness(2); }
+    55% { transform: scale(.94) rotate(2deg); opacity: 1; filter: brightness(1.35); }
+    75% { transform: scale(1.04) rotate(0); } 100% { transform: scale(1) rotate(0); opacity: 1; filter: brightness(1); }
+  }
+  @keyframes strip-print { from { transform: translateY(-46%); } to { transform: translateY(0); } }
+
+  .page { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -.01em; }
+  .sub { color: var(--ink-2); font-size: 14px; margin: 0 0 24px; max-width: 62ch; }
+  .row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+  .col { flex: 1 1 340px; }
+  .lab { font-family: "Orbitron", monospace; font-size: 10px; letter-spacing: .18em; color: var(--steel); text-transform: uppercase; margin: 0 0 10px; }
+
+  /* ═══ the 追星證 — Silvercore certificate ═══ */
+  .fanid {
+    width: 328px; border-radius: 14px; padding: 14px; position: relative; overflow: hidden;
+    background: linear-gradient(165deg, #ffffff 0%, #eceef2 55%, #dfe2e7 100%);
+    border: 1px solid #aeb3bb;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.85), 6px 6px 0 rgba(74,74,74,.28), 0 12px 34px rgba(124,128,136,.35);
+  }
+  /* guilloché — engraved security lines, silver on silver */
+  .fanid::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background:
+      repeating-linear-gradient(63deg, transparent 0 7px, rgba(124,128,136,.07) 7px 8px),
+      repeating-radial-gradient(circle at 110% -10%, transparent 0 11px, rgba(86,120,159,.05) 11px 12px);
+  }
+  .fanid > * { position: relative; }
+  .f-head { display: flex; align-items: center; justify-content: space-between; }
+  .f-title { font-family: "Orbitron", monospace; font-weight: 900; font-size: 12px; letter-spacing: .16em; }
+  .f-serial { font-family: "Orbitron", monospace; font-size: 8px; color: var(--ink-3); text-align: right; line-height: 1.5; }
+  .f-body { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; margin-top: 10px; }
+  .f-hero { position: relative; aspect-ratio: 3/3.4; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); background: linear-gradient(150deg, var(--powder), #e8b8c8 60%, #f2d9c8); }
+  .f-hero .crown { position: absolute; top: 6px; left: 6px; font-size: 14px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
+  .f-hero .who { position: absolute; inset: auto 0 0 0; padding: 14px 8px 6px; font-size: 11px; font-weight: 700; color: #fff;
+    background: linear-gradient(to top, rgba(28,30,36,.72), transparent); }
+  .f-hero .face { position: absolute; top: 6px; right: 6px; width: 34px; height: 43px; border-radius: 5px;
+    background: linear-gradient(150deg, #cfe3d8, #a7c0dc); border: 2px solid rgba(255,255,255,.95);
+    box-shadow: 0 2px 6px rgba(28,30,36,.3); }
+  .f-hero .face::after { content: "本人"; position: absolute; inset: auto 0 0; font-size: 6.5px; text-align: center;
+    background: rgba(255,255,255,.85); color: var(--ink-2); letter-spacing: .1em; border-radius: 0 0 3px 3px; }
+  .f-rail { display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+  .f-code { font-family: "Orbitron", monospace; font-weight: 900; font-size: 30px; letter-spacing: .08em; line-height: 1; }
+  .f-code .lo { color: var(--ink-3); font-weight: 400; }
+  .f-typename { font-size: 13.5px; font-weight: 900; }
+  .f-rarity { align-self: flex-start; display: inline-flex; align-items: center; gap: 5px;
+    border: 1px solid var(--gold); color: var(--gold); background: linear-gradient(180deg, rgba(216,180,90,.14), rgba(216,180,90,.05));
+    border-radius: 999px; padding: 2.5px 9px; font-family: "Orbitron", monospace; font-size: 8.5px; letter-spacing: .06em; }
+  .f-rarity::before { content: "✦"; color: var(--gold-hi); }
+  .f-lineup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 9px; }
+  .f-mini { aspect-ratio: 3/4; border-radius: 7px; border: 1px solid var(--line);
+    background: linear-gradient(150deg, #dbe4ef, #ecd9e2); }
+  .f-mini:nth-child(2) { background: linear-gradient(150deg, #e8ddcf, #d9e6dc); }
+  .f-mini:nth-child(3) { background: linear-gradient(150deg, #dfd8ea, #d7e3ec); }
+  .f-line { margin-top: 9px; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--ink-2); }
+  .f-line b { color: var(--foreground); }
+  .f-line .art { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px;
+    background: linear-gradient(150deg, var(--cherry), var(--blue)); margin-right: 4px; }
+  .f-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line); }
+  .f-barcode { height: 14px; width: 96px; opacity: .7;
+    background: repeating-linear-gradient(90deg, var(--foreground) 0 1px, transparent 1px 2px, var(--foreground) 2px 4px, transparent 4px 7px); }
+  .f-issue { margin-top: 6px; font-family: "Orbitron", monospace; font-size: 7px; color: var(--ink-3); letter-spacing: .04em; }
+  .f-qr { width: 46px; height: 46px; border-radius: 5px; background: #fff; border: 1px solid var(--line); position: relative; }
+  .f-qr::before { content: ""; position: absolute; inset: 5px;
+    background: radial-gradient(circle at 1.5px 1.5px, var(--foreground) 1px, transparent 1.3px); background-size: 4.5px 4.5px; }
+  .f-qr-lab { margin-top: 3px; font-size: 7px; color: var(--ink-3); text-align: center; letter-spacing: .05em; }
+  /* the foil seal (lands with fanid-stamp) */
+  .f-seal { position: absolute; right: 12px; top: 44%; width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center; font-family: "Orbitron", monospace; font-size: 8px; font-weight: 900; color: var(--gold);
+    border: 2px solid var(--gold); box-shadow: inset 0 0 0 3px rgba(216,180,90,.25), 0 1px 4px rgba(168,130,47,.35);
+    background: radial-gradient(circle at 35% 30%, rgba(216,180,90,.3), rgba(216,180,90,.08));
+    transform: rotate(-12deg); }
+
+  /* controls */
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .ctl { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px;
+    font-size: 12px; font-weight: 700; cursor: pointer; color: var(--ink-2); }
+  .ctl.on { border-color: var(--cherry); color: var(--cherry); background: rgba(180,48,43,.06); }
+  .ctl.go { background: var(--foreground); color: #fff; border-color: var(--foreground); }
+
+  /* step-4 stage */
+  .stage { position: relative; padding: 18px; min-height: 520px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .flash { position: absolute; inset: 0; pointer-events: none; z-index: 5; opacity: 0;
+    background: radial-gradient(circle at 50% 40%, #fff, rgba(255,255,255,.92) 40%, transparent 78%); }
+  .stage.printing .flash { animation: intro-flash .7s ease-out both; }
+  .stage.printing .fanid { animation: cut-develop .8s var(--ease-out-expo) .35s both, strip-print 1.1s var(--ease-out-expo) .1s both; }
+  .stage.printing .f-seal { animation: fanid-stamp .9s var(--ease-spring) 1.25s both; }
+  .printing-label { font-family: "Orbitron", monospace; font-size: 11px; letter-spacing: .3em; color: var(--ink-2); }
+  .printer-slot { width: 360px; max-width: 92%; height: 12px; border-radius: 6px; background: linear-gradient(180deg, #9aa0aa, #6f737b);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,.4); }
+
+  .note { margin-top: 26px; border-left: 3px solid var(--blue); background: var(--surface); padding: 12px 16px;
+    font-size: 13px; color: var(--ink-2); border-radius: 6px; }
+  .note b { color: var(--foreground); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1><span class="chrome-text font-orbitron">FAN ID</span> · 追星證卡面設計 mock</h1>
+  <p class="sub">
+    真實 Silvercore tokens(照抄 globals.css):銀霧底、chrome-text、cherry 點綴、window-frame 陰影語言。
+    金箔(--gold)是<b>新提案</b>,只用在稀有度徽章與鋼印 — 證件語言的份量,不搶 Silvercore 的銀。
+    切換下方控制項比較版本;「重播製卡」= step-4 發證動效(顯影 → 印出 → 鋼印落章)。
+  </p>
+
+  <div class="row">
+    <!-- ══ interactive card ══ -->
+    <div class="col">
+      <p class="lab">Card · 互動版(A/B 即此一開關)</p>
+      <div class="window-frame">
+        <div class="title-bar"><span>🪪 追星證.exe</span><span class="win-btn">─</span><span class="win-btn">□</span><span class="win-btn">×</span></div>
+        <div class="stage" id="stage">
+          <span class="flash"></span>
+          <p class="printing-label" id="plabel">製卡中…</p>
+          <div class="printer-slot"></div>
+          <div class="fanid" id="card">
+            <div class="f-head">
+              <span class="f-title chrome-text">◆ 追星證 · KSTAR FAN ID</span>
+              <span class="f-serial">KS-2026<br>#0428</span>
+            </div>
+            <div class="f-body">
+              <div class="f-hero">
+                <span class="crown">👑</span>
+                <span class="face" id="face"></span>
+                <span class="who">本命 · 金珉奎</span>
+              </div>
+              <div class="f-rail">
+                <span class="f-code font-orbitron">A<span class="lo">p</span>S<span class="lo">r</span></span>
+                <span class="f-typename">舞台美學鑑賞家</span>
+                <span class="f-rarity">4% 稀有型別</span>
+              </div>
+            </div>
+            <div class="f-lineup"><span class="f-mini"></span><span class="f-mini"></span><span class="f-mini"></span></div>
+            <div class="f-line" id="nameline">持卡人 · <b>小星</b></div>
+            <div class="f-line" id="songline"><span class="art"></span>本命曲 · <b>Super</b> — SEVENTEEN ♪</div>
+            <div class="f-foot">
+              <div>
+                <div class="f-barcode"></div>
+                <div class="f-issue">發證 2026.07.14 · KSTAR 發證中心</div>
+              </div>
+              <div><div class="f-qr"></div><div class="f-qr-lab">掃碼做你的</div></div>
+            </div>
+            <span class="f-seal" id="seal">發證<br>中心</span>
+          </div>
+          <div class="controls">
+            <button class="ctl on" id="tFace">本人版 A</button>
+            <button class="ctl on" id="tName">持卡人行</button>
+            <button class="ctl on" id="tSong">本命曲行</button>
+            <button class="ctl go" id="replay">↻ 重播製卡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ static reference: version B ══ -->
+    <div class="col">
+      <p class="lab">Version B · 純分享版(參照,無本人徽章/持卡人)</p>
+      <div class="fanid">
+        <div class="f-head">
+          <span class="f-title chrome-text">◆ 追星證 · KSTAR FAN ID</span>
+          <span class="f-serial">KS-2026<br>#0428</span>
+        </div>
+        <div class="f-body">
+          <div class="f-hero">
+            <span class="crown">👑</span>
+            <span class="who">本命 · 金珉奎</span>
+          </div>
+          <div class="f-rail">
+            <span class="f-code font-orbitron">A<span class="lo">p</span>S<span class="lo">r</span></span>
+            <span class="f-typename">舞台美學鑑賞家</span>
+            <span class="f-rarity">4% 稀有型別</span>
+          </div>
+        </div>
+        <div class="f-lineup"><span class="f-mini"></span><span class="f-mini"></span><span class="f-mini"></span></div>
+        <div class="f-line"><span class="art"></span>本命曲 · <b>Super</b> — SEVENTEEN ♪</div>
+        <div class="f-foot">
+          <div>
+            <div class="f-barcode"></div>
+            <div class="f-issue">發證 2026.07.14 · KSTAR 發證中心</div>
+          </div>
+          <div><div class="f-qr"></div><div class="f-qr-lab">掃碼做你的</div></div>
+        </div>
+        <span class="f-seal">發證<br>中心</span>
+      </div>
+
+      <div class="note">
+        <b>設計判斷待你裁決:</b><br>
+        1. 鋼印文字:已裁決 →「發證中心」(2026-07-13)。<br>
+        2. 金箔份量:目前只有稀有徽章+鋼印。要不要序號也上金?<br>
+        3. 卡底是亮銀漸層(貼 Silvercore);若想要更「證件」,可換米白票券紙紋。
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mock-only interactivity: version/line toggles + replay of the issue ceremony.
+  const $ = (id) => document.getElementById(id);
+  const stage = $("stage");
+  function bindToggle(btnId, elId) {
+    $(btnId).addEventListener("click", () => {
+      const el = $(elId), btn = $(btnId);
+      const off = el.style.display === "none";
+      el.style.display = off ? "" : "none";
+      btn.classList.toggle("on", off);
+      if (btnId === "tFace") btn.textContent = off ? "本人版 A" : "純分享版 B";
+    });
+  }
+  bindToggle("tFace", "face");
+  bindToggle("tName", "nameline");
+  bindToggle("tSong", "songline");
+  $("replay").addEventListener("click", () => {
+    stage.classList.remove("printing");
+    void stage.offsetWidth; // restart animations
+    stage.classList.add("printing");
+  });
+  stage.classList.add("printing"); // play once on load
+</script>
+</body>
+</html>

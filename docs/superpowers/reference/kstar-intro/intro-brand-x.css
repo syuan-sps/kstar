@@ -1,0 +1,408 @@
+/* ════════════════════════════════════════════════════════════════════════
+   KSTAR · HERO-INTRO MOTION ENGINE  (3 directions)
+   ────────────────────────────────────────────────────────────────────────
+   A high-stakes brand moment that plays ONCE on first visit, BEFORE the
+   photobooth splash. Three explorable directions, one shared vocabulary:
+
+     A · CHROME FORGE   — liquid silver coalesces into the wordmark, a soul-
+                          card flips up.  (material / title-sequence)
+     B · BIG BANG       — one star bursts into the 星圖, four anchors connect,
+                          the web collapses into the wordmark.  (cosmic / scale)
+     C · HOLO BLOOM     — a holographic 追星靈魂 card spins in and fans the four
+                          A·P·S·R layer-colours into the wordmark.  (card / soul)
+
+   Each ends on a fade/scale "handoff" so the photobooth can take over.
+
+   ARCHITECTURE
+   • Resting (base) style = the FINAL visible frame, so with motion off / print /
+     reduced-motion users see the finished brand lockup — never a blank stage.
+   • All motion is gated behind an ancestor `.ib-play` class added by JS on
+     mount/replay (mirrors IntroSplash's JS gate). The React component simply
+     doesn't add `.ib-play` for prefers-reduced-motion users.
+   • The featured wordmark is one editable element; swap freely.
+
+   The four layer colours below are the REAL ones from the app
+   (ConstellationView EDGE_COLOR / archetypes LAYER_COLOR) so the soul-card
+   teaser is authentic: 美學 / 個性 / 表演 / 內容.
+   ════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ib-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ib-ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --ib-spring:    cubic-bezier(0.34, 1.42, 0.5, 1);
+  --ib-soft:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ib-cherry:    #b4302b;
+  --ib-blue:      #56789f;
+  --ib-aesthetic:   #e7eaef;
+  --ib-personality: #ef6f68;
+  --ib-performance: #86b6f0;
+  --ib-content:     #b8bec9;
+  --ib-chrome: linear-gradient(180deg, #ffffff 0%, #e6e9ee 18%, #aeb3bb 42%, #7c8088 52%, #c0c4ca 70%, #f4f6f8 100%);
+}
+
+/* ── Stage ──────────────────────────────────────────────────────────── */
+.ib-stage {
+  position: relative; width: 100%; height: 100%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+}
+.ib-scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+
+/* ── Shared: wordmark ───────────────────────────────────────────────── */
+.ib-wordmark {
+  position: relative; text-align: center; line-height: 0.96;
+  font-weight: 900; letter-spacing: 0.02em;
+}
+.ib-wordmark .ib-mark {
+  display: block; font-size: 46px; text-transform: uppercase;
+  background: var(--ib-chrome); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6)) drop-shadow(0 3px 6px rgba(40,44,52,0.35));
+}
+.ib-wordmark .ib-mark-zh {
+  display: block; margin-top: 4px; font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 17px; font-weight: 900; letter-spacing: 0.32em; color: #5e636d; text-indent: 0.32em;
+}
+/* glint that races across the wordmark */
+.ib-wordmark .ib-glint {
+  content: ""; position: absolute; inset: -8% -4%; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.9) 50%, transparent 60%);
+  -webkit-mask: linear-gradient(#000, #000); mix-blend-mode: screen;
+}
+
+/* ── Shared: slogan ─────────────────────────────────────────────────── */
+.ib-slogan { text-align: center; }
+.ib-slogan .ib-en {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--ib-cherry);
+}
+.ib-slogan .ib-zh {
+  margin-top: 5px; font-family: var(--font-noto-tc), system-ui, sans-serif;
+  font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em; color: #6f747c;
+}
+
+/* ── Shared: 追星靈魂 soul-card teaser ───────────────────────────────── */
+.ib-soulcard {
+  width: 150px; border-radius: 13px; padding: 12px 12px 11px; position: relative; overflow: hidden;
+  background: linear-gradient(157deg, #ffffff, #eef0f3 55%, #dfe3e8);
+  border: 1px solid #d3d7dd;
+  box-shadow: 4px 6px 0 rgba(124,128,136,0.26), 0 10px 26px rgba(124,128,136,0.28), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+/* holographic sheen that drifts across the card */
+.ib-soulcard::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.0;
+  background: conic-gradient(from 200deg at 30% 20%,
+    rgba(231,234,239,0) 0deg, rgba(134,182,240,0.35) 70deg, rgba(239,111,104,0.25) 150deg,
+    rgba(184,190,201,0.3) 230deg, rgba(255,255,255,0.5) 300deg, rgba(231,234,239,0) 360deg);
+  mix-blend-mode: screen;
+}
+.ib-sc-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.ib-sc-code { font-size: 19px; font-weight: 900; letter-spacing: 0.1em; color: #1c1e24; }
+.ib-sc-tier { flex-shrink: 0; white-space: nowrap; font-family: var(--font-noto-tc), system-ui, sans-serif; font-size: 9px; font-weight: 900; color: #fff; background: var(--ib-cherry); border-radius: 999px; padding: 3px 7px; }
+/* four layer "cuts" — the 4 picks, in the real layer colours */
+.ib-sc-cuts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin: 10px 0 7px; }
+.ib-sc-cuts .cut { height: 7px; border-radius: 3px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 0 0 1px rgba(124,128,136,0.12); }
+.ib-sc-cuts .c0 { background: var(--ib-aesthetic); }
+.ib-sc-cuts .c1 { background: var(--ib-personality); }
+.ib-sc-cuts .c2 { background: var(--ib-performance); }
+.ib-sc-cuts .c3 { background: var(--ib-content); }
+/* mini hexagon radar — the one soul the four cuts resolve into */
+.ib-sc-hex { width: 92px; height: 92px; margin: 0 auto 6px; }
+.ib-sc-hex svg { width: 100%; height: 100%; overflow: visible; }
+.ib-sc-hex .ring { fill: none; stroke: #c2c7ce; stroke-width: 0.9; stroke-opacity: 0.75; }
+.ib-sc-hex .poly { fill: rgba(180,48,43,0.14); stroke: var(--ib-cherry); stroke-width: 1.5; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; }
+.ib-sc-hex .dot { fill: #fff; stroke-width: 1.3; }
+.ib-sc-hex .dot.d0 { stroke: #9aa0aa; } .ib-sc-hex .dot.d1 { stroke: var(--ib-personality); }
+.ib-sc-hex .dot.d2 { stroke: var(--ib-performance); } .ib-sc-hex .dot.d3 { stroke: var(--ib-cherry); }
+.ib-sc-hex .dot.d4 { stroke: #7c8088; } .ib-sc-hex .dot.d5 { stroke: var(--ib-blue); }
+.ib-sc-labels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+.ib-sc-labels span { font-family: var(--font-noto-tc), system-ui, sans-serif; font-size: 10px; font-weight: 700; color: #9aa0aa; text-align: center; }
+.ib-sc-foot { margin-top: 9px; padding-top: 8px; border-top: 1px solid #e1e4e8; display: flex; align-items: center; justify-content: space-between; }
+.ib-sc-foot b { font-size: 8.5px; font-weight: 700; letter-spacing: 0.18em; color: #6f747c; }
+.ib-sc-foot em { font-family: var(--font-noto-tc), system-ui, sans-serif; font-style: normal; font-size: 9px; color: #9aa0aa; }
+
+/* skip control */
+.ib-skip {
+  position: absolute; right: 12px; bottom: 11px; z-index: 9; cursor: pointer;
+  font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  color: #6f747c; background: rgba(255,255,255,0.55); border: 1px solid rgba(124,128,136,0.4); border-radius: 999px;
+  padding: 5px 12px; backdrop-filter: blur(4px); transition: color .2s, border-color .2s, background .2s;
+}
+.ib-skip:hover { color: #1c1e24; border-color: #7c8088; background: rgba(255,255,255,0.85); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ════════════════════════════════════════════════════════════════════════ */
+@keyframes ib-fade-out      { to { opacity: 0; visibility: hidden; } }
+@keyframes ib-forge-mark    { 0% { opacity: 0; filter: blur(13px) brightness(2.4); transform: translateY(8px) scaleY(1.12); letter-spacing: 0.3em; } 60% { opacity: 1; } 100% { opacity: 1; filter: blur(0) brightness(1); transform: translateY(0) scaleY(1); letter-spacing: 0.02em; } }
+@keyframes ib-zh-in         { from { opacity: 0; letter-spacing: 0.7em; } to { opacity: 1; letter-spacing: 0.32em; } }
+@keyframes ib-glint-sweep   { 0% { opacity: 0; transform: translateX(-60%); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateX(60%); } }
+@keyframes ib-slogan-in     { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ib-card-flip     { 0% { opacity: 0; transform: perspective(700px) rotateX(72deg) translateY(-30px) scale(0.9); } 60% { opacity: 1; } 100% { opacity: 1; transform: perspective(700px) rotateX(0) translateY(0) scale(1); } }
+@keyframes ib-card-rise     { from { opacity: 0; transform: translateY(20px) scale(0.92); filter: blur(8px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes ib-holo-drift    { 0%,100% { opacity: 0.35; transform: translate(-6%, -4%) rotate(0deg); } 50% { opacity: 0.9; transform: translate(6%, 4%) rotate(8deg); } }
+@keyframes ib-bar-grow      { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes ib-spec-sweep    { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 30% { opacity: 0.8; } 100% { transform: translateX(40%) rotate(8deg); opacity: 0; } }
+
+/* Big-bang specifics */
+@keyframes ib-core-pulse    { 0% { opacity: 0; transform: scale(0.2); } 40% { opacity: 1; transform: scale(1); } 70% { opacity: 1; transform: scale(0.9); } 100% { opacity: 1; transform: scale(28); } }
+@keyframes ib-core-fade     { 0%,72% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ib-star-burst    { 0% { opacity: 0; transform: translate(0,0) scale(0); } 18% { opacity: 1; } 100% { opacity: var(--o, 0.8); transform: translate(var(--tx), var(--ty)) scale(var(--s,1)); } }
+@keyframes ib-anchor-light  { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.2); } 70% { opacity: 1; transform: translate(-50%,-50%) scale(1.25); } 100% { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+@keyframes ib-edge-draw     { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes ib-web-collapse  { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.2); } }
+@keyframes ib-mark-fromstar { 0% { opacity: 0; transform: scale(0.4); filter: blur(6px); } 100% { opacity: 1; transform: scale(1); filter: blur(0); } }
+
+/* Holo specifics */
+@keyframes ib-card-spin     { 0% { opacity: 0; transform: perspective(800px) rotateY(-220deg) scale(0.6); } 55% { opacity: 1; } 100% { opacity: 1; transform: perspective(800px) rotateY(0deg) scale(1); } }
+@keyframes ib-fan-bar       { 0% { opacity: 0; transform: translateY(0) scaleY(0.2); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-90px) scaleY(1.6); } }
+@keyframes ib-card-settle   { from { transform: translateY(-46px) scale(1.12); } to { transform: translateY(0) scale(1); } }
+
+/* ════════════════════════════════════════════════════════════════════════
+   RESTING STATES  (final frame — visible with motion off)
+   ════════════════════════════════════════════════════════════════════════ */
+/* A · FORGE */
+.ibA { background: radial-gradient(120% 90% at 50% 18%, #2b2e34 0%, #1a1c21 55%, #0c0d10 100%); }
+.ibA .ib-wordmark .ib-mark { background: linear-gradient(180deg, #ffffff 0%, #dfe3e8 16%, #aeb3bb 40%, #7c8088 52%, #c8ccd2 70%, #ffffff 100%); -webkit-background-clip: text; background-clip: text; }
+.ibA .ib-wordmark .ib-mark-zh { color: #aeb3bb; }
+.ibA .ib-slogan .ib-zh { color: #aeb3bb; }
+.ibA .ib-spec { position: absolute; top: -20%; left: 0; width: 60%; height: 140%; opacity: 0; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(167,192,220,0.18), transparent); }
+
+/* B · BIG BANG */
+.ibB { background: radial-gradient(110% 90% at 50% 42%, #23262d 0%, #14161b 52%, #08090c 100%); }
+.ibB .ib-core { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: radial-gradient(circle, #fff, #bcd0e6 50%, rgba(86,120,159,0)); opacity: 0; }
+.ibB .ib-burst { position: absolute; inset: 0; pointer-events: none; }
+.ibB .ib-bstar { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; border-radius: 50%; background: #e7eaef; opacity: 0; box-shadow: 0 0 6px rgba(231,234,239,0.8); transform: translate(var(--tx), var(--ty)); }
+.ibB .ib-anchor { position: absolute; border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 2px rgba(255,255,255,0.9), 0 0 18px 5px rgba(225,130,100,0.4); }
+.ibB .ib-anchor.a0 { background: radial-gradient(circle at 38% 32%, #fff, #9aa0aa); }
+.ibB .ib-anchor.a1 { background: radial-gradient(circle at 38% 32%, #bcd0e6, #56789f); }
+.ibB .ib-anchor.a2 { background: radial-gradient(circle at 38% 32%, #ecb9b6, #b4302b); }
+.ibB .ib-anchor.a3 { background: radial-gradient(circle at 38% 32%, #d0d4da, #7c8088); }
+.ibB .ib-edges { position: absolute; inset: 0; }
+.ibB .ib-edges line { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.ibB .ib-wordmark .ib-mark { background: linear-gradient(180deg,#fff 0%,#dfe3e8 16%,#aeb3bb 42%,#7c8088 52%,#c8ccd2 70%,#fff 100%); -webkit-background-clip: text; background-clip: text; }
+.ibB .ib-wordmark .ib-mark-zh { color: #aeb3bb; }
+.ibB .ib-slogan .ib-zh { color: #aeb3bb; }
+/* in the resting frame the burst/web is hidden and the lockup shows */
+.ibB .ib-core, .ibB .ib-burst, .ibB .ib-anchor, .ibB .ib-edges { opacity: 0; }
+.ibB .ib-lockup { opacity: 1; }
+
+/* C · HOLO BLOOM (light stage for variety) */
+.ibC { background: radial-gradient(120% 95% at 50% 12%, #ffffff 0%, #eef1f4 52%, #dde1e6 100%); }
+.ibC .ib-fan { position: absolute; left: 50%; top: 52%; display: flex; gap: 8px; transform: translate(-50%,-50%); pointer-events: none; }
+.ibC .ib-fan i { width: 12px; height: 90px; border-radius: 8px; opacity: 0; transform-origin: bottom center; }
+.ibC .ib-fan i:nth-child(1){ background: linear-gradient(180deg, var(--ib-aesthetic), #fff); }
+.ibC .ib-fan i:nth-child(2){ background: linear-gradient(180deg, var(--ib-personality), #fff); }
+.ibC .ib-fan i:nth-child(3){ background: linear-gradient(180deg, var(--ib-performance), #fff); }
+.ibC .ib-fan i:nth-child(4){ background: linear-gradient(180deg, var(--ib-content), #fff); }
+.ibC .ib-wordmark .ib-mark { filter: drop-shadow(0 1px 0 rgba(255,255,255,0.8)) drop-shadow(0 3px 7px rgba(124,128,136,0.4)); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   MOTION  (only when an ancestor has .ib-play)
+   ════════════════════════════════════════════════════════════════════════ */
+/* ---- A · CHROME FORGE  (~5.0s) ---- */
+.ibA.ib-play .ib-spec               { animation: ib-spec-sweep 1.6s var(--ib-soft) 0.1s 1 both; }
+.ibA.ib-play .ib-wordmark .ib-mark  { animation: ib-forge-mark 1.4s var(--ib-ease-out) 0.25s both; }
+.ibA.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 1.05s both; }
+.ibA.ib-play .ib-wordmark .ib-glint { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 1.25s both; }
+.ibA.ib-play .ib-slogan             { animation: ib-slogan-in 0.8s var(--ib-ease-out) 1.7s both; }
+.ibA.ib-play .ib-soulcard           { animation: ib-card-flip 1.0s var(--ib-spring) 2.5s both; }
+.ibA.ib-play .ib-soulcard::after    { animation: ib-holo-drift 3s var(--ib-soft) 3.2s infinite; }
+.ibA.ib-play.ib-handoff             { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ---- B · BIG BANG  (~5.2s) ---- */
+.ibB.ib-play .ib-core    { animation: ib-core-pulse 1.1s var(--ib-ease-out) 0.1s both, ib-core-fade 1.2s linear 0.1s both; }
+.ibB.ib-play .ib-bstar   { animation: ib-star-burst 1.2s var(--ib-ease-out) 0.55s both; animation-delay: calc(0.55s + var(--bd, 0s)); }
+.ibB.ib-play .ib-anchor  { animation: ib-anchor-light 0.7s var(--ib-spring) both; }
+.ibB.ib-play .ib-anchor.a0 { animation-delay: 1.5s; } .ibB.ib-play .ib-anchor.a1 { animation-delay: 1.65s; }
+.ibB.ib-play .ib-anchor.a2 { animation-delay: 1.8s; } .ibB.ib-play .ib-anchor.a3 { animation-delay: 1.95s; }
+.ibB.ib-play .ib-edges line { stroke-dashoffset: 1; animation: ib-edge-draw 0.7s var(--ib-ease-out) both; }
+.ibB.ib-play .ib-edges line:nth-child(1){ animation-delay: 2.0s; } .ibB.ib-play .ib-edges line:nth-child(2){ animation-delay: 2.15s; }
+.ibB.ib-play .ib-edges line:nth-child(3){ animation-delay: 2.3s; } .ibB.ib-play .ib-edges line:nth-child(4){ animation-delay: 2.45s; }
+.ibB.ib-play .ib-burst   { animation: ib-web-collapse 0.7s var(--ib-ease-in) 2.9s both; }
+.ibB.ib-play .ib-lockup  { opacity: 0; animation: ib-mark-fromstar 0.9s var(--ib-ease-out) 3.0s both; }
+.ibB.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 3.5s both; }
+.ibB.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.7s both; }
+.ibB.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-rise 0.9s var(--ib-ease-out) 4.0s both; }
+.ibB.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 4.6s infinite; }
+.ibB.ib-play.ib-handoff  { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ---- C · HOLO BLOOM  (~5.0s) ---- */
+.ibC.ib-play .ib-soulcard { animation: ib-card-spin 1.3s var(--ib-ease-out) 0.15s both; }
+.ibC.ib-play .ib-soulcard::after { animation: ib-holo-drift 2.4s var(--ib-soft) 0.3s infinite; }
+.ibC.ib-play .ib-fan i { animation: ib-fan-bar 1.1s var(--ib-ease-out) both; }
+.ibC.ib-play .ib-fan i:nth-child(1){ animation-delay: 1.35s; } .ibC.ib-play .ib-fan i:nth-child(2){ animation-delay: 1.45s; }
+.ibC.ib-play .ib-fan i:nth-child(3){ animation-delay: 1.55s; } .ibC.ib-play .ib-fan i:nth-child(4){ animation-delay: 1.65s; }
+.ibC.ib-play .ib-wordmark .ib-mark { opacity: 0; animation: ib-forge-mark 1.0s var(--ib-ease-out) 2.1s both; }
+.ibC.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 2.7s both; }
+.ibC.ib-play .ib-wordmark .ib-glint { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 2.9s both; }
+.ibC.ib-play .ib-slogan { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.2s both; }
+.ibC.ib-play.ib-handoff { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   EXPANSION DIRECTIONS  D · E · F · G   (added — more ambitious motion)
+   D · SHUTTER STRIP  快門四格 — photobooth flash; 4 polaroids snap & collapse
+   E · HEXAGON RADAR  六邊形戰士 — radar web draws, data-hexagon springs out
+   F · SIGNAL GLITCH  訊號顯影 — CRT/VHS RGB-split reveal + scanline sweep
+   G · LIGHTSTICK OCEAN 應援海 — concert bokeh ocean rises, wordmark blooms
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── extra keyframes ─────────────────────────────────────────────────── */
+/* D · shutter */
+@keyframes ib-reticle-in   { 0% { opacity: 0; transform: scale(1.5) rotate(-6deg); } 40% { opacity: 0.9; } 100% { opacity: 0; transform: scale(0.9) rotate(0deg); } }
+@keyframes ib-shutter-flash{ 0%,7%{opacity:0} 9%{opacity:0.92} 13%{opacity:0} 25%{opacity:0} 27%{opacity:0.92} 31%{opacity:0} 43%{opacity:0} 45%{opacity:0.92} 49%{opacity:0} 61%{opacity:0} 63%{opacity:0.92} 67%{opacity:0} 100%{opacity:0} }
+@keyframes ib-frame-pop    { 0% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.55); filter: blur(7px); } 55% { opacity: 1; } 100% { opacity: 1; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1); filter: blur(0); } }
+@keyframes ib-strip-collapse{ from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-26px) scale(0.62); filter: blur(3px); } }
+
+/* E · hexagon */
+@keyframes ib-hex-in       { 0% { opacity: 0; transform: scale(0.55) rotate(-22deg); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+@keyframes ib-ring-draw    { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes ib-poly-pop     { 0% { opacity: 0; transform: scale(0); } 70% { opacity: 1; transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes ib-dot-ping     { 0% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes ib-hex-out      { from { opacity: 1; transform: scale(1) rotate(0deg); } to { opacity: 0; transform: scale(0.35) rotate(14deg); } }
+
+/* F · signal glitch */
+@keyframes ib-sig-mark     {
+  0%   { opacity: 0; transform: translateX(-7px); text-shadow: 7px 0 #ff3b46, -7px 0 #34e7ff; clip-path: inset(0 0 62% 0); }
+  14%  { opacity: 1; transform: translateX(6px);  clip-path: inset(52% 0 8% 0); }
+  28%  { transform: translateX(-5px); clip-path: inset(18% 0 44% 0); text-shadow: 5px 0 #ff3b46, -5px 0 #34e7ff; }
+  42%  { transform: translateX(4px);  clip-path: inset(0 0 0 0); }
+  60%  { transform: translateX(-3px); text-shadow: 3px 0 #ff3b46, -3px 0 #34e7ff; }
+  80%  { transform: translateX(1px);  text-shadow: 1px 0 #ff3b46, -1px 0 #34e7ff; }
+  100% { opacity: 1; transform: translateX(0); text-shadow: 0 0 rgba(255,59,70,0), 0 0 rgba(52,231,255,0); clip-path: inset(0 0 0 0); }
+}
+@keyframes ib-scanbar      { 0% { opacity: 0; top: -16%; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; top: 110%; } }
+@keyframes ib-scan-flicker { 0%,100%{opacity:0.35} 8%{opacity:0.6} 9%{opacity:0.18} 41%{opacity:0.55} 42%{opacity:0.25} 73%{opacity:0.5} }
+@keyframes ib-sig-reveal   { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes ib-sig-card     { 0% { opacity: 0; transform: translateX(-10px); box-shadow: 10px 0 0 -2px rgba(255,59,70,0.6), -10px 0 0 -2px rgba(52,231,255,0.6); } 40% { opacity: 1; transform: translateX(6px); } 100% { opacity: 1; transform: translateX(0); box-shadow: 4px 6px 0 rgba(124,128,136,0.26), 0 10px 26px rgba(124,128,136,0.28), inset 0 1px 0 rgba(255,255,255,0.9); } }
+
+/* G · lightstick ocean */
+@keyframes ib-spark-rise   { 0% { transform: translate(0,0) scale(0.5); opacity: 0; } 14% { opacity: var(--o, 0.9); } 82% { opacity: var(--o, 0.9); } 100% { transform: translate(var(--sway), calc(-1 * var(--dist))) scale(1); opacity: 0; } }
+@keyframes ib-mark-bloom   { 0% { opacity: 0; transform: scale(0.82); filter: blur(12px) brightness(2.2); letter-spacing: 0.26em; } 55% { opacity: 1; } 100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); letter-spacing: 0.02em; } }
+@keyframes ib-halo-pulse   { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0.4); } 45% { opacity: 0.85; } 100% { opacity: 0; transform: translate(-50%,-50%) scale(2.1); } }
+
+/* ════════════════════════════════════════════════════════════════════════
+   D · SHUTTER STRIP  快門四格
+   ════════════════════════════════════════════════════════════════════════ */
+.ibD { background: radial-gradient(120% 92% at 50% 18%, #2a2c33 0%, #14161b 58%, #090a0d 100%); }
+.ibD .ib-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; mix-blend-mode: screen; }
+.ibD .ib-reticle { position: absolute; left: 50%; top: 50%; width: 118px; height: 118px; margin: -59px 0 0 -59px; opacity: 0; pointer-events: none;
+  background:
+    linear-gradient(#e7eaef,#e7eaef) left top/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) left top/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) right top/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) right top/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) left bottom/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) left bottom/2px 22px no-repeat,
+    linear-gradient(#e7eaef,#e7eaef) right bottom/22px 2px no-repeat, linear-gradient(#e7eaef,#e7eaef) right bottom/2px 22px no-repeat; }
+.ibD .ib-reticle::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 1.5px solid rgba(180,48,43,0.85); border-radius: 50%; }
+.ibD .ib-strip { position: absolute; inset: 0; pointer-events: none; }
+.ibD .ib-frame { position: absolute; left: 50%; top: 50%; width: 76px; height: 94px; margin: -47px 0 0 -38px; border-radius: 7px; padding: 5px 5px 16px; opacity: 0;
+  background: #f6f7f9; border: 1px solid #cfd3d9; box-shadow: 0 10px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.9);
+  transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); }
+.ibD .ib-frame i { display: block; width: 100%; height: 100%; border-radius: 4px; }
+.ibD .ib-frame.f0 i { background: radial-gradient(120% 90% at 30% 20%, #fff, var(--ib-aesthetic) 60%, #c7ccd4); }
+.ibD .ib-frame.f1 i { background: radial-gradient(120% 90% at 30% 20%, #ffd9d6, var(--ib-personality) 65%, #c75850); }
+.ibD .ib-frame.f2 i { background: radial-gradient(120% 90% at 30% 20%, #d8ebff, var(--ib-performance) 65%, #5a86bc); }
+.ibD .ib-frame.f3 i { background: radial-gradient(120% 90% at 30% 20%, #fff, var(--ib-content) 60%, #969ca7); }
+.ibD .ib-wordmark .ib-mark { background: linear-gradient(180deg,#fff 0%,#dfe3e8 16%,#aeb3bb 42%,#7c8088 52%,#c8ccd2 70%,#fff 100%); -webkit-background-clip: text; background-clip: text; }
+.ibD .ib-wordmark .ib-mark-zh, .ibD .ib-slogan .ib-zh { color: #aeb3bb; }
+/* resting: decoration hidden, lockup shown */
+.ibD .ib-flash, .ibD .ib-reticle, .ibD .ib-frame { opacity: 0; }
+.ibD.ib-play .ib-reticle { animation: ib-reticle-in 1.0s var(--ib-ease-out) 0.1s both; }
+.ibD.ib-play .ib-flash   { animation: ib-shutter-flash 3.0s linear 0.45s both; }
+.ibD.ib-play .ib-frame   { animation: ib-frame-pop 0.55s var(--ib-spring) both; }
+.ibD.ib-play .ib-frame.f0{ animation-delay: 0.55s; } .ibD.ib-play .ib-frame.f1{ animation-delay: 1.05s; }
+.ibD.ib-play .ib-frame.f2{ animation-delay: 1.55s; } .ibD.ib-play .ib-frame.f3{ animation-delay: 2.05s; }
+.ibD.ib-play .ib-strip   { animation: ib-strip-collapse 0.7s var(--ib-ease-in) 2.75s both; }
+.ibD.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-forge-mark 1.1s var(--ib-ease-out) 2.95s both; }
+.ibD.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 3.55s both; }
+.ibD.ib-play .ib-wordmark .ib-glint   { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 3.5s both; }
+.ibD.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.7s both; }
+.ibD.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-flip 1.0s var(--ib-spring) 4.05s both; }
+.ibD.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 4.7s infinite; }
+/* D · soul-card teaser: four cuts assemble, then the hexagon springs (4 → 1) */
+@keyframes ib-cut-in { 0% { opacity: 0; transform: translateY(-12px) scaleX(0.35); } 55% { opacity: 1; transform: translateY(0) scaleX(1); } 100% { opacity: 1; } }
+.ibD.ib-play .ib-sc-cuts .cut { opacity: 0; animation: ib-cut-in 0.45s var(--ib-spring) both; }
+.ibD.ib-play .ib-sc-cuts .c0 { animation-delay: 4.35s; } .ibD.ib-play .ib-sc-cuts .c1 { animation-delay: 4.45s; }
+.ibD.ib-play .ib-sc-cuts .c2 { animation-delay: 4.55s; } .ibD.ib-play .ib-sc-cuts .c3 { animation-delay: 4.65s; }
+.ibD.ib-play .ib-sc-hex .poly { animation: ib-poly-pop 0.7s var(--ib-spring) 4.9s both; }
+.ibD.ib-play .ib-sc-hex .dot  { opacity: 0; animation: ib-dot-ping 0.45s var(--ib-spring) both; }
+.ibD.ib-play .ib-sc-hex .dot.d0 { animation-delay: 5.0s; } .ibD.ib-play .ib-sc-hex .dot.d1 { animation-delay: 5.08s; }
+.ibD.ib-play .ib-sc-hex .dot.d2 { animation-delay: 5.16s; } .ibD.ib-play .ib-sc-hex .dot.d3 { animation-delay: 5.24s; }
+.ibD.ib-play .ib-sc-hex .dot.d4 { animation-delay: 5.32s; } .ibD.ib-play .ib-sc-hex .dot.d5 { animation-delay: 5.4s; }
+.ibD.ib-play.ib-handoff  { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   E · HEXAGON RADAR  六邊形戰士
+   ════════════════════════════════════════════════════════════════════════ */
+.ibE { background: radial-gradient(120% 95% at 50% 14%, #ffffff 0%, #eef1f4 54%, #dbdfe5 100%); }
+.ibE .ib-hex { position: absolute; left: 50%; top: 50%; width: 244px; height: 244px; margin: -122px 0 0 -122px; opacity: 0; pointer-events: none; }
+.ibE .ib-hex svg { width: 100%; height: 100%; overflow: visible; }
+.ibE .ib-hex .ring { fill: none; stroke: #aeb3bb; stroke-width: 0.6; stroke-opacity: 0.7; }
+.ibE .ib-hex .spoke { stroke: #c2c7ce; stroke-width: 0.5; stroke-opacity: 0.8; }
+.ibE .ib-hex .poly { fill: rgba(180,48,43,0.12); stroke: var(--ib-cherry); stroke-width: 1.1; stroke-linejoin: round; transform-box: fill-box; transform-origin: center; }
+.ibE .ib-hex .dot { fill: #fff; stroke: var(--ib-cherry); stroke-width: 1; transform-box: fill-box; transform-origin: center; }
+.ibE .ib-hex .dot.d0 { stroke: #9aa0aa; } .ibE .ib-hex .dot.d1 { stroke: var(--ib-personality); }
+.ibE .ib-hex .dot.d2 { stroke: var(--ib-performance); } .ibE .ib-hex .dot.d3 { stroke: var(--ib-cherry); }
+.ibE .ib-hex .dot.d4 { stroke: #7c8088; } .ibE .ib-hex .dot.d5 { stroke: var(--ib-blue); }
+.ibE .ib-wordmark .ib-mark { filter: drop-shadow(0 1px 0 rgba(255,255,255,0.85)) drop-shadow(0 3px 7px rgba(124,128,136,0.42)); }
+.ibE.ib-play .ib-hex { animation: ib-hex-in 0.9s var(--ib-ease-out) 0.1s both, ib-hex-out 0.6s var(--ib-ease-in) 2.55s forwards; }
+.ibE.ib-play .ib-hex .ring  { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ib-ring-draw 0.75s var(--ib-ease-out) both; }
+.ibE.ib-play .ib-hex .ring.r0 { animation-delay: 0.35s; } .ibE.ib-play .ib-hex .ring.r1 { animation-delay: 0.5s; } .ibE.ib-play .ib-hex .ring.r2 { animation-delay: 0.65s; }
+.ibE.ib-play .ib-hex .spoke { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ib-ring-draw 0.6s var(--ib-ease-out) 0.8s both; }
+.ibE.ib-play .ib-hex .poly  { animation: ib-poly-pop 0.8s var(--ib-spring) 1.25s both; }
+.ibE.ib-play .ib-hex .dot   { opacity: 0; animation: ib-dot-ping 0.5s var(--ib-spring) both; }
+.ibE.ib-play .ib-hex .dot.d0 { animation-delay: 1.55s; } .ibE.ib-play .ib-hex .dot.d1 { animation-delay: 1.65s; } .ibE.ib-play .ib-hex .dot.d2 { animation-delay: 1.75s; }
+.ibE.ib-play .ib-hex .dot.d3 { animation-delay: 1.85s; } .ibE.ib-play .ib-hex .dot.d4 { animation-delay: 1.95s; } .ibE.ib-play .ib-hex .dot.d5 { animation-delay: 2.05s; }
+.ibE.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-forge-mark 1.0s var(--ib-ease-out) 2.85s both; }
+.ibE.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 3.45s both; }
+.ibE.ib-play .ib-wordmark .ib-glint   { animation: ib-glint-sweep 1.0s var(--ib-ease-out) 3.5s both; }
+.ibE.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 3.6s both; }
+.ibE.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-rise 0.9s var(--ib-ease-out) 3.95s both; }
+.ibE.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 4.6s infinite; }
+.ibE.ib-play.ib-handoff  { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   F · SIGNAL GLITCH  訊號顯影
+   ════════════════════════════════════════════════════════════════════════ */
+.ibF { background: radial-gradient(130% 100% at 50% 30%, #14161d 0%, #0c0d11 60%, #06070a 100%); }
+.ibF .ib-scan { position: absolute; inset: 0; pointer-events: none; opacity: 0.4; mix-blend-mode: screen;
+  background: repeating-linear-gradient(0deg, rgba(170,200,240,0.05) 0 1px, transparent 1px 3px); }
+.ibF .ib-scanbar { position: absolute; left: 0; right: 0; top: -16%; height: 16%; opacity: 0; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(180deg, transparent, rgba(134,182,240,0.22) 45%, rgba(255,255,255,0.12) 55%, transparent); }
+.ibF .ib-wordmark .ib-mark { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #eef2f6; -webkit-text-fill-color: #eef2f6; filter: none; }
+.ibF .ib-wordmark .ib-mark-zh { color: #8fb4e0; }
+.ibF .ib-slogan .ib-en { color: #ff5a63; }
+.ibF .ib-slogan .ib-zh { color: #8a8f98; }
+.ibF .ib-soulcard { background: linear-gradient(157deg, #1c1f27, #15171d 55%, #101218); border-color: #2a2e37; box-shadow: 4px 6px 0 rgba(0,0,0,0.4), 0 10px 26px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06); }
+.ibF .ib-sc-code { color: #eef2f6; } .ibF .ib-sc-hex .ring { stroke: #353a44; } .ibF .ib-sc-labels span { color: #6f747c; }
+.ibF .ib-sc-foot { border-top-color: #2a2e37; } .ibF .ib-sc-foot b { color: #8a8f98; }
+.ibF.ib-play .ib-scan    { animation: ib-scan-flicker 2.6s steps(1,end) 0.1s 1 both; }
+.ibF.ib-play .ib-scanbar { animation: ib-scanbar 1.5s linear 0.1s both; }
+.ibF.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-sig-mark 1.5s var(--ib-soft) 0.3s both; }
+.ibF.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 1.8s both; }
+.ibF.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.6s linear 2.0s both, ib-sig-reveal 0.7s steps(14,end) 2.0s both; }
+.ibF.ib-play .ib-soulcard{ opacity: 0; animation: ib-sig-card 0.8s var(--ib-ease-out) 2.5s both; }
+.ibF.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 3.1s infinite; }
+.ibF.ib-play.ib-handoff  { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   G · LIGHTSTICK OCEAN  應援海
+   ════════════════════════════════════════════════════════════════════════ */
+.ibG { background: radial-gradient(125% 105% at 50% 105%, #34243c 0%, #1c1830 42%, #0c0a16 100%); }
+.ibG .ib-ocean { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.ibG .ib-spark { position: absolute; bottom: -16px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle at 38% 32%, #fff, var(--c, #ffd58a) 55%, rgba(0,0,0,0)); box-shadow: 0 0 10px 2px var(--c, #ffd58a); }
+.ibG .ib-halo { position: absolute; left: 50%; top: 48%; width: 230px; height: 230px; margin: -115px 0 0 -115px; border-radius: 50%; opacity: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(255,221,160,0.35), rgba(134,182,240,0.12) 45%, transparent 68%); }
+.ibG .ib-wordmark .ib-mark { background: linear-gradient(180deg,#fff 0%,#fff0d6 30%,#ffd58a 55%,#e7eaef 80%,#fff 100%); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 14px rgba(255,210,140,0.45)); }
+.ibG .ib-wordmark .ib-mark-zh { color: #ffd9a6; }
+.ibG .ib-slogan .ib-en { color: #ff9aa0; } .ibG .ib-slogan .ib-zh { color: #c9b6d8; }
+.ibG .ib-soulcard { background: linear-gradient(157deg, #2a2338, #211b30 55%, #181226); border-color: #3a3150; box-shadow: 4px 6px 0 rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07); }
+.ibG .ib-sc-code { color: #fff0d6; } .ibG .ib-sc-hex .ring { stroke: #4a4166; } .ibG .ib-sc-labels span { color: #9a8fb0; }
+.ibG .ib-sc-foot { border-top-color: #3a3150; } .ibG .ib-sc-foot b { color: #c9b6d8; }
+.ibG.ib-play .ib-spark { animation: ib-spark-rise var(--dur, 4.5s) linear var(--sd, 0s) infinite; }
+.ibG.ib-play .ib-halo  { animation: ib-halo-pulse 1.4s var(--ib-ease-out) 1.35s both; }
+.ibG.ib-play .ib-wordmark .ib-mark    { opacity: 0; animation: ib-mark-bloom 1.3s var(--ib-ease-out) 1.55s both; }
+.ibG.ib-play .ib-wordmark .ib-mark-zh { animation: ib-zh-in 0.9s var(--ib-ease-out) 2.25s both; }
+.ibG.ib-play .ib-wordmark .ib-glint   { animation: ib-glint-sweep 1.1s var(--ib-ease-out) 2.4s both; }
+.ibG.ib-play .ib-slogan  { opacity: 0; animation: ib-slogan-in 0.8s var(--ib-ease-out) 2.5s both; }
+.ibG.ib-play .ib-soulcard{ opacity: 0; animation: ib-card-rise 0.9s var(--ib-ease-out) 2.9s both; }
+.ibG.ib-play .ib-soulcard::after { animation: ib-holo-drift 3s var(--ib-soft) 3.5s infinite; }
+.ibG.ib-play.ib-handoff  { animation: ib-fade-out 0.55s var(--ib-ease-in) forwards; }
