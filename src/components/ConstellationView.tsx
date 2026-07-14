@@ -15,8 +15,9 @@ import {
 } from "d3-force";
 import type { Constellation, ConstellationNode, ScoreLayer } from "@/lib/types";
 import { SCORE_LAYERS } from "@/lib/types";
-import { LAYER_ZH } from "@/lib/archetypes";
+import { layerLabel } from "@/lib/archetypes";
 import Thumb from "@/components/Thumb";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 type SimNode = ConstellationNode & SimulationNodeDatum & { r: number; degree: number };
 type SimLink = SimulationLinkDatum<SimNode> & { weight: number; layer: ScoreLayer };
@@ -50,6 +51,8 @@ const GALAXY_BG = [
 ].join(",");
 
 export default function ConstellationView() {
+  const copy = useCopy();
+  const locale = useLocale();
   const router = useRouter();
   const wrapRef = useRef<HTMLDivElement>(null);
   const simRef = useRef<Simulation<SimNode, SimLink> | null>(null);
@@ -189,17 +192,17 @@ export default function ConstellationView() {
 
   // ── States ────────────────────────────────────────────────────────────
   if (loading) {
-    return <div className="flex h-72 items-center justify-center text-sm text-[#9aa0aa]">正在排列你的星圖…</div>;
+    return <div className="flex h-72 items-center justify-center text-sm text-[#9aa0aa]">{copy.constelLoading}</div>;
   }
   if (picksLen !== 4 || !graph || !graph.nodes.length) {
     return (
       <div className="flex h-60 flex-col items-center justify-center gap-3 rounded-2xl border border-[#c8ccd2]/30 bg-[#7c8088]/5 text-center">
-        <p className="text-sm text-[#5e636d]">先選出你的 Top 4，才能看你的專屬星圖 ✦</p>
+        <p className="text-sm text-[#5e636d]">{copy.constelNeedPicks}</p>
         <button
           onClick={() => window.dispatchEvent(new Event("kstar:open-onboarding"))}
           className="rounded-full bg-[#b4302b] px-4 py-1.5 text-xs font-bold text-white hover:brightness-110"
         >
-          開始挑選 →
+          {copy.constelStart}
         </button>
       </div>
     );
@@ -297,12 +300,12 @@ export default function ConstellationView() {
         {SCORE_LAYERS.map((L) => (
           <span key={L} className="flex items-center gap-1">
             <span className="h-2 w-2 rounded-full" style={{ backgroundColor: EDGE_COLOR[L], boxShadow: `0 0 5px ${EDGE_COLOR[L]}` }} />
-            {LAYER_ZH[L]}
+            {layerLabel(locale, L)}
           </span>
         ))}
       </div>
       <div className="absolute right-2 top-2 z-30 rounded-lg bg-black/35 px-2 py-1 font-orbitron text-[9px] font-bold tracking-wider text-white/80 backdrop-blur-sm">
-        ✦ 你的追星星圖
+        {copy.constelTitle}
       </div>
     </div>
   );

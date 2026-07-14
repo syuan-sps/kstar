@@ -23,12 +23,15 @@ const EXPORT_STYLE_PROPS = [
   "object-fit", "object-position", "transform", "transform-origin",
 ];
 
+const DEFAULT_SHARE_TITLE = { zh: "我的追星靈魂", en: "My fan soul" };
+
 export interface ExportOptions {
   fileName: string;
   pixelRatio?: number;
   kind?: "download" | "share";
   shareTitle?: string;
   shareText?: string;
+  locale?: "zh" | "en";
 }
 
 // Renders `node` to a PNG and either Web-Shares the file or downloads it.
@@ -36,7 +39,8 @@ export interface ExportOptions {
 // (so the caller can show a "screenshot instead" hint). A cancelled share
 // resolves ok:true.
 export async function exportNode(node: HTMLElement, opts: ExportOptions): Promise<{ ok: boolean }> {
-  const { fileName, pixelRatio = 2, kind = "download", shareTitle = "我的追星靈魂", shareText = "" } = opts;
+  const { fileName, pixelRatio = 2, kind = "download", shareText = "", locale = "zh" } = opts;
+  const shareTitle = opts.shareTitle ?? DEFAULT_SHARE_TITLE[locale];
   try {
     const htmlToImage = await import("html-to-image");
     // Transparent canvas so the rounded card exports with see-through corners

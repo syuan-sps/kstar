@@ -8,14 +8,14 @@ import { useRef, useState } from "react";
 import type { CardArtist } from "@/lib/lite";
 import { SCORE_LAYERS } from "@/lib/types";
 import {
-  type ArchetypeResult, ARCHETYPES, LAYER_ZH, LAYER_COLOR, LAYER_MEANINGS, barLabel,
+  type ArchetypeResult, ARCHETYPES, LAYER_COLOR, LAYER_MEANINGS, barLabel, layerLabel,
   soulmateCodes, expandCode, compatibilityPct, wallClimbType,
 } from "@/lib/archetypes";
 import { MOODS } from "@/lib/questionnaire";
-import { zhTrait } from "@/lib/cardMeta";
-import { copy } from "@/lib/copy";
+import { displayTrait } from "@/lib/cardMeta";
 import { exportNode } from "@/lib/exportImage";
 import { MiniPhotoCard } from "@/components/SoulStoryCard";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 const GHOST = "#c8ccd2";
 
@@ -32,6 +32,8 @@ export default function SoulReport({
   picks: CardArtist[];
   answers?: ResultAnswers;
 }) {
+  const copy = useCopy();
+  const locale = useLocale();
   const reportRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -44,8 +46,8 @@ export default function SoulReport({
   const expandA = expand !== code ? ARCHETYPES[expand] : null;
   const wall = wallClimbType(hiddenLayer);
 
-  const moodLabel = answers?.visualMood ? MOODS.find((m) => m.id === answers.visualMood)?.label : null;
-  const values = answers?.valueTokens?.filter(Boolean) ?? [];
+  const moodLabel = answers?.visualMood ? MOODS.find((m) => m.id === answers.visualMood)?.label[locale] : null;
+  const values = (answers?.valueTokens ?? []).map((t) => displayTrait(locale, t)).filter((v): v is string => !!v);
   const hasAnswers = answers?.contrast != null || !!moodLabel || values.length > 0;
 
   async function run(kind: "download" | "share") {
@@ -55,7 +57,9 @@ export default function SoulReport({
       fileName: `kstar-report-${code}.png`,
       pixelRatio: 2,
       kind,
-      shareText: `我是「${archetype.zhName}」(${code}) ✦ 來測你的 →`,
+      shareText: copy.shareTextReport(archetype.name[locale], code),
+      shareTitle: copy.reshareEntry,
+      locale,
     });
     if (!ok) setFailed(true);
     setBusy(false);
@@ -88,7 +92,7 @@ export default function SoulReport({
         <span className="absolute bottom-2.5 right-3 text-[10px] leading-none" style={{ color: accent }}>✦</span>
 
         {/* hero */}
-        <div className="whitespace-nowrap text-center font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;你的追星靈魂&nbsp;✦</div>
+        <div className="whitespace-nowrap text-center font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;{copy.resultTitle}&nbsp;✦</div>
         <div className="mt-2 flex justify-center gap-1 font-orbitron text-[30px] font-black leading-none">
           {code.split("").map((ch, i) => {
             const isHigh = ch === ch.toUpperCase();
@@ -96,10 +100,12 @@ export default function SoulReport({
           })}
         </div>
         <div className="mt-2 text-center">
-          <div className="text-xl font-black tracking-tight text-[#1c1e24]">{archetype.zhName}</div>
-          <div className="mt-0.5 font-orbitron text-[9px] uppercase tracking-[0.2em] text-[#9aa0aa]">{archetype.enName}</div>
+          <div className="text-xl font-black tracking-tight text-[#1c1e24]">{archetype.name[locale]}</div>
+          <div className="mt-0.5 font-orbitron text-[9px] uppercase tracking-[0.2em] text-[#9aa0aa]">
+            {locale === "zh" ? archetype.enName : code}
+          </div>
         </div>
-        <p className="mx-auto mt-2 max-w-[280px] text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline}」</p>
+        <p className="mx-auto mt-2 max-w-[280px] text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline[locale]}」</p>
 
         {/* 代表偶像 */}
         <div className="mt-3 grid grid-cols-4 gap-2">
@@ -114,17 +120,17 @@ export default function SoulReport({
             return (
               <div key={L}>
                 <div className="flex items-center justify-between">
-                  <span className="text-[12px] font-bold text-[#1c1e24]">{LAYER_ZH[L]}</span>
+                  <span className="text-[12px] font-bold text-[#1c1e24]">{layerLabel(locale, L)}</span>
                   <span className="rounded-full px-1.5 text-[9px] font-bold"
                     style={{ color: isHigh ? "#fff" : "#7c8088", backgroundColor: isHigh ? LAYER_COLOR[L] : "#c8ccd2" }}>
-                    {/* a non-defining axis never reads 高, even if its raw bar is long */}
-                    {isHigh ? "高 ✦" : barLabel(Math.min(bars[L], 55))}
+                    {/* a non-defining axis never reads high, even if its raw bar is long */}
+                    {isHigh ? `${barLabel(locale, 100)} ✦` : barLabel(locale, Math.min(bars[L], 55))}
                   </span>
                 </div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[#7c8088]/15">
                   <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: isHigh ? LAYER_COLOR[L] : "#c8ccd2" }} />
                 </div>
-                <p className="mt-1 text-[11px] leading-snug text-[#5e636d]">{isHigh ? LAYER_MEANINGS[L].high : LAYER_MEANINGS[L].low}</p>
+                <p className="mt-1 text-[11px] leading-snug text-[#5e636d]">{isHigh ? LAYER_MEANINGS[L].high[locale] : LAYER_MEANINGS[L].low[locale]}</p>
               </div>
             );
           })}
@@ -137,29 +143,29 @@ export default function SoulReport({
             <div className="space-y-1.5">
               {answers?.contrast != null && (
                 <AnswerLine label={copy.reportContrast}
-                  value={answers.contrast ? "反差萌 — 台上台下兩個樣最迷人" : "始終如一 — 怎麼看都是同一個人"} accent={accent} />
+                  value={answers.contrast ? copy.contrastYesLine : copy.contrastNoLine} accent={accent} />
               )}
               {moodLabel && <AnswerLine label={copy.reportVisual} value={moodLabel} accent={accent} />}
-              {values.length > 0 && <AnswerLine label={copy.reportResonance} value={values.map(zhTrait).join("、")} accent={accent} />}
+              {values.length > 0 && <AnswerLine label={copy.reportResonance} value={values.join(locale === "en" ? ", " : "、")} accent={accent} />}
             </div>
           </>
         )}
 
         {/* 隱藏面 */}
-        <SectionHeader label={`${copy.resultHidden} · ${LAYER_ZH[hiddenLayer]}`} accent={accent} />
-        <p className="text-[12px] leading-relaxed text-[#5e636d]">{dualityLine}</p>
+        <SectionHeader label={`${copy.resultHidden} · ${layerLabel(locale, hiddenLayer)}`} accent={accent} />
+        <p className="text-[12px] leading-relaxed text-[#5e636d]">{dualityLine[locale]}</p>
 
         {/* 追星宇宙 */}
         <SectionHeader label={copy.reportUniverse} accent={accent} />
         <div className="space-y-2 text-[12px]">
           {soulmateA && (
             <DiscoverRow icon="❤" label={copy.resultSoulmate}
-              value={`${soulmateA.zhName} · 契合 ${compatibilityPct(code, soulmate)}%`} note="你們會一起爬牆" accent={accent} />
+              value={`${soulmateA.name[locale]} · ${copy.compatSuffix(compatibilityPct(code, soulmate))}`} note={copy.soulmateNote} accent={accent} />
           )}
           {expandA && (
-            <DiscoverRow icon="✧" label={copy.resultExpand} value={expandA.zhName} note="補上你還沒探索的那一面" accent={accent} />
+            <DiscoverRow icon="✧" label={copy.resultExpand} value={expandA.name[locale]} note={copy.expandNote} accent={accent} />
           )}
-          <DiscoverRow icon="↗" label={copy.resultWallClimb} value={`「${wall.zhName}」那一掛`} note="你的下一個本命，可能在這裡" accent={accent} />
+          <DiscoverRow icon="↗" label={copy.resultWallClimb} value={copy.wallClimbGroupSuffix(wall.name[locale])} note={copy.wallClimbNote} accent={accent} />
         </div>
 
         {/* footer */}
@@ -172,14 +178,14 @@ export default function SoulReport({
       <div className="flex flex-wrap items-center justify-center gap-2">
         <button onClick={() => run("download")} disabled={busy}
           className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50">
-          {busy ? "處理中…" : copy.shareDownloadReport}
+          {busy ? copy.processing : copy.shareDownloadReport}
         </button>
         <button onClick={() => run("share")} disabled={busy}
           className="rounded-full border border-[#c8ccd2] bg-white px-4 py-2 text-xs font-bold text-[#1c1e24] transition hover:bg-[#7c8088]/10 disabled:opacity-50">
           {copy.shareShare}
         </button>
       </div>
-      {failed && <p className="text-center text-[11px] text-[#b4302b]">圖片匯出失敗 — 直接長按／截圖這份報告分享吧 ✦</p>}
+      {failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedReport}</p>}
     </div>
   );
 }

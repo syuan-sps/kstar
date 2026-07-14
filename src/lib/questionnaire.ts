@@ -12,6 +12,7 @@
 import type { PickSummary, PickTokens, ScoreLayer, Weights } from "./types";
 import { SCORE_LAYERS } from "./types";
 import { tokenWeight } from "./tokenStats";
+import type { Loc, Locale } from "./i18n/config";
 
 // ── Layer ranking → weights ────────────────────────────────────────────
 const RANK_WEIGHTS = [0.4, 0.3, 0.2, 0.1]; // #1 → #4, already sums to 1
@@ -31,15 +32,15 @@ function normalize(w: Weights): Weights {
 }
 
 // ── Q7 visual moods (7 — derived from real catalog tokens) ─────────────
-export interface Mood { id: string; label: string; sub: string }
+export interface Mood { id: string; label: Loc; sub: Loc }
 export const MOODS: Mood[] = [
-  { id: "darkLuxe",      label: "暗黑高級", sub: "黑與酒紅、低調奢華" },
-  { id: "freshBright",   label: "清爽亮色", sub: "明亮乾淨、天藍嫩黃" },
-  { id: "streetEdge",    label: "街頭個性", sub: "丹寧街頭、颯氣大膽" },
-  { id: "dreamySweet",   label: "夢幻甜美", sub: "少女柔粉、仙氣薄紫" },
-  { id: "retroChic",     label: "復古時髦", sub: "Y2K古著、米駝橘調" },
-  { id: "futuristicCool", label: "未來感酷", sub: "金屬銀、電光螢光" },
-  { id: "cleanClassic",  label: "優雅知性", sub: "端正知性、典雅乾淨" },
+  { id: "darkLuxe",      label: { zh: "暗黑高級", en: "Dark luxe" },       sub: { zh: "黑與酒紅、低調奢華", en: "Black & wine red, quiet luxury" } },
+  { id: "freshBright",   label: { zh: "清爽亮色", en: "Fresh & bright" },  sub: { zh: "明亮乾淨、天藍嫩黃", en: "Clean and bright, sky blue & soft yellow" } },
+  { id: "streetEdge",    label: { zh: "街頭個性", en: "Street edge" },     sub: { zh: "丹寧街頭、颯氣大膽", en: "Denim streetwear, bold and fierce" } },
+  { id: "dreamySweet",   label: { zh: "夢幻甜美", en: "Dreamy sweet" },    sub: { zh: "少女柔粉、仙氣薄紫", en: "Soft pinks and fairy lilac" } },
+  { id: "retroChic",     label: { zh: "復古時髦", en: "Retro chic" },      sub: { zh: "Y2K古著、米駝橘調", en: "Y2K vintage, beige & camel tones" } },
+  { id: "futuristicCool", label: { zh: "未來感酷", en: "Futuristic cool" }, sub: { zh: "金屬銀、電光螢光", en: "Metallic silver, electric neon" } },
+  { id: "cleanClassic",  label: { zh: "優雅知性", en: "Elegant classic" }, sub: { zh: "端正知性、典雅乾淨", en: "Polished, refined, and clean" } },
 ];
 
 // Base-token (substring) + accent-color sets per mood. 白/黑 are intentionally
@@ -85,16 +86,16 @@ export function dominantMood(tokens: PickTokens): string {
 export interface QToken { field: string; values: string[] }
 export interface QOption {
   id: string;
-  label: string;
-  sub?: string;
+  label: Loc;
+  sub?: Loc;
   layer?: ScoreLayer;          // fallback layer for token-less options (→ weight nudge)
   tokens?: QToken[];           // controlled-vocab tokens implied (also derive nudge layer)
   derived?: "contrast" | "consistent";
-  group?: string;              // presentational cluster header (e.g. Q3's 3 groups)
+  group?: Loc;                 // presentational cluster header (e.g. Q3's 3 groups)
 }
 export interface Question {
   id: string;
-  title: string;
+  title: Loc;
   layer: ScoreLayer | "mixed"; // primary layer (drives adaptive depth)
   options: QOption[];
   pickGrounded?: boolean;      // frame around the user's top pick by name
@@ -102,82 +103,82 @@ export interface Question {
 
 export const QUESTIONS: Question[] = [
   {
-    id: "q1", title: "老實說 — 你是被哪個「瞬間」圈粉的？", layer: "mixed", pickGrounded: true,
+    id: "q1", title: { zh: "老實說 — 你是被哪個「瞬間」圈粉的？", en: "Honestly — which moment made you a fan?" }, layer: "mixed", pickGrounded: true,
     options: [
-      { id: "stage", label: "一支直拍／一段舞台", sub: "那個舞台炸到你", layer: "performance" },
-      { id: "visual", label: "一張照片／一身造型", sub: "顏值與造型直擊", layer: "aesthetic" },
-      { id: "variety", label: "一段綜藝或直播的反應", sub: "反應太可愛", layer: "personality", tokens: [{ field: "content_tone", values: ["comedic"] }] },
-      { id: "daily", label: "一個私下、日常的片刻", sub: "那份真實感", layer: "content", tokens: [{ field: "content_tone", values: ["intimate"] }, { field: "lifestyle_topics", values: ["居家日常"] }] },
+      { id: "stage", label: { zh: "一支直拍／一段舞台", en: "A fancam / a stage" }, sub: { zh: "那個舞台炸到你", en: "That stage blew you away" }, layer: "performance" },
+      { id: "visual", label: { zh: "一張照片／一身造型", en: "A photo / a look" }, sub: { zh: "顏值與造型直擊", en: "Face and styling, direct hit" }, layer: "aesthetic" },
+      { id: "variety", label: { zh: "一段綜藝或直播的反應", en: "A variety or livestream moment" }, sub: { zh: "反應太可愛", en: "Their reactions are too cute" }, layer: "personality", tokens: [{ field: "content_tone", values: ["comedic"] }] },
+      { id: "daily", label: { zh: "一個私下、日常的片刻", en: "A private, everyday moment" }, sub: { zh: "那份真實感", en: "That feeling of realness" }, layer: "content", tokens: [{ field: "content_tone", values: ["intimate"] }, { field: "lifestyle_topics", values: ["居家日常"] }] },
     ],
   },
   {
-    id: "q2", title: "如果他是你的朋友，他是哪一種？", layer: "personality",
+    id: "q2", title: { zh: "如果他是你的朋友，他是哪一種？", en: "If they were your friend, which kind would they be?" }, layer: "personality",
     options: [
-      { id: "calm", label: "安靜但很穩的那個", layer: "personality", tokens: [{ field: "energy_type", values: ["calm"] }] },
-      { id: "high", label: "把氣氛炒起來的那個", layer: "personality", tokens: [{ field: "energy_type", values: ["high energy"] }] },
-      { id: "warm", label: "把你照顧得好好的那個", layer: "personality", tokens: [{ field: "energy_type", values: ["warm"] }] },
-      { id: "mysterious", label: "你永遠猜不透的那個", layer: "personality", tokens: [{ field: "energy_type", values: ["mysterious"] }] },
+      { id: "calm", label: { zh: "安靜但很穩的那個", en: "The quiet but steady one" }, layer: "personality", tokens: [{ field: "energy_type", values: ["calm"] }] },
+      { id: "high", label: { zh: "把氣氛炒起來的那個", en: "The one who hypes up the room" }, layer: "personality", tokens: [{ field: "energy_type", values: ["high energy"] }] },
+      { id: "warm", label: { zh: "把你照顧得好好的那個", en: "The one who takes care of you" }, layer: "personality", tokens: [{ field: "energy_type", values: ["warm"] }] },
+      { id: "mysterious", label: { zh: "你永遠猜不透的那個", en: "The one you can never figure out" }, layer: "personality", tokens: [{ field: "energy_type", values: ["mysterious"] }] },
     ],
   },
   {
-    id: "q3", title: "你希望本命怎麼對待粉絲？", layer: "personality",
+    id: "q3", title: { zh: "你希望本命怎麼對待粉絲？", en: "How do you want your bias to treat fans?" }, layer: "personality",
     options: [
-      { id: "formal", label: "王子／女王感的距離", group: "有點距離", layer: "personality", tokens: [{ field: "fan_interaction", values: ["formal"] }] },
-      { id: "parasocial-close", label: "寵粉貼到不行", group: "暖到不行", layer: "personality", tokens: [{ field: "fan_interaction", values: ["parasocial-close"] }] },
-      { id: "aegyo-forward", label: "撒嬌可愛攻擊", group: "暖到不行", layer: "personality", tokens: [{ field: "fan_interaction", values: ["aegyo-forward"] }] },
-      { id: "mischievous-charming", label: "調皮愛搗蛋", group: "玩心全開", layer: "personality", tokens: [{ field: "fan_interaction", values: ["mischievous-charming"] }] },
-      { id: "4D-quirky", label: "天然呆 4D 笑點", group: "玩心全開", layer: "personality", tokens: [{ field: "fan_interaction", values: ["4D-quirky"] }] },
-      { id: "hype", label: "嗨翻全場", group: "玩心全開", layer: "personality", tokens: [{ field: "fan_interaction", values: ["hype"] }] },
-      { id: "playful", label: "玩心很重", group: "玩心全開", layer: "personality", tokens: [{ field: "fan_interaction", values: ["playful"] }] },
+      { id: "formal", label: { zh: "王子／女王感的距離", en: "Prince/queen-like distance" }, group: { zh: "有點距離", en: "A little distance" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["formal"] }] },
+      { id: "parasocial-close", label: { zh: "寵粉貼到不行", en: "Spoils fans like crazy" }, group: { zh: "暖到不行", en: "Impossibly warm" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["parasocial-close"] }] },
+      { id: "aegyo-forward", label: { zh: "撒嬌可愛攻擊", en: "Aegyo cuteness attack" }, group: { zh: "暖到不行", en: "Impossibly warm" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["aegyo-forward"] }] },
+      { id: "mischievous-charming", label: { zh: "調皮愛搗蛋", en: "Mischievous little menace" }, group: { zh: "玩心全開", en: "Full playful mode" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["mischievous-charming"] }] },
+      { id: "4D-quirky", label: { zh: "天然呆 4D 笑點", en: "4D quirky humor" }, group: { zh: "玩心全開", en: "Full playful mode" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["4D-quirky"] }] },
+      { id: "hype", label: { zh: "嗨翻全場", en: "Hypes up the whole room" }, group: { zh: "玩心全開", en: "Full playful mode" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["hype"] }] },
+      { id: "playful", label: { zh: "玩心很重", en: "Seriously playful" }, group: { zh: "玩心全開", en: "Full playful mode" }, layer: "personality", tokens: [{ field: "fan_interaction", values: ["playful"] }] },
     ],
   },
   {
-    id: "q4", title: "你愛的是反差，還是始終如一？", layer: "personality",
+    id: "q4", title: { zh: "你愛的是反差，還是始終如一？", en: "Do you love the duality, or the consistency?" }, layer: "personality",
     options: [
-      { id: "contrast", label: "反差萌", sub: "台上一個樣、台下另一個樣", layer: "personality", derived: "contrast" },
-      { id: "consistent", label: "始終如一", sub: "怎麼看都是同一個人", layer: "personality", derived: "consistent" },
+      { id: "contrast", label: { zh: "反差萌", en: "The duality" }, sub: { zh: "台上一個樣、台下另一個樣", en: "One person on stage, another off" }, layer: "personality", derived: "contrast" },
+      { id: "consistent", label: { zh: "始終如一", en: "Always the same" }, sub: { zh: "怎麼看都是同一個人", en: "The same person from every angle" }, layer: "personality", derived: "consistent" },
     ],
   },
   {
-    id: "q5", title: "他做什麼的時候，你會突然超驕傲、甚至鼻酸？", layer: "content",
+    id: "q5", title: { zh: "他做什麼的時候，你會突然超驕傲、甚至鼻酸？", en: "What makes you suddenly proud of them — even teary?" }, layer: "content",
     options: [
-      { id: "grind", label: "拼命練習、把舞台做到最好", layer: "content", tokens: [{ field: "value_topics", values: ["努力哲學", "專業職人精神"] }] },
-      { id: "self", label: "做自己、不管別人眼光", layer: "content", tokens: [{ field: "value_topics", values: ["自我認同", "自由奔放"] }] },
-      { id: "vuln", label: "講出脆弱、真實的一面", layer: "content", tokens: [{ field: "value_topics", values: ["心理健康倡議", "正向思考"] }] },
-      { id: "humor", label: "自嘲耍笨、超會接梗", layer: "content", tokens: [{ field: "value_topics", values: ["幽默自嘲"] }] },
+      { id: "grind", label: { zh: "拼命練習、把舞台做到最好", en: "Practicing relentlessly to perfect the stage" }, layer: "content", tokens: [{ field: "value_topics", values: ["努力哲學", "專業職人精神"] }] },
+      { id: "self", label: { zh: "做自己、不管別人眼光", en: "Being themselves, no matter what anyone thinks" }, layer: "content", tokens: [{ field: "value_topics", values: ["自我認同", "自由奔放"] }] },
+      { id: "vuln", label: { zh: "講出脆弱、真實的一面", en: "Opening up about their honest, vulnerable side" }, layer: "content", tokens: [{ field: "value_topics", values: ["心理健康倡議", "正向思考"] }] },
+      { id: "humor", label: { zh: "自嘲耍笨、超會接梗", en: "Self-deprecating jokes and perfect comebacks" }, layer: "content", tokens: [{ field: "value_topics", values: ["幽默自嘲"] }] },
     ],
   },
   {
-    id: "q6", title: "深夜睡不著，你會點開他的什麼？", layer: "content",
+    id: "q6", title: { zh: "深夜睡不著，你會點開他的什麼？", en: "Can't sleep at night — what of theirs do you open?" }, layer: "content",
     options: [
-      { id: "intimate", label: "他的 vlog／日常碎念", layer: "content", tokens: [{ field: "content_tone", values: ["intimate"] }, { field: "lifestyle_topics", values: ["居家日常"] }] },
-      { id: "hype", label: "他的舞台直拍", layer: "performance", tokens: [{ field: "content_tone", values: ["hype"] }] },
-      { id: "aesthetic", label: "他的美照、IG 限動", layer: "aesthetic", tokens: [{ field: "content_tone", values: ["aesthetic"] }, { field: "lifestyle_topics", values: ["時尚", "攝影"] }] },
-      { id: "comedic", label: "他的搞笑名場面", layer: "personality", tokens: [{ field: "content_tone", values: ["comedic"] }] },
+      { id: "intimate", label: { zh: "他的 vlog／日常碎念", en: "Their vlog / daily rambles" }, layer: "content", tokens: [{ field: "content_tone", values: ["intimate"] }, { field: "lifestyle_topics", values: ["居家日常"] }] },
+      { id: "hype", label: { zh: "他的舞台直拍", en: "Their stage fancams" }, layer: "performance", tokens: [{ field: "content_tone", values: ["hype"] }] },
+      { id: "aesthetic", label: { zh: "他的美照、IG 限動", en: "Their photos and IG stories" }, layer: "aesthetic", tokens: [{ field: "content_tone", values: ["aesthetic"] }, { field: "lifestyle_topics", values: ["時尚", "攝影"] }] },
+      { id: "comedic", label: { zh: "他的搞笑名場面", en: "Their funniest moments" }, layer: "personality", tokens: [{ field: "content_tone", values: ["comedic"] }] },
     ],
   },
   {
-    id: "q7", title: "第一眼最容易電到你的視覺風格？", layer: "aesthetic",
+    id: "q7", title: { zh: "第一眼最容易電到你的視覺風格？", en: "Which visual style catches you at first glance?" }, layer: "aesthetic",
     options: MOODS.map((m) => ({ id: m.id, label: m.label, sub: m.sub, layer: "aesthetic" as ScoreLayer })),
   },
   {
-    id: "q8", title: "他的舞台，電到你的是？", layer: "performance",
+    id: "q8", title: { zh: "他的舞台，電到你的是？", en: "On stage, what electrifies you?" }, layer: "performance",
     options: [
-      { id: "powerful", label: "力量瞬間全開", sub: "一個抓地、全場氣勢瞬間拉滿", layer: "performance", tokens: [{ field: "dance_style", values: ["powerful"] }] },
-      { id: "fluid", label: "絲滑到像流水", sub: "動作沒有一格是硬的", layer: "performance", tokens: [{ field: "dance_style", values: ["fluid"] }] },
-      { id: "precise", label: "精準到嚇人", sub: "每個點都卡在拍子上", layer: "performance", tokens: [{ field: "dance_style", values: ["precise"] }] },
-      { id: "rhythmic", label: "跟拍點抓到心跳", sub: "律動感直接同步你的脈搏", layer: "performance", tokens: [{ field: "dance_style", values: ["rhythmic"] }] },
-      { id: "theatrical", label: "戲劇張力拉滿", sub: "舞台像在說一個故事", layer: "performance", tokens: [{ field: "dance_style", values: ["theatrical fluid"] }] },
+      { id: "powerful", label: { zh: "力量瞬間全開", en: "Full power, instantly" }, sub: { zh: "一個抓地、全場氣勢瞬間拉滿", en: "One move and the whole room ignites" }, layer: "performance", tokens: [{ field: "dance_style", values: ["powerful"] }] },
+      { id: "fluid", label: { zh: "絲滑到像流水", en: "Silky like water" }, sub: { zh: "動作沒有一格是硬的", en: "Not a single stiff frame" }, layer: "performance", tokens: [{ field: "dance_style", values: ["fluid"] }] },
+      { id: "precise", label: { zh: "精準到嚇人", en: "Scarily precise" }, sub: { zh: "每個點都卡在拍子上", en: "Every hit lands right on the beat" }, layer: "performance", tokens: [{ field: "dance_style", values: ["precise"] }] },
+      { id: "rhythmic", label: { zh: "跟拍點抓到心跳", en: "Rhythm that syncs your heartbeat" }, sub: { zh: "律動感直接同步你的脈搏", en: "The groove locks onto your pulse" }, layer: "performance", tokens: [{ field: "dance_style", values: ["rhythmic"] }] },
+      { id: "theatrical", label: { zh: "戲劇張力拉滿", en: "Maximum theatrical tension" }, sub: { zh: "舞台像在說一個故事", en: "The stage tells a story" }, layer: "performance", tokens: [{ field: "dance_style", values: ["theatrical fluid"] }] },
     ],
   },
   {
-    id: "q9", title: "在團體裡，你的目光通常黏在誰身上？", layer: "performance",
+    id: "q9", title: { zh: "在團體裡，你的目光通常黏在誰身上？", en: "In a group, who does your eye stick to?" }, layer: "performance",
     options: [
-      { id: "leader", label: "站在最前面、扛團的那個", layer: "performance", tokens: [{ field: "roles", values: ["leader", "center"] }] },
-      { id: "mainVocal", label: "主唱擔當", layer: "performance", tokens: [{ field: "roles", values: ["main vocalist"] }] },
-      { id: "mainDancer", label: "主舞擔當", layer: "performance", tokens: [{ field: "roles", values: ["main dancer"] }] },
-      { id: "mainRapper", label: "饒舌擔當", layer: "performance", tokens: [{ field: "roles", values: ["main rapper"] }] },
-      { id: "maknae", label: "么弟么妹", layer: "performance", tokens: [{ field: "roles", values: ["maknae"] }] },
+      { id: "leader", label: { zh: "站在最前面、扛團的那個", en: "The one up front carrying the team" }, layer: "performance", tokens: [{ field: "roles", values: ["leader", "center"] }] },
+      { id: "mainVocal", label: { zh: "主唱擔當", en: "The main vocalist" }, layer: "performance", tokens: [{ field: "roles", values: ["main vocalist"] }] },
+      { id: "mainDancer", label: { zh: "主舞擔當", en: "The main dancer" }, layer: "performance", tokens: [{ field: "roles", values: ["main dancer"] }] },
+      { id: "mainRapper", label: { zh: "饒舌擔當", en: "The main rapper" }, layer: "performance", tokens: [{ field: "roles", values: ["main rapper"] }] },
+      { id: "maknae", label: { zh: "么弟么妹", en: "The maknae" }, layer: "performance", tokens: [{ field: "roles", values: ["maknae"] }] },
     ],
   },
 ];
@@ -238,8 +239,13 @@ export function energyOutlier(picks: PickSummary[]): { index: number; energy: st
   return { index, energy: energies[index], majority };
 }
 
-const ENERGY_ZH: Record<string, string> = { warm: "暖系", "high energy": "高能量", calm: "沉穩系", mysterious: "神秘高冷" };
-export const energyZh = (e: string) => ENERGY_ZH[e] ?? e;
+const ENERGY_TEXT: Record<string, Loc> = {
+  warm: { zh: "暖系", en: "warm" },
+  "high energy": { zh: "高能量", en: "high energy" },
+  calm: { zh: "沉穩系", en: "calm" },
+  mysterious: { zh: "神秘高冷", en: "mysterious" },
+};
+export const energyText = (locale: Locale, e: string) => ENERGY_TEXT[e]?.[locale] ?? e;
 
 // ── Answer accumulation → weights + tokenPrefs ─────────────────────────
 // Canonical field → layer map. The nudge layer is derived from which controlled-
@@ -341,13 +347,33 @@ export function computeQuizResult(state: AnswerState): QuizResult {
 }
 
 // ── Pick-grounded copy builders (component passes real names) ───────────
-export const framing = {
-  q1: (topName: string) => `先想想 ${topName} — 你是被哪個「瞬間」圈粉的？`,
-  confirmAgree: (label: string) => `你選的幾位氣場都偏「${label}」 — 想要更多這種，還是換個口味？`,
-  confirmMore: "更多這種",
-  confirmDiverse: "換個口味試試",
-  outlier: (names: string[], outlierName: string, energyLabel: string) =>
-    `你這四位大多走同一掛，只有 ${outlierName} 是${energyLabel} — 那份反差，也是你的菜嗎？`,
-  outlierYes: "對，超愛",
-  outlierNo: "還好，純屬意外",
+export const FRAMING: Record<Locale, {
+  q1: (topName: string) => string;
+  confirmAgree: (label: string) => string;
+  confirmMore: string;
+  confirmDiverse: string;
+  outlier: (names: string[], outlierName: string, energyLabel: string) => string;
+  outlierYes: string;
+  outlierNo: string;
+}> = {
+  zh: {
+    q1: (topName) => `先想想 ${topName} — 你是被哪個「瞬間」圈粉的？`,
+    confirmAgree: (label) => `你選的幾位氣場都偏「${label}」 — 想要更多這種，還是換個口味？`,
+    confirmMore: "更多這種",
+    confirmDiverse: "換個口味試試",
+    outlier: (_names, outlierName, energyLabel) =>
+      `你這四位大多走同一掛，只有 ${outlierName} 是${energyLabel} — 那份反差，也是你的菜嗎？`,
+    outlierYes: "對，超愛",
+    outlierNo: "還好，純屬意外",
+  },
+  en: {
+    q1: (topName) => `Think about ${topName} first — which "moment" made you a fan?`,
+    confirmAgree: (label) => `Your picks mostly lean "${label}" — want more of that, or a change of pace?`,
+    confirmMore: "More of that",
+    confirmDiverse: "Mix it up",
+    outlier: (_names, outlierName, energyLabel) =>
+      `Your four mostly run the same energy, except ${outlierName} — who's ${energyLabel}. Is that contrast your thing too?`,
+    outlierYes: "Yes, I love it",
+    outlierNo: "Nah, just a coincidence",
+  },
 };

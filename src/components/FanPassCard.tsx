@@ -12,11 +12,11 @@ import Cropper from "react-easy-crop";
 import "react-easy-crop/react-easy-crop.css";
 import type { CardArtist } from "@/lib/lite";
 import type { ArchetypeResult } from "@/lib/archetypes";
-import { copy } from "@/lib/copy";
 import { exportNode } from "@/lib/exportImage";
 import { pickTheme } from "@/lib/cardTheme";
 import Thumb from "@/components/Thumb";
 import { MiniPhotoCard } from "@/components/SoulStoryCard";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 type Area = { x: number; y: number; width: number; height: number };
 type Step = "pick" | "upload" | "crop" | "card";
@@ -41,6 +41,8 @@ async function getCroppedImg(imageSrc: string, area: Area): Promise<string> {
 }
 
 export default function FanPassCard({ result, picks }: { result: ArchetypeResult; picks: CardArtist[] }) {
+  const copy = useCopy();
+  const locale = useLocale();
   const cardRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState<Step>("pick");
   const [idol, setIdol] = useState<CardArtist | null>(null);
@@ -118,7 +120,8 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
       fileName: `kstar-pass-${idol.id}.png`,
       pixelRatio: 4,
       kind,
-      shareText: `${idol.group ?? copy.passSolo} 應援卡 ✦`,
+      shareText: copy.passShareText(idol.group ?? copy.passSolo),
+      locale,
     });
     if (!ok) setFailed(true);
     setBusy(false);
@@ -239,7 +242,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
               </div>
               <div className="truncate pb-0.5 text-[11px] font-bold text-white/90" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.3)" }}>
                 {idol.name}
-                {idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[10px] font-medium text-white/70">{idol.name_zh}</span>}
+                {locale === "zh" && idol.name_zh && idol.name_zh !== idol.name && <span className="ml-1 text-[10px] font-medium text-white/70">{idol.name_zh}</span>}
               </div>
             </div>
             {/* circular idol badge, banner corner */}
@@ -287,7 +290,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
               className="h-[24px] flex-1 rounded-[2px]"
               style={{ opacity: 0.78, backgroundImage: "repeating-linear-gradient(90deg, #1c1e24 0 2px, transparent 2px 4px, #1c1e24 4px 5px, transparent 5px 8px)" }}
             />
-            <div className="whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.12em] text-[#7c8088]">追星靈魂 {result.code.toUpperCase()} · KSTAR {year}</div>
+            <div className="whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.12em] text-[#7c8088]">{copy.soulLabel} {result.code.toUpperCase()} · KSTAR {year}</div>
           </div>
         </div>
 
@@ -306,7 +309,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
         <div className="flex flex-wrap items-center justify-center gap-2">
           <button onClick={() => run("download")} disabled={busy}
             className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50">
-            {busy ? "處理中…" : copy.passDownload}
+            {busy ? copy.processing : copy.passDownload}
           </button>
           <button onClick={() => run("share")} disabled={busy}
             className="rounded-full border border-[#c8ccd2] bg-white px-4 py-2 text-xs font-bold text-[#1c1e24] transition hover:bg-[#7c8088]/10 disabled:opacity-50">
@@ -317,7 +320,7 @@ export default function FanPassCard({ result, picks }: { result: ArchetypeResult
           <button onClick={() => setStep("crop")} className="text-xs text-[#7c8088]/70 hover:text-[#7c8088]">{copy.passRetake}</button>
           <button onClick={() => { setStep("pick"); setPhoto(null); setRawImage(null); }} className="text-xs text-[#7c8088]/70 hover:text-[#7c8088]">{copy.passChangeIdol}</button>
         </div>
-        {failed && <p className="text-center text-[11px] text-[#b4302b]">圖片匯出失敗 — 直接長按／截圖這張卡分享吧 ✦</p>}
+        {failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedPass}</p>}
       </div>
     );
   }

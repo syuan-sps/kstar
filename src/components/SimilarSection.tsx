@@ -9,14 +9,11 @@ import { useEffect, useState, useCallback } from "react";
 import type { Artist, SimilarArtist, Weights, LayerFilter } from "@/lib/types";
 import { DEFAULT_WEIGHTS } from "@/lib/types";
 import SimilarIdolCard from "./SimilarIdolCard";
-import { copy } from "@/lib/copy";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
-const PILL_LABELS: Record<LayerFilter, string> = {
-  all:         "全部",
-  aesthetic:   "美學",
-  personality: "個性",
-  performance: "表演",
-  content:     "內容",
+const PILL_LABELS: Record<"zh" | "en", Record<LayerFilter, string>> = {
+  zh: { all: "全部", aesthetic: "美學", personality: "個性", performance: "表演", content: "內容" },
+  en: { all: "All", aesthetic: "Aesthetic", personality: "Personality", performance: "Performance", content: "Content" },
 };
 
 const FILTERS: LayerFilter[] = ["all", "aesthetic", "personality", "performance", "content"];
@@ -45,6 +42,8 @@ export default function SimilarSection({
   filter,
   onFilterChange,
 }: Props) {
+  const copy = useCopy();
+  const locale = useLocale();
   const [mounted, setMounted] = useState(false);
   const [topIdols, setTopIdols] = useState<string[]>([]);
   const [reasons, setReasons] = useState<Record<string, string>>({});
@@ -64,6 +63,7 @@ export default function SimilarSection({
             candidate: s.artist,
             weights,
             topTraits: s.topTraits,
+            locale,
           }),
         });
         const data = (await res.json()) as { reason: string };
@@ -76,7 +76,7 @@ export default function SimilarSection({
     }
     setReasons((prev) => ({ ...prev, ...newReasons }));
     setReasonsLoading(false);
-  }, [sourceArtist]);
+  }, [sourceArtist, locale]);
 
   useEffect(() => {
     setMounted(true);
@@ -89,7 +89,7 @@ export default function SimilarSection({
     } catch { /* ignore */ }
     fetchReasons(recsByLayer.all ?? [], DEFAULT_WEIGHTS);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sourceArtist.id]);
+  }, [sourceArtist.id, locale]);
 
   const handleFilter = (f: LayerFilter) => {
     onFilterChange(f);
@@ -127,7 +127,7 @@ export default function SimilarSection({
                   : "border border-[#c8ccd2]/30 text-[#7c8088] hover:bg-[#7c8088]/10"
               }`}
             >
-              {PILL_LABELS[f]}
+              {PILL_LABELS[locale][f]}
             </button>
           ))}
         </div>

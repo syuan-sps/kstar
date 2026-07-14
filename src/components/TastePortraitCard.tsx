@@ -7,7 +7,7 @@
 import { useState } from "react";
 import type { CardArtist } from "@/lib/lite";
 import type { ArchetypeResult } from "@/lib/archetypes";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 import FanPassCard from "@/components/FanPassCard";
@@ -22,6 +22,7 @@ export default function TastePortraitCard({
   answers?: ResultAnswers;
   onRestart?: () => void;
 }) {
+  const copy = useCopy();
   const [view, setView] = useState<View>("story");
   const tabs: [View, string][] = [["story", copy.viewStory], ["report", copy.viewReport], ["pass", copy.viewPass]];
 

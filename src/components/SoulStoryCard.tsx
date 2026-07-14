@@ -7,10 +7,10 @@
 import { useRef, useState } from "react";
 import type { CardArtist } from "@/lib/lite";
 import { SCORE_LAYERS } from "@/lib/types";
-import { type ArchetypeResult, LAYER_ZH, LAYER_COLOR } from "@/lib/archetypes";
-import { copy } from "@/lib/copy";
+import { type ArchetypeResult, layerLabel, LAYER_COLOR } from "@/lib/archetypes";
 import { exportNode } from "@/lib/exportImage";
 import Thumb from "@/components/Thumb";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
 const GHOST = "#c8ccd2";
 
@@ -33,6 +33,8 @@ export function MiniPhotoCard({ a, accent, label }: { a: CardArtist; accent: str
 }
 
 export default function SoulStoryCard({ result, picks }: { result: ArchetypeResult; picks: CardArtist[] }) {
+  const copy = useCopy();
+  const locale = useLocale();
   const cardRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -46,7 +48,9 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
       fileName: `kstar-${code}.png`,
       pixelRatio: 4,
       kind,
-      shareText: `我是「${archetype.zhName}」(${code}) ✦ 來測你的 →`,
+      shareText: copy.shareTextReport(archetype.name[locale], code),
+      shareTitle: copy.reshareEntry,
+      locale,
     });
     if (!ok) setFailed(true);
     setBusy(false);
@@ -82,7 +86,7 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
 
           {/* top: identity */}
           <div className="flex flex-col items-center">
-            <div className="whitespace-nowrap font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;你的追星靈魂&nbsp;✦</div>
+            <div className="whitespace-nowrap font-orbitron text-[9px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;{copy.resultTitle}&nbsp;✦</div>
             <div className="mt-3 flex justify-center gap-1.5 font-orbitron text-[46px] font-black leading-none">
               {code.split("").map((ch, i) => {
                 const isHigh = ch === ch.toUpperCase();
@@ -96,10 +100,12 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
               <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(28,30,36,0.45), rgba(124,128,136,0.55), transparent)" }} />
             </div>
             <div className="mt-2 text-center">
-              <div className="text-[26px] font-black leading-tight tracking-tight text-[#1c1e24]">{archetype.zhName}</div>
-              <div className="mt-1 font-orbitron text-[9px] uppercase tracking-[0.22em] text-[#9aa0aa]">{archetype.enName}</div>
+              <div className="text-[26px] font-black leading-tight tracking-tight text-[#1c1e24]">{archetype.name[locale]}</div>
+              <div className="mt-1 font-orbitron text-[9px] uppercase tracking-[0.22em] text-[#9aa0aa]">
+                {locale === "zh" ? archetype.enName : code}
+              </div>
             </div>
-            <p className="mt-3 px-1 text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline}」</p>
+            <p className="mt-3 px-1 text-center text-[12px] leading-relaxed text-[#5e636d]">「{archetype.tagline[locale]}」</p>
           </div>
 
           {/* middle: representative idols + layer bars */}
@@ -114,7 +120,7 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
                     <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: high[L] ? LAYER_COLOR[L] : "#c8ccd2" }} />
                   </div>
                   <div className="mt-0.5 text-center text-[8px]" style={{ color: high[L] ? "#1c1e24" : "#9aa0aa", fontWeight: high[L] ? 700 : 400 }}>
-                    {LAYER_ZH[L]}
+                    {layerLabel(locale, L)}
                   </div>
                 </div>
               ))}
@@ -132,14 +138,14 @@ export default function SoulStoryCard({ result, picks }: { result: ArchetypeResu
       <div className="flex flex-wrap items-center justify-center gap-2">
         <button onClick={() => run("download")} disabled={busy}
           className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50">
-          {busy ? "處理中…" : copy.shareDownloadStory}
+          {busy ? copy.processing : copy.shareDownloadStory}
         </button>
         <button onClick={() => run("share")} disabled={busy}
           className="rounded-full border border-[#c8ccd2] bg-white px-4 py-2 text-xs font-bold text-[#1c1e24] transition hover:bg-[#7c8088]/10 disabled:opacity-50">
           {copy.shareShare}
         </button>
       </div>
-      {failed && <p className="text-center text-[11px] text-[#b4302b]">圖片匯出失敗 — 直接長按／截圖這張卡分享吧 ✦</p>}
+      {failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedStory}</p>}
     </div>
   );
 }
