@@ -1,7 +1,10 @@
+"use client";
+
 // 美學分析 — visible style breakdown on the artist page.
 // Shows 繁中 trait chips, colour-palette swatches, and a style read (when present).
 
 import type { Artist } from "@/lib/types";
+import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 // 繁中 colour name → hex for swatches. Unknown names fall back to a silver tint.
 const COLOR_HEX: Record<string, string> = {
@@ -23,6 +26,7 @@ const COLOR_HEX: Record<string, string> = {
 const FALLBACK = "#b9bdc4";
 
 export default function AestheticSection({ artist }: { artist: Artist }) {
+  const copy = useCopy();
   const aes = artist.profile?.aesthetic;
   if (!aes) return null;
 
@@ -31,7 +35,7 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
       <div className="flex items-center gap-2">
         <span className="text-base">✦</span>
         <h2 className="font-orbitron text-sm font-black uppercase tracking-[0.15em] text-[#1c1e24]">
-          美學分析
+          {copy.analysisAesthetic}
         </h2>
       </div>
 
@@ -53,7 +57,7 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
       {/* colour palette swatches */}
       <div className="mt-4">
         <div className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[#5e636d]">
-          色彩
+          {copy.colorLabel}
         </div>
         <div className="flex flex-wrap gap-3">
           {aes.color_palette.map((c, i) => (
@@ -71,8 +75,8 @@ export default function AestheticSection({ artist }: { artist: Artist }) {
       {/* 官方/私服 dual-track blocks (researched idols) — otherwise legacy single read */}
       {aes.official || aes.personal ? (
         <>
-          {aes.official && <StyleTrack label="官方造型" icon="◆" data={aes.official} />}
-          {aes.personal && <StyleTrack label="私服風格" icon="◇" data={aes.personal} />}
+          {aes.official && <StyleTrack label={copy.officialStyle} icon="◆" data={aes.official} />}
+          {aes.personal && <StyleTrack label={copy.personalStyle} icon="◇" data={aes.personal} />}
         </>
       ) : (
         aes.analysis && (

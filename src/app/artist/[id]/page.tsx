@@ -4,7 +4,8 @@ import { getArtist, getAllArtists } from "@/lib/data";
 import { similarArtists } from "@/lib/similarity";
 import { personalReason } from "@/lib/cardMeta";
 import { DEFAULT_WEIGHTS, type LayerFilter, type SimilarArtist, type Weights } from "@/lib/types";
-import { copy } from "@/lib/copy";
+import { getCopy } from "@/lib/copy";
+import { getLocale } from "@/lib/i18n/server";
 import Thumb from "@/components/Thumb";
 import AddPhotoCTA from "@/components/AddPhotoCTA";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -16,6 +17,8 @@ export default async function ArtistPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const locale = await getLocale();
+  const copy = getCopy(locale);
   const [artist, allArtists] = await Promise.all([getArtist(id), getAllArtists()]);
   if (!artist) notFound();
 
@@ -38,7 +41,7 @@ export default async function ArtistPage({
   for (const l of LAYERS) {
     for (const s of recsByLayer[l]) {
       if (!(s.artist.id in personalBySrc)) {
-        personalBySrc[s.artist.id] = personalReason(s.artist, [artist.id], allArtists);
+        personalBySrc[s.artist.id] = personalReason(s.artist, [artist.id], allArtists, locale);
       }
     }
   }
@@ -62,7 +65,7 @@ export default async function ArtistPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`@${artist.instagram}`}
-                aria-label={`Instagram @${artist.instagram}`}
+                aria-label={copy.instagramLabel(artist.instagram)}
                 className="text-[#9aa0aa] transition hover:text-[#1c1e24]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
@@ -73,7 +76,7 @@ export default async function ArtistPage({
               </a>
             )}
           </div>
-          {artist.name_zh && artist.name_zh !== artist.name && (
+          {locale === "zh" && artist.name_zh && artist.name_zh !== artist.name && (
             <div className="mt-1 text-[#5e636d]">{artist.name_zh}</div>
           )}
           {artist.group && (

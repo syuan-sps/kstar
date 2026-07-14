@@ -7,17 +7,19 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { SimilarArtist, LayerScores } from "@/lib/types";
-import { emojiTags, zhTrait } from "@/lib/cardMeta";
+import type { SimilarArtist, LayerScores, ScoreLayer } from "@/lib/types";
+import { emojiTags, displayTrait } from "@/lib/cardMeta";
+import { layerLabel } from "@/lib/archetypes";
 import { getGroupSymbol } from "@/lib/groupSymbols";
 import Thumb from "./Thumb";
 import FavoriteButton from "./FavoriteButton";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 
-const LAYERS: { key: keyof LayerScores; label: string; color: string }[] = [
-  { key: "aesthetic",   label: "美學", color: "#4a4f57" },
-  { key: "personality", label: "個性", color: "#b4302b" },
-  { key: "performance", label: "表演", color: "#56789f" },
-  { key: "content",     label: "內容", color: "#b9bdc4" },
+const LAYERS: { key: ScoreLayer; color: string }[] = [
+  { key: "aesthetic",   color: "#4a4f57" },
+  { key: "personality", color: "#b4302b" },
+  { key: "performance", color: "#56789f" },
+  { key: "content",     color: "#b9bdc4" },
 ];
 
 const LIFT = "-translate-y-1 border-[#c8ccd2]/70 shadow-[0_0_18px_rgba(124,128,136,0.3)]";
@@ -30,6 +32,8 @@ interface Props {
 }
 
 export default function SimilarIdolCard({ similar, reason, personal, loading }: Props) {
+  const copy = useCopy();
+  const locale = useLocale();
   const { artist, layerScores } = similar;
   const [isTouch, setIsTouch] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -41,8 +45,9 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
   const collapsed = isTouch && !expanded;
   const emojis = emojiTags(artist);
   const groupSym = getGroupSymbol(artist.group);
-  const fallbackTraits = similar.topTraits.length
-    ? `相似特質：${similar.topTraits.slice(0, 2).map(zhTrait).join("、")}`
+  const traits = similar.topTraits.slice(0, 2).map((t) => displayTrait(locale, t)).filter((t): t is string => !!t);
+  const fallbackTraits = traits.length
+    ? copy.similarTraitsPrefix(traits.join(locale === "en" ? ", " : "、"))
     : similar.reasons[0] ?? "";
   const reasonText = personal ?? reason ?? (loading ? null : fallbackTraits);
 
@@ -96,7 +101,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
           </p>
 
           <div className="mt-1.5 grid grid-cols-4 gap-1">
-            {LAYERS.map(({ key, label, color }) => {
+            {LAYERS.map(({ key, color }) => {
               const pct = Math.max(6, Math.round((layerScores?.[key] ?? 0) * 100));
               return (
                 <div key={key}>
@@ -106,7 +111,7 @@ export default function SimilarIdolCard({ similar, reason, personal, loading }: 
                       style={{ width: `${pct}%`, backgroundColor: color }}
                     />
                   </div>
-                  <div className="mt-0.5 text-center text-[8px] text-[#9aa0aa]">{label}</div>
+                  <div className="mt-0.5 text-center text-[8px] text-[#9aa0aa]">{layerLabel(locale, key)}</div>
                 </div>
               );
             })}
