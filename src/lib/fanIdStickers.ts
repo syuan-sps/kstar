@@ -100,7 +100,7 @@ export const STICKER_COMPOSITIONS: Readonly<Record<StickerThemeId, readonly Stic
   "monochrome-cute": freezePlacements(RAW_STICKER_COMPOSITIONS["monochrome-cute"]),
 });
 
-function resolveStickerThemeId(themeId?: string | null): StickerThemeId | null {
+export function resolveStickerThemeId(themeId?: string | null): StickerThemeId | null {
   if (!themeId) {
     return null;
   }

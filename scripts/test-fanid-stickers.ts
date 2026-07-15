@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
-import { getStickerComposition, STICKER_THEME_IDS } from "@/lib/fanIdStickers";
+import {
+  getStickerComposition,
+  resolveStickerThemeId,
+  STICKER_THEME_IDS,
+} from "@/lib/fanIdStickers";
+import { buildSvgIds, getStickerPaint } from "@/components/FanIdStickerLayer";
 
 for (const themeId of STICKER_THEME_IDS) {
   const placements = getStickerComposition(themeId);
@@ -25,6 +30,13 @@ for (const themeId of STICKER_THEME_IDS) {
 
 assert.deepEqual(getStickerComposition("missing-theme"), getStickerComposition("chrome"));
 assert.deepEqual(getStickerComposition("cloudy-dreamy"), getStickerComposition("dreamy"));
+const dreamyBubble = getStickerComposition("cloudy-dreamy").find((item) => item.tone === "bubble");
+assert.ok(dreamyBubble, "cloudy-dreamy should include its Dreamy bubble placement");
+assert.equal(resolveStickerThemeId("cloudy-dreamy"), "dreamy");
+assert.equal(
+  getStickerPaint("dreamy", dreamyBubble, buildSvgIds("test")).fill,
+  "url(#test-dreamy-bubble)",
+);
 assert.equal(getStickerComposition(null).length, getStickerComposition("chrome").length);
 assert.deepEqual(getStickerComposition("toString"), getStickerComposition("chrome"));
 assert.equal(Object.isFrozen(getStickerComposition("chrome")), true);

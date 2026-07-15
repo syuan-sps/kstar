@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from "react";
 import {
   getStickerComposition,
+  resolveStickerThemeId,
   type StickerKind,
   type StickerPlacement,
   type StickerThemeId,
@@ -30,7 +31,7 @@ export default function FanIdStickerLayer({ themeId, enabled }: Props) {
   }
 
   const placements = getStickerComposition(themeId);
-  const resolvedThemeId = resolveRenderThemeId(themeId);
+  const resolvedThemeId = resolveStickerThemeId(themeId) ?? "chrome";
   const idPrefix = useId().replace(/:/g, "");
   const ids = buildSvgIds(idPrefix);
 
@@ -304,15 +305,25 @@ function renderStickerByKind(kind: StickerKind, paint: StickerPaint): ReactNode 
         </>
       );
     default:
-      return null;
+      return assertNever(kind);
   }
 }
 
-function getStickerPaint(
+export function getStickerPaint(
   themeId: StickerThemeId,
   placement: StickerPlacement,
   ids: SvgIds,
 ): StickerPaint {
+  if (themeId === "dreamy" && placement.tone === "bubble") {
+    return {
+      fill: `url(#${ids.dreamyBubble})`,
+      stroke: "#a8badf",
+      detail: "#ffffff",
+      accent: "#dee9ff",
+      fillOpacity: 0.96,
+    };
+  }
+
   if (placement.kind === "pearl") {
     return {
       fill: `url(#${ids.pearlFill})`,
@@ -412,21 +423,7 @@ function getStickerPaint(
   }
 }
 
-function resolveRenderThemeId(themeId?: string | null): StickerThemeId {
-  switch (themeId) {
-    case "dreamy":
-    case "cloudy-dreamy":
-      return "dreamy";
-    case "kawaii":
-    case "monochrome-cute":
-    case "chrome":
-      return themeId;
-    default:
-      return "chrome";
-  }
-}
-
-function buildSvgIds(prefix: string) {
+export function buildSvgIds(prefix: string) {
   return {
     shadow: `${prefix}-shadow`,
     chromeFill: `${prefix}-chrome-fill`,
@@ -441,4 +438,8 @@ function buildSvgIds(prefix: string) {
     monoBlackChrome: `${prefix}-mono-black-chrome`,
     monoGingham: `${prefix}-mono-gingham`,
   } as const;
+}
+
+function assertNever(value: never): never {
+  throw new Error(`Unsupported sticker kind: ${String(value)}`);
 }
