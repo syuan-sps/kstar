@@ -7,25 +7,52 @@
 import { useCallback, useEffect, useState } from "react";
 import type { CardArtist } from "@/lib/lite";
 import type { ArchetypeResult } from "@/lib/archetypes";
+import type { FanIdThemeId } from "@/lib/fanIdThemes";
 import { useCopy } from "@/lib/i18n/LocaleProvider";
 import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 import FanIdCard from "@/components/FanIdCard";
 import FacePhotoPicker from "@/components/FacePhotoPicker";
-import { normalizeStickersEnabled } from "@/lib/wizardState";
+import type { FanIdCardMode } from "@/lib/types";
+import {
+  normalizeCardMode,
+  normalizeStickersEnabled,
+  normalizeThemeId,
+} from "@/lib/wizardState";
 
 type FanIdPrefs = {
   heroId?: string;
   fanName?: string;
   issuedAt?: string;
   serial?: string;
-  stickersEnabled?: boolean;
+  themeId: FanIdThemeId;
+  stickersEnabled: boolean;
+  cardMode: FanIdCardMode;
 };
 
+function boundedString(value: unknown, max: number): value is string {
+  return typeof value === "string" && value.length > 0 && value.length <= max;
+}
+
+export function normalizeFanIdPrefs(value: unknown): FanIdPrefs {
+  const prefs = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  return {
+    heroId: boundedString(prefs.heroId, 128) ? prefs.heroId : undefined,
+    fanName: boundedString(prefs.fanName, 30) ? prefs.fanName : undefined,
+    issuedAt: typeof prefs.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(prefs.issuedAt) ? prefs.issuedAt : undefined,
+    serial: typeof prefs.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(prefs.serial) ? prefs.serial : undefined,
+    themeId: normalizeThemeId(prefs.themeId),
+    stickersEnabled: normalizeStickersEnabled(prefs.stickersEnabled),
+    cardMode: normalizeCardMode(prefs.cardMode),
+  };
+}
+
 function loadFanIdPrefs(): FanIdPrefs {
-  if (typeof window === "undefined") return {};
-  try { return JSON.parse(localStorage.getItem("kstar:prefs") ?? "{}") as FanIdPrefs; }
-  catch { return {}; }
+  if (typeof window === "undefined") return normalizeFanIdPrefs(undefined);
+  try { return normalizeFanIdPrefs(JSON.parse(localStorage.getItem("kstar:prefs") ?? "{}")); }
+  catch { return normalizeFanIdPrefs(undefined); }
 }
 
 type View = "story" | "report" | "pass";
@@ -98,7 +125,9 @@ export default function TastePortraitCard({
               facePhoto={facePhoto}
               issuedAt={prefs.issuedAt ?? "----.--.--"}
               serial={prefs.serial ?? "----"}
-              stickersEnabled={normalizeStickersEnabled(prefs.stickersEnabled)}
+              themeId={prefs.themeId}
+              stickersEnabled={prefs.stickersEnabled}
+              cardMode={prefs.cardMode}
             />
           )}
         </div>

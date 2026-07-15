@@ -4,7 +4,7 @@
 
 **Goal:** Add a persistent, optional, theme-specific SVG sticker-bomb layer to the Fan ID card without covering portraits or card information.
 
-**Architecture:** Keep sticker geometry and theme composition data in a pure `src/lib/fanIdStickers.ts` module, render it through a focused `FanIdStickerLayer` SVG component, and pass one boolean preference from `WizardState` through `StepIssue` into `FanIdCard`. The layer uses normalized placements and explicit protected zones so all three card layouts share deterministic, export-safe decoration.
+**Architecture:** Keep sticker geometry and theme composition data in a pure `src/lib/fanIdStickers.ts` module, render it through a focused `FanIdStickerLayer` SVG component, and pass the persisted preference/theme/layout state from `WizardState` through `StepIssue` into `FanIdCard`. `FanIdCard` intentionally mounts two controlled SVG roots — an `under-content` pass below protected content and an `over-portrait` pass reserved for approved portrait-edge accents — so all three card layouts share deterministic, export-safe decoration without collapsing protected z-order.
 
 **Tech Stack:** Next.js 16, React 19, TypeScript, Tailwind CSS 4, `tsx` for small pure-module checks, and the existing `html-to-image` export path.
 
@@ -14,6 +14,7 @@
 - The feature is one automatic on/off control; there is no manual dragging, rotation, randomization, density slider, marketplace, or paid tier.
 - The runtime must not depend on the broken raster sticker crops in `public/fanid-themes/`.
 - Use inline SVG/React SVG primitives with `aria-hidden="true"`; no rectangular raster crops or white-fringe assets.
+- The sticker contract is exactly two named SVG passes in `FanIdCard`; export must preserve their z-order.
 - Large pieces may overlap portrait edges by approximately 8–14px, but face, archetype data, score bars, holder identity, barcode, QR code, and issue date are protected.
 - Preview and downloaded PNG must use the same static DOM composition.
 - Verify desktop and narrow mobile widths, all four themes, and all three card layouts.
@@ -347,4 +348,3 @@ Export one decorated card and one undecorated card. Compare both downloads with 
 - [ ] **Step 6: Commit any final verification fix and report**
 
 If no fixes are needed, leave the source commits intact and report the verified local URL. If a fix is needed, rerun `npx tsc --noEmit`, `npm run build`, and `git diff --check` before committing only the affected file.
-

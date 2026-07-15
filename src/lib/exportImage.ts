@@ -4,8 +4,9 @@
 
 // Only the computed properties the cards actually render with — limiting the
 // copy set skips Tailwind v4's --tw-*/@theme custom properties.
-const EXPORT_STYLE_PROPS = [
+export const EXPORT_STYLE_PROPS = [
   "display", "position", "top", "right", "bottom", "left", "box-sizing",
+  "z-index",
   "width", "height", "min-width", "max-width", "min-height", "max-height",
   "margin-top", "margin-right", "margin-bottom", "margin-left",
   "padding-top", "padding-right", "padding-bottom", "padding-left",

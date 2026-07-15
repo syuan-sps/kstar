@@ -46,6 +46,8 @@ export default function FanIdStickerLayer({ themeId, enabled, layer }: Props) {
   return (
     <svg
       aria-hidden="true"
+      data-fanid-sticker-contract="two-pass"
+      data-fanid-sticker-layer={layer ?? "all"}
       className={`pointer-events-none absolute inset-0 h-full w-full overflow-hidden ${
         layer === "under-content" ? "z-0" : "z-20"
       }`}

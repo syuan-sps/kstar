@@ -1,7 +1,13 @@
 // Resumable state for the /start wizard. One JSON blob under kstar:wizard.
 // All readers parse leniently (old/partial blobs must never throw) — same
 // discipline as UserPrefs. finishWizard() is the ONLY writer of kstar:prefs.
-import type { ScoreLayer, StoredArchetype, UserPrefs, Weights } from "./types";
+import type {
+  FanIdCardMode,
+  ScoreLayer,
+  StoredArchetype,
+  UserPrefs,
+  Weights,
+} from "./types";
 import { SCORE_LAYERS } from "./types";
 import { rankToWeights } from "./questionnaire";
 import { FAN_ID_THEMES, type FanIdThemeId } from "./fanIdThemes";
@@ -19,7 +25,7 @@ export interface WizardState {
   serial?: string;            // stable ID (not a sequence or scarcity claim)
   themeId?: FanIdThemeId;     // curated visual edition
   stickersEnabled?: boolean;
-  cardMode?: "idol" | "idol-user" | "user";
+  cardMode?: FanIdCardMode;
 }
 
 const KEY = "kstar:wizard";
@@ -78,6 +84,18 @@ export function normalizeStickersEnabled(value: unknown): boolean {
   return value === true;
 }
 
+export function normalizeThemeId(value: unknown): FanIdThemeId {
+  return typeof value === "string" && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, value)
+    ? value as FanIdThemeId
+    : "chrome";
+}
+
+export function normalizeCardMode(value: unknown): FanIdCardMode {
+  return value === "idol" || value === "idol-user" || value === "user"
+    ? value
+    : "idol-user";
+}
+
 export function loadWizard(): WizardState {
   if (typeof window === "undefined") return emptyWizard();
   try {
@@ -95,9 +113,9 @@ export function loadWizard(): WizardState {
       song: validSong(p.song),
       issuedAt: typeof p.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(p.issuedAt) ? p.issuedAt : undefined,
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
-      themeId: typeof p.themeId === "string" && p.themeId in FAN_ID_THEMES ? p.themeId as FanIdThemeId : "chrome",
+      themeId: normalizeThemeId(p.themeId),
       stickersEnabled: normalizeStickersEnabled(p.stickersEnabled),
-      cardMode: p.cardMode === "idol" || p.cardMode === "idol-user" || p.cardMode === "user" ? p.cardMode : "idol-user",
+      cardMode: normalizeCardMode(p.cardMode),
     };
   } catch {
     return emptyWizard();
@@ -184,7 +202,8 @@ export function finishWizard(s: WizardState): boolean {
     archetype: s.archetype,
     heroId: s.heroId ?? s.picks[0],
     fanName: s.fanName,
-    cardMode: s.cardMode ?? "idol-user",
+    themeId: normalizeThemeId(s.themeId),
+    cardMode: normalizeCardMode(s.cardMode),
     issuedAt: s.issuedAt,
     serial: s.serial,
     stickersEnabled: normalizeStickersEnabled(s.stickersEnabled),
