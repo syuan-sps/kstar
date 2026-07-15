@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ChromeHeart">
+<g id="Vector" filter="url(#filter0_f_0_11)">
+<path d="M10 17.5C10 17.5 2.5 12.5 2.5 7.5C2.5 5.19917 4.36583 3.33333 6.66667 3.33333C8.0475 3.33333 9.27417 3.98083 10 4.99333C10.7258 3.98083 11.9525 3.33333 13.3333 3.33333C15.6342 3.33333 17.5 5.19917 17.5 7.5C17.5 12.5 10 17.5 10 17.5Z" fill="url(#paint0_radial_0_11)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_11" x="0.5" y="1.33333" width="19" height="18.1667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_0_11"/>
+</filter>
+<radialGradient id="paint0_radial_0_11" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(8.2 6.875) scale(10.5 9.91667)">
+<stop stop-color="white"/>
+<stop offset="0.3" stop-color="#E8E8E8"/>
+<stop offset="0.65" stop-color="#AAAAAA"/>
+<stop offset="1" stop-color="#555555"/>
+</radialGradient>
+</defs>
+</svg>

@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20.827 20.827" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ChromeSphere" clip-path="url(#clip0_0_34)">
+<path id="Vector" d="M10.4135 20.1762C15.8053 20.1762 20.1762 15.8053 20.1762 10.4135C20.1762 5.02173 15.8053 0.650844 10.4135 0.650844C5.02175 0.650844 0.650857 5.02173 0.650857 10.4135C0.650857 15.8053 5.02175 20.1762 10.4135 20.1762Z" fill="url(#paint0_radial_0_34)"/>
+<path id="Vector_2" d="M7.15929 7.94029C9.17222 7.94029 10.804 7.00784 10.804 5.85759C10.804 4.70735 9.17222 3.77489 7.15929 3.77489C5.14637 3.77489 3.51457 4.70735 3.51457 5.85759C3.51457 7.00784 5.14637 7.94029 7.15929 7.94029Z" fill="var(--fill-0, white)" fill-opacity="0.65"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_34" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(7.28946 6.11793) scale(12.8867)">
+<stop stop-color="white"/>
+<stop offset="0.3" stop-color="#E2E2E2"/>
+<stop offset="0.65" stop-color="#999999"/>
+<stop offset="1" stop-color="#3D3D3D"/>
+</radialGradient>
+<clipPath id="clip0_0_34">
+<rect width="20.827" height="20.827" fill="white"/>
+</clipPath>
+</defs>
+</svg>
