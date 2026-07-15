@@ -62,6 +62,7 @@ export default function StepIssue({
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
+      variant="collectible"
     />
   );
 
@@ -111,6 +112,16 @@ export default function StepIssue({
       <div className="fanid-preview-shell relative">
         <div className="fanid-preview-scale">{card}</div>
       </div>
+      {wiz.themeId === "chrome" && (
+        <div className="w-full max-w-lg rounded-2xl border border-[#c8ccd2] bg-white/70 p-3 text-center">
+          <p className="mb-2 text-xs font-bold text-[#5e636d]">Chrome Cute direction</p>
+          <div className="fanid-preview-shell">
+            <div className="fanid-preview-scale">
+              <FanIdCard picks={picks} heroId={heroId} result={result} fanName={wiz.fanName} showFace={showFace} facePhoto={facePhoto} issuedAt={wiz.issuedAt} serial={wiz.serial} themeId="chrome" variant="cute" />
+            </div>
+          </div>
+        </div>
+      )}
 
       <section className="w-full max-w-lg space-y-4 rounded-2xl border border-[#c8ccd2] bg-white/75 p-4 shadow-sm" aria-label={copy.customizeFanIdAria}>
         <div>

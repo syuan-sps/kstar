@@ -21,6 +21,7 @@ import { SCORE_LAYERS } from "@/lib/types";
 
 interface FanIdCardCommonProps {
   themeId?: FanIdThemeId;
+  variant?: "collectible" | "cute";
   fanName?: string;
   song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
@@ -94,6 +95,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const lineup = picks.filter((p) => p.id !== hero.id);
   const theme = getFanIdTheme(props.themeId);
+  const variant = props.variant ?? "collectible";
   const rarity = frameRarity(result.code, locale);
   const complement = expandCode(result.code);
   const complementType = ARCHETYPES[complement];
@@ -105,7 +107,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       data-sample={sample ? "true" : undefined}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden text-[#1c1e24] shadow-[0_0_0_1px_rgba(255,255,255,0.75),0_0_0_2px_rgba(0,0,0,0.22),0_24px_48px_rgba(0,0,0,0.35)]"
-      style={{ backgroundImage: theme.surface, borderRadius: theme.radius, color: theme.text }}
+      style={{ backgroundImage: theme.surface, borderRadius: variant === "cute" ? "22px" : theme.radius, color: theme.text, border: `1px solid ${variant === "cute" ? `${theme.accent}88` : theme.border}` }}
     >
       {theme.stickers.map((src, index) => (
         <span
@@ -113,12 +115,12 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           aria-hidden="true"
           className="pointer-events-none absolute z-10 opacity-75"
           style={{
-            width: index === 1 ? 42 : 48,
-            top: index === 0 ? 82 : index === 1 ? 214 : undefined,
-            right: index === 0 || index === 1 ? 8 : undefined,
-            bottom: index === 2 ? 14 : undefined,
-            left: index === 2 ? 8 : undefined,
-            transform: index === 1 ? "rotate(8deg)" : index === 2 ? "rotate(-8deg)" : "rotate(6deg)",
+            width: variant === "cute" ? (index === 1 ? 38 : 44) : (index === 1 ? 42 : 48),
+            top: variant === "cute" ? (index === 0 ? 78 : index === 1 ? 206 : undefined) : (index === 0 ? 82 : index === 1 ? 214 : undefined),
+            right: index === 0 || index === 1 ? (variant === "cute" ? 12 : 8) : undefined,
+            bottom: index === 2 ? (variant === "cute" ? 18 : 14) : undefined,
+            left: index === 2 ? (variant === "cute" ? 12 : 8) : undefined,
+            transform: variant === "cute" ? (index === 1 ? "rotate(14deg)" : index === 2 ? "rotate(-14deg)" : "rotate(10deg)") : (index === 1 ? "rotate(8deg)" : index === 2 ? "rotate(-8deg)" : "rotate(6deg)"),
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
