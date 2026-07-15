@@ -98,14 +98,16 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     heroId,
     result,
     fanName,
+    issuedAt,
+    serial,
+  } = card;
+  const {
     song,
     showFace,
     facePhoto,
-    issuedAt,
-    serial,
     stickersEnabled = false,
     cardMode = "idol",
-  } = card;
+  } = props;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const theme = getFanIdTheme(props.themeId);
   const isUserHero = cardMode === "user";
