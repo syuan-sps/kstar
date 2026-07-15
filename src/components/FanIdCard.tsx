@@ -94,7 +94,6 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     : props;
   const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial, cardMode = "idol" } = card;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
-  const lineup = picks.filter((p) => p.id !== hero.id);
   const theme = getFanIdTheme(props.themeId);
   const variant = props.variant ?? "collectible";
   const portraitSrc = cardMode === "user" && facePhoto ? facePhoto : hero.image_url;
@@ -191,23 +190,6 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             ✦ {rarity.label}
           </span>
         </div>
-      </div>
-
-      <div className="mt-2 grid grid-cols-3 gap-1.5">
-        {lineup.slice(0, 3).map((artist) => (
-          <div key={artist.id} data-fanid-entry="lineup" className="overflow-hidden border-2 shadow-[0_2px_5px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.5)]" style={{ borderColor: `${theme.accent}70`, backgroundImage: theme.surface, borderRadius: theme.radius }}>
-            <div className="aspect-[3/4]">
-              <Thumb
-                src={artist.image_url}
-                seed={artist.id}
-                label={artist.name_zh ?? artist.name}
-                focusY={artist.image_focus}
-                rounded="rounded-none"
-              />
-            </div>
-            <p className="truncate px-1 py-0.5 text-center text-[7px] font-bold text-[#3a3a3a]">{artist.name_zh ?? artist.name}</p>
-          </div>
-        ))}
       </div>
 
       <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-black/10 pt-2">
