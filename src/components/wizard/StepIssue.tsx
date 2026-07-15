@@ -33,7 +33,7 @@ export default function StepIssue({
   const completing = useRef(false);
   const [phase, setPhase] = useState<Phase>("printing");
   const [flash] = useState(() => typeof window !== "undefined" && localStorage.getItem("kstar:flashOk") === "1");
-  const [showFace, setShowFace] = useState(true);
+  const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">("idol-user");
   const [facePhoto, setFacePhoto] = useState<string | null>(null);
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
@@ -57,8 +57,9 @@ export default function StepIssue({
       heroId={heroId}
       result={result}
       fanName={wiz.fanName}
-      showFace={showFace}
+      showFace={cardMode === "idol-user"}
       facePhoto={facePhoto}
+      cardMode={cardMode}
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
@@ -112,16 +113,6 @@ export default function StepIssue({
       <div className="fanid-preview-shell relative">
         <div className="fanid-preview-scale">{card}</div>
       </div>
-      {wiz.themeId === "chrome" && (
-        <div className="w-full max-w-lg rounded-2xl border border-[#c8ccd2] bg-white/70 p-3 text-center">
-          <p className="mb-2 text-xs font-bold text-[#5e636d]">Chrome Cute direction</p>
-          <div className="fanid-preview-shell">
-            <div className="fanid-preview-scale">
-              <FanIdCard picks={picks} heroId={heroId} result={result} fanName={wiz.fanName} showFace={showFace} facePhoto={facePhoto} issuedAt={wiz.issuedAt} serial={wiz.serial} themeId="chrome" variant="cute" />
-            </div>
-          </div>
-        </div>
-      )}
 
       <section className="w-full max-w-lg space-y-4 rounded-2xl border border-[#c8ccd2] bg-white/75 p-4 shadow-sm" aria-label={copy.customizeFanIdAria}>
         <div>
@@ -157,13 +148,16 @@ export default function StepIssue({
         </label>
 
         <div>
-          <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.wizCardVersionLabel}</p>
-          <div className="grid grid-cols-2 gap-2">
-            <button type="button" aria-pressed={showFace} onClick={() => setShowFace(true)} className={`rounded-xl border px-3 py-2 text-xs font-bold ${showFace ? "border-[#b4302b] bg-[#b4302b]/5 text-[#b4302b]" : "border-[#c8ccd2]"}`}>{copy.wizVersionA}</button>
-            <button type="button" aria-pressed={!showFace} onClick={() => setShowFace(false)} className={`rounded-xl border px-3 py-2 text-xs font-bold ${!showFace ? "border-[#1c1e24] bg-[#1c1e24]/5" : "border-[#c8ccd2]"}`}>{copy.wizVersionB}</button>
+          <p className="mb-2 text-xs font-bold text-[#5e636d]">Card layout</p>
+          <div className="grid grid-cols-3 gap-2">
+            {(["idol", "idol-user", "user"] as const).map((mode) => {
+              const labels = { idol: "Idol", "idol-user": "Idol + User", user: "User" };
+              const selected = cardMode === mode;
+              return <button key={mode} type="button" aria-pressed={selected} onClick={() => setCardMode(mode)} className={`rounded-xl border px-2 py-2 text-xs font-bold ${selected ? "border-[#b4302b] bg-[#b4302b]/5 text-[#b4302b]" : "border-[#c8ccd2]"}`}>{labels[mode]}</button>;
+            })}
           </div>
         </div>
-        {showFace && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
+        {cardMode !== "idol" && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
 
         <button type="button" disabled className="w-full rounded-xl border border-dashed border-[#c8ccd2] bg-[#f4f5f7] py-2 text-xs text-[#9aa0aa]">{copy.wizBiasSongComingSoon}</button>
 

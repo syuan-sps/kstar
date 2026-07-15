@@ -22,6 +22,7 @@ import { SCORE_LAYERS } from "@/lib/types";
 interface FanIdCardCommonProps {
   themeId?: FanIdThemeId;
   variant?: "collectible" | "cute";
+  cardMode?: "idol" | "idol-user" | "user";
   fanName?: string;
   song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
@@ -91,11 +92,13 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         fanName: locale === "en" ? SAMPLE_FAN_NAME_EN : SAMPLE_FAN_ID.fanName,
       }
     : props;
-  const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial } = card;
+  const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial, cardMode = "idol" } = card;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const lineup = picks.filter((p) => p.id !== hero.id);
   const theme = getFanIdTheme(props.themeId);
   const variant = props.variant ?? "collectible";
+  const portraitSrc = cardMode === "user" && facePhoto ? facePhoto : hero.image_url;
+  const portraitLabel = cardMode === "user" && facePhoto ? copy.fanIdSelfLabel : (hero.name_zh ?? hero.name);
   const rarity = frameRarity(result.code, locale);
   const complement = expandCode(result.code);
   const complementType = ARCHETYPES[complement];
@@ -151,9 +154,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div className="mt-2.5 grid grid-cols-[1.15fr_1fr] gap-2.5">
         <div data-fanid-entry="hero" className="relative aspect-[3/3.4] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
           <Thumb
-            src={hero.image_url}
+            src={portraitSrc}
             seed={hero.id}
-            label={hero.name_zh ?? hero.name}
+            label={portraitLabel}
             focusY={hero.image_focus}
             rounded="rounded-none"
           />
@@ -166,7 +169,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             </span>
           )}
           <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1e24]/80 to-transparent px-2 pb-1.5 pt-5 text-[11px] font-bold text-white">
-            {copy.fanIdHeroPrefix} · {hero.name_zh ?? hero.name}
+            {cardMode === "user" && facePhoto ? copy.fanIdSelfLabel : `${copy.fanIdHeroPrefix} · ${hero.name_zh ?? hero.name}`}
           </span>
         </div>
 
