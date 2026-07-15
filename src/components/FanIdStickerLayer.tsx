@@ -10,6 +10,7 @@ import {
 type Props = {
   themeId?: string | null;
   enabled: boolean;
+  layer?: StickerPlacement["layer"];
 };
 
 type StickerPaint = {
@@ -25,24 +26,34 @@ type SvgIds = ReturnType<typeof buildSvgIds>;
 const SPARKLE_PATH =
   "M0 -10 C1.4 -3.6 3.6 -1.4 10 0 C3.6 1.4 1.4 3.6 0 10 C-1.4 3.6 -3.6 1.4 -10 0 C-3.6 -1.4 -1.4 -3.6 0 -10 Z";
 
-export default function FanIdStickerLayer({ themeId, enabled }: Props) {
+export default function FanIdStickerLayer({ themeId, enabled, layer }: Props) {
   const idPrefix = useId().replace(/:/g, "");
 
   if (!enabled) {
     return null;
   }
 
-  const placements = getStickerComposition(themeId);
+  const placements = layer
+    ? getStickerComposition(themeId).filter((placement) => placement.layer === layer)
+    : getStickerComposition(themeId);
   const resolvedThemeId = resolveStickerThemeId(themeId) ?? "chrome";
   const ids = buildSvgIds(idPrefix);
+
+  if (placements.length === 0) {
+    return null;
+  }
 
   return (
     <svg
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-hidden"
+      className={`pointer-events-none absolute inset-0 h-full w-full overflow-hidden ${
+        layer === "under-content" ? "z-0" : "z-20"
+      }`}
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       focusable="false"
+      overflow="hidden"
+      style={{ overflow: "hidden" }}
     >
       <defs>
         <filter id={ids.shadow} x="-30%" y="-30%" width="160%" height="160%">

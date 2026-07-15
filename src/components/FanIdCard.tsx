@@ -138,8 +138,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
-        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} />
-        <header className="relative flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
+        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="under-content" />
+        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="over-portrait" />
+        <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>
             <p className="font-orbitron text-[10px] font-black tracking-[0.14em] text-white">KSTAR · FAN ID</p>
@@ -151,7 +152,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           </div>
         </header>
 
-        <main className="relative p-3">
+        <main className="relative z-10 p-3">
           <div aria-hidden="true" className="pointer-events-none absolute left-1 top-8 flex flex-col gap-1.5 opacity-55">
             {[0, 1, 2, 3].map((dot) => <span key={dot} className="h-1 w-1 rounded-full" style={{ backgroundColor: theme.accent }} />)}
           </div>
