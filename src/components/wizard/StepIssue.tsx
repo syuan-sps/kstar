@@ -9,7 +9,7 @@ import type { ArchetypeResult } from "@/lib/archetypes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import type { ArtistLite } from "@/lib/lite";
-import { finishWizard, normalizeStickersEnabled, saveWizard, type WizardState } from "@/lib/wizardState";
+import { finishWizard, saveWizard, type WizardState } from "@/lib/wizardState";
 import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
 
 type Phase = "printing" | "customize";
@@ -34,6 +34,7 @@ export default function StepIssue({
   const [phase, setPhase] = useState<Phase>("printing");
   const [flash] = useState(() => typeof window !== "undefined" && localStorage.getItem("kstar:flashOk") === "1");
   const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">(wiz.cardMode ?? "idol-user");
+  const [stickersEnabled, setStickersEnabled] = useState(wiz.stickersEnabled === true);
   const [facePhoto, setFacePhoto] = useState<string | null>(null);
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
@@ -63,7 +64,7 @@ export default function StepIssue({
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
-      stickersEnabled={normalizeStickersEnabled(wiz.stickersEnabled)}
+      stickersEnabled={stickersEnabled}
     />
   );
 
@@ -107,6 +108,20 @@ export default function StepIssue({
     }
     router.push("/");
   }
+
+  const stickerToggleCopy = locale === "zh"
+    ? {
+        title: "貼紙裝飾",
+        subtitle: "加入主題貼紙邊框",
+        selected: "已開啟",
+        unselected: "已關閉",
+      }
+    : {
+        title: "Sticker bomb",
+        subtitle: "Add a curated decorated edge",
+        selected: "On",
+        unselected: "Off",
+      };
 
   return (
     <div className="flex flex-col items-center gap-5">
@@ -168,6 +183,25 @@ export default function StepIssue({
             })}
           </div>
         </div>
+        <button
+          type="button"
+          data-sticker-toggle
+          aria-pressed={stickersEnabled}
+          onClick={() => {
+            const next = !stickersEnabled;
+            setStickersEnabled(next);
+            update({ stickersEnabled: next });
+          }}
+          className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${stickersEnabled ? "border-[#b4302b] bg-[#b4302b]/7 shadow-sm" : "border-[#c8ccd2] bg-white/70 hover:border-[#9aa0aa]"}`}
+        >
+          <span className="min-w-0">
+            <span className={`block text-xs font-bold ${stickersEnabled ? "text-[#b4302b]" : "text-[#1c1e24]"}`}>{stickerToggleCopy.title}</span>
+            <span className="mt-1 block text-[11px] text-[#5e636d]">{stickerToggleCopy.subtitle}</span>
+          </span>
+          <span className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-[0.08em] ${stickersEnabled ? "border-[#b4302b]/30 bg-[#b4302b] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>
+            {stickersEnabled ? stickerToggleCopy.selected : stickerToggleCopy.unselected}
+          </span>
+        </button>
         {cardMode !== "idol" && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
         {photoRequired && <p className="text-center text-[11px] font-medium text-[#b4302b]">{locale === "zh" ? "加入本人照片後即可匯出這個版式。" : "Add your photo to export this layout."}</p>}
 

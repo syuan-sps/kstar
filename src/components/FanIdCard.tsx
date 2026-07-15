@@ -125,6 +125,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       ref={ref}
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
+      data-card-stickers={stickersEnabled ? "true" : "false"}
       data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
