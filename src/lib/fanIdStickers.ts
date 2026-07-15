@@ -34,6 +34,10 @@ export const STICKER_THEME_IDS: readonly StickerThemeId[] = [
   "monochrome-cute",
 ];
 
+const STICKER_THEME_ALIASES = Object.freeze({
+  "cloudy-dreamy": "dreamy",
+} as const);
+
 const RAW_STICKER_COMPOSITIONS = {
   chrome: [
     { id: "chrome-heart-top", kind: "heart", x: 7, y: 9, size: 12, rotate: -12, zone: "header", layer: "under-content" },
@@ -96,9 +100,27 @@ export const STICKER_COMPOSITIONS: Readonly<Record<StickerThemeId, readonly Stic
   "monochrome-cute": freezePlacements(RAW_STICKER_COMPOSITIONS["monochrome-cute"]),
 });
 
+function resolveStickerThemeId(themeId?: string | null): StickerThemeId | null {
+  if (!themeId) {
+    return null;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(STICKER_COMPOSITIONS, themeId)) {
+    return themeId as StickerThemeId;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(STICKER_THEME_ALIASES, themeId)) {
+    return STICKER_THEME_ALIASES[themeId as keyof typeof STICKER_THEME_ALIASES];
+  }
+
+  return null;
+}
+
 export function getStickerComposition(themeId?: string | null): readonly StickerPlacement[] {
-  if (themeId && Object.prototype.hasOwnProperty.call(STICKER_COMPOSITIONS, themeId)) {
-    return freezePlacements(STICKER_COMPOSITIONS[themeId as StickerThemeId]);
+  const resolvedThemeId = resolveStickerThemeId(themeId);
+
+  if (resolvedThemeId) {
+    return freezePlacements(STICKER_COMPOSITIONS[resolvedThemeId]);
   }
 
   return freezePlacements(STICKER_COMPOSITIONS.chrome);

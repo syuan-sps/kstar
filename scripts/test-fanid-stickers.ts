@@ -24,6 +24,7 @@ for (const themeId of STICKER_THEME_IDS) {
 }
 
 assert.deepEqual(getStickerComposition("missing-theme"), getStickerComposition("chrome"));
+assert.deepEqual(getStickerComposition("cloudy-dreamy"), getStickerComposition("dreamy"));
 assert.equal(getStickerComposition(null).length, getStickerComposition("chrome").length);
 assert.deepEqual(getStickerComposition("toString"), getStickerComposition("chrome"));
 assert.equal(Object.isFrozen(getStickerComposition("chrome")), true);
