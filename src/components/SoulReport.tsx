@@ -14,8 +14,12 @@ import { MOODS } from "@/lib/questionnaire";
 import { displayTrait } from "@/lib/cardMeta";
 import { exportNode } from "@/lib/exportImage";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
+import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 
-const GHOST = "#c8ccd2";
+const GHOST = "#8a8d93";
+// flat, low-contrast brushed-metal tone — no dramatic banding across text
+// discovery-row icon colors are semantic (not per-archetype accent): ❤ cherry, ✧ steel, ↗ blue
+const DISCOVER_ICON_COLOR: Record<string, string> = { "❤": "#b4302b", "✧": "#7c8088", "↗": "#56789f" };
 
 export interface ResultAnswers {
   contrast?: boolean | null;
@@ -24,10 +28,11 @@ export interface ResultAnswers {
 }
 
 export default function SoulReport({
-  result, answers,
+  result, answers, themeId,
 }: {
   result: ArchetypeResult;
   answers?: ResultAnswers;
+  themeId?: FanIdThemeId;
 }) {
   const copy = useCopy();
   const locale = useLocale();
@@ -35,7 +40,8 @@ export default function SoulReport({
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
   const { code, archetype, colorStory, dualityLine, hiddenLayer, bars, high } = result;
-  const accent = colorStory.accent;
+  const theme = getFanIdTheme(themeId);
+  const accent = theme.accent || colorStory.accent;
 
   const soulmate = soulmateCodes(code)[0];
   const soulmateA = soulmate ? ARCHETYPES[soulmate] : null;
@@ -69,23 +75,16 @@ export default function SoulReport({
         ref={reportRef}
         className="relative w-full max-w-[340px] overflow-hidden rounded-[24px] p-5"
         style={{
-          // Silvercore: faint silver grid + chrome sheen over the frost gradient (inline so html-to-image rasterises it)
-          backgroundColor: "#f4f5f7",
-          backgroundImage: [
-            "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-            "repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-            "radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 45%)",
-            "radial-gradient(90% 50% at 100% 12%, rgba(167,192,220,0.20) 0%, transparent 50%)",
-            `radial-gradient(90% 50% at 0% 96%, ${accent}12 0%, transparent 50%)`,
-            "linear-gradient(175deg, #ffffff 0%, #f4f5f7 60%, #e9ebee 100%)",
-          ].join(", "),
-          border: `2px solid ${accent}55`,
-          // signature hard "sticker" offset shadow (accent + steel echo) instead of a soft drop
-          boxShadow: `3px 4px 0 ${accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
+          backgroundImage: theme.surface,
+          color: theme.text,
+          border: `1px solid ${theme.border}`,
+          boxShadow: "0 0 0 1px rgba(255,255,255,0.75), 0 0 0 2px rgba(0,0,0,0.22), 0 24px 48px rgba(0,0,0,0.35)",
         }}
       >
-        {/* corner ✦ stickers — the 圖鑑 card signature (steel TL / cherry BR) */}
-        <span className="absolute left-3 top-2.5 text-[11px] leading-none text-[#7c8088]">✦</span>
+        {/* inset chrome bevel */}
+        <div className="pointer-events-none absolute inset-0 rounded-[24px] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.92),inset_0_-1.5px_0_rgba(0,0,0,0.16),inset_1.5px_0_0_rgba(255,255,255,0.55),inset_-1.5px_0_0_rgba(0,0,0,0.1)]" />
+        {/* corner ✦ stickers — chrome TL / accent BR */}
+        <span className="absolute left-3 top-2.5 text-[11px] leading-none text-[#5a5a5a]">✦</span>
         <span className="absolute bottom-2.5 right-3 text-[10px] leading-none" style={{ color: accent }}>✦</span>
 
         {/* hero */}
@@ -112,17 +111,20 @@ export default function SoulReport({
             return (
               <div key={L}>
                 <div className="flex items-center justify-between">
-                  <span className="text-[12px] font-bold text-[#1c1e24]">{layerLabel(locale, L)}</span>
-                  <span className="rounded-full px-1.5 text-[9px] font-bold"
-                    style={{ color: isHigh ? "#fff" : "#7c8088", backgroundColor: isHigh ? LAYER_COLOR[L] : "#c8ccd2" }}>
+                  <span className="text-[12px] font-bold text-[#1a1a1a]">{layerLabel(locale, L)}</span>
+                  <span className="rounded-full px-1.5 text-[9px] font-bold shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+                    style={{ color: isHigh ? "#fff" : "#4a4a4a", backgroundColor: isHigh ? LAYER_COLOR[L] : "rgba(0,0,0,0.12)" }}>
                     {/* a non-defining axis never reads high, even if its raw bar is long */}
                     {isHigh ? `${barLabel(locale, 100)} ✦` : barLabel(locale, Math.min(bars[L], 55))}
                   </span>
                 </div>
-                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[#7c8088]/15">
-                  <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: isHigh ? LAYER_COLOR[L] : "#c8ccd2" }} />
+                <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-black/15 shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]">
+                  <div
+                    className="h-full rounded-full"
+                    style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: isHigh ? LAYER_COLOR[L] : "#8a8d93", boxShadow: isHigh ? `0 0 6px ${LAYER_COLOR[L]}99` : undefined }}
+                  />
                 </div>
-                <p className="mt-1 text-[11px] leading-snug text-[#5e636d]">{isHigh ? LAYER_MEANINGS[L].high[locale] : LAYER_MEANINGS[L].low[locale]}</p>
+                <p className="mt-1 text-[11px] leading-snug text-[#3a3a3a]">{isHigh ? LAYER_MEANINGS[L].high[locale] : LAYER_MEANINGS[L].low[locale]}</p>
               </div>
             );
           })}
@@ -169,11 +171,12 @@ export default function SoulReport({
       {/* ── Actions (not exported) ──────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-2">
         <button onClick={() => run("download")} disabled={busy}
-          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50">
+          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110 disabled:opacity-50">
           {busy ? copy.processing : copy.shareDownloadReport}
         </button>
         <button onClick={() => run("share")} disabled={busy}
-          className="rounded-full border border-[#c8ccd2] bg-white px-4 py-2 text-xs font-bold text-[#1c1e24] transition hover:bg-[#7c8088]/10 disabled:opacity-50">
+          className="rounded-full border border-white/[0.68] px-4 py-2 text-xs font-bold text-[#1a1a1a] shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)] transition hover:brightness-95 disabled:opacity-50"
+          style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.38))" }}>
           {copy.shareShare}
         </button>
       </div>
@@ -195,9 +198,12 @@ function SectionHeader({ label, accent }: { label: string; accent: string }) {
 
 function AnswerLine({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
-    <div className="rounded-xl border border-[#c8ccd2]/40 bg-white/70 px-3 py-1.5">
-      <span className="text-[10px]" style={{ color: accent }}>{label}：</span>
-      <span className="text-[12px] font-bold text-[#1c1e24]">{value}</span>
+    <div
+      className="rounded-xl border border-white/[0.55] px-3 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_1px_0_rgba(0,0,0,0.06)]"
+      style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.42), rgba(255,255,255,0.22))" }}
+    >
+      <span className="text-[10px] text-[#5a5a5a]">{label}：</span>
+      <span className="text-[12px] font-bold" style={{ color: accent }}>{value}</span>
     </div>
   );
 }
@@ -206,12 +212,15 @@ function DiscoverRow({ icon, label, value, note, accent }: {
   icon: string; label: string; value: string; note: string; accent: string;
 }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-xl border border-[#c8ccd2]/40 bg-white/70 px-3 py-2">
-      <span className="text-sm" style={{ color: accent }}>{icon}</span>
+    <div
+      className="flex items-center gap-2.5 rounded-xl border border-white/[0.55] px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_1px_0_rgba(0,0,0,0.06)]"
+      style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.42), rgba(255,255,255,0.22))" }}
+    >
+      <span className="text-sm" style={{ color: DISCOVER_ICON_COLOR[icon] ?? accent }}>{icon}</span>
       <div className="min-w-0 flex-1">
-        <span className="text-[10px] text-[#9aa0aa]">{label}：</span>
-        <span className="font-bold text-[#1c1e24]">{value}</span>
-        <div className="truncate text-[10px] text-[#9aa0aa]">{note}</div>
+        <span className="text-[10px] text-[#5a5a5a]">{label}：</span>
+        <span className="font-bold text-[#1a1a1a]">{value}</span>
+        <div className="truncate text-[10px] text-[#5a5a5a]">{note}</div>
       </div>
     </div>
   );

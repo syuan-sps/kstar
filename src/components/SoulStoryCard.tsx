@@ -6,14 +6,16 @@
 
 import { useRef, useState } from "react";
 import { SCORE_LAYERS } from "@/lib/types";
-import { type ArchetypeResult, layerLabel, LAYER_COLOR } from "@/lib/archetypes";
+import { type ArchetypeResult, layerLabel } from "@/lib/archetypes";
 import { exportNode } from "@/lib/exportImage";
 import { getStoryCardDecor } from "@/lib/storyCardDecor";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
+import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 
-const GHOST = "#c8ccd2";
+const GHOST = "#8a8d93";
+// flat, low-contrast brushed-metal tone — no dramatic banding across text
 
-export default function SoulStoryCard({ result }: { result: ArchetypeResult }) {
+export default function SoulStoryCard({ result, themeId }: { result: ArchetypeResult; themeId?: FanIdThemeId }) {
   const copy = useCopy();
   const locale = useLocale();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -21,7 +23,8 @@ export default function SoulStoryCard({ result }: { result: ArchetypeResult }) {
   const [failed, setFailed] = useState(false);
   const { code, archetype, bars, high } = result;
   const decor = getStoryCardDecor({ code, leadLayer: result.leadLayer, missing: archetype.missing });
-  const accent = decor.edgeColor;
+  const theme = getFanIdTheme(themeId);
+  const accent = theme.accent;
   const motifGlyph = {
     flare: "✦",
     notch: "⌐",
@@ -56,24 +59,17 @@ export default function SoulStoryCard({ result }: { result: ArchetypeResult }) {
         className="relative flex w-[270px] flex-col items-center gap-[30px] overflow-hidden rounded-[24px]"
         style={{
           height: 480, // explicit 9:16 (270×16/9) — html-to-image needs explicit dimensions
-          // Silvercore: faint silver grid + chrome sheen over the frost gradient (all inline so html-to-image rasterises it)
-          backgroundColor: "#f4f5f7",
-          backgroundImage: [
-            "repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-            "repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(124,128,136,0.06) 19px, rgba(124,128,136,0.06) 20px)",
-            "radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.7) 0%, transparent 55%)",
-            "radial-gradient(90% 70% at 100% 18%, rgba(167,192,220,0.22) 0%, transparent 55%)",
-            `radial-gradient(90% 70% at 0% 90%, ${accent}14 0%, transparent 55%)`,
-            "linear-gradient(165deg, #ffffff 0%, #f4f5f7 52%, #e6e9ed 100%)",
-          ].join(", "),
-          border: `2px solid ${accent}55`,
-          // signature hard "sticker" offset shadow (steel + accent) instead of a soft drop
-          boxShadow: `3px 4px 0 ${accent}30, 6px 7px 0 rgba(124,128,136,0.14), 0 10px 26px rgba(80,85,95,0.16), inset 0 0 0 1px rgba(255,255,255,0.6)`,
+          backgroundImage: theme.surface,
+          color: theme.text,
+          border: `1px solid ${theme.border}`,
+          boxShadow: "0 0 0 1px rgba(255,255,255,0.75), 0 0 0 2px rgba(0,0,0,0.22), 0 24px 48px rgba(0,0,0,0.35)",
           padding: "50px 18px 22px",
         }}
       >
-          {/* corner ✦ stickers — the 圖鑑 card signature (steel TL / cherry BR) */}
-          <span className="absolute left-2.5 top-2 text-[11px] leading-none text-[#7c8088]">✦</span>
+          {/* inset chrome bevel */}
+          <div className="pointer-events-none absolute inset-0 rounded-[24px] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.92),inset_0_-1.5px_0_rgba(0,0,0,0.16),inset_1.5px_0_0_rgba(255,255,255,0.55),inset_-1.5px_0_0_rgba(0,0,0,0.1)]" />
+          {/* corner ✦ stickers — chrome TL / accent BR */}
+          <span className="absolute left-2.5 top-2 text-[11px] leading-none text-[#5a5a5a]">✦</span>
           <span className="absolute bottom-2 right-2.5 text-[10px] leading-none" style={{ color: accent }}>✦</span>
           <span
             aria-hidden="true"
@@ -115,15 +111,21 @@ export default function SoulStoryCard({ result }: { result: ArchetypeResult }) {
           </div>
 
           {/* middle: archetype-only frequency panel */}
-          <div className="flex h-[115px] w-[210px] shrink-0 flex-col justify-center rounded-[18px] border border-[#c8ccd2]/50 bg-white/55 px-3 py-3">
-            <div className="text-center font-orbitron text-[9px] font-bold tracking-[0.22em] text-[#7c8088]">{copy.storyFrequency}</div>
+          <div
+            className="flex h-[115px] w-[210px] shrink-0 flex-col justify-center rounded-[18px] border border-white/[0.55] px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_1px_0_rgba(0,0,0,0.06)]"
+            style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.42), rgba(255,255,255,0.22))" }}
+          >
+            <div className="text-center font-orbitron text-[9px] font-bold tracking-[0.22em] text-[#5a5a5a]">{copy.storyFrequency}</div>
             <div className="mt-4 grid grid-cols-4 gap-2">
               {SCORE_LAYERS.map((L) => (
                 <div key={L}>
-                  <div className="h-2 overflow-hidden rounded-full bg-[#7c8088]/15">
-                    <div className="h-full rounded-full" style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: high[L] ? accent : "#c8ccd2" }} />
+                  <div className="h-2 overflow-hidden rounded-full bg-black/15 shadow-[inset_0_1px_2px_rgba(0,0,0,0.15)]">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: `${Math.max(8, bars[L])}%`, backgroundColor: high[L] ? accent : "#8a8d93", boxShadow: high[L] ? `0 0 4px ${accent}99` : undefined }}
+                    />
                   </div>
-                  <div className="mt-0.5 text-center text-[8px]" style={{ color: high[L] ? "#1c1e24" : "#9aa0aa", fontWeight: high[L] ? 700 : 400 }}>
+                  <div className="mt-0.5 text-center text-[8px]" style={{ color: high[L] ? "#1a1a1a" : "#6a6a6a", fontWeight: high[L] ? 700 : 400 }}>
                     {layerLabel(locale, L)}
                   </div>
                 </div>
@@ -141,11 +143,12 @@ export default function SoulStoryCard({ result }: { result: ArchetypeResult }) {
       {/* ── Actions (not exported) ──────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-2">
         <button onClick={() => run("download")} disabled={busy}
-          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4)] transition hover:brightness-110 disabled:opacity-50">
+          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110 disabled:opacity-50">
           {busy ? copy.processing : copy.shareDownloadStory}
         </button>
         <button onClick={() => run("share")} disabled={busy}
-          className="rounded-full border border-[#c8ccd2] bg-white px-4 py-2 text-xs font-bold text-[#1c1e24] transition hover:bg-[#7c8088]/10 disabled:opacity-50">
+          className="rounded-full border border-white/[0.68] px-4 py-2 text-xs font-bold text-[#1a1a1a] shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)] transition hover:brightness-95 disabled:opacity-50"
+          style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.38))" }}>
           {copy.shareShare}
         </button>
       </div>

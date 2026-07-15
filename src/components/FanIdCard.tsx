@@ -13,20 +13,21 @@ import {
   expandCode,
   type ArchetypeResult,
 } from "@/lib/archetypes";
-import { pickTheme } from "@/lib/cardTheme";
+import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import type { CardArtist } from "@/lib/lite";
 import { frameRarity } from "@/lib/rarityFrame";
 import { SCORE_LAYERS } from "@/lib/types";
 
 interface FanIdCardCommonProps {
+  themeId?: FanIdThemeId;
   fanName?: string;
   song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
   facePhoto?: string | null;
 }
 
-export interface FanIdCardSampleProps {
+export interface FanIdCardSampleProps extends FanIdCardCommonProps {
   sample: true;
 }
 
@@ -42,6 +43,8 @@ export interface FanIdCardProductionProps extends FanIdCardCommonProps {
 export type FanIdCardProps = FanIdCardSampleProps | FanIdCardProductionProps;
 
 const INK = "#1c1e24";
+
+// flat, low-contrast brushed-metal tone — no dramatic banding across text
 
 // Deliberately illustrative, not catalog-backed. The labels make that status
 // visible in the poster itself, while deterministic metadata keeps snapshots
@@ -90,7 +93,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial } = card;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const lineup = picks.filter((p) => p.id !== hero.id);
-  const theme = pickTheme(hero.id);
+  const theme = getFanIdTheme(props.themeId);
   const rarity = frameRarity(result.code, locale);
   const complement = expandCode(result.code);
   const complementType = ARCHETYPES[complement];
@@ -101,28 +104,21 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       ref={ref}
       data-sample={sample ? "true" : undefined}
       aria-label={`${copy.fanIdName} ${result.code}`}
-      className="relative box-border w-[328px] overflow-hidden rounded-[14px] p-[14px] text-[#1c1e24]"
-      style={{
-        backgroundColor: "#f4f5f7",
-        backgroundImage: [
-          "repeating-linear-gradient(63deg,transparent 0 7px,rgba(124,128,136,0.055) 7px 8px)",
-          "radial-gradient(110% 80% at 100% 0%,rgba(167,192,220,0.18),transparent 58%)",
-          `radial-gradient(90% 55% at 0% 100%,${theme.accent}12,transparent 60%)`,
-          "linear-gradient(165deg,#ffffff 0%,#eceef2 55%,#dfe2e7 100%)",
-        ].join(","),
-        border: "1px solid #aeb3bb",
-        boxShadow: "inset 0 0 0 1px rgba(255,255,255,.85),6px 6px 0 rgba(74,74,74,.28),0 12px 34px rgba(124,128,136,.25)",
-      }}
+      className="relative box-border w-[328px] overflow-hidden text-[#1c1e24] shadow-[0_0_0_1px_rgba(255,255,255,0.75),0_0_0_2px_rgba(0,0,0,0.22),0_24px_48px_rgba(0,0,0,0.35)]"
+      style={{ backgroundImage: theme.surface, borderRadius: theme.radius, color: theme.text }}
     >
-      <div className="flex items-center justify-between">
-        <span className="font-orbitron text-[11px] font-black tracking-[0.12em] text-[#4a4f57]">
+      {/* dark header strip */}
+      <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2" style={{ backgroundImage: theme.header }}>
+        <span className="font-orbitron text-[11px] font-black tracking-[0.12em] text-white">
           ◆ {copy.fanIdName} · KSTAR FAN ID
         </span>
-        <span className="text-right font-mono text-[8px] leading-[1.45] text-[#9aa0aa]">
+        <span className="text-right font-mono text-[8px] leading-[1.45] text-[#9a9a9a]">
           {sample && <>{copy.fanIdSampleTag}<br /></>}
           KS-{date.slice(0, 4)}<br />#{serial}
         </span>
       </div>
+
+      <div className="p-[14px]">
 
       <div className="mt-2.5 grid grid-cols-[1.15fr_1fr] gap-2.5">
         <div data-fanid-entry="hero" className="relative aspect-[3/3.4] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
@@ -168,7 +164,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
 
       <div className="mt-2 grid grid-cols-3 gap-1.5">
         {lineup.slice(0, 3).map((artist) => (
-          <div key={artist.id} data-fanid-entry="lineup" className="overflow-hidden rounded-[7px] border border-[#c8ccd2] bg-white">
+          <div key={artist.id} data-fanid-entry="lineup" className="overflow-hidden border-2 shadow-[0_2px_5px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.5)]" style={{ borderColor: `${theme.accent}70`, backgroundImage: theme.surface, borderRadius: theme.radius }}>
             <div className="aspect-[3/4]">
               <Thumb
                 src={artist.image_url}
@@ -178,60 +174,64 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
                 rounded="rounded-none"
               />
             </div>
-            <p className="truncate px-1 py-0.5 text-center text-[7px] font-bold text-[#5e636d]">{artist.name_zh ?? artist.name}</p>
+            <p className="truncate px-1 py-0.5 text-center text-[7px] font-bold text-[#3a3a3a]">{artist.name_zh ?? artist.name}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-[#c8ccd2] pt-2">
+      <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-black/10 pt-2">
         {SCORE_LAYERS.map((layer) => (
           <div key={layer}>
-            <div className="h-1.5 overflow-hidden rounded-full bg-[#c8ccd2]/50">
+            <div className="h-1.5 overflow-hidden rounded-full bg-black/15 shadow-[inset_0_1px_2px_rgba(0,0,0,0.15)]">
               <div
                 className="h-full rounded-full"
-                style={{ width: `${Math.max(6, result.bars[layer])}%`, backgroundColor: LAYER_COLOR[layer] }}
+                style={{ width: `${Math.max(6, result.bars[layer])}%`, backgroundColor: LAYER_COLOR[layer], boxShadow: `0 0 4px ${LAYER_COLOR[layer]}99` }}
               />
             </div>
-            <p className="mt-0.5 text-center text-[7px] font-bold text-[#7c8088]">{layerLabel(locale, layer)}</p>
+            <p className="mt-0.5 text-center text-[7px] font-bold text-[#5a5a5a]">{layerLabel(locale, layer)}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-1.5 flex items-baseline gap-1.5 rounded-md border border-[#c8ccd2]/80 bg-white/55 px-2 py-1">
-        <span className="shrink-0 text-[7px] font-bold tracking-[0.12em] text-[#9aa0aa]">{copy.fanIdComplementLabel}</span>
-        <span className="font-orbitron text-[9px] font-black text-[#4a4f57]">{complement}</span>
-        <span className="truncate text-[8px] font-bold text-[#5e636d]">
+      <div
+        className="mt-1.5 flex items-baseline gap-1.5 rounded-md border border-white/[0.6] px-2 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
+        style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0.25))" }}
+      >
+        <span className="shrink-0 text-[7px] font-bold tracking-[0.12em] text-[#6a6a6a]">{copy.fanIdComplementLabel}</span>
+        <span className="font-orbitron text-[9px] font-black text-[#2a2a2a]">{complement}</span>
+        <span className="truncate text-[8px] font-bold text-[#4a4a4a]">
           {complementType?.name[locale] ?? complement}
           {locale === "zh" && complementType ? ` · ${complementType.enName}` : ""}
         </span>
       </div>
 
       {fanName && (
-        <p className="mt-2 border-t border-dashed border-[#c8ccd2] pt-2 text-[10px] text-[#5e636d]">
-          {copy.fanIdHolder} · <b className="text-[#1c1e24]">{fanName}</b>
+        <p className="mt-2 border-t border-dashed border-black/15 pt-2 text-[10px] text-[#4a4a4a]">
+          {copy.fanIdHolder} · <b className="text-[#1a1a1a]">{fanName}</b>
         </p>
       )}
       {song && (
-        <p className={`${fanName ? "mt-1" : "mt-2 border-t border-dashed border-[#c8ccd2] pt-2"} flex items-center gap-1.5 text-[10px] text-[#5e636d]`}>
+        <p className={`${fanName ? "mt-1" : "mt-2 border-t border-dashed border-black/15 pt-2"} flex items-center gap-1.5 text-[10px] text-[#4a4a4a]`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={song.artworkUrl} alt="" className="h-4 w-4 rounded-sm" />
-          <span className="truncate">{copy.fanIdSong} · <b className="text-[#1c1e24]">{song.title}</b> — {song.artist} ♪</span>
+          <span className="truncate">{copy.fanIdSong} · <b className="text-[#1a1a1a]">{song.title}</b> — {song.artist} ♪</span>
         </p>
       )}
 
-      <div className="mt-2.5 flex items-end justify-between border-t border-[#c8ccd2] pt-2.5">
+      <div className="mt-2.5 flex items-end justify-between border-t border-black/10 pt-2.5">
         <div>
           <div
             className="h-3.5 w-24 opacity-70"
             style={{ backgroundImage: `repeating-linear-gradient(90deg,${INK} 0 1px,transparent 1px 2px,${INK} 2px 4px,transparent 4px 7px)` }}
           />
-          <p className="mt-1.5 font-mono text-[7px] tracking-[0.04em] text-[#9aa0aa]">{copy.fanIdIssuedLine(date)}</p>
+          <p className="mt-1.5 font-mono text-[7px] tracking-[0.04em] text-[#6a6a6a]">{copy.fanIdIssuedLine(date)}</p>
         </div>
         <div className="text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/qr-start.svg" alt={copy.fanIdScanMe} className="h-[46px] w-[46px] rounded-[5px] border border-[#c8ccd2] bg-white p-0.5" />
-          <p className="mt-0.5 text-[7px] text-[#9aa0aa]">{copy.fanIdScanMe}</p>
+          <img src="/qr-start.svg" alt={copy.fanIdScanMe} className="h-[46px] w-[46px] rounded-[5px] border border-black/10 bg-white p-0.5" />
+          <p className="mt-0.5 text-[7px] text-[#6a6a6a]">{copy.fanIdScanMe}</p>
         </div>
+      </div>
       </div>
     </div>
   );

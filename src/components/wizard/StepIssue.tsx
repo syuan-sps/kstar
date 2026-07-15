@@ -10,6 +10,7 @@ import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import type { ArtistLite } from "@/lib/lite";
 import { finishWizard, saveWizard, type WizardState } from "@/lib/wizardState";
+import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
 
 type Phase = "printing" | "customize";
 type ExportKind = "story" | "card";
@@ -60,6 +61,7 @@ export default function StepIssue({
       facePhoto={facePhoto}
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
+      themeId={wiz.themeId}
     />
   );
 
@@ -111,6 +113,21 @@ export default function StepIssue({
       </div>
 
       <section className="w-full max-w-lg space-y-4 rounded-2xl border border-[#c8ccd2] bg-white/75 p-4 shadow-sm" aria-label={copy.customizeFanIdAria}>
+        <div>
+          <p className="mb-2 text-xs font-bold text-[#5e636d]">Card edition</p>
+          <div className="flex gap-2 overflow-x-auto pb-1" role="radiogroup" aria-label="Fan ID card edition">
+            {Object.values(FAN_ID_THEMES).map((theme) => {
+              const selected = (wiz.themeId ?? "chrome") === theme.id;
+              return (
+                <button key={theme.id} type="button" role="radio" aria-checked={selected} onClick={() => update({ themeId: theme.id as FanIdThemeId })}
+                  className={`min-w-[84px] rounded-xl border-2 p-1.5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${selected ? "border-[#b4302b] shadow-sm" : "border-transparent hover:border-[#c8ccd2]"}`}>
+                  <span className="block h-9 rounded-lg border" style={{ backgroundImage: theme.surface, borderColor: theme.border }} />
+                  <span className="mt-1 block truncate text-[10px] font-bold text-[#1c1e24]">{theme.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <div>
           <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.wizFocusLabel}</p>
           <div className="grid grid-cols-4 gap-2">

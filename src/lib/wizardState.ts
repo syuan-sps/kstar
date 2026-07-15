@@ -4,6 +4,7 @@
 import type { ScoreLayer, StoredArchetype, UserPrefs, Weights } from "./types";
 import { SCORE_LAYERS } from "./types";
 import { rankToWeights } from "./questionnaire";
+import { FAN_ID_THEMES, type FanIdThemeId } from "./fanIdThemes";
 
 export interface WizardState {
   step: 0 | 1 | 2 | 3 | 4;
@@ -16,6 +17,7 @@ export interface WizardState {
   song?: { title: string; artist: string; artworkUrl: string } | null;
   issuedAt?: string;          // YYYY.MM.DD, stamped once for this identity
   serial?: string;            // stable ID (not a sequence or scarcity claim)
+  themeId?: FanIdThemeId;     // curated visual edition
 }
 
 const KEY = "kstar:wizard";
@@ -87,6 +89,7 @@ export function loadWizard(): WizardState {
       song: validSong(p.song),
       issuedAt: typeof p.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(p.issuedAt) ? p.issuedAt : undefined,
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
+      themeId: typeof p.themeId === "string" && p.themeId in FAN_ID_THEMES ? p.themeId as FanIdThemeId : "chrome",
     };
   } catch {
     return emptyWizard();
