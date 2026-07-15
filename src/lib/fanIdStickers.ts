@@ -16,25 +16,25 @@ export type StickerKind =
   | "safety-pin";
 
 export interface StickerPlacement {
-  id: string;
-  kind: StickerKind;
-  x: number;
-  y: number;
-  size: number;
-  rotate: number;
-  zone: "header" | "portrait-edge" | "archetype-edge" | "certificate-edge";
-  layer: "under-content" | "over-portrait";
-  tone?: string;
+  readonly id: string;
+  readonly kind: StickerKind;
+  readonly x: number;
+  readonly y: number;
+  readonly size: number;
+  readonly rotate: number;
+  readonly zone: "header" | "portrait-edge" | "archetype-edge" | "certificate-edge";
+  readonly layer: "under-content" | "over-portrait";
+  readonly tone?: string;
 }
 
-export const STICKER_THEME_IDS: StickerThemeId[] = [
+export const STICKER_THEME_IDS: readonly StickerThemeId[] = [
   "chrome",
   "dreamy",
   "kawaii",
   "monochrome-cute",
 ];
 
-export const STICKER_COMPOSITIONS: Record<StickerThemeId, StickerPlacement[]> = {
+const RAW_STICKER_COMPOSITIONS = {
   chrome: [
     { id: "chrome-heart-top", kind: "heart", x: 7, y: 9, size: 12, rotate: -12, zone: "header", layer: "under-content" },
     { id: "chrome-star-portrait", kind: "star", x: 93, y: 25, size: 16, rotate: 14, zone: "portrait-edge", layer: "over-portrait" },
@@ -83,12 +83,23 @@ export const STICKER_COMPOSITIONS: Record<StickerThemeId, StickerPlacement[]> = 
     { id: "monochrome-cute-ghost-certificate", kind: "ghost", x: 12, y: 87, size: 8, rotate: -8, zone: "certificate-edge", layer: "under-content" },
     { id: "monochrome-cute-star-certificate", kind: "star", x: 89, y: 93, size: 10, rotate: 8, zone: "certificate-edge", layer: "under-content", tone: "black-chrome" },
   ],
-};
+} as const;
 
-export function getStickerComposition(themeId?: string | null): StickerPlacement[] {
-  if (themeId && themeId in STICKER_COMPOSITIONS) {
-    return STICKER_COMPOSITIONS[themeId as StickerThemeId];
+function freezePlacements(placements: readonly StickerPlacement[]): readonly StickerPlacement[] {
+  return Object.freeze(placements.map((placement) => Object.freeze({ ...placement })));
+}
+
+export const STICKER_COMPOSITIONS: Readonly<Record<StickerThemeId, readonly StickerPlacement[]>> = Object.freeze({
+  chrome: freezePlacements(RAW_STICKER_COMPOSITIONS.chrome),
+  dreamy: freezePlacements(RAW_STICKER_COMPOSITIONS.dreamy),
+  kawaii: freezePlacements(RAW_STICKER_COMPOSITIONS.kawaii),
+  "monochrome-cute": freezePlacements(RAW_STICKER_COMPOSITIONS["monochrome-cute"]),
+});
+
+export function getStickerComposition(themeId?: string | null): readonly StickerPlacement[] {
+  if (themeId && Object.prototype.hasOwnProperty.call(STICKER_COMPOSITIONS, themeId)) {
+    return freezePlacements(STICKER_COMPOSITIONS[themeId as StickerThemeId]);
   }
 
-  return STICKER_COMPOSITIONS.chrome;
+  return freezePlacements(STICKER_COMPOSITIONS.chrome);
 }
