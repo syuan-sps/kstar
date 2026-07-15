@@ -5,6 +5,12 @@ import {
   STICKER_THEME_IDS,
 } from "@/lib/fanIdStickers";
 import { buildSvgIds, getStickerPaint } from "@/components/FanIdStickerLayer";
+import { normalizeStickersEnabled } from "@/lib/wizardState";
+
+assert.equal(normalizeStickersEnabled(true), true);
+assert.equal(normalizeStickersEnabled(false), false);
+assert.equal(normalizeStickersEnabled("true"), false);
+assert.equal(normalizeStickersEnabled(undefined), false);
 
 for (const themeId of STICKER_THEME_IDS) {
   const placements = getStickerComposition(themeId);

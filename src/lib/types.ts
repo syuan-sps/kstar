@@ -132,4 +132,5 @@ export interface UserPrefs {
   joinedAt?: string;                   // YYYY.MM.DD stamped once — 應援卡 "SINCE" date
   issuedAt?: string;                   // YYYY.MM.DD stamped once — 追星證 issue date
   serial?: string;                     // stable 追星證 ID (not a sequence)
+  stickersEnabled?: boolean;           // restore optional sticker-bomb overlay choice
 }

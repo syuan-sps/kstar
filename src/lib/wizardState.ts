@@ -18,6 +18,7 @@ export interface WizardState {
   issuedAt?: string;          // YYYY.MM.DD, stamped once for this identity
   serial?: string;            // stable ID (not a sequence or scarcity claim)
   themeId?: FanIdThemeId;     // curated visual edition
+  stickersEnabled?: boolean;
   cardMode?: "idol" | "idol-user" | "user";
 }
 
@@ -73,6 +74,10 @@ function validSong(value: unknown): WizardState["song"] {
     : null;
 }
 
+export function normalizeStickersEnabled(value: unknown): boolean {
+  return value === true;
+}
+
 export function loadWizard(): WizardState {
   if (typeof window === "undefined") return emptyWizard();
   try {
@@ -91,6 +96,7 @@ export function loadWizard(): WizardState {
       issuedAt: typeof p.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(p.issuedAt) ? p.issuedAt : undefined,
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
       themeId: typeof p.themeId === "string" && p.themeId in FAN_ID_THEMES ? p.themeId as FanIdThemeId : "chrome",
+      stickersEnabled: normalizeStickersEnabled(p.stickersEnabled),
       cardMode: p.cardMode === "idol" || p.cardMode === "idol-user" || p.cardMode === "user" ? p.cardMode : "idol-user",
     };
   } catch {
@@ -181,6 +187,7 @@ export function finishWizard(s: WizardState): boolean {
     cardMode: s.cardMode ?? "idol-user",
     issuedAt: s.issuedAt,
     serial: s.serial,
+    stickersEnabled: normalizeStickersEnabled(s.stickersEnabled),
     fanIdClaimed: true,
   };
   try {

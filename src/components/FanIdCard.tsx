@@ -6,6 +6,7 @@
 
 import { forwardRef } from "react";
 import Thumb from "@/components/Thumb";
+import FanIdStickerLayer from "@/components/FanIdStickerLayer";
 import {
   ARCHETYPES,
   LAYER_COLOR,
@@ -21,6 +22,7 @@ import { SCORE_LAYERS } from "@/lib/types";
 
 interface FanIdCardCommonProps {
   themeId?: FanIdThemeId;
+  stickersEnabled?: boolean;
   cardMode?: "idol" | "idol-user" | "user";
   fanName?: string;
   song?: { title: string; artist: string; artworkUrl: string } | null;
@@ -91,7 +93,19 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         fanName: locale === "en" ? SAMPLE_FAN_NAME_EN : SAMPLE_FAN_ID.fanName,
       }
     : props;
-  const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial, cardMode = "idol" } = card;
+  const {
+    picks,
+    heroId,
+    result,
+    fanName,
+    song,
+    showFace,
+    facePhoto,
+    issuedAt,
+    serial,
+    stickersEnabled = false,
+    cardMode = "idol",
+  } = card;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const theme = getFanIdTheme(props.themeId);
   const isUserHero = cardMode === "user";
@@ -121,6 +135,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
+        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} />
         <header className="relative flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>
