@@ -109,6 +109,14 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       className="relative box-border w-[328px] overflow-hidden text-[#1c1e24] shadow-[0_0_0_1px_rgba(255,255,255,0.75),0_0_0_2px_rgba(0,0,0,0.22),0_24px_48px_rgba(0,0,0,0.35)]"
       style={{ backgroundImage: theme.surface, borderRadius: variant === "cute" ? "22px" : theme.radius, color: theme.text, border: `1px solid ${variant === "cute" ? `${theme.accent}88` : theme.border}` }}
     >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] border border-white/80 shadow-[inset_0_0_0_2px_rgba(28,30,36,.28),inset_0_0_0_6px_rgba(255,255,255,.32)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-[7px] z-0 rounded-[12px] border border-white/70 shadow-[inset_0_0_0_1px_rgba(28,30,36,.22)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-[12px] right-[12px] top-[8px] z-10 flex h-6 items-center justify-between rounded-md border border-white/60 bg-black/20 px-2 font-orbitron text-[6px] tracking-[0.18em] text-white/75">
+        <span>COLLECTOR EDITION</span><span>KS · 2026</span>
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-[10px] left-[12px] right-[12px] z-10 h-4 rounded-sm border border-white/45 bg-black/15" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-[34px] left-[7px] top-[52px] z-10 w-[3px] opacity-70" style={{ backgroundImage: `repeating-linear-gradient(180deg, ${theme.accent} 0 5px, transparent 5px 9px)` }} />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-[34px] right-[7px] top-[52px] z-10 w-[3px] opacity-55" style={{ backgroundImage: `repeating-linear-gradient(180deg, ${theme.border} 0 2px, transparent 2px 7px)` }} />
       {theme.stickers.map((src, index) => (
         <span
           key={src}
@@ -128,7 +136,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         </span>
       ))}
       {/* dark header strip */}
-      <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2" style={{ backgroundImage: theme.header }}>
+      <div className="relative z-20 flex items-center justify-between border-b border-white/10 px-3.5 py-2" style={{ backgroundImage: theme.header }}>
         <span className="font-orbitron text-[11px] font-black tracking-[0.12em] text-white">
           ◆ {copy.fanIdName} · KSTAR FAN ID
         </span>
@@ -138,7 +146,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         </span>
       </div>
 
-      <div className="p-[14px]">
+      <div className="relative z-20 p-[14px] pt-[18px]">
 
       <div className="mt-2.5 grid grid-cols-[1.15fr_1fr] gap-2.5">
         <div data-fanid-entry="hero" className="relative aspect-[3/3.4] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
