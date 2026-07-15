@@ -12,6 +12,7 @@ import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 import FanIdCard from "@/components/FanIdCard";
 import FacePhotoPicker from "@/components/FacePhotoPicker";
+import { normalizeStickersEnabled } from "@/lib/wizardState";
 
 type FanIdPrefs = {
   heroId?: string;
@@ -97,7 +98,7 @@ export default function TastePortraitCard({
               facePhoto={facePhoto}
               issuedAt={prefs.issuedAt ?? "----.--.--"}
               serial={prefs.serial ?? "----"}
-              stickersEnabled={prefs.stickersEnabled}
+              stickersEnabled={normalizeStickersEnabled(prefs.stickersEnabled)}
             />
           )}
         </div>
