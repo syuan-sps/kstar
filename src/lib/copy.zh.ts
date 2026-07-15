@@ -173,6 +173,17 @@ export const copyZh = {
   shareDownloadStory: "下載限動卡",
   shareDownloadReport: "下載報告長圖",
   redoQuiz: "重做測驗",
+  // 16 種追星靈魂 explanation page
+  soulTypesTitle: "16 種追星靈魂",
+  soulTypesIntro: "每個型別由四層是否「高分」組成：美學(A)／個性(P)／表演(S)／內容(R)。你的型別是從你選的 4 位偶像算出來的，不是另外的測驗。",
+  soulTypesCta: "回首頁測你的靈魂 →",
+  soulTypesMissingLabel: "唯一空缺",
+  tierOmnivore: "零高分 · 雜食型",
+  tierPurist: "一高分 · 純粹型",
+  tierDuality: "二高分 · 雙重型",
+  tierNearPerfect: "三高分 · 近乎完美",
+  tierLegend: "四高分 · 傳奇",
+  footerSoulTypes: "✦ 16 種追星型別",
   // 追星證 (Fan ID — deployed rebrand of the former 應援卡)
   viewPass: "追星證",
   passPickIdol: "這張追星證要為哪一位？",
