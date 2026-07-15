@@ -2,19 +2,18 @@
 
 ## Goal
 
-Make the Fan ID wizard feel personal and shareable through five curated visual editions. Themes should remain recognizable as the same Fan ID while changing its material, finish, typography, accents, and decorative details. Sticker assets are optional decoration, not a dependency.
+Make the Fan ID wizard feel personal and shareable through four curated visual editions. Themes should remain recognizable as the same Fan ID while changing its material, finish, typography, accents, and decorative details. Sticker assets are optional decoration, not a dependency.
 
 ## Themes
 
 1. **Y2K Chrome** — reflective silver surface, icy blue/pink highlights, technical labels, and beveled framing.
-2. **Gothic Cross** — dark gunmetal surface, engraved-style framing, ivory text, and a restrained burgundy accent.
-3. **Cloudy Dreamy** — frosted pearl/glass surface, lavender and sky-blue glow, soft framing, and airy type treatment.
-4. **Kawaii** — glossy blush/lilac surface, rounded framing, playful bold type, and candy-colored accents.
-5. **Monochrome Cute** — warm-white paper surface, black/gray ink, compact editorial grid, and small rounded details.
+2. **Cloudy Dreamy** — frosted pearl/glass surface, lavender and sky-blue glow, soft framing, and airy type treatment.
+3. **Kawaii** — glossy blush/lilac surface, rounded framing, playful bold type, and candy-colored accents.
+4. **Monochrome Cute** — warm-white paper surface, black/gray ink, compact editorial grid, and small rounded details.
 
 ## User experience
 
-Theme selection is fused into wizard step 4 above the live card preview. A horizontal strip presents five compact material swatches labeled Chrome, Gothic, Dreamy, Kawaii, and Mono Cute. The selected swatch has a clear outline and selected indicator. The card updates immediately. On mobile, the swatches scroll horizontally. All themes are free and presented equally.
+Theme selection is fused into wizard step 4 above the live card preview. A horizontal strip presents four compact material swatches labeled Chrome, Dreamy, Kawaii, and Mono Cute. The selected swatch has a clear outline and selected indicator. The card updates immediately. On mobile, the swatches scroll horizontally. All themes are free and presented equally.
 
 ## Component architecture
 

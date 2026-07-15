@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add five curated visual themes to the Fan ID wizard and carry the selected theme through card, story, report, and share views.
+**Goal:** Add four curated visual themes to the Fan ID wizard and carry the selected theme through card, story, report, and share views.
 
 **Architecture:** Store theme tokens and optional asset paths in `src/lib/fanIdThemes.ts`. Keep the existing card information hierarchy and make `FanIdCard`, `SoulStoryCard`, and `SoulReport` consume the same `themeId`; render a swatch picker in `StepIssue` above the live card preview. Sticker assets remain optional and are never required for rendering.
 
@@ -30,7 +30,7 @@
 - `getFanIdTheme(undefined)` and unknown runtime values resolve to the Chrome preset.
 
 - [ ] Add typed tokens for surface, border, accent, text, typography, decorative details, and optional stickers.
-- [ ] Define exactly `chrome`, `gothic-cross`, `cloudy-dreamy`, `kawaii`, and `monochrome-cute` presets.
+- [ ] Define exactly `chrome`, `cloudy-dreamy`, `kawaii`, and `monochrome-cute` presets.
 - [ ] Map only vetted assets under `/fanid-themes/<theme>/`; missing optional assets must be representable as an empty list.
 - [ ] Verify all preset IDs and fallback behavior with a focused test or `npx tsc --noEmit`.
 - [ ] Commit: `feat: define fan ID theme presets`.
