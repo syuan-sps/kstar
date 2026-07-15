@@ -107,6 +107,24 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       className="relative box-border w-[328px] overflow-hidden text-[#1c1e24] shadow-[0_0_0_1px_rgba(255,255,255,0.75),0_0_0_2px_rgba(0,0,0,0.22),0_24px_48px_rgba(0,0,0,0.35)]"
       style={{ backgroundImage: theme.surface, borderRadius: theme.radius, color: theme.text }}
     >
+      {theme.stickers.map((src, index) => (
+        <span
+          key={src}
+          aria-hidden="true"
+          className="pointer-events-none absolute z-10 opacity-75"
+          style={{
+            width: index === 1 ? 54 : 62,
+            top: index === 0 ? 34 : index === 1 ? 118 : undefined,
+            right: index === 0 ? -8 : index === 1 ? -10 : undefined,
+            bottom: index === 2 ? -8 : undefined,
+            left: index === 2 ? -8 : undefined,
+            transform: index === 1 ? "rotate(12deg)" : index === 2 ? "rotate(-12deg)" : "rotate(8deg)",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt="" className="h-auto w-full" />
+        </span>
+      ))}
       {/* dark header strip */}
       <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2" style={{ backgroundImage: theme.header }}>
         <span className="font-orbitron text-[11px] font-black tracking-[0.12em] text-white">
