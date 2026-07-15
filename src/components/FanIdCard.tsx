@@ -169,7 +169,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             )}
           </section>
 
-          <section data-fanid-archetype="true" className="relative z-10 -mt-2.5 rounded-[16px] border border-white/75 bg-white/[0.82] px-3 py-3 shadow-[0_0_0_1px_rgba(28,30,36,.16),0_8px_18px_rgba(28,30,36,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-sm">
+          <section data-fanid-archetype="true" className="relative z-10 mt-2.5 rounded-[16px] border border-white/75 bg-white/[0.82] px-3 py-3 shadow-[0_0_0_1px_rgba(28,30,36,.16),0_8px_18px_rgba(28,30,36,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-sm">
             <div className="flex items-start justify-between gap-2">
               <div>
                 <p className="font-mono text-[6px] tracking-[0.18em] text-[#7c8088]">FAN SOUL · ARCHETYPE</p>
