@@ -18,6 +18,7 @@ export interface WizardState {
   issuedAt?: string;          // YYYY.MM.DD, stamped once for this identity
   serial?: string;            // stable ID (not a sequence or scarcity claim)
   themeId?: FanIdThemeId;     // curated visual edition
+  cardMode?: "idol" | "idol-user" | "user";
 }
 
 const KEY = "kstar:wizard";
@@ -90,6 +91,7 @@ export function loadWizard(): WizardState {
       issuedAt: typeof p.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(p.issuedAt) ? p.issuedAt : undefined,
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
       themeId: typeof p.themeId === "string" && p.themeId in FAN_ID_THEMES ? p.themeId as FanIdThemeId : "chrome",
+      cardMode: p.cardMode === "idol" || p.cardMode === "idol-user" || p.cardMode === "user" ? p.cardMode : "idol-user",
     };
   } catch {
     return emptyWizard();
@@ -176,6 +178,7 @@ export function finishWizard(s: WizardState): boolean {
     archetype: s.archetype,
     heroId: s.heroId ?? s.picks[0],
     fanName: s.fanName,
+    cardMode: s.cardMode ?? "idol-user",
     issuedAt: s.issuedAt,
     serial: s.serial,
     fanIdClaimed: true,

@@ -33,7 +33,7 @@ export default function StepIssue({
   const completing = useRef(false);
   const [phase, setPhase] = useState<Phase>("printing");
   const [flash] = useState(() => typeof window !== "undefined" && localStorage.getItem("kstar:flashOk") === "1");
-  const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">("idol-user");
+  const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">(wiz.cardMode ?? "idol-user");
   const [facePhoto, setFacePhoto] = useState<string | null>(null);
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
@@ -46,6 +46,7 @@ export default function StepIssue({
   }, [phase]);
 
   const heroId = picks.some((pick) => pick.id === wiz.heroId) ? wiz.heroId! : picks[0]?.id;
+  const photoRequired = cardMode !== "idol" && !facePhoto;
   if (!heroId || !wiz.issuedAt || !wiz.serial) {
     return <div role="alert" className="grid min-h-64 place-items-center text-sm text-[#b4302b]">{copy.wizIncompleteAlert}</div>;
   }
@@ -57,13 +58,11 @@ export default function StepIssue({
       heroId={heroId}
       result={result}
       fanName={wiz.fanName}
-      showFace={cardMode === "idol-user"}
       facePhoto={facePhoto}
       cardMode={cardMode}
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
-      variant="collectible"
     />
   );
 
@@ -85,7 +84,7 @@ export default function StepIssue({
   }
 
   async function runExport(kind: ExportKind) {
-    if (!cardRef.current || exporting) return;
+    if (!cardRef.current || exporting || photoRequired) return;
     setExporting(kind);
     setExportFailed(false);
     const options = kind === "story"
@@ -148,22 +147,34 @@ export default function StepIssue({
         </label>
 
         <div>
-          <p className="mb-2 text-xs font-bold text-[#5e636d]">Card layout</p>
+          <p className="mb-2 text-xs font-bold text-[#5e636d]">{locale === "zh" ? "卡片版式" : "Card layout"}</p>
           <div className="grid grid-cols-3 gap-2">
             {(["idol", "idol-user", "user"] as const).map((mode) => {
-              const labels = { idol: "Idol", "idol-user": "Idol + User", user: "User" };
+              const labels = locale === "zh"
+                ? { idol: "偶像", "idol-user": "偶像 + 本人", user: "本人" }
+                : { idol: "Idol", "idol-user": "Idol + User", user: "User" };
               const selected = cardMode === mode;
-              return <button key={mode} type="button" aria-pressed={selected} onClick={() => setCardMode(mode)} className={`rounded-xl border px-2 py-2 text-xs font-bold ${selected ? "border-[#b4302b] bg-[#b4302b]/5 text-[#b4302b]" : "border-[#c8ccd2]"}`}>{labels[mode]}</button>;
+              return (
+                <button key={mode} type="button" aria-pressed={selected} onClick={() => { setCardMode(mode); update({ cardMode: mode }); }} className={`rounded-xl border p-2 text-xs font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${selected ? "border-[#b4302b] bg-[#b4302b]/5 text-[#b4302b] shadow-sm" : "border-[#c8ccd2] bg-white/70 text-[#5e636d] hover:border-[#9aa0aa]"}`}>
+                  <span className="relative mx-auto mb-1.5 block h-9 w-7 rounded-md border border-current/35 bg-current/[0.06]">
+                    <span className={`absolute rounded-full bg-current/70 ${mode === "user" ? "left-1.5 top-1.5 h-4 w-4" : "left-1 top-1 h-5 w-5"}`} />
+                    {mode === "idol-user" && <span className="absolute bottom-0.5 right-0.5 h-2.5 w-2.5 rounded-full border border-white bg-current" />}
+                    <span className="absolute bottom-1 left-1 right-1 h-px bg-current/35" />
+                  </span>
+                  <span className="block leading-tight">{labels[mode]}</span>
+                </button>
+              );
             })}
           </div>
         </div>
         {cardMode !== "idol" && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
+        {photoRequired && <p className="text-center text-[11px] font-medium text-[#b4302b]">{locale === "zh" ? "加入本人照片後即可匯出這個版式。" : "Add your photo to export this layout."}</p>}
 
         <button type="button" disabled className="w-full rounded-xl border border-dashed border-[#c8ccd2] bg-[#f4f5f7] py-2 text-xs text-[#9aa0aa]">{copy.wizBiasSongComingSoon}</button>
 
         <div className="grid grid-cols-2 gap-2">
-          <button type="button" disabled={Boolean(exporting)} onClick={() => void runExport("story")} className="rounded-xl bg-[#1c1e24] px-3 py-3 text-xs font-bold text-white disabled:opacity-50">{exporting === "story" ? copy.wizExporting : copy.wizExportStory}</button>
-          <button type="button" disabled={Boolean(exporting)} onClick={() => void runExport("card")} className="rounded-xl border border-[#1c1e24] px-3 py-3 text-xs font-bold disabled:opacity-50">{exporting === "card" ? copy.wizExporting : copy.wizExportCard}</button>
+          <button type="button" disabled={Boolean(exporting) || photoRequired} onClick={() => void runExport("story")} className="rounded-xl bg-[#1c1e24] px-3 py-3 text-xs font-bold text-white disabled:opacity-40">{exporting === "story" ? copy.wizExporting : copy.wizExportStory}</button>
+          <button type="button" disabled={Boolean(exporting) || photoRequired} onClick={() => void runExport("card")} className="rounded-xl border border-[#1c1e24] px-3 py-3 text-xs font-bold disabled:opacity-40">{exporting === "card" ? copy.wizExporting : copy.wizExportCard}</button>
         </div>
         {exportFailed && <p role="alert" className="text-center text-xs text-[#b4302b]">{copy.wizExportFailedGeneric}</p>}
         <button type="button" onClick={() => setPhase("printing")} className="w-full text-xs text-[#7c8088] hover:text-[#1c1e24]">{copy.wizReplay}</button>
