@@ -9,7 +9,7 @@ import type { ArchetypeResult } from "@/lib/archetypes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import type { ArtistLite } from "@/lib/lite";
-import { finishWizard, saveWizard, type WizardState } from "@/lib/wizardState";
+import { finishWizard, normalizeStickersEnabled, saveWizard, type WizardState } from "@/lib/wizardState";
 import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
 
 type Phase = "printing" | "customize";
@@ -63,7 +63,7 @@ export default function StepIssue({
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
-      stickersEnabled={wiz.stickersEnabled}
+      stickersEnabled={normalizeStickersEnabled(wiz.stickersEnabled)}
     />
   );
 
