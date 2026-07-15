@@ -150,8 +150,8 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
 
       <div className="relative z-20 p-[14px] pt-[18px]">
 
-      <div className="mt-2.5 grid grid-cols-[1.15fr_1fr] gap-2.5">
-        <div data-fanid-entry="hero" className="relative aspect-[3/3.4] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
+      <div className="mt-2.5 flex flex-col gap-2.5">
+        <div data-fanid-entry="hero" className="relative aspect-[4/4.7] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
           <Thumb
             src={portraitSrc}
             seed={hero.id}
@@ -161,10 +161,10 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           />
           <span className="absolute left-1.5 top-1.5 text-sm">👑</span>
           {showFace && facePhoto && (
-            <span className="absolute right-1.5 top-1.5 h-[46px] w-[34px] overflow-hidden rounded-[5px] border-2 border-white bg-white shadow-[0_2px_6px_rgba(28,30,36,.3)]">
+            <span className="absolute bottom-2.5 right-2.5 h-[52px] w-[52px] overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_2px_6px_rgba(28,30,36,.3)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={facePhoto} alt={copy.fanIdSelfLabel} className="h-[37px] w-full object-cover" />
-              <span className="absolute inset-x-0 bottom-0 bg-white/90 text-center text-[6.5px] font-bold tracking-[0.1em] text-[#5e636d]">{copy.fanIdSelfLabel}</span>
+              <img src={facePhoto} alt={copy.fanIdSelfLabel} className="h-full w-full object-cover" />
+              <span className="absolute inset-x-0 bottom-0 bg-white/90 text-center text-[6px] font-bold tracking-[0.1em] text-[#5e636d]">SELF</span>
             </span>
           )}
           <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1e24]/80 to-transparent px-2 pb-1.5 pt-5 text-[11px] font-bold text-white">
@@ -174,19 +174,19 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
 
         <div
           data-fanid-archetype="true"
-          className="flex min-w-0 w-full flex-col items-center justify-center gap-1.5 text-center"
+          className="flex min-w-0 w-full flex-row flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-lg border border-white/60 bg-white/25 px-2.5 py-2 text-left"
         >
-          <span className="flex w-full justify-center font-orbitron text-[29px] font-black leading-none tracking-[0.06em]">
+          <span className="flex font-orbitron text-[25px] font-black leading-none tracking-[0.06em]">
             {result.code.split("").map((letter, index) => {
               const high = letter === letter.toUpperCase();
               return <span key={`${letter}-${index}`} style={{ color: high ? INK : "#9aa0aa", fontWeight: high ? 900 : 500 }}>{letter}</span>;
             })}
           </span>
-          <span className="w-full text-[13px] font-black leading-tight">{result.archetype.name[locale]}</span>
-          <span className="w-full font-orbitron text-[7.5px] font-bold leading-tight tracking-[0.08em] text-[#7c8088]">
+          <span className="text-[12px] font-black leading-tight">{result.archetype.name[locale]}</span>
+          <span className="font-orbitron text-[7.5px] font-bold leading-tight tracking-[0.08em] text-[#7c8088]">
             {locale === "zh" ? result.archetype.enName : result.code}
           </span>
-          <span className="max-w-full self-center whitespace-nowrap rounded-full border border-[#a8822f] bg-[#d8b45a]/10 px-2 py-0.5 font-mono text-[8px] font-bold text-[#a8822f]">
+          <span className="whitespace-nowrap rounded-full border border-[#a8822f] bg-[#d8b45a]/10 px-2 py-0.5 font-mono text-[8px] font-bold text-[#a8822f]">
             ✦ {rarity.label}
           </span>
         </div>
