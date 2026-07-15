@@ -113,12 +113,12 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           aria-hidden="true"
           className="pointer-events-none absolute z-10 opacity-75"
           style={{
-            width: index === 1 ? 54 : 62,
-            top: index === 0 ? 34 : index === 1 ? 118 : undefined,
-            right: index === 0 ? -8 : index === 1 ? -10 : undefined,
-            bottom: index === 2 ? -8 : undefined,
-            left: index === 2 ? -8 : undefined,
-            transform: index === 1 ? "rotate(12deg)" : index === 2 ? "rotate(-12deg)" : "rotate(8deg)",
+            width: index === 1 ? 42 : 48,
+            top: index === 0 ? 82 : index === 1 ? 214 : undefined,
+            right: index === 0 || index === 1 ? 8 : undefined,
+            bottom: index === 2 ? 14 : undefined,
+            left: index === 2 ? 8 : undefined,
+            transform: index === 1 ? "rotate(8deg)" : index === 2 ? "rotate(-8deg)" : "rotate(6deg)",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
