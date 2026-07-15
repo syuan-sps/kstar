@@ -34,7 +34,6 @@ export default function DevelopFourCuts({
           <div className="dev-lens">
             <span className="dev-glint" />
           </div>
-          <div className="dev-cam-label">KSTAR PHOTO</div>
         </div>
         <div className="dev-output">
           <div className="dev-strip">
@@ -45,7 +44,6 @@ export default function DevelopFourCuts({
                 </div>
               ))}
             </div>
-            <div className="dev-cap">✦ KSTAR · 2026 ✦</div>
             <span className="dev-develop-sweep" />
           </div>
         </div>
