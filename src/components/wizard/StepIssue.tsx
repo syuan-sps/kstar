@@ -63,6 +63,7 @@ export default function StepIssue({
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
       themeId={wiz.themeId}
+      stickersEnabled={wiz.stickersEnabled}
     />
   );
 

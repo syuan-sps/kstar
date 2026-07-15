@@ -18,6 +18,7 @@ type FanIdPrefs = {
   fanName?: string;
   issuedAt?: string;
   serial?: string;
+  stickersEnabled?: boolean;
 };
 
 function loadFanIdPrefs(): FanIdPrefs {
@@ -96,6 +97,7 @@ export default function TastePortraitCard({
               facePhoto={facePhoto}
               issuedAt={prefs.issuedAt ?? "----.--.--"}
               serial={prefs.serial ?? "----"}
+              stickersEnabled={prefs.stickersEnabled}
             />
           )}
         </div>
