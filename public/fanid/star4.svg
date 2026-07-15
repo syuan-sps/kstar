@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ChromeStar4" clip-path="url(#clip0_0_37)">
+<g id="Vector" filter="url(#filter0_f_0_37)">
+<path d="M22 0.6875C22.3438 8.9375 23.2375 15.8125 25.85 18.15C28.4625 20.4875 35.0625 21.6562 43.3125 22C35.0625 22.3438 28.4625 23.5125 25.85 25.85C23.2375 28.1875 22.3438 35.0625 22 43.3125C21.6562 35.0625 20.7625 28.1875 18.15 25.85C15.5375 23.5125 8.9375 22.3438 0.6875 22C8.9375 21.6562 15.5375 20.4875 18.15 18.15C20.7625 15.8125 21.6562 8.9375 22 0.6875Z" fill="url(#paint0_radial_0_37)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_37" x="-3.4375" y="-3.4375" width="50.875" height="50.875" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.0625" result="effect1_foregroundBlur_0_37"/>
+</filter>
+<radialGradient id="paint0_radial_0_37" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.0325 12.1963) scale(28.1325)">
+<stop stop-color="white"/>
+<stop offset="0.22" stop-color="#EEEEEE"/>
+<stop offset="0.5" stop-color="#B0B0B0"/>
+<stop offset="0.8" stop-color="#666666"/>
+<stop offset="1" stop-color="#3A3A3A"/>
+</radialGradient>
+<clipPath id="clip0_0_37">
+<rect width="44" height="44" fill="white"/>
+</clipPath>
+</defs>
+</svg>
