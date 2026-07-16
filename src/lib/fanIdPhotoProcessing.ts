@@ -110,10 +110,10 @@ function canvasToBlob(canvas: HTMLCanvasElement, type: string, quality: number):
 
 async function encodePreparedSource(canvas: HTMLCanvasElement): Promise<Blob> {
   const webp = await canvasToBlob(canvas, "image/webp", 0.9);
-  if (webp) return webp;
+  if (webp?.type === "image/webp") return webp;
 
   const jpeg = await canvasToBlob(canvas, "image/jpeg", 0.92);
-  if (jpeg) return jpeg;
+  if (jpeg?.type === "image/jpeg") return jpeg;
   throw new FanIdPhotoError("encode-failed");
 }
 
@@ -164,7 +164,7 @@ export async function renderFanIdPhotoCrop(
     );
 
     const blob = await canvasToBlob(canvas, "image/webp", 0.92);
-    if (!blob) throw new FanIdPhotoError("encode-failed");
+    if (blob?.type !== "image/webp") throw new FanIdPhotoError("encode-failed");
     return blob;
   } finally {
     decoded.dispose();
