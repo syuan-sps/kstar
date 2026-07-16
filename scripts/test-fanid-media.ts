@@ -109,9 +109,19 @@ async function runStoreChecks(): Promise<void> {
     key: makeFanIdMediaKey("8730", userRole),
     role: userRole,
   }, fakeIndexedDB);
+  await putFanIdMediaRecord({
+    ...idolRecord,
+    key: makeFanIdMediaKey("8731", idolRole),
+    cardSerial: "8731",
+  }, fakeIndexedDB);
   await removeAllFanIdMediaForCard("8730", fakeIndexedDB);
   assert.equal(await getFanIdMediaRecord("8730", idolRole, fakeIndexedDB), null);
   assert.equal(await getFanIdMediaRecord("8730", userRole, fakeIndexedDB), null);
+  assert.equal((await getFanIdMediaRecord("8731", idolRole, fakeIndexedDB))?.sourceWidth, 1200);
+  await assert.rejects(
+    () => removeAllFanIdMediaForCard("../bad", fakeIndexedDB),
+    /Invalid Fan ID card serial/,
+  );
 
   await assert.rejects(
     () => putFanIdMediaRecord({ ...idolRecord, sourceWidth: 0 }, fakeIndexedDB),

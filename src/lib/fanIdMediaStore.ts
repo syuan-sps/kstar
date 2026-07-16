@@ -110,6 +110,7 @@ export async function removeAllFanIdMediaForCard(
   cardSerial: string,
   factory: IDBFactory = globalThis.indexedDB,
 ): Promise<void> {
+  makeFanIdMediaKey(cardSerial, { kind: "user" });
   const database = await openDatabase(factory);
   try {
     const transaction = database.transaction(STORE_NAME, "readwrite");
