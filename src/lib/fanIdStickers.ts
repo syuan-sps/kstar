@@ -41,8 +41,8 @@ const STICKER_THEME_ALIASES = Object.freeze({
 const RAW_STICKER_COMPOSITIONS = {
   chrome: [
     { id: "chrome-heart-top", kind: "heart", x: 7, y: 9, size: 12, rotate: -12, zone: "header", layer: "under-content" },
-    { id: "chrome-star-portrait", kind: "star", x: 93, y: 25, size: 16, rotate: 14, zone: "portrait-edge", layer: "over-portrait" },
-    { id: "chrome-chain-right", kind: "chain", x: 97, y: 42, size: 11, rotate: 8, zone: "portrait-edge", layer: "over-portrait" },
+    { id: "chrome-star-portrait", kind: "star", x: 98, y: 25, size: 16, rotate: 14, zone: "portrait-edge", layer: "over-portrait" },
+    { id: "chrome-chain-right", kind: "chain", x: 97, y: 35, size: 11, rotate: 8, zone: "portrait-edge", layer: "over-portrait" },
     { id: "chrome-safety-pin", kind: "safety-pin", x: 4, y: 48, size: 13, rotate: -18, zone: "portrait-edge", layer: "under-content" },
     { id: "chrome-star-bottom", kind: "star", x: 8, y: 66, size: 13, rotate: -8, zone: "portrait-edge", layer: "under-content" },
     { id: "chrome-heart-bottom", kind: "heart", x: 91, y: 68, size: 15, rotate: 10, zone: "portrait-edge", layer: "under-content" },
@@ -53,7 +53,7 @@ const RAW_STICKER_COMPOSITIONS = {
   ],
   dreamy: [
     { id: "dreamy-moon-top", kind: "moon", x: 8, y: 10, size: 14, rotate: -12, zone: "header", layer: "under-content", tone: "pearl" },
-    { id: "dreamy-star-portrait", kind: "star", x: 93, y: 25, size: 15, rotate: 12, zone: "portrait-edge", layer: "over-portrait", tone: "translucent" },
+    { id: "dreamy-star-portrait", kind: "star", x: 98, y: 25, size: 15, rotate: 12, zone: "portrait-edge", layer: "over-portrait", tone: "translucent" },
     { id: "dreamy-cloud-right", kind: "cloud", x: 95, y: 35, size: 10, rotate: 6, zone: "portrait-edge", layer: "over-portrait", tone: "soft" },
     { id: "dreamy-sparkle-left", kind: "sparkle", x: 4, y: 49, size: 10, rotate: -14, zone: "portrait-edge", layer: "under-content", tone: "pastel" },
     { id: "dreamy-moon-bottom", kind: "moon", x: 8, y: 66, size: 12, rotate: 10, zone: "portrait-edge", layer: "under-content", tone: "lavender" },
@@ -65,7 +65,7 @@ const RAW_STICKER_COMPOSITIONS = {
   ],
   kawaii: [
     { id: "kawaii-bow-top", kind: "bow", x: 8, y: 10, size: 14, rotate: -10, zone: "header", layer: "under-content", tone: "resin" },
-    { id: "kawaii-star-portrait", kind: "star", x: 93, y: 25, size: 16, rotate: 12, zone: "portrait-edge", layer: "over-portrait", tone: "glossy" },
+    { id: "kawaii-star-portrait", kind: "star", x: 98, y: 25, size: 16, rotate: 12, zone: "portrait-edge", layer: "over-portrait", tone: "glossy" },
     { id: "kawaii-butterfly-right", kind: "butterfly", x: 95, y: 35, size: 10, rotate: 8, zone: "portrait-edge", layer: "over-portrait" },
     { id: "kawaii-flower-left", kind: "flower", x: 4, y: 49, size: 13, rotate: -14, zone: "portrait-edge", layer: "under-content" },
     { id: "kawaii-heart-bottom", kind: "heart", x: 8, y: 67, size: 14, rotate: -8, zone: "portrait-edge", layer: "under-content", tone: "candy" },
@@ -77,7 +77,7 @@ const RAW_STICKER_COMPOSITIONS = {
   ],
   "monochrome-cute": [
     { id: "monochrome-cute-heart-top", kind: "heart", x: 8, y: 10, size: 13, rotate: -12, zone: "header", layer: "under-content", tone: "black" },
-    { id: "monochrome-cute-star-portrait", kind: "star", x: 93, y: 25, size: 16, rotate: 14, zone: "portrait-edge", layer: "over-portrait", tone: "black-chrome" },
+    { id: "monochrome-cute-star-portrait", kind: "star", x: 98, y: 25, size: 16, rotate: 14, zone: "portrait-edge", layer: "over-portrait", tone: "black-chrome" },
     { id: "monochrome-cute-cat-right", kind: "cat", x: 95, y: 35, size: 10, rotate: 8, zone: "portrait-edge", layer: "over-portrait" },
     { id: "monochrome-cute-ghost-left", kind: "ghost", x: 4, y: 49, size: 13, rotate: -10, zone: "portrait-edge", layer: "under-content" },
     { id: "monochrome-cute-bow-bottom", kind: "bow", x: 8, y: 67, size: 14, rotate: -8, zone: "portrait-edge", layer: "under-content", tone: "gingham" },
