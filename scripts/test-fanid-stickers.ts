@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import FanIdCard from "@/components/FanIdCard";
+import { FAN_ID_THEMES, getFanIdTheme } from "@/lib/fanIdThemes";
 import {
   getStickerComposition,
   resolveStickerThemeId,
@@ -25,6 +27,11 @@ assert.equal(normalizeStickersEnabled(undefined), false);
 assert.equal(normalizeThemeId("chrome"), "chrome");
 assert.equal(normalizeThemeId("missing-theme"), "chrome");
 assert.equal(normalizeThemeId("toString"), "chrome");
+assert.equal(getFanIdTheme(undefined), FAN_ID_THEMES.chrome);
+assert.equal(getFanIdTheme("missing-theme"), FAN_ID_THEMES.chrome);
+assert.equal(getFanIdTheme("toString"), FAN_ID_THEMES.chrome);
+assert.equal(getFanIdTheme("constructor"), FAN_ID_THEMES.chrome);
+assert.equal(getFanIdTheme("__proto__"), FAN_ID_THEMES.chrome);
 assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
@@ -179,5 +186,20 @@ assert.equal(
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").themeId, "kawaii");
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").cardMode, "user");
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").stickersEnabled, true);
+
+const tastePortraitCardSource = fs.readFileSync(
+  new URL("../src/components/TastePortraitCard.tsx", import.meta.url),
+  "utf8",
+);
+assert.match(
+  tastePortraitCardSource,
+  /<SoulStoryCard\s+result=\{result\}\s+themeId=\{prefs\.themeId\}\s*\/>/,
+  "completed story card should receive the normalized saved themeId",
+);
+assert.match(
+  tastePortraitCardSource,
+  /<SoulReport\s+result=\{result\}\s+answers=\{answers\}\s+themeId=\{prefs\.themeId\}\s*\/>/,
+  "completed report card should receive the normalized saved themeId",
+);
 
 console.log("fanid sticker composition checks passed");

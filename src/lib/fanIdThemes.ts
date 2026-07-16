@@ -22,5 +22,8 @@ export const FAN_ID_THEMES: Record<FanIdThemeId, FanIdTheme> = {
 };
 
 export function getFanIdTheme(themeId?: string | null): FanIdTheme {
-  return FAN_ID_THEMES[(themeId as FanIdThemeId) ?? "chrome"] ?? FAN_ID_THEMES.chrome;
+  if (themeId && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, themeId)) {
+    return FAN_ID_THEMES[themeId as FanIdThemeId];
+  }
+  return FAN_ID_THEMES.chrome;
 }

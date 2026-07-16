@@ -105,9 +105,9 @@ export default function TastePortraitCard({
       </div>
 
       {view === "story" ? (
-        <SoulStoryCard result={result} />
+        <SoulStoryCard result={result} themeId={prefs.themeId} />
       ) : view === "report" ? (
-        <SoulReport result={result} answers={answers} />
+        <SoulReport result={result} answers={answers} themeId={prefs.themeId} />
       ) : (
         <div className="flex flex-col items-center gap-3">
           <div className="inline-flex rounded-full border border-[#c8ccd2] bg-white p-0.5">
