@@ -14,12 +14,20 @@ import {
   removeAllFanIdMediaForCard,
   removeFanIdMediaRecord,
 } from "../src/lib/fanIdMediaStore";
+import {
+  MAX_FAN_ID_FILE_BYTES,
+  validateFanIdPhotoFile,
+} from "../src/lib/fanIdPhotoProcessing";
 
 const preset = {
   crop: { x: -12.5, y: 8 },
   zoom: 1.75,
   croppedAreaPixels: { x: 20, y: 10, width: 800, height: 910 },
 };
+
+assert.deepEqual(validateFanIdPhotoFile({ type: "image/jpeg", size: 1024 }), { ok: true });
+assert.deepEqual(validateFanIdPhotoFile({ type: "image/heic", size: 1024 }), { ok: false, code: "unsupported-type" });
+assert.deepEqual(validateFanIdPhotoFile({ type: "image/png", size: MAX_FAN_ID_FILE_BYTES + 1 }), { ok: false, code: "file-too-large" });
 
 function seedUnvalidatedMediaRecord(record: object): Promise<void> {
   return new Promise((resolve, reject) => {
