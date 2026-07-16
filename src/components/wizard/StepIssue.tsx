@@ -194,12 +194,30 @@ export default function StepIssue({
           }}
           className={`flex w-full items-center justify-between gap-3 rounded-2xl border p-3 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${stickersEnabled ? "border-[#b4302b] bg-[#b4302b]/7 shadow-sm" : "border-[#c8ccd2] bg-white/70 hover:border-[#9aa0aa]"}`}
         >
-          <span className="min-w-0">
+          <span className="min-w-0 flex-1">
             <span className={`block text-xs font-bold ${stickersEnabled ? "text-[#b4302b]" : "text-[#1c1e24]"}`}>{stickerToggleCopy.title}</span>
             <span className="mt-1 block text-[11px] text-[#5e636d]">{stickerToggleCopy.subtitle}</span>
           </span>
-          <span className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-[0.08em] ${stickersEnabled ? "border-[#b4302b]/30 bg-[#b4302b] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>
-            {stickersEnabled ? stickerToggleCopy.selected : stickerToggleCopy.unselected}
+          <span className="ml-auto flex shrink-0 items-center gap-2">
+            <span
+              aria-hidden="true"
+              data-sticker-toggle-thumbnail
+              className={`relative h-10 w-8 overflow-hidden rounded-[11px] border shadow-[inset_0_1px_0_rgba(255,255,255,.75)] ${stickersEnabled ? "border-[#b4302b]/35 bg-[linear-gradient(180deg,rgba(255,255,255,.92),rgba(180,48,43,.08))]" : "border-[#c8ccd2] bg-[linear-gradient(180deg,#ffffff,#f4f5f7)]"}`}
+            >
+              <span className="absolute inset-[3px] rounded-[8px] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,.88),rgba(28,30,36,.04))]" />
+              <span className="absolute inset-x-1.5 top-1.5 h-1 rounded-full bg-black/10" />
+              <span className="absolute inset-x-1 bottom-1.5 h-4 rounded-[5px] border border-black/5 bg-black/[0.055]" />
+              {stickersEnabled && (
+                <>
+                  <span data-sticker-toggle-thumb-accent className="absolute left-0.5 top-1 h-2.5 w-2.5 rounded-full border border-white/80 bg-[#ffd6ea] shadow-[0_1px_3px_rgba(180,48,43,.18)]" />
+                  <span data-sticker-toggle-thumb-accent className="absolute right-0 top-3 block h-2 w-2 rotate-12 rounded-[4px] border border-white/70 bg-[#fff0a8] shadow-[0_1px_3px_rgba(28,30,36,.18)]" />
+                  <span data-sticker-toggle-thumb-accent className="absolute bottom-1 right-0.5 h-2 w-2 rounded-full border border-white/80 bg-[#cfd9ff] shadow-[0_1px_3px_rgba(28,30,36,.16)]" />
+                </>
+              )}
+            </span>
+            <span className={`rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-[0.08em] ${stickersEnabled ? "border-[#b4302b]/30 bg-[#b4302b] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>
+              {stickersEnabled ? stickerToggleCopy.selected : stickerToggleCopy.unselected}
+            </span>
           </span>
         </button>
         {cardMode !== "idol" && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}

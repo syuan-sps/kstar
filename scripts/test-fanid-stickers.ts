@@ -36,6 +36,30 @@ assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
 
+const IDOL_USER_OWNER_AVATAR_ZONE = Object.freeze({
+  left: 78,
+  right: 100,
+  top: 48,
+  bottom: 68,
+});
+
+function stickerBounds(item: { x: number; y: number; size: number }) {
+  const halfSize = item.size / 2;
+  return {
+    left: item.x - halfSize,
+    right: item.x + halfSize,
+    top: item.y - halfSize,
+    bottom: item.y + halfSize,
+  };
+}
+
+function intersects(
+  a: { left: number; right: number; top: number; bottom: number },
+  b: { left: number; right: number; top: number; bottom: number },
+) {
+  return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+}
+
 for (const themeId of STICKER_THEME_IDS) {
   const placements = getStickerComposition(themeId);
   assert.equal(placements.length >= 10 && placements.length <= 14, true, `${themeId} density`);
@@ -51,6 +75,11 @@ for (const themeId of STICKER_THEME_IDS) {
     );
     if (item.layer === "over-portrait") {
       assert.equal(item.zone, "portrait-edge", `${themeId}:${item.id} portrait safety`);
+      assert.equal(
+        intersects(stickerBounds(item), IDOL_USER_OWNER_AVATAR_ZONE),
+        false,
+        `${themeId}:${item.id} must avoid the Idol + User owner avatar zone`,
+      );
     }
     if (item.zone === "certificate-edge") {
       assert.equal(item.layer, "under-content", `${themeId}:${item.id} certificate safety`);
@@ -191,6 +220,10 @@ const tastePortraitCardSource = fs.readFileSync(
   new URL("../src/components/TastePortraitCard.tsx", import.meta.url),
   "utf8",
 );
+const stepIssueSource = fs.readFileSync(
+  new URL("../src/components/wizard/StepIssue.tsx", import.meta.url),
+  "utf8",
+);
 assert.match(
   tastePortraitCardSource,
   /<SoulStoryCard\s+result=\{result\}\s+themeId=\{prefs\.themeId\}\s*\/>/,
@@ -200,6 +233,21 @@ assert.match(
   tastePortraitCardSource,
   /<SoulReport\s+result=\{result\}\s+answers=\{answers\}\s+themeId=\{prefs\.themeId\}\s*\/>/,
   "completed report card should receive the normalized saved themeId",
+);
+assert.match(
+  stepIssueSource,
+  /data-sticker-toggle-thumbnail/,
+  "Sticker bomb control should include a compact preview thumbnail",
+);
+assert.match(
+  stepIssueSource,
+  /data-sticker-toggle-thumbnail[\s\S]*aria-hidden="true"|aria-hidden="true"[\s\S]*data-sticker-toggle-thumbnail/,
+  "Sticker bomb thumbnail should stay decorative for assistive tech",
+);
+assert.match(
+  stepIssueSource,
+  /stickersEnabled\s*&&[\s\S]*data-sticker-toggle-thumb-accent/,
+  "Sticker bomb thumbnail should add visible edge accents when enabled",
 );
 
 console.log("fanid sticker composition checks passed");
