@@ -19,6 +19,10 @@ import {
   MAX_FAN_ID_FILE_BYTES,
   validateFanIdPhotoFile,
 } from "../src/lib/fanIdPhotoProcessing";
+import {
+  advanceFanIdMediaLifecycle,
+  isCurrentFanIdMediaLifecycle,
+} from "../src/hooks/useFanIdLocalMedia";
 
 const preset = {
   crop: { x: -12.5, y: 8 },
@@ -67,6 +71,19 @@ assert.equal(cropAspect("user-avatar"), 1);
 assert.equal(isFanIdMediaRecord({ key: "wrong" }), false);
 assert.equal(classifyFanIdStorageError(new DOMException("full", "QuotaExceededError")), "storage-full");
 assert.equal(classifyFanIdStorageError(new Error("blocked")), "storage-unavailable");
+
+const noCardRequest = advanceFanIdMediaLifecycle({ cardSerial: null, version: 0 }, null);
+assert.equal(isCurrentFanIdMediaLifecycle(noCardRequest, noCardRequest), false);
+
+const cardARequest = advanceFanIdMediaLifecycle(noCardRequest, "8730");
+const cardARefresh = advanceFanIdMediaLifecycle(cardARequest, "8730");
+const cardBRequest = advanceFanIdMediaLifecycle(cardARefresh, "8731");
+const noCardState = advanceFanIdMediaLifecycle(cardBRequest, null);
+assert.equal(isCurrentFanIdMediaLifecycle(cardARequest, cardARefresh), false);
+assert.equal(isCurrentFanIdMediaLifecycle(cardARefresh, cardBRequest), false);
+assert.equal(isCurrentFanIdMediaLifecycle(cardBRequest, cardBRequest), true);
+assert.equal(isCurrentFanIdMediaLifecycle(cardBRequest, noCardState), false);
+assert.equal(isCurrentFanIdMediaLifecycle(noCardState, noCardState), false);
 
 assert.deepEqual(resolveFanIdCardPhotos({
   mode: "idol",

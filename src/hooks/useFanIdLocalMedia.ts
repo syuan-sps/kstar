@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   classifyFanIdStorageError,
   collectFanIdPreviewKinds,
@@ -46,6 +46,27 @@ const EMPTY_STATE: LocalMediaState = {
   userAvatarSrc: null,
   errorCode: null,
 };
+
+export interface FanIdMediaLifecycle {
+  cardSerial: string | null;
+  version: number;
+}
+
+export function advanceFanIdMediaLifecycle(
+  lifecycle: FanIdMediaLifecycle,
+  cardSerial: string | null,
+): FanIdMediaLifecycle {
+  return { cardSerial, version: lifecycle.version + 1 };
+}
+
+export function isCurrentFanIdMediaLifecycle(
+  lifecycle: FanIdMediaLifecycle,
+  request: FanIdMediaLifecycle,
+): boolean {
+  return request.cardSerial !== null
+    && lifecycle.cardSerial === request.cardSerial
+    && lifecycle.version === request.version;
+}
 
 export function previewBlobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -97,12 +118,30 @@ export function useFanIdLocalMedia(input: {
   const idolIdsKey = input.idolIds.slice(0, 4).join("\u0000");
   const idolIds = useMemo(() => input.idolIds.slice(0, 4), [idolIdsKey]);
   const [state, setState] = useState<LocalMediaState>(EMPTY_STATE);
+  const lifecycleRef = useRef<FanIdMediaLifecycle>({ cardSerial, version: 0 });
+
+  if (lifecycleRef.current.cardSerial !== cardSerial) {
+    lifecycleRef.current = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial);
+  }
+
+  const beginRequest = useCallback(() => {
+    const request = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial);
+    lifecycleRef.current = request;
+    return request;
+  }, [cardSerial]);
+
+  const isCurrentRequest = useCallback(
+    (request: FanIdMediaLifecycle) => isCurrentFanIdMediaLifecycle(lifecycleRef.current, request),
+    [],
+  );
 
   const refresh = useCallback(async () => {
-    if (cardSerial === null) {
+    const request = beginRequest();
+    if (request.cardSerial === null) {
       setState(EMPTY_STATE);
       return;
     }
+    const requestCardSerial = request.cardSerial;
 
     setState((current) => ({ ...current, status: "loading", errorCode: null }));
     try {
@@ -111,9 +150,11 @@ export function useFanIdLocalMedia(input: {
         ...idolIds.map((idolId) => ({ kind: "idol" as const, idolId })),
       ];
       const records = (await Promise.all(
-        roles.map((role) => getFanIdMediaRecord(cardSerial, role)),
+        roles.map((role) => getFanIdMediaRecord(requestCardSerial, role)),
       )).filter((record): record is FanIdMediaRecord => record !== null);
+      if (!isCurrentRequest(request)) return;
       const previewSources = await readPreviewSources(records);
+      if (!isCurrentRequest(request)) return;
 
       setState({
         status: "ready",
@@ -122,59 +163,69 @@ export function useFanIdLocalMedia(input: {
         ...previewSources,
       });
     } catch (error) {
+      if (!isCurrentRequest(request)) return;
       setState((current) => ({
         ...current,
         status: "error",
         errorCode: classifyFanIdStorageError(error),
       }));
     }
-  }, [cardSerial, idolIds]);
+  }, [beginRequest, idolIds, isCurrentRequest]);
 
   useEffect(() => {
     void refresh();
   }, [refresh]);
 
   const save = useCallback(async (record: FanIdMediaRecord) => {
-    if (cardSerial === null) return;
+    const request = beginRequest();
+    if (request.cardSerial === null || record.cardSerial !== request.cardSerial) return;
     try {
       await putFanIdMediaRecord(record);
+      if (!isCurrentRequest(request)) return;
       await refresh();
     } catch (error) {
+      if (!isCurrentRequest(request)) return;
       setState((current) => ({
         ...current,
         status: "error",
         errorCode: classifyFanIdStorageError(error),
       }));
     }
-  }, [cardSerial, refresh]);
+  }, [beginRequest, isCurrentRequest, refresh]);
 
   const remove = useCallback(async (role: FanIdMediaRole) => {
-    if (cardSerial === null) return;
+    const request = beginRequest();
+    if (request.cardSerial === null) return;
     try {
-      await removeFanIdMediaRecord(cardSerial, role);
+      await removeFanIdMediaRecord(request.cardSerial, role);
+      if (!isCurrentRequest(request)) return;
       await refresh();
     } catch (error) {
+      if (!isCurrentRequest(request)) return;
       setState((current) => ({
         ...current,
         status: "error",
         errorCode: classifyFanIdStorageError(error),
       }));
     }
-  }, [cardSerial, refresh]);
+  }, [beginRequest, isCurrentRequest, refresh]);
 
   const clearAll = useCallback(async () => {
-    if (cardSerial === null) return;
+    const request = beginRequest();
+    if (request.cardSerial === null) return;
     try {
-      await removeAllFanIdMediaForCard(cardSerial);
+      await removeAllFanIdMediaForCard(request.cardSerial);
+      if (!isCurrentRequest(request)) return;
       await refresh();
     } catch (error) {
+      if (!isCurrentRequest(request)) return;
       setState((current) => ({
         ...current,
         status: "error",
         errorCode: classifyFanIdStorageError(error),
       }));
     }
-  }, [cardSerial, refresh]);
+  }, [beginRequest, isCurrentRequest, refresh]);
 
-  return { ...state, refresh, save, remove, clearAll };
+  return { ...(cardSerial === null ? EMPTY_STATE : state), refresh, save, remove, clearAll };
 }
