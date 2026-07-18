@@ -39,6 +39,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
   const dialogRef = useRef<HTMLDialogElement>(null);
   const fileInputs = useRef(new Map<string, HTMLInputElement>());
   const restoreFocusRef = useRef<HTMLElement | null>(null);
+  const cropRenderRequestRef = useRef(0);
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState<EditorDraft | null>(null);
   const [busy, setBusy] = useState(false);
@@ -86,6 +87,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
   }
 
   function clearDraft() {
+    cropRenderRequestRef.current += 1;
     setBusy(false);
     setError(null);
     setDraft(null);
@@ -134,10 +136,13 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
 
   async function confirm(preset: FanIdCropPreset) {
     if (!draft || busy) return;
+    const requestId = cropRenderRequestRef.current + 1;
+    cropRenderRequestRef.current = requestId;
     setBusy(true);
     setError(null);
     try {
       const preview = await renderFanIdPhotoCrop(draft.source, preset, draft.cropKind);
+      if (cropRenderRequestRef.current !== requestId) return;
       const prior = draft.existingRecord;
       const crops = draft.sourceReplaced ? {} : { ...(prior?.crops ?? {}) };
       const previews = draft.sourceReplaced ? {} : { ...(prior?.previews ?? {}) };
@@ -154,10 +159,13 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
         previews,
         updatedAt: (prior?.updatedAt ?? 0) + 1,
       });
+      if (cropRenderRequestRef.current !== requestId) return;
       clearDraft();
     } catch (errorValue) {
-      setError(messageFor(errorValue));
-      setBusy(false);
+      if (cropRenderRequestRef.current === requestId) {
+        setError(messageFor(errorValue));
+        setBusy(false);
+      }
     }
   }
 
@@ -240,7 +248,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
       </details>
 
       <dialog ref={dialogRef} aria-labelledby="fanid-photo-editor-title" onCancel={(event) => { event.preventDefault(); clearDraft(); }} className="m-0 w-full max-w-lg rounded-t-2xl border border-[#c8ccd2] bg-white p-4 shadow-2xl backdrop:bg-black/40 max-sm:fixed max-sm:bottom-0 sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
-        {draft?.sourceUrl && <><h2 id="fanid-photo-editor-title" className="sr-only">{dialogTitle}</h2><LocalPhotoEditor sourceUrl={draft.sourceUrl} cropKind={draft.cropKind} initialPreset={draft.sourceReplaced ? undefined : draft.existingRecord?.crops[draft.cropKind]} busy={busy} label={copy.fanIdPhotoUseFraming} error={error} onCancel={clearDraft} onConfirm={(preset) => void confirm(preset)} /></>}
+        {draft?.sourceUrl && <><h2 id="fanid-photo-editor-title" data-fanid-photo-destination className="mb-3 text-sm font-bold text-[#1c1e24]">{dialogTitle}</h2><LocalPhotoEditor sourceUrl={draft.sourceUrl} cropKind={draft.cropKind} initialPreset={draft.sourceReplaced ? undefined : draft.existingRecord?.crops[draft.cropKind]} busy={busy} label={copy.fanIdPhotoUseFraming} error={error} onCancel={clearDraft} onConfirm={(preset) => void confirm(preset)} /></>}
       </dialog>
     </section>
   );

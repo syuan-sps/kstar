@@ -91,7 +91,9 @@ export default function TastePortraitCard({
     cardSerial: prefs.serial ?? null,
     idolIds: picks.map((pick) => pick.id),
   });
-  const hasSavedUserMedia = media.userPortraitSrc !== null || media.userAvatarSrc !== null;
+  const cardMode = prefs.cardMode ?? "idol-user";
+  const requiredSavedUserPhoto = cardMode === "user" ? media.userPortraitSrc : media.userAvatarSrc;
+  const showLegacyFacePicker = requiredSavedUserPhoto === null && (cardMode !== "idol" || showFace);
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -120,7 +122,7 @@ export default function TastePortraitCard({
             <button type="button" aria-pressed={showFace} onClick={() => setShowFace(true)} className={`rounded-full px-3 py-1 text-xs font-bold ${showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionWithPhoto}</button>
             <button type="button" aria-pressed={!showFace} onClick={() => setShowFace(false)} className={`rounded-full px-3 py-1 text-xs font-bold ${!showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionShareOnly}</button>
           </div>
-          {showFace && !hasSavedUserMedia && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
+          {showLegacyFacePicker && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
           {heroId && (
             <FanIdCard
               picks={picks}
@@ -136,7 +138,7 @@ export default function TastePortraitCard({
               serial={prefs.serial ?? "----"}
               themeId={prefs.themeId}
               stickersEnabled={prefs.stickersEnabled}
-              cardMode={prefs.cardMode}
+              cardMode={cardMode}
             />
           )}
         </div>
