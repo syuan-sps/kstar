@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import FacePhotoPicker from "@/components/FacePhotoPicker";
 import FanIdCard from "@/components/FanIdCard";
+import FanIdPhotoStudio from "@/components/FanIdPhotoStudio";
 import Thumb from "@/components/Thumb";
 import { StickerBombPreview } from "@/components/wizard/StickerBombPreview";
+import { useFanIdLocalMedia } from "@/hooks/useFanIdLocalMedia";
 import type { ArchetypeResult } from "@/lib/archetypes";
+import { resolveFanIdCardPhotos } from "@/lib/fanIdMedia";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import type { ArtistLite } from "@/lib/lite";
@@ -36,7 +38,6 @@ export default function StepIssue({
   const [flash] = useState(() => typeof window !== "undefined" && localStorage.getItem("kstar:flashOk") === "1");
   const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">(wiz.cardMode ?? "idol-user");
   const [stickersEnabled, setStickersEnabled] = useState(wiz.stickersEnabled === true);
-  const [facePhoto, setFacePhoto] = useState<string | null>(null);
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
   const [completionFailed, setCompletionFailed] = useState(false);
@@ -48,7 +49,18 @@ export default function StepIssue({
   }, [phase]);
 
   const heroId = picks.some((pick) => pick.id === wiz.heroId) ? wiz.heroId! : picks[0]?.id;
-  const photoRequired = cardMode !== "idol" && !facePhoto;
+  const media = useFanIdLocalMedia({
+    cardSerial: wiz.serial ?? null,
+    idolIds: picks.map((pick) => pick.id),
+  });
+  const resolvedPhotos = resolveFanIdCardPhotos({
+    mode: cardMode,
+    catalogIdolSrc: picks.find((pick) => pick.id === heroId)?.image_url ?? null,
+    idolOverrideSrc: media.idolPreviewSources[heroId ?? ""] ?? null,
+    userPortraitSrc: media.userPortraitSrc,
+    userAvatarSrc: media.userAvatarSrc,
+  });
+  const photoRequired = resolvedPhotos.photoRequired || (media.status === "loading" && cardMode !== "idol");
   if (!heroId || !wiz.issuedAt || !wiz.serial) {
     return <div role="alert" className="grid min-h-64 place-items-center text-sm text-[#b4302b]">{copy.wizIncompleteAlert}</div>;
   }
@@ -60,7 +72,9 @@ export default function StepIssue({
       heroId={heroId}
       result={result}
       fanName={wiz.fanName}
-      facePhoto={facePhoto}
+      idolPhoto={media.idolPreviewSources[heroId] ?? null}
+      userPortraitPhoto={media.userPortraitSrc}
+      userAvatarPhoto={media.userAvatarSrc}
       cardMode={cardMode}
       issuedAt={wiz.issuedAt}
       serial={wiz.serial}
@@ -147,23 +161,6 @@ export default function StepIssue({
           </div>
         </div>
         <div>
-          <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.wizFocusLabel}</p>
-          <div className="grid grid-cols-4 gap-2">
-            {picks.map((pick) => (
-              <button key={pick.id} type="button" aria-pressed={pick.id === heroId} onClick={() => update({ heroId: pick.id })} className={`overflow-hidden rounded-xl border-2 p-1 transition ${pick.id === heroId ? "border-[#b4302b]" : "border-transparent hover:border-[#c8ccd2]"}`}>
-                <span className="block aspect-[3/4] overflow-hidden rounded-lg"><Thumb src={pick.image_url} seed={pick.id} label={pick.name_zh ?? pick.name} focusY={pick.image_focus} rounded="rounded-lg" /></span>
-                <span className="mt-1 block truncate text-[10px] font-bold">{pick.name_zh ?? pick.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <label className="block text-xs font-bold text-[#5e636d]">
-          {copy.wizFanNameLabel}
-          <input value={wiz.fanName ?? ""} maxLength={30} onChange={(event) => update({ fanName: event.target.value })} placeholder={copy.passNamePlaceholder} className="mt-1.5 w-full rounded-xl border border-[#c8ccd2] bg-white px-3 py-2.5 text-sm font-normal text-[#1c1e24] outline-none focus:border-[#7c8088]" />
-        </label>
-
-        <div>
           <p className="mb-2 text-xs font-bold text-[#5e636d]">{locale === "zh" ? "卡片版式" : "Card layout"}</p>
           <div className="grid grid-cols-3 gap-2">
             {(["idol", "idol-user", "user"] as const).map((mode) => {
@@ -184,6 +181,18 @@ export default function StepIssue({
             })}
           </div>
         </div>
+        <div>
+          <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.wizFocusLabel}</p>
+          <div className="grid grid-cols-4 gap-2">
+            {picks.map((pick) => (
+              <button key={pick.id} type="button" aria-pressed={pick.id === heroId} onClick={() => update({ heroId: pick.id })} className={`overflow-hidden rounded-xl border-2 p-1 transition ${pick.id === heroId ? "border-[#b4302b]" : "border-transparent hover:border-[#c8ccd2]"}`}>
+                <span className="block aspect-[3/4] overflow-hidden rounded-lg"><Thumb src={pick.image_url} seed={pick.id} label={pick.name_zh ?? pick.name} focusY={pick.image_focus} rounded="rounded-lg" /></span>
+                <span className="mt-1 block truncate text-[10px] font-bold">{pick.name_zh ?? pick.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <FanIdPhotoStudio cardSerial={wiz.serial} picks={picks} cardMode={cardMode} media={media} />
         <button
           type="button"
           data-sticker-toggle
@@ -206,7 +215,10 @@ export default function StepIssue({
             </span>
           </span>
         </button>
-        {cardMode !== "idol" && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
+        <label className="block text-xs font-bold text-[#5e636d]">
+          {copy.wizFanNameLabel}
+          <input value={wiz.fanName ?? ""} maxLength={30} onChange={(event) => update({ fanName: event.target.value })} placeholder={copy.passNamePlaceholder} className="mt-1.5 w-full rounded-xl border border-[#c8ccd2] bg-white px-3 py-2.5 text-sm font-normal text-[#1c1e24] outline-none focus:border-[#7c8088]" />
+        </label>
         {photoRequired && <p className="text-center text-[11px] font-medium text-[#b4302b]">{locale === "zh" ? "加入本人照片後即可匯出這個版式。" : "Add your photo to export this layout."}</p>}
 
         <button type="button" disabled className="w-full rounded-xl border border-dashed border-[#c8ccd2] bg-[#f4f5f7] py-2 text-xs text-[#9aa0aa]">{copy.wizBiasSongComingSoon}</button>

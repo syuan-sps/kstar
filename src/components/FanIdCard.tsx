@@ -29,6 +29,9 @@ interface FanIdCardCommonProps {
   song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
   facePhoto?: string | null;
+  idolPhoto?: string | null;
+  userPortraitPhoto?: string | null;
+  userAvatarPhoto?: string | null;
 }
 
 export interface FanIdCardSampleProps extends FanIdCardCommonProps {
@@ -106,6 +109,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     song,
     showFace,
     facePhoto,
+    idolPhoto,
+    userPortraitPhoto,
+    userAvatarPhoto,
     stickersEnabled = false,
     cardMode = "idol",
   } = props;
@@ -113,7 +119,15 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   const theme = getFanIdTheme(props.themeId);
   const isUserHero = cardMode === "user";
   const showOwnerBadge = cardMode === "idol-user" || (cardMode === "idol" && showFace === true);
-  const portraitSrc = isUserHero ? facePhoto : hero.image_url;
+  const effectiveUserPortrait = userPortraitPhoto ?? facePhoto ?? null;
+  const effectiveUserAvatar = userAvatarPhoto ?? facePhoto ?? null;
+  const portraitSrc = isUserHero
+    ? effectiveUserPortrait
+    : idolPhoto ?? hero.image_url ?? null;
+  const photoSource = portraitSrc === null
+    ? "missing"
+    : isUserHero || idolPhoto !== null && idolPhoto !== undefined ? "custom" : "catalog";
+  const avatarSource = effectiveUserAvatar ? "custom" : "missing";
   const portraitLabel = isUserHero ? (fanName || copy.fanIdSelfLabel) : (hero.name_zh ?? hero.name);
   const modeLabel = cardMode === "idol" ? "IDOL EDITION" : cardMode === "idol-user" ? "DUO EDITION" : "SELF EDITION";
   const rarity = frameRarity(result.code, locale);
@@ -164,9 +178,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
           </div>
           <div aria-hidden="true" className="pointer-events-none absolute right-1 top-8 font-orbitron text-[10px]" style={{ color: theme.accent }}>✦</div>
 
-          <section data-fanid-entry="hero" className="relative aspect-[4/4.55] overflow-hidden rounded-[18px] border border-white/80 bg-[#dfe3e8] shadow-[0_0_0_1px_rgba(28,30,36,.32),0_12px_30px_rgba(28,30,36,.22)]">
+          <section data-fanid-entry="hero" data-photo-source={photoSource} className="relative aspect-[4/4.55] overflow-hidden rounded-[18px] border border-white/80 bg-[#dfe3e8] shadow-[0_0_0_1px_rgba(28,30,36,.32),0_12px_30px_rgba(28,30,36,.22)]">
             {portraitSrc ? (
-              <Thumb src={portraitSrc} seed={hero.id} label={portraitLabel} focusY={isUserHero ? undefined : hero.image_focus} rounded="rounded-none" />
+              <Thumb src={portraitSrc} seed={hero.id} label={portraitLabel} focusY={isUserHero || idolPhoto !== null && idolPhoto !== undefined ? undefined : hero.image_focus} rounded="rounded-none" />
             ) : (
               <div className="grid h-full place-items-center bg-[linear-gradient(145deg,#dfe3e8,#f7f8fa)] px-8 text-center">
                 <div>
@@ -185,9 +199,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             </div>
 
             {showOwnerBadge && (
-              <div className="absolute bottom-3 right-3 z-20 h-[64px] w-[64px] rounded-full border border-white/80 p-[3px] shadow-[0_8px_18px_rgba(0,0,0,.35)]" style={{ background: `linear-gradient(145deg,#fff,${theme.accent})` }}>
+              <div data-avatar-source={avatarSource} className="absolute bottom-3 right-3 z-20 h-[64px] w-[64px] rounded-full border border-white/80 p-[3px] shadow-[0_8px_18px_rgba(0,0,0,.35)]" style={{ background: `linear-gradient(145deg,#fff,${theme.accent})` }}>
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-[#dfe3e8]">
-                  {facePhoto ? <img src={facePhoto} alt={copy.fanIdSelfLabel} className="h-full w-full object-cover" /> : <span className="grid h-full place-items-center font-orbitron text-sm text-[#5e636d]">+</span>}
+                  {effectiveUserAvatar ? <img src={effectiveUserAvatar} alt={copy.fanIdSelfLabel} className="h-full w-full object-cover" /> : <span className="grid h-full place-items-center font-orbitron text-sm text-[#5e636d]">+</span>}
                   <span className="absolute inset-x-0 bottom-0 bg-black/60 py-0.5 text-center font-orbitron text-[5px] tracking-[0.12em] text-white">OWNER</span>
                 </div>
               </div>
