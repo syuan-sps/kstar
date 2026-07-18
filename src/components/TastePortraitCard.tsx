@@ -13,6 +13,7 @@ import SoulStoryCard from "@/components/SoulStoryCard";
 import SoulReport, { type ResultAnswers } from "@/components/SoulReport";
 import FanIdCard from "@/components/FanIdCard";
 import FacePhotoPicker from "@/components/FacePhotoPicker";
+import { useFanIdLocalMedia } from "@/hooks/useFanIdLocalMedia";
 import type { FanIdCardMode } from "@/lib/types";
 import {
   normalizeCardMode,
@@ -25,9 +26,9 @@ type FanIdPrefs = {
   fanName?: string;
   issuedAt?: string;
   serial?: string;
-  themeId: FanIdThemeId;
-  stickersEnabled: boolean;
-  cardMode: FanIdCardMode;
+  themeId?: FanIdThemeId;
+  stickersEnabled?: boolean;
+  cardMode?: FanIdCardMode;
 };
 
 function boundedString(value: unknown, max: number): value is string {
@@ -86,6 +87,11 @@ export default function TastePortraitCard({
   }, [readPrefs]);
 
   const heroId = picks.some((pick) => pick.id === prefs.heroId) ? prefs.heroId! : picks[0]?.id;
+  const media = useFanIdLocalMedia({
+    cardSerial: prefs.serial ?? null,
+    idolIds: picks.map((pick) => pick.id),
+  });
+  const hasSavedUserMedia = media.userPortraitSrc !== null || media.userAvatarSrc !== null;
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -114,7 +120,7 @@ export default function TastePortraitCard({
             <button type="button" aria-pressed={showFace} onClick={() => setShowFace(true)} className={`rounded-full px-3 py-1 text-xs font-bold ${showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionWithPhoto}</button>
             <button type="button" aria-pressed={!showFace} onClick={() => setShowFace(false)} className={`rounded-full px-3 py-1 text-xs font-bold ${!showFace ? "bg-[#1c1e24] text-white" : "text-[#7c8088]"}`}>{copy.versionShareOnly}</button>
           </div>
-          {showFace && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
+          {showFace && !hasSavedUserMedia && <FacePhotoPicker value={facePhoto} onChange={setFacePhoto} />}
           {heroId && (
             <FanIdCard
               picks={picks}
@@ -123,6 +129,9 @@ export default function TastePortraitCard({
               fanName={prefs.fanName}
               showFace={showFace}
               facePhoto={facePhoto}
+              idolPhoto={media.idolPreviewSources[heroId] ?? null}
+              userPortraitPhoto={media.userPortraitSrc}
+              userAvatarPhoto={media.userAvatarSrc}
               issuedAt={prefs.issuedAt ?? "----.--.--"}
               serial={prefs.serial ?? "----"}
               themeId={prefs.themeId}
