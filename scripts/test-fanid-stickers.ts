@@ -3,6 +3,7 @@ import fs from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import FanIdCard from "@/components/FanIdCard";
+import FanIdDecorationFrame from "@/components/FanIdDecorationFrame";
 import { StickerBombPreview } from "@/components/wizard/StickerBombPreview";
 import { FAN_ID_THEMES, getFanIdTheme } from "@/lib/fanIdThemes";
 import {
@@ -36,6 +37,22 @@ assert.equal(getFanIdTheme("__proto__"), FAN_ID_THEMES.chrome);
 assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
+
+const kawaiiDecorationFrame = renderToStaticMarkup(
+  createElement(FanIdDecorationFrame, { enabled: true, themeId: "kawaii" }),
+);
+assert.match(kawaiiDecorationFrame, /data-fanid-decoration-frame="kawaii-sleeve"/);
+assert.match(kawaiiDecorationFrame, /decorated-frame-v1\.png/);
+assert.equal(
+  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: false, themeId: "kawaii" })),
+  "",
+  "disabled Kawaii should not render a decoration frame",
+);
+assert.equal(
+  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: true, themeId: "chrome" })),
+  "",
+  "Chrome should not render a Kawaii decoration frame",
+);
 
 type Bounds = Readonly<{ left: number; right: number; top: number; bottom: number }>;
 
