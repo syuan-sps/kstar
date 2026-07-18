@@ -68,6 +68,7 @@ export default function LocalPhotoEditor({
   return (
     <div data-fanid-photo-editor data-crop-kind={cropKind} className="space-y-3 rounded-xl border border-[#c8ccd2] bg-white/70 p-3">
       <p className="text-xs font-bold text-[#4a4f57]">{label}</p>
+      {busy && <p role="status" aria-live="polite" className="text-xs text-[#4a4f57]">{copy.processing}</p>}
       <div data-fanid-photo-crop className={`relative mx-auto overflow-hidden bg-[#1c1e24] ${viewportClassName}`}>
         <Cropper
           key={cropperKey}
@@ -94,7 +95,7 @@ export default function LocalPhotoEditor({
         className="w-full accent-[#b4302b]"
       />
       <div className="flex gap-2">
-        <button data-fanid-photo-reset type="button" disabled={busy} onClick={reset} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">Reset</button>
+        <button data-fanid-photo-reset type="button" disabled={busy} onClick={reset} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.fanIdPhotoResetFraming}</button>
         <button type="button" disabled={busy} onClick={onCancel} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.cancel}</button>
         <button
           data-fanid-photo-confirm

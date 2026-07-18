@@ -163,12 +163,14 @@ export function useFanIdLocalMedia(input: {
         ...previewSources,
       });
     } catch (error) {
-      if (!isCurrentRequest(request)) return;
-      setState((current) => ({
-        ...current,
-        status: "error",
-        errorCode: classifyFanIdStorageError(error),
-      }));
+      if (isCurrentRequest(request)) {
+        setState((current) => ({
+          ...current,
+          status: "error",
+          errorCode: classifyFanIdStorageError(error),
+        }));
+      }
+      throw error;
     }
   }, [beginRequest, idolIds, isCurrentRequest]);
 

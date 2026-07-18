@@ -166,11 +166,24 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
     fileInputs.current.get(key)?.click();
   }
 
+  function destinationTitle(editorDraft: EditorDraft): string {
+    if (editorDraft.role.kind === "idol") {
+      const idolId = editorDraft.role.idolId;
+      const idol = picks.find((pick) => pick.id === idolId);
+      return idol?.name_zh ?? idol?.name ?? idolId;
+    }
+    return editorDraft.cropKind === "user-avatar" ? copy.fanIdUserAvatar : copy.fanIdUserPortrait;
+  }
+
   const primaryUserKind: FanIdCropKind = cardMode === "idol-user" ? "user-avatar" : "user-portrait";
+  const userCropKinds: readonly FanIdCropKind[] = cardMode === "idol-user"
+    ? ["user-avatar", "user-portrait"]
+    : ["user-portrait", "user-avatar"];
   const userSrc = primaryUserKind === "user-avatar"
     ? media.userAvatarSrc ?? media.userPortraitSrc
     : media.userPortraitSrc ?? media.userAvatarSrc;
   const hasCustom = media.records.size > 0;
+  const dialogTitle = draft ? destinationTitle(draft) : "";
 
   return (
     <section data-fanid-photo-studio className="w-full max-w-lg rounded-2xl border border-[#c8ccd2] bg-white/75 p-4 shadow-sm">
@@ -182,7 +195,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
         <div className="mt-4 space-y-4">
           <p data-fanid-photo-local-note className="text-xs text-[#4a4f57]">{copy.fanIdPhotoStoredLocal}</p>
           <p className="text-xs text-[#4a4f57]">{copy.fanIdPhotoPermissionNote}</p>
-          {media.status === "loading" && <p className="text-xs text-[#4a4f57]">{copy.processing}</p>}
+          {(busy || media.status === "loading") && <p role="status" aria-live="polite" className="text-xs text-[#4a4f57]">{copy.processing}</p>}
           {(error ?? mediaError) && <p role="alert" className="text-xs text-[#b4302b]">{error ?? mediaError}</p>}
 
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -209,11 +222,11 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
               <div className="min-w-0 flex-1"><p className="font-bold">{copy.fanIdUserPhoto}</p><p className="mt-1 text-xs text-[#5e636d]">{recordFor({ kind: "user" }) ? copy.fanIdPhotoCustomLocal : copy.fanIdPhotoOriginal}</p></div>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2">
-              {(["user-portrait", "user-avatar"] as const).map((kind) => {
+              {userCropKinds.map((kind) => {
                 const label = kind === "user-portrait" ? copy.fanIdUserPortrait : copy.fanIdUserAvatar;
                 const key = `user:${kind}`;
                 const record = recordFor({ kind: "user" });
-                return <div key={kind} className={kind === primaryUserKind ? "order-first" : undefined}>
+                return <div key={kind}>
                   <input ref={(node) => { if (node) fileInputs.current.set(key, node); else fileInputs.current.delete(key); }} className="hidden" type="file" accept=".jpg,.jpeg,.png,.webp" onChange={(event) => { const file = event.target.files?.[0]; event.currentTarget.value = ""; if (file && restoreFocusRef.current) void choose({ kind: "user" }, kind, file, restoreFocusRef.current); }} />
                   <button type="button" onClick={(event) => launchChooser(key, event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoReplace} {label}</button>
                   {record?.crops[kind] && <button type="button" onClick={(event) => openExisting({ kind: "user" }, kind, event.currentTarget)} className="mt-2 w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoAdjust} {label}</button>}
@@ -227,7 +240,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
       </details>
 
       <dialog ref={dialogRef} aria-labelledby="fanid-photo-editor-title" onCancel={(event) => { event.preventDefault(); clearDraft(); }} className="m-0 w-full max-w-lg rounded-t-2xl border border-[#c8ccd2] bg-white p-4 shadow-2xl backdrop:bg-black/40 max-sm:fixed max-sm:bottom-0 sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
-        {draft?.sourceUrl && <><h2 id="fanid-photo-editor-title" className="sr-only">{draft.cropKind === "idol-portrait" ? copy.fanIdPhotoOriginal : draft.cropKind === "user-avatar" ? copy.fanIdUserAvatar : copy.fanIdUserPortrait}</h2><LocalPhotoEditor sourceUrl={draft.sourceUrl} cropKind={draft.cropKind} initialPreset={draft.sourceReplaced ? undefined : draft.existingRecord?.crops[draft.cropKind]} busy={busy} label={copy.fanIdPhotoUseFraming} error={error} onCancel={clearDraft} onConfirm={(preset) => void confirm(preset)} /></>}
+        {draft?.sourceUrl && <><h2 id="fanid-photo-editor-title" className="sr-only">{dialogTitle}</h2><LocalPhotoEditor sourceUrl={draft.sourceUrl} cropKind={draft.cropKind} initialPreset={draft.sourceReplaced ? undefined : draft.existingRecord?.crops[draft.cropKind]} busy={busy} label={copy.fanIdPhotoUseFraming} error={error} onCancel={clearDraft} onConfirm={(preset) => void confirm(preset)} /></>}
       </dialog>
     </section>
   );
