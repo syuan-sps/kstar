@@ -44,12 +44,12 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
     createElement(FanIdDecorationFrame, { enabled: true, themeId }),
   );
   assert.match(decorationFrame, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
-  assert.match(decorationFrame, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`));
+  assert.equal(decorationFrame.includes("data-fanid-decoration-popout="), false);
 }
 
 assert.deepEqual(Object.keys(FAN_ID_DECORATION_ASSETS).sort(), Object.keys(FAN_ID_THEMES).sort());
-const decorationAssetPaths = Object.values(FAN_ID_DECORATION_ASSETS).flatMap(({ sleeve, popout }) => [sleeve, popout]);
-assert.equal(decorationAssetPaths.length, 8, "every theme should map a sleeve and pop-out asset");
+const decorationAssetPaths = Object.values(FAN_ID_DECORATION_ASSETS).map(({ sleeve }) => sleeve);
+assert.equal(decorationAssetPaths.length, 4, "every theme should map one sleeve asset");
 for (const assetPath of decorationAssetPaths) {
   assert.equal(
     fs.existsSync(path.join(process.cwd(), "public", assetPath.replace(/^\//, ""))),
@@ -270,9 +270,9 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
       ),
     );
     const label = `${themeId}:${cardMode}`;
-    assert.match(decoratedCardMarkup, /data-card-sticker-architecture="two-layer-frame"/, label);
+    assert.match(decoratedCardMarkup, /data-card-sticker-architecture="sleeve-frame"/, label);
     assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`), label);
-    assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`), label);
+    assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-popout="), false, `${label} should not render a foreground pop-out`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-sticker-layer="), false, `${label} should not render legacy SVG sticker layers`);
   }
 }
@@ -289,9 +289,9 @@ const defaultThemeMarkup = renderToStaticMarkup(
   ),
 );
 assert.match(defaultThemeMarkup, /data-theme="chrome"/, "omitted themes should retain the Chrome default");
-assert.match(defaultThemeMarkup, /data-card-sticker-architecture="two-layer-frame"/, "omitted themes should enable the Chrome decoration architecture");
+assert.match(defaultThemeMarkup, /data-card-sticker-architecture="sleeve-frame"/, "omitted themes should enable the Chrome decoration architecture");
 assert.match(defaultThemeMarkup, /data-fanid-decoration-frame="chrome-sleeve"/, "omitted themes should render the Chrome sleeve");
-assert.match(defaultThemeMarkup, /data-fanid-decoration-popout="chrome-popout"/, "omitted themes should render the Chrome pop-out");
+assert.equal(defaultThemeMarkup.includes("data-fanid-decoration-popout="), false, "omitted themes should not render a foreground pop-out");
 
 const invalidThemeMarkup = renderToStaticMarkup(
   createElement(
@@ -308,7 +308,6 @@ const invalidThemeMarkup = renderToStaticMarkup(
 assert.match(invalidThemeMarkup, /data-theme="chrome"/, "invalid themes should retain the safe Chrome surface fallback");
 assert.match(invalidThemeMarkup, /data-card-sticker-architecture="disabled"/, "invalid themes should disable decoration architecture");
 assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-frame="), false, "invalid themes should not render decoration sleeves");
-assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-popout="), false, "invalid themes should not render decoration pop-outs");
 
 const undecoratedSampleMarkup = renderToStaticMarkup(
   createElement(

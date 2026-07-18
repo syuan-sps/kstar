@@ -143,7 +143,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
       data-card-stickers={decorationsEnabled ? "true" : "false"}
-      data-card-sticker-architecture={decorationsEnabled ? "two-layer-frame" : "disabled"}
+      data-card-sticker-architecture={decorationsEnabled ? "sleeve-frame" : "disabled"}
       data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
@@ -156,8 +156,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
-        {/* Decorated themes use a pre-composed sleeve behind content and a
-            clipped pop-out above it; both layers preserve the card's z-order. */}
+        {/* Decorated themes use one pre-composed sleeve behind live content. */}
         <FanIdDecorationFrame themeId={decorationThemeId} enabled={decorationsEnabled} />
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
