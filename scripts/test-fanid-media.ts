@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { indexedDB as fakeIndexedDB } from "fake-indexeddb";
+import React from "react";
+import TestRenderer, { act } from "react-test-renderer";
 import {
   collectFanIdPreviewKinds,
   cropAspect,
@@ -23,6 +25,7 @@ import {
 import {
   advanceFanIdMediaLifecycle,
   isCurrentFanIdMediaLifecycle,
+  useFanIdLocalMedia,
 } from "../src/hooks/useFanIdLocalMedia";
 
 const preset = {
@@ -37,11 +40,9 @@ assert.match(
   /onCancel=\{\(event\) => \{ event\.preventDefault\(\); if \(!busy\) clearDraft\(\); \}\}/,
   "the dialog must ignore Escape while a crop is being written, because IndexedDB writes cannot be cancelled safely",
 );
-const mediaHookSource = fs.readFileSync("src/hooks/useFanIdLocalMedia.ts", "utf8");
-assert.match(mediaHookSource, /lifecycleRef\.current\.idolIdsKey !== idolIdsKey/);
-assert.match(mediaHookSource, /if \(!request\.cardSerial\) \{/);
-assert.match(mediaHookSource, /\.\.\.EMPTY_STATE,\s*status: "loading"/s);
-assert.match(mediaHookSource, /return \(\) => \{\s*lifecycleRef\.current = advanceFanIdMediaLifecycle\(lifecycleRef\.current, null\);/s);
+
+type HookInput = Parameters<typeof useFanIdLocalMedia>[0];
+type HookResult = ReturnType<typeof useFanIdLocalMedia>;
 
 assert.deepEqual(validateFanIdPhotoFile({ type: "image/jpeg", size: 1024 }), { ok: true });
 assert.deepEqual(validateFanIdPhotoFile({ type: "image/heic", size: 1024 }), { ok: false, code: "unsupported-type" });
@@ -133,6 +134,128 @@ assert.deepEqual(resolveFanIdCardPhotos({
   userAvatarSrc: "avatar.png",
 }), { portraitSrc: "user-portrait.png", avatarSrc: null, photoRequired: false });
 
+function makeIdolRecord(cardSerial: string, idolId = "idol-a") {
+  const role = { kind: "idol", idolId } as const;
+  return {
+    key: makeFanIdMediaKey(cardSerial, role),
+    cardSerial,
+    role,
+    source: new Blob(["source"], { type: "image/webp" }),
+    sourceWidth: 1200,
+    sourceHeight: 1600,
+    crops: { "idol-portrait": preset },
+    previews: { "idol-portrait": new Blob(["preview"], { type: "image/webp" }) },
+    updatedAt: 1,
+  };
+}
+
+async function flushReact(): Promise<void> {
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+}
+
+async function waitForHook(assertion: () => void): Promise<void> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    try {
+      assertion();
+      return;
+    } catch (error) {
+      lastError = error;
+      await flushReact();
+    }
+  }
+  throw lastError;
+}
+
+async function runHookChecks(): Promise<void> {
+  const originalIndexedDB = globalThis.indexedDB;
+  const originalFileReader = globalThis.FileReader;
+  const originalActEnvironment = (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT;
+  let latest: HookResult | null = null;
+  let renderer: TestRenderer.ReactTestRenderer | null = null;
+  const TestFileReader = class {
+    result: string | null = null;
+    error: DOMException | null = null;
+    onerror: (() => void) | null = null;
+    onload: (() => void) | null = null;
+
+    readAsDataURL(blob: Blob) {
+      void blob.arrayBuffer().then((buffer) => {
+        this.result = `data:${blob.type};base64,${Buffer.from(buffer).toString("base64")}`;
+        this.onload?.();
+      });
+    }
+  };
+
+  function Probe({ input }: { input: HookInput }) {
+    latest = useFanIdLocalMedia(input);
+    return null;
+  }
+
+  async function render(input: HookInput): Promise<void> {
+    await act(async () => {
+      const element = React.createElement(Probe, { input });
+      if (renderer) renderer.update(element);
+      else renderer = TestRenderer.create(element);
+    });
+  }
+
+  try {
+    (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+    globalThis.FileReader = TestFileReader as unknown as typeof FileReader;
+    globalThis.indexedDB = fakeIndexedDB;
+    await putFanIdMediaRecord(makeIdolRecord("hook-card-a"), fakeIndexedDB);
+    await putFanIdMediaRecord(makeIdolRecord("hook-card-b"), fakeIndexedDB);
+
+    await render({ cardSerial: "hook-card-a", idolIds: ["idol-a"] });
+    await waitForHook(() => {
+      assert.equal(latest?.status, "ready");
+      assert.equal(latest?.records.size, 1);
+      assert.match(latest?.idolPreviewSources["idol-a"] ?? "", /^data:image\/webp;base64,/);
+    });
+
+    await render({ cardSerial: "hook-card-b", idolIds: ["idol-a"] });
+    assert.equal(latest?.status, "loading");
+    assert.equal(latest?.records.size, 0);
+    assert.deepEqual(latest?.idolPreviewSources, {});
+    await waitForHook(() => assert.equal(latest?.status, "ready"));
+
+    await render({ cardSerial: "hook-card-b", idolIds: ["idol-b"] });
+    assert.equal(latest?.status, "loading");
+    assert.equal(latest?.records.size, 0);
+    assert.deepEqual(latest?.idolPreviewSources, {});
+
+    await render({ cardSerial: "", idolIds: ["idol-a"] });
+    assert.equal(latest?.status, "ready");
+    assert.equal(latest?.records.size, 0);
+    assert.deepEqual(latest?.idolPreviewSources, {});
+    await render({ cardSerial: null, idolIds: ["idol-a"] });
+    assert.equal(latest?.status, "ready");
+
+    globalThis.indexedDB = {
+      open() { throw new DOMException("full", "QuotaExceededError"); },
+    } as unknown as IDBFactory;
+    await render({ cardSerial: "hook-card-save", idolIds: ["idol-a"] });
+    await act(async () => {
+      await assert.rejects(
+        () => latest!.save(makeIdolRecord("hook-card-save")),
+        (error: unknown) => error instanceof DOMException && error.name === "QuotaExceededError",
+      );
+    });
+    await waitForHook(() => {
+      assert.equal(latest?.status, "error");
+      assert.equal(latest?.errorCode, "storage-full");
+    });
+  } finally {
+    await act(async () => renderer?.unmount());
+    globalThis.indexedDB = originalIndexedDB;
+    globalThis.FileReader = originalFileReader;
+    (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = originalActEnvironment;
+  }
+}
+
 async function runStoreChecks(): Promise<void> {
   const idolRole = { kind: "idol", idolId: "idol-a" } as const;
   const userRole = { kind: "user" } as const;
@@ -200,5 +323,6 @@ async function runStoreChecks(): Promise<void> {
 }
 
 void (async () => {
+  await runHookChecks();
   await runStoreChecks();
 })();
