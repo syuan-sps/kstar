@@ -5,7 +5,7 @@ type Props = {
   enabled: boolean;
 };
 
-export const FAN_ID_DECORATION_ASSETS: Record<FanIdThemeId, { sleeve: string }> = {
+export const FAN_ID_DECORATION_ASSETS: Readonly<Partial<Record<FanIdThemeId, { sleeve: string }>>> = {
   chrome: {
     sleeve: "/fanid-themes/chrome/decorated-sleeve-v1.png",
   },
@@ -20,12 +20,17 @@ export const FAN_ID_DECORATION_ASSETS: Record<FanIdThemeId, { sleeve: string }> 
   },
 };
 
+export function hasFanIdDecorationFrame(themeId?: string | null): themeId is FanIdThemeId {
+  return Boolean(themeId && Object.prototype.hasOwnProperty.call(FAN_ID_DECORATION_ASSETS, themeId));
+}
+
 export default function FanIdDecorationFrame({ themeId, enabled }: Props) {
-  if (!enabled || !themeId || !Object.prototype.hasOwnProperty.call(FAN_ID_DECORATION_ASSETS, themeId)) {
+  if (!enabled || !hasFanIdDecorationFrame(themeId)) {
     return null;
   }
 
   const assets = FAN_ID_DECORATION_ASSETS[themeId as FanIdThemeId];
+  if (!assets) return null;
 
   return (
     <>

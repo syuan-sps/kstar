@@ -22,6 +22,7 @@ import {
   normalizeThemeId,
 } from "@/lib/wizardState";
 import { SCORE_LAYERS } from "@/lib/types";
+import { CUSTOM_STICKER_PACKS } from "@/lib/fanIdCustomStickers";
 
 assert.equal(normalizeStickersEnabled(true), true);
 assert.equal(normalizeStickersEnabled(false), false);
@@ -39,7 +40,7 @@ assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
 
-for (const themeId of Object.keys(FAN_ID_THEMES)) {
+for (const themeId of Object.keys(FAN_ID_DECORATION_ASSETS)) {
   const decorationFrame = renderToStaticMarkup(
     createElement(FanIdDecorationFrame, { enabled: true, themeId }),
   );
@@ -47,9 +48,8 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
   assert.equal(decorationFrame.includes("data-fanid-decoration-popout="), false);
 }
 
-assert.deepEqual(Object.keys(FAN_ID_DECORATION_ASSETS).sort(), Object.keys(FAN_ID_THEMES).sort());
 const decorationAssetPaths = Object.values(FAN_ID_DECORATION_ASSETS).map(({ sleeve }) => sleeve);
-assert.equal(decorationAssetPaths.length, 4, "every theme should map one sleeve asset");
+assert.equal(decorationAssetPaths.length, 4, "the four original themes should map one sleeve asset");
 for (const assetPath of decorationAssetPaths) {
   assert.equal(
     fs.existsSync(path.join(process.cwd(), "public", assetPath.replace(/^\//, ""))),
@@ -270,8 +270,10 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
       ),
     );
     const label = `${themeId}:${cardMode}`;
-    assert.match(decoratedCardMarkup, /data-card-sticker-architecture="sleeve-frame"/, label);
-    assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`), label);
+    const hasSleeve = Object.prototype.hasOwnProperty.call(FAN_ID_DECORATION_ASSETS, themeId);
+    assert.match(decoratedCardMarkup, new RegExp(`data-card-sticker-architecture="${hasSleeve ? "sleeve-frame" : "disabled"}"`), label);
+    if (hasSleeve) assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`), label);
+    else assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-frame="), false, label);
     assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-popout="), false, `${label} should not render a foreground pop-out`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-sticker-layer="), false, `${label} should not render legacy SVG sticker layers`);
   }
@@ -406,6 +408,17 @@ assert.equal(
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").themeId, "kawaii");
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").cardMode, "user");
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").stickersEnabled, true);
+
+localStorageMock.clear();
+const exportDecal = CUSTOM_STICKER_PACKS.chrome.assets[0];
+assert.equal(
+  finishWizard({
+    step: 4, picks: ["hero", "pick-2", "pick-3", "pick-4"], rank: [...SCORE_LAYERS], answers: {}, heroId: "hero", issuedAt: "2026.07.15", serial: "TEST-3",
+    customStickers: [{ id: "saved", assetId: exportDecal.id, packId: exportDecal.packId, x: 23, y: 68, scale: .13, rotation: -12 }],
+  }),
+  true,
+);
+assert.deepEqual(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").customStickers, [{ id: "saved", assetId: exportDecal.id, packId: exportDecal.packId, x: 23, y: 68, scale: .13, rotation: -12 }]);
 
 const tastePortraitCardSource = fs.readFileSync(
   new URL("../src/components/TastePortraitCard.tsx", import.meta.url),

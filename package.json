@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:fanid-stickers": "tsx scripts/test-fanid-stickers.ts",
+    "test:fanid-custom-stickers": "tsx scripts/test-fanid-custom-stickers.ts",
     "ingest": "tsx scripts/ingest.ts",
     "similarity": "tsx scripts/compute-similarity.ts"
   },

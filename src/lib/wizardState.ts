@@ -11,6 +11,7 @@ import type {
 import { SCORE_LAYERS } from "./types";
 import { rankToWeights } from "./questionnaire";
 import { FAN_ID_THEMES, type FanIdThemeId } from "./fanIdThemes";
+import { normalizePlacedStickers, type PlacedCustomSticker } from "./fanIdCustomStickers";
 
 export interface WizardState {
   step: 0 | 1 | 2 | 3 | 4;
@@ -25,6 +26,7 @@ export interface WizardState {
   serial?: string;            // stable ID (not a sequence or scarcity claim)
   themeId?: FanIdThemeId;     // curated visual edition
   stickersEnabled?: boolean;
+  customStickers?: PlacedCustomSticker[];
   cardMode?: FanIdCardMode;
 }
 
@@ -115,6 +117,7 @@ export function loadWizard(): WizardState {
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
       themeId: normalizeThemeId(p.themeId),
       stickersEnabled: normalizeStickersEnabled(p.stickersEnabled),
+      customStickers: normalizePlacedStickers(p.customStickers),
       cardMode: normalizeCardMode(p.cardMode),
     };
   } catch {
@@ -207,6 +210,7 @@ export function finishWizard(s: WizardState): boolean {
     issuedAt: s.issuedAt,
     serial: s.serial,
     stickersEnabled: normalizeStickersEnabled(s.stickersEnabled),
+    customStickers: normalizePlacedStickers(s.customStickers),
     fanIdClaimed: true,
   };
   try {

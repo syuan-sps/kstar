@@ -6,7 +6,9 @@
 
 import { forwardRef } from "react";
 import Thumb from "@/components/Thumb";
-import FanIdDecorationFrame from "@/components/FanIdDecorationFrame";
+import FanIdDecorationFrame, { hasFanIdDecorationFrame } from "@/components/FanIdDecorationFrame";
+import FanIdCustomStickerLayer from "@/components/FanIdCustomStickerLayer";
+import { FanIdStickerCanvasEditor, type CustomStickerCanvasEditorProps } from "@/components/FanIdStickerEditor";
 import {
   ARCHETYPES,
   LAYER_COLOR,
@@ -14,11 +16,12 @@ import {
   expandCode,
   type ArchetypeResult,
 } from "@/lib/archetypes";
-import { FAN_ID_THEMES, getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
+import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import type { CardArtist } from "@/lib/lite";
 import { frameRarity } from "@/lib/rarityFrame";
 import { SCORE_LAYERS, type FanIdCardMode } from "@/lib/types";
+import type { PlacedCustomSticker } from "@/lib/fanIdCustomStickers";
 
 interface FanIdCardCommonProps {
   themeId?: FanIdThemeId;
@@ -31,6 +34,8 @@ interface FanIdCardCommonProps {
   idolPhoto?: string | null;
   userPortraitPhoto?: string | null;
   userAvatarPhoto?: string | null;
+  customStickers?: readonly PlacedCustomSticker[];
+  customStickerEditor?: CustomStickerCanvasEditorProps;
 }
 
 export interface FanIdCardSampleProps extends FanIdCardCommonProps {
@@ -111,14 +116,15 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     idolPhoto,
     userPortraitPhoto,
     userAvatarPhoto,
+    customStickers = [],
+    customStickerEditor,
     stickersEnabled = false,
     cardMode = "idol",
   } = props;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const theme = getFanIdTheme(props.themeId);
   const decorationThemeId = props.themeId === undefined ? "chrome" : props.themeId;
-  const decorationsEnabled = stickersEnabled === true
-    && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, decorationThemeId);
+  const decorationsEnabled = stickersEnabled === true && hasFanIdDecorationFrame(decorationThemeId);
   const isUserHero = cardMode === "user";
   const showOwnerBadge = cardMode === "idol-user" || (cardMode === "idol" && showFace === true);
   const effectiveUserPortrait = userPortraitPhoto ?? facePhoto ?? null;
@@ -265,6 +271,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             </div>
           </footer>
         </main>
+        {customStickerEditor
+          ? <FanIdStickerCanvasEditor {...customStickerEditor} stickers={customStickers} />
+          : <FanIdCustomStickerLayer stickers={customStickers} />}
       </div>
 
       <span aria-hidden="true" className="pointer-events-none absolute left-[3px] top-[88px] font-orbitron text-[9px] text-white/80">✦</span>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import FanIdCard from "@/components/FanIdCard";
 import FanIdPhotoStudio from "@/components/FanIdPhotoStudio";
+import FanIdStickerEditor from "@/components/FanIdStickerEditor";
 import Thumb from "@/components/Thumb";
 import { StickerBombPreview } from "@/components/wizard/StickerBombPreview";
 import { useFanIdLocalMedia } from "@/hooks/useFanIdLocalMedia";
@@ -14,6 +15,7 @@ import { exportNode } from "@/lib/exportImage";
 import type { ArtistLite } from "@/lib/lite";
 import { finishWizard, saveWizard, type WizardState } from "@/lib/wizardState";
 import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
+import type { CustomStickerPackId, PlacedCustomSticker } from "@/lib/fanIdCustomStickers";
 
 type Phase = "printing" | "customize";
 type ExportKind = "story" | "card";
@@ -38,6 +40,10 @@ export default function StepIssue({
   const [flash] = useState(() => typeof window !== "undefined" && localStorage.getItem("kstar:flashOk") === "1");
   const [cardMode, setCardMode] = useState<"idol" | "idol-user" | "user">(wiz.cardMode ?? "idol-user");
   const [stickersEnabled, setStickersEnabled] = useState(wiz.stickersEnabled === true);
+  const [customStickers, setCustomStickers] = useState<PlacedCustomSticker[]>(wiz.customStickers ?? []);
+  const customStickersRef = useRef<PlacedCustomSticker[]>(wiz.customStickers ?? []);
+  const [activeStickerPack, setActiveStickerPack] = useState<CustomStickerPackId>(wiz.themeId ?? "chrome");
+  const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
   const [completionFailed, setCompletionFailed] = useState(false);
@@ -47,6 +53,10 @@ export default function StepIssue({
     const timer = setTimeout(() => setPhase("customize"), 2400);
     return () => clearTimeout(timer);
   }, [phase]);
+
+  useEffect(() => {
+    setActiveStickerPack(wiz.themeId ?? "chrome");
+  }, [wiz.themeId]);
 
   const heroId = picks.some((pick) => pick.id === wiz.heroId) ? wiz.heroId! : picks[0]?.id;
   const media = useFanIdLocalMedia({
@@ -65,6 +75,20 @@ export default function StepIssue({
     return <div role="alert" className="grid min-h-64 place-items-center text-sm text-[#b4302b]">{copy.wizIncompleteAlert}</div>;
   }
 
+  function update(patch: Partial<WizardState>) {
+    onWizardChange(saveWizard(patch));
+  }
+
+  function saveCustomStickers(next: PlacedCustomSticker[]) {
+    customStickersRef.current = next;
+    setCustomStickers(next);
+    update({ customStickers: next });
+  }
+
+  function updateSticker(id: string, patch: Partial<PlacedCustomSticker>) {
+    saveCustomStickers(customStickersRef.current.map((sticker) => sticker.id === id ? { ...sticker, ...patch } : sticker));
+  }
+
   const card = (
     <FanIdCard
       ref={cardRef}
@@ -80,6 +104,17 @@ export default function StepIssue({
       serial={wiz.serial}
       themeId={wiz.themeId}
       stickersEnabled={stickersEnabled}
+      customStickers={customStickers}
+      customStickerEditor={phase === "customize" && !exporting ? {
+        stickers: customStickers,
+        selectedId: selectedStickerId,
+        onSelect: setSelectedStickerId,
+        onTransform: updateSticker,
+        onRemove: (id) => {
+          saveCustomStickers(customStickersRef.current.filter((sticker) => sticker.id !== id));
+          if (selectedStickerId === id) setSelectedStickerId(null);
+        },
+      } : undefined}
     />
   );
 
@@ -96,14 +131,12 @@ export default function StepIssue({
     );
   }
 
-  function update(patch: Partial<WizardState>) {
-    onWizardChange(saveWizard(patch));
-  }
-
   async function runExport(kind: ExportKind) {
     if (!cardRef.current || exporting || photoRequired) return;
     setExporting(kind);
     setExportFailed(false);
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await Promise.all([...cardRef.current.querySelectorAll("img")].map((image) => image.decode ? image.decode().catch(() => undefined) : Promise.resolve()));
     const options = kind === "story"
       ? { fileName: "kstar-fanid-story.png", kind: "share" as const, frame: { w: 1080, h: 1920, bg: "#14001c" }, locale }
       : { fileName: "kstar-fanid-card.png", kind: "download" as const, locale };
@@ -151,7 +184,7 @@ export default function StepIssue({
             {Object.values(FAN_ID_THEMES).map((theme) => {
               const selected = (wiz.themeId ?? "chrome") === theme.id;
               return (
-                <button key={theme.id} type="button" role="radio" aria-checked={selected} onClick={() => update({ themeId: theme.id as FanIdThemeId })}
+                <button key={theme.id} type="button" role="radio" aria-checked={selected} onClick={() => { setActiveStickerPack(theme.id as CustomStickerPackId); update({ themeId: theme.id as FanIdThemeId }); }}
                   className={`min-w-[84px] rounded-xl border-2 p-1.5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${selected ? "border-[#b4302b] shadow-sm" : "border-transparent hover:border-[#c8ccd2]"}`}>
                   <span className="block h-9 rounded-lg border" style={{ backgroundImage: theme.surface, borderColor: theme.border }} />
                   <span className="mt-1 block truncate text-[10px] font-bold text-[#1c1e24]">{theme.label}</span>
@@ -215,6 +248,14 @@ export default function StepIssue({
             </span>
           </span>
         </button>
+        <FanIdStickerEditor
+          selectedThemeId={wiz.themeId ?? "chrome"}
+          activePackId={activeStickerPack}
+          stickers={customStickers}
+          onPackChange={setActiveStickerPack}
+          onChange={(next) => { saveCustomStickers(next); setSelectedStickerId(next.at(-1)?.id ?? null); }}
+        />
+        {customStickers.length > 0 && <button type="button" onClick={() => { saveCustomStickers([]); setSelectedStickerId(null); }} className="w-full text-xs font-bold text-[#b4302b]">Clear placed stickers</button>}
         <label className="block text-xs font-bold text-[#5e636d]">
           {copy.wizFanNameLabel}
           <input value={wiz.fanName ?? ""} maxLength={30} onChange={(event) => update({ fanName: event.target.value })} placeholder={copy.passNamePlaceholder} className="mt-1.5 w-full rounded-xl border border-[#c8ccd2] bg-white px-3 py-2.5 text-sm font-normal text-[#1c1e24] outline-none focus:border-[#7c8088]" />
