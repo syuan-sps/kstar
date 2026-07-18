@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Source: `/Users/xxxsw/.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-b704cf76-c2f1-4960-8d42-8f8061a9c8c8.png`.
+- Source: `/Users/xxxsw/.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-9907965a-01af-4715-8446-0eddae0151a6.png`.
 - Destination: `public/fanid-themes/kawaii/decorated-frame-v1.png`.
 - Render only for `themeId === "kawaii"` and `stickersEnabled === true`.
 - Frame stays behind all live card data and photos.
@@ -29,7 +29,7 @@
 
 - [ ] **Step 1: Copy the approved source**
 
-Run `cp /Users/xxxsw/.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-b704cf76-c2f1-4960-8d42-8f8061a9c8c8.png public/fanid-themes/kawaii/decorated-frame-v1.png` and then `test -s public/fanid-themes/kawaii/decorated-frame-v1.png`.
+Run `cp /Users/xxxsw/.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-9907965a-01af-4715-8446-0eddae0151a6.png public/fanid-themes/kawaii/decorated-frame-v1.png` and then `test -s public/fanid-themes/kawaii/decorated-frame-v1.png`.
 
 - [ ] **Step 2: Add a failing static assertion**
 

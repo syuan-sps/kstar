@@ -9,7 +9,7 @@ Replace the current flat SVG Kawaii sticker composition with one polished, gener
 - Theme: Kawaii only, for the first production frame.
 - Density: a middle ground between isolated corner decorations and a fully crowded four-edge sticker wall.
 - Art direction: translucent pink acrylic case; layered satin bows, pearl beads, heart charms, clear flower resin, and restrained lavender/iridescent accents.
-- The generated concept at `.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-b704cf76-c2f1-4960-8d42-8f8061a9c8c8.png` is the source artwork to adapt into the project.
+- The tall regenerated concept at `.codex/generated_images/019f64f3-6511-7e41-b2ac-e312e99eb9c0/exec-9907965a-01af-4715-8446-0eddae0151a6.png` is the source artwork to adapt into the project. It matches the live Fan ID's narrow portrait direction and must not be stretched.
 - Decorations toggle behavior: **off** retains the clean Kawaii edition; **on** shows the decorated sleeve.
 
 ## Rendering model
