@@ -27,16 +27,16 @@ const SPARKLE_PATH =
   "M0 -10 C1.4 -3.6 3.6 -1.4 10 0 C3.6 1.4 1.4 3.6 0 10 C-1.4 3.6 -3.6 1.4 -10 0 C-3.6 -1.4 -1.4 -3.6 0 -10 Z";
 
 export default function FanIdStickerLayer({ themeId, enabled, layer }: Props) {
+  const resolvedThemeId = resolveStickerThemeId(themeId) ?? "chrome";
   const idPrefix = useId().replace(/:/g, "");
 
-  if (!enabled) {
+  if (!enabled || resolvedThemeId === "kawaii") {
     return null;
   }
 
   const placements = layer
-    ? getStickerComposition(themeId).filter((placement) => placement.layer === layer)
-    : getStickerComposition(themeId);
-  const resolvedThemeId = resolveStickerThemeId(themeId) ?? "chrome";
+    ? getStickerComposition(resolvedThemeId).filter((placement) => placement.layer === layer)
+    : getStickerComposition(resolvedThemeId);
   const ids = buildSvgIds(idPrefix);
 
   if (placements.length === 0) {

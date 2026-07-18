@@ -6,6 +6,7 @@
 
 import { forwardRef } from "react";
 import Thumb from "@/components/Thumb";
+import FanIdDecorationFrame from "@/components/FanIdDecorationFrame";
 import FanIdStickerLayer from "@/components/FanIdStickerLayer";
 import {
   ARCHETYPES,
@@ -142,8 +143,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         {/* Intentional two-pass contract: one SVG pass stays below protected card
             content, and one constrained portrait-edge pass sits above the
             portrait only. Export must preserve these z-indexed roots. */}
-        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="under-content" />
-        <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="over-portrait" />
+        <FanIdDecorationFrame themeId={theme.id} enabled={stickersEnabled === true} />
+        {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="under-content" />}
+        {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="over-portrait" />}
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>

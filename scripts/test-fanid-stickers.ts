@@ -251,6 +251,28 @@ assert.equal(passMarkers.length, 2, "decorated card should render exactly two na
 assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="under-content"/);
 assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="over-portrait"/);
 
+const kawaiiDecoratedCardMarkup = renderToStaticMarkup(
+  createElement(
+    LocaleProvider,
+    { locale: "en" },
+    createElement(FanIdCard, {
+      sample: true,
+      stickersEnabled: true,
+      themeId: "kawaii",
+      cardMode: "idol-user",
+    }),
+  ),
+);
+assert.match(kawaiiDecoratedCardMarkup, /data-fanid-decoration-frame="kawaii-sleeve"/);
+assert.equal(
+  kawaiiDecoratedCardMarkup.includes("data-fanid-sticker-layer="),
+  false,
+  "Kawaii cards should replace legacy SVG sticker layers with the sleeve",
+);
+assert.match(kawaiiDecoratedCardMarkup, /data-fanid-entry="hero"/);
+assert.match(kawaiiDecoratedCardMarkup, /data-fanid-archetype="true"/);
+assert.match(kawaiiDecoratedCardMarkup, /qr-start\.svg/);
+
 const undecoratedSampleMarkup = renderToStaticMarkup(
   createElement(
     LocaleProvider,
