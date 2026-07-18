@@ -31,6 +31,8 @@ interface UseFanIdLocalMediaResult {
 
 interface LocalMediaState {
   status: UseFanIdLocalMediaResult["status"];
+  cardSerial: string | null;
+  idolIdsKey: string;
   records: ReadonlyMap<string, FanIdMediaRecord>;
   idolPreviewSources: Readonly<Record<string, string>>;
   userPortraitSrc: string | null;
@@ -40,6 +42,8 @@ interface LocalMediaState {
 
 const EMPTY_STATE: LocalMediaState = {
   status: "ready",
+  cardSerial: null,
+  idolIdsKey: "",
   records: new Map(),
   idolPreviewSources: {},
   userPortraitSrc: null,
@@ -49,22 +53,25 @@ const EMPTY_STATE: LocalMediaState = {
 
 export interface FanIdMediaLifecycle {
   cardSerial: string | null;
+  idolIdsKey: string;
   version: number;
 }
 
 export function advanceFanIdMediaLifecycle(
   lifecycle: FanIdMediaLifecycle,
   cardSerial: string | null,
+  idolIdsKey = lifecycle.idolIdsKey,
 ): FanIdMediaLifecycle {
-  return { cardSerial, version: lifecycle.version + 1 };
+  return { cardSerial, idolIdsKey, version: lifecycle.version + 1 };
 }
 
 export function isCurrentFanIdMediaLifecycle(
   lifecycle: FanIdMediaLifecycle,
   request: FanIdMediaLifecycle,
 ): boolean {
-  return request.cardSerial !== null
+  return Boolean(request.cardSerial)
     && lifecycle.cardSerial === request.cardSerial
+    && lifecycle.idolIdsKey === request.idolIdsKey
     && lifecycle.version === request.version;
 }
 
@@ -118,17 +125,20 @@ export function useFanIdLocalMedia(input: {
   const idolIdsKey = input.idolIds.slice(0, 4).join("\u0000");
   const idolIds = useMemo(() => input.idolIds.slice(0, 4), [idolIdsKey]);
   const [state, setState] = useState<LocalMediaState>(EMPTY_STATE);
-  const lifecycleRef = useRef<FanIdMediaLifecycle>({ cardSerial, version: 0 });
+  const lifecycleRef = useRef<FanIdMediaLifecycle>({ cardSerial, idolIdsKey, version: 0 });
 
-  if (lifecycleRef.current.cardSerial !== cardSerial) {
-    lifecycleRef.current = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial);
+  if (
+    lifecycleRef.current.cardSerial !== cardSerial
+    || lifecycleRef.current.idolIdsKey !== idolIdsKey
+  ) {
+    lifecycleRef.current = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial, idolIdsKey);
   }
 
   const beginRequest = useCallback(() => {
-    const request = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial);
+    const request = advanceFanIdMediaLifecycle(lifecycleRef.current, cardSerial, idolIdsKey);
     lifecycleRef.current = request;
     return request;
-  }, [cardSerial]);
+  }, [cardSerial, idolIdsKey]);
 
   const isCurrentRequest = useCallback(
     (request: FanIdMediaLifecycle) => isCurrentFanIdMediaLifecycle(lifecycleRef.current, request),
@@ -137,13 +147,18 @@ export function useFanIdLocalMedia(input: {
 
   const refresh = useCallback(async () => {
     const request = beginRequest();
-    if (request.cardSerial === null) {
+    if (!request.cardSerial) {
       setState(EMPTY_STATE);
       return;
     }
     const requestCardSerial = request.cardSerial;
 
-    setState((current) => ({ ...current, status: "loading", errorCode: null }));
+    setState({
+      ...EMPTY_STATE,
+      status: "loading",
+      cardSerial: requestCardSerial,
+      idolIdsKey: request.idolIdsKey,
+    });
     try {
       const roles: FanIdMediaRole[] = [
         { kind: "user" },
@@ -158,46 +173,55 @@ export function useFanIdLocalMedia(input: {
 
       setState({
         status: "ready",
+        cardSerial: requestCardSerial,
+        idolIdsKey: request.idolIdsKey,
         records: new Map(records.map((record) => [record.key, record])),
         errorCode: null,
         ...previewSources,
       });
     } catch (error) {
-      if (isCurrentRequest(request)) {
-        setState((current) => ({
-          ...current,
-          status: "error",
-          errorCode: classifyFanIdStorageError(error),
-        }));
-      }
+      if (!isCurrentRequest(request)) return;
+      setState((current) => ({
+        ...current,
+        status: "error",
+        cardSerial: request.cardSerial,
+        idolIdsKey: request.idolIdsKey,
+        errorCode: classifyFanIdStorageError(error),
+      }));
       throw error;
     }
   }, [beginRequest, idolIds, isCurrentRequest]);
 
   useEffect(() => {
-    void refresh();
+    void refresh().catch(() => {});
+    return () => {
+      lifecycleRef.current = advanceFanIdMediaLifecycle(lifecycleRef.current, null);
+    };
   }, [refresh]);
 
   const save = useCallback(async (record: FanIdMediaRecord) => {
     const request = beginRequest();
-    if (request.cardSerial === null || record.cardSerial !== request.cardSerial) return;
+    if (!request.cardSerial || record.cardSerial !== request.cardSerial) return;
     try {
       await putFanIdMediaRecord(record);
-      if (!isCurrentRequest(request)) return;
-      await refresh();
     } catch (error) {
       if (!isCurrentRequest(request)) return;
       setState((current) => ({
         ...current,
         status: "error",
+        cardSerial: request.cardSerial,
+        idolIdsKey: request.idolIdsKey,
         errorCode: classifyFanIdStorageError(error),
       }));
+      throw error;
     }
+    if (!isCurrentRequest(request)) return;
+    await refresh();
   }, [beginRequest, isCurrentRequest, refresh]);
 
   const remove = useCallback(async (role: FanIdMediaRole) => {
     const request = beginRequest();
-    if (request.cardSerial === null) return;
+    if (!request.cardSerial) return;
     try {
       await removeFanIdMediaRecord(request.cardSerial, role);
       if (!isCurrentRequest(request)) return;
@@ -207,6 +231,8 @@ export function useFanIdLocalMedia(input: {
       setState((current) => ({
         ...current,
         status: "error",
+        cardSerial: request.cardSerial,
+        idolIdsKey: request.idolIdsKey,
         errorCode: classifyFanIdStorageError(error),
       }));
     }
@@ -214,7 +240,7 @@ export function useFanIdLocalMedia(input: {
 
   const clearAll = useCallback(async () => {
     const request = beginRequest();
-    if (request.cardSerial === null) return;
+    if (!request.cardSerial) return;
     try {
       await removeAllFanIdMediaForCard(request.cardSerial);
       if (!isCurrentRequest(request)) return;
@@ -224,10 +250,23 @@ export function useFanIdLocalMedia(input: {
       setState((current) => ({
         ...current,
         status: "error",
+        cardSerial: request.cardSerial,
+        idolIdsKey: request.idolIdsKey,
         errorCode: classifyFanIdStorageError(error),
       }));
     }
   }, [beginRequest, isCurrentRequest, refresh]);
 
-  return { ...(cardSerial === null ? EMPTY_STATE : state), refresh, save, remove, clearAll };
+  const visibleState = !cardSerial
+    ? EMPTY_STATE
+    : state.cardSerial === cardSerial && state.idolIdsKey === idolIdsKey
+      ? state
+      : {
+          ...EMPTY_STATE,
+          status: "loading" as const,
+          cardSerial,
+          idolIdsKey,
+        };
+
+  return { ...visibleState, refresh, save, remove, clearAll };
 }
