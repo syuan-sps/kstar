@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import FanIdCard from "@/components/FanIdCard";
-import FanIdDecorationFrame from "@/components/FanIdDecorationFrame";
+import FanIdDecorationFrame, { FAN_ID_DECORATION_ASSETS } from "@/components/FanIdDecorationFrame";
 import { StickerBombPreview } from "@/components/wizard/StickerBombPreview";
 import { FAN_ID_THEMES, getFanIdTheme } from "@/lib/fanIdThemes";
 import {
@@ -44,6 +45,17 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
   );
   assert.match(decorationFrame, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
   assert.match(decorationFrame, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`));
+}
+
+assert.deepEqual(Object.keys(FAN_ID_DECORATION_ASSETS).sort(), Object.keys(FAN_ID_THEMES).sort());
+const decorationAssetPaths = Object.values(FAN_ID_DECORATION_ASSETS).flatMap(({ sleeve, popout }) => [sleeve, popout]);
+assert.equal(decorationAssetPaths.length, 8, "every theme should map a sleeve and pop-out asset");
+for (const assetPath of decorationAssetPaths) {
+  assert.equal(
+    fs.existsSync(path.join(process.cwd(), "public", assetPath.replace(/^\//, ""))),
+    true,
+    `mapped decoration asset should exist: ${assetPath}`,
+  );
 }
 
 assert.equal(
@@ -242,73 +254,45 @@ assert.deepEqual(getStickerComposition("toString"), getStickerComposition("chrom
 assert.equal(Object.isFrozen(getStickerComposition("chrome")), true);
 assert.throws(() => getStickerComposition("chrome").pop(), TypeError);
 
-const decoratedSampleMarkup = renderToStaticMarkup(
-  createElement(
-    LocaleProvider,
-    { locale: "en" },
-    createElement(FanIdCard, {
-      sample: true,
-      stickersEnabled: true,
-      themeId: "chrome",
-      cardMode: "idol-user",
-    }),
-  ),
-);
-assert.match(decoratedSampleMarkup, /data-card-sticker-architecture="two-layer-frame"/);
-assert.match(decoratedSampleMarkup, /data-fanid-decoration-frame="chrome-sleeve"/);
-assert.match(decoratedSampleMarkup, /data-fanid-decoration-popout="chrome-popout"/);
-assert.equal(
-  decoratedSampleMarkup.includes("data-fanid-sticker-layer="),
-  false,
-  "decorated card should not render legacy SVG sticker layers",
-);
-
-for (const [themeId, themeLabel] of [["cloudy-dreamy", "Dreamy"], ["monochrome-cute", "Mono Cute"]] as const) {
-  const twoPassThemeMarkup = renderToStaticMarkup(
-    createElement(
-      LocaleProvider,
-      { locale: "en" },
-      createElement(FanIdCard, {
-        sample: true,
-        stickersEnabled: true,
-        themeId,
-        cardMode: "idol-user",
-      }),
-    ),
-  );
-  assert.match(twoPassThemeMarkup, /data-card-sticker-architecture="two-layer-frame"/);
-  assert.match(twoPassThemeMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
-  assert.match(twoPassThemeMarkup, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`));
-  assert.equal(
-    twoPassThemeMarkup.includes("data-fanid-sticker-layer="),
-    false,
-    `${themeLabel} card should not render legacy SVG sticker layers`,
-  );
+const DECORATED_CARD_LAYOUTS = ["idol", "idol-user", "user"] as const;
+for (const themeId of Object.keys(FAN_ID_THEMES)) {
+  for (const cardMode of DECORATED_CARD_LAYOUTS) {
+    const decoratedCardMarkup = renderToStaticMarkup(
+      createElement(
+        LocaleProvider,
+        { locale: "en" },
+        createElement(FanIdCard, {
+          sample: true,
+          stickersEnabled: true,
+          themeId,
+          cardMode,
+        }),
+      ),
+    );
+    const label = `${themeId}:${cardMode}`;
+    assert.match(decoratedCardMarkup, /data-card-sticker-architecture="two-layer-frame"/, label);
+    assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`), label);
+    assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`), label);
+    assert.equal(decoratedCardMarkup.includes("data-fanid-sticker-layer="), false, `${label} should not render legacy SVG sticker layers`);
+  }
 }
 
-const kawaiiDecoratedCardMarkup = renderToStaticMarkup(
+const invalidThemeMarkup = renderToStaticMarkup(
   createElement(
     LocaleProvider,
     { locale: "en" },
     createElement(FanIdCard, {
       sample: true,
       stickersEnabled: true,
-      themeId: "kawaii",
+      themeId: "missing-theme" as FanIdThemeId,
       cardMode: "idol-user",
     }),
   ),
 );
-assert.match(kawaiiDecoratedCardMarkup, /data-fanid-decoration-frame="kawaii-sleeve"/);
-assert.match(kawaiiDecoratedCardMarkup, /data-fanid-decoration-popout="kawaii-popout"/);
-assert.match(kawaiiDecoratedCardMarkup, /data-card-sticker-architecture="two-layer-frame"/);
-assert.equal(
-  kawaiiDecoratedCardMarkup.includes("data-fanid-sticker-layer="),
-  false,
-  "Kawaii cards should replace legacy SVG sticker layers with two raster layers",
-);
-assert.match(kawaiiDecoratedCardMarkup, /data-fanid-entry="hero"/);
-assert.match(kawaiiDecoratedCardMarkup, /data-fanid-archetype="true"/);
-assert.match(kawaiiDecoratedCardMarkup, /qr-start\.svg/);
+assert.match(invalidThemeMarkup, /data-theme="chrome"/, "invalid themes should retain the safe Chrome surface fallback");
+assert.match(invalidThemeMarkup, /data-card-sticker-architecture="disabled"/, "invalid themes should disable decoration architecture");
+assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-frame="), false, "invalid themes should not render decoration sleeves");
+assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-popout="), false, "invalid themes should not render decoration pop-outs");
 
 const undecoratedSampleMarkup = renderToStaticMarkup(
   createElement(

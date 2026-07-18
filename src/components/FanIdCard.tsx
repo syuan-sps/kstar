@@ -14,7 +14,7 @@ import {
   expandCode,
   type ArchetypeResult,
 } from "@/lib/archetypes";
-import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
+import { FAN_ID_THEMES, getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import type { CardArtist } from "@/lib/lite";
 import { frameRarity } from "@/lib/rarityFrame";
@@ -116,6 +116,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   } = props;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const theme = getFanIdTheme(props.themeId);
+  const decorationsEnabled = stickersEnabled === true
+    && typeof props.themeId === "string"
+    && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, props.themeId);
   const isUserHero = cardMode === "user";
   const showOwnerBadge = cardMode === "idol-user" || (cardMode === "idol" && showFace === true);
   const effectiveUserPortrait = userPortraitPhoto ?? facePhoto ?? null;
@@ -139,8 +142,8 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       ref={ref}
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
-      data-card-stickers={stickersEnabled ? "true" : "false"}
-      data-card-sticker-architecture={stickersEnabled ? "two-layer-frame" : "disabled"}
+      data-card-stickers={decorationsEnabled ? "true" : "false"}
+      data-card-sticker-architecture={decorationsEnabled ? "two-layer-frame" : "disabled"}
       data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
@@ -155,7 +158,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
         {/* Decorated themes use a pre-composed sleeve behind content and a
             clipped pop-out above it; both layers preserve the card's z-order. */}
-        <FanIdDecorationFrame themeId={theme.id} enabled={stickersEnabled === true} />
+        <FanIdDecorationFrame themeId={props.themeId} enabled={decorationsEnabled} />
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>

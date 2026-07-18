@@ -5,7 +5,7 @@ type Props = {
   enabled: boolean;
 };
 
-const DECORATION_ASSETS: Record<FanIdThemeId, { sleeve: string; popout: string }> = {
+export const FAN_ID_DECORATION_ASSETS: Record<FanIdThemeId, { sleeve: string; popout: string }> = {
   chrome: {
     sleeve: "/fanid-themes/chrome/decorated-sleeve-v1.png",
     popout: "/fanid-themes/chrome/decorated-popout-v1.png",
@@ -25,11 +25,11 @@ const DECORATION_ASSETS: Record<FanIdThemeId, { sleeve: string; popout: string }
 };
 
 export default function FanIdDecorationFrame({ themeId, enabled }: Props) {
-  if (!enabled || !themeId || !Object.prototype.hasOwnProperty.call(DECORATION_ASSETS, themeId)) {
+  if (!enabled || !themeId || !Object.prototype.hasOwnProperty.call(FAN_ID_DECORATION_ASSETS, themeId)) {
     return null;
   }
 
-  const assets = DECORATION_ASSETS[themeId as FanIdThemeId];
+  const assets = FAN_ID_DECORATION_ASSETS[themeId as FanIdThemeId];
 
   return (
     <>
