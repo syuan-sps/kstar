@@ -127,7 +127,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
       data-card-stickers={stickersEnabled ? "true" : "false"}
-      data-card-sticker-architecture={stickersEnabled ? "two-pass" : "disabled"}
+      data-card-sticker-architecture={stickersEnabled ? (theme.id === "kawaii" ? "frame" : "two-pass") : "disabled"}
       data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
@@ -140,9 +140,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
-        {/* Intentional two-pass contract: one SVG pass stays below protected card
-            content, and one constrained portrait-edge pass sits above the
-            portrait only. Export must preserve these z-indexed roots. */}
+        {/* Enabled Kawaii uses one frame asset; other enabled themes use two SVG
+            passes: one below protected card content and one constrained to the
+            portrait edge. Export must preserve each path's z-order. */}
         <FanIdDecorationFrame themeId={theme.id} enabled={stickersEnabled === true} />
         {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="under-content" />}
         {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="over-portrait" />}

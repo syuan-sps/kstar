@@ -11,7 +11,7 @@ import {
   resolveStickerThemeId,
   STICKER_THEME_IDS,
 } from "@/lib/fanIdStickers";
-import { buildSvgIds, getStickerPaint } from "@/components/FanIdStickerLayer";
+import FanIdStickerLayer, { buildSvgIds, getStickerPaint } from "@/components/FanIdStickerLayer";
 import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
 import { EXPORT_STYLE_PROPS } from "@/lib/exportImage";
 import {
@@ -52,6 +52,11 @@ assert.equal(
   renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: true, themeId: "chrome" })),
   "",
   "Chrome should not render a Kawaii decoration frame",
+);
+assert.equal(
+  renderToStaticMarkup(createElement(FanIdStickerLayer, { enabled: true, themeId: "kawaii" })),
+  "",
+  "enabled Kawaii should not render legacy SVG sticker layers",
 );
 
 type Bounds = Readonly<{ left: number; right: number; top: number; bottom: number }>;
@@ -250,6 +255,25 @@ const passMarkers = decoratedSampleMarkup.match(/data-fanid-sticker-layer="([^"]
 assert.equal(passMarkers.length, 2, "decorated card should render exactly two named sticker passes");
 assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="under-content"/);
 assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="over-portrait"/);
+
+for (const [themeId, themeLabel] of [["cloudy-dreamy", "Dreamy"], ["monochrome-cute", "Mono Cute"]] as const) {
+  const twoPassThemeMarkup = renderToStaticMarkup(
+    createElement(
+      LocaleProvider,
+      { locale: "en" },
+      createElement(FanIdCard, {
+        sample: true,
+        stickersEnabled: true,
+        themeId,
+        cardMode: "idol-user",
+      }),
+    ),
+  );
+  const themePassMarkers = twoPassThemeMarkup.match(/data-fanid-sticker-layer="([^"]+)"/g) ?? [];
+  assert.equal(themePassMarkers.length, 2, `${themeLabel} card should render exactly two named sticker passes`);
+  assert.match(twoPassThemeMarkup, /data-fanid-sticker-layer="under-content"/);
+  assert.match(twoPassThemeMarkup, /data-fanid-sticker-layer="over-portrait"/);
+}
 
 const kawaiiDecoratedCardMarkup = renderToStaticMarkup(
   createElement(
