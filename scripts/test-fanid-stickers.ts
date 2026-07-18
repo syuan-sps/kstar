@@ -277,6 +277,22 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
   }
 }
 
+const defaultThemeMarkup = renderToStaticMarkup(
+  createElement(
+    LocaleProvider,
+    { locale: "en" },
+    createElement(FanIdCard, {
+      sample: true,
+      stickersEnabled: true,
+      cardMode: "idol-user",
+    }),
+  ),
+);
+assert.match(defaultThemeMarkup, /data-theme="chrome"/, "omitted themes should retain the Chrome default");
+assert.match(defaultThemeMarkup, /data-card-sticker-architecture="two-layer-frame"/, "omitted themes should enable the Chrome decoration architecture");
+assert.match(defaultThemeMarkup, /data-fanid-decoration-frame="chrome-sleeve"/, "omitted themes should render the Chrome sleeve");
+assert.match(defaultThemeMarkup, /data-fanid-decoration-popout="chrome-popout"/, "omitted themes should render the Chrome pop-out");
+
 const invalidThemeMarkup = renderToStaticMarkup(
   createElement(
     LocaleProvider,

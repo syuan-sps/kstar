@@ -116,9 +116,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   } = props;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
   const theme = getFanIdTheme(props.themeId);
+  const decorationThemeId = props.themeId === undefined ? "chrome" : props.themeId;
   const decorationsEnabled = stickersEnabled === true
-    && typeof props.themeId === "string"
-    && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, props.themeId);
+    && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, decorationThemeId);
   const isUserHero = cardMode === "user";
   const showOwnerBadge = cardMode === "idol-user" || (cardMode === "idol" && showFace === true);
   const effectiveUserPortrait = userPortraitPhoto ?? facePhoto ?? null;
@@ -158,7 +158,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
         {/* Decorated themes use a pre-composed sleeve behind content and a
             clipped pop-out above it; both layers preserve the card's z-order. */}
-        <FanIdDecorationFrame themeId={props.themeId} enabled={decorationsEnabled} />
+        <FanIdDecorationFrame themeId={decorationThemeId} enabled={decorationsEnabled} />
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>
