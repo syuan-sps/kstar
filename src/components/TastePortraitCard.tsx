@@ -93,7 +93,9 @@ export default function TastePortraitCard({
   });
   const cardMode = prefs.cardMode ?? "idol-user";
   const requiredSavedUserPhoto = cardMode === "user" ? media.userPortraitSrc : media.userAvatarSrc;
-  const showLegacyFacePicker = requiredSavedUserPhoto === null && (cardMode !== "idol" || showFace);
+  const showLegacyFacePicker = media.status !== "loading"
+    && requiredSavedUserPhoto === null
+    && (cardMode !== "idol" || showFace);
 
   return (
     <div className="flex flex-col items-center gap-4">

@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import fs from "node:fs";
 import { indexedDB as fakeIndexedDB } from "fake-indexeddb";
 import React from "react";
 import TestRenderer, { act } from "react-test-renderer";
@@ -22,6 +21,7 @@ import {
   MAX_FAN_ID_FILE_BYTES,
   validateFanIdPhotoFile,
 } from "../src/lib/fanIdPhotoProcessing";
+import { canDismissFanIdPhotoStudio } from "../src/lib/fanIdPhotoStudioState";
 import {
   advanceFanIdMediaLifecycle,
   isCurrentFanIdMediaLifecycle,
@@ -34,12 +34,8 @@ const preset = {
   croppedAreaPixels: { x: 20, y: 10, width: 800, height: 910 },
 };
 
-const photoStudioSource = fs.readFileSync("src/components/FanIdPhotoStudio.tsx", "utf8");
-assert.match(
-  photoStudioSource,
-  /onCancel=\{\(event\) => \{ event\.preventDefault\(\); if \(!busy\) clearDraft\(\); \}\}/,
-  "the dialog must ignore Escape while a crop is being written, because IndexedDB writes cannot be cancelled safely",
-);
+assert.equal(canDismissFanIdPhotoStudio(false), true);
+assert.equal(canDismissFanIdPhotoStudio(true), false);
 
 type HookInput = Parameters<typeof useFanIdLocalMedia>[0];
 type HookResult = ReturnType<typeof useFanIdLocalMedia>;
@@ -205,7 +201,14 @@ async function runHookChecks(): Promise<void> {
   try {
     (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
     globalThis.FileReader = TestFileReader as unknown as typeof FileReader;
-    globalThis.indexedDB = fakeIndexedDB;
+    let storageOpens = 0;
+    const countingIndexedDB = {
+      open(...args: Parameters<IDBFactory["open"]>) {
+        storageOpens += 1;
+        return fakeIndexedDB.open(...args);
+      },
+    } as unknown as IDBFactory;
+    globalThis.indexedDB = countingIndexedDB;
     await putFanIdMediaRecord(makeIdolRecord("hook-card-a"), fakeIndexedDB);
     await putFanIdMediaRecord(makeIdolRecord("hook-card-b"), fakeIndexedDB);
 
@@ -220,19 +223,25 @@ async function runHookChecks(): Promise<void> {
     assert.equal(latest?.status, "loading");
     assert.equal(latest?.records.size, 0);
     assert.deepEqual(latest?.idolPreviewSources, {});
-    await waitForHook(() => assert.equal(latest?.status, "ready"));
+    await waitForHook(() => {
+      assert.equal(latest?.status, "ready");
+      assert.equal(latest?.records.has(makeFanIdMediaKey("hook-card-b", { kind: "idol", idolId: "idol-a" })), true);
+    });
 
     await render({ cardSerial: "hook-card-b", idolIds: ["idol-b"] });
     assert.equal(latest?.status, "loading");
     assert.equal(latest?.records.size, 0);
     assert.deepEqual(latest?.idolPreviewSources, {});
 
+    storageOpens = 0;
     await render({ cardSerial: "", idolIds: ["idol-a"] });
     assert.equal(latest?.status, "ready");
     assert.equal(latest?.records.size, 0);
     assert.deepEqual(latest?.idolPreviewSources, {});
     await render({ cardSerial: null, idolIds: ["idol-a"] });
     assert.equal(latest?.status, "ready");
+    await flushReact();
+    assert.equal(storageOpens, 0);
 
     globalThis.indexedDB = {
       open() { throw new DOMException("full", "QuotaExceededError"); },
@@ -247,6 +256,15 @@ async function runHookChecks(): Promise<void> {
     await waitForHook(() => {
       assert.equal(latest?.status, "error");
       assert.equal(latest?.errorCode, "storage-full");
+    });
+
+    globalThis.indexedDB = countingIndexedDB;
+    await act(async () => {
+      await latest!.save(makeIdolRecord("hook-card-save"));
+    });
+    await waitForHook(() => {
+      assert.equal(latest?.status, "ready");
+      assert.equal(latest?.records.has(makeFanIdMediaKey("hook-card-save", { kind: "idol", idolId: "idol-a" })), true);
     });
   } finally {
     await act(async () => renderer?.unmount());

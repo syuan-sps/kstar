@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cropper from "react-easy-crop";
 import "react-easy-crop/react-easy-crop.css";
 import type { FanIdCropKind, FanIdCropPreset } from "@/lib/fanIdMedia";
@@ -15,6 +15,7 @@ interface LocalPhotoEditorProps {
   cropKind: FanIdCropKind;
   initialPreset?: FanIdCropPreset;
   busy?: boolean;
+  cancelDisabled?: boolean;
   label: string;
   error?: string | null;
   onCancel: () => void;
@@ -32,6 +33,7 @@ export default function LocalPhotoEditor({
   cropKind,
   initialPreset,
   busy = false,
+  cancelDisabled = false,
   label,
   error = null,
   onCancel,
@@ -42,12 +44,6 @@ export default function LocalPhotoEditor({
   const [zoom, setZoom] = useState(() => initialPreset?.zoom ?? 1);
   const [area, setArea] = useState<CropArea | null>(() => initialPreset?.croppedAreaPixels ?? null);
   const [cropperKey, setCropperKey] = useState(0);
-
-  useEffect(() => {
-    setCrop(initialPreset?.crop ?? DEFAULT_CROP);
-    setZoom(initialPreset?.zoom ?? 1);
-    setArea(initialPreset?.croppedAreaPixels ?? null);
-  }, [sourceUrl, initialPreset]);
 
   const avatar = cropKind === "user-avatar";
   const viewportClassName = avatar ? "h-[240px] w-[240px] rounded-full" : "h-[273px] w-[240px] rounded-xl";
@@ -96,7 +92,7 @@ export default function LocalPhotoEditor({
       />
       <div className="flex gap-2">
         <button data-fanid-photo-reset type="button" disabled={busy} onClick={reset} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.fanIdPhotoResetFraming}</button>
-        <button type="button" disabled={busy} onClick={onCancel} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.cancel}</button>
+        <button type="button" disabled={cancelDisabled} onClick={onCancel} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.cancel}</button>
         <button
           data-fanid-photo-confirm
           type="button"
