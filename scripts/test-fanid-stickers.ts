@@ -38,20 +38,23 @@ assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
 
-const kawaiiDecorationFrame = renderToStaticMarkup(
-  createElement(FanIdDecorationFrame, { enabled: true, themeId: "kawaii" }),
-);
-assert.match(kawaiiDecorationFrame, /data-fanid-decoration-frame="kawaii-sleeve"/);
-assert.match(kawaiiDecorationFrame, /decorated-frame-v1\.png/);
+for (const themeId of Object.keys(FAN_ID_THEMES)) {
+  const decorationFrame = renderToStaticMarkup(
+    createElement(FanIdDecorationFrame, { enabled: true, themeId }),
+  );
+  assert.match(decorationFrame, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
+  assert.match(decorationFrame, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`));
+}
+
 assert.equal(
   renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: false, themeId: "kawaii" })),
   "",
-  "disabled Kawaii should not render a decoration frame",
+  "disabled Kawaii should not render decoration layers",
 );
 assert.equal(
-  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: true, themeId: "chrome" })),
+  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: true, themeId: "missing-theme" })),
   "",
-  "Chrome should not render a Kawaii decoration frame",
+  "unknown themes should not render decoration layers",
 );
 assert.equal(
   renderToStaticMarkup(createElement(FanIdStickerLayer, { enabled: true, themeId: "kawaii" })),
@@ -251,10 +254,14 @@ const decoratedSampleMarkup = renderToStaticMarkup(
     }),
   ),
 );
-const passMarkers = decoratedSampleMarkup.match(/data-fanid-sticker-layer="([^"]+)"/g) ?? [];
-assert.equal(passMarkers.length, 2, "decorated card should render exactly two named sticker passes");
-assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="under-content"/);
-assert.match(decoratedSampleMarkup, /data-fanid-sticker-layer="over-portrait"/);
+assert.match(decoratedSampleMarkup, /data-card-sticker-architecture="two-layer-frame"/);
+assert.match(decoratedSampleMarkup, /data-fanid-decoration-frame="chrome-sleeve"/);
+assert.match(decoratedSampleMarkup, /data-fanid-decoration-popout="chrome-popout"/);
+assert.equal(
+  decoratedSampleMarkup.includes("data-fanid-sticker-layer="),
+  false,
+  "decorated card should not render legacy SVG sticker layers",
+);
 
 for (const [themeId, themeLabel] of [["cloudy-dreamy", "Dreamy"], ["monochrome-cute", "Mono Cute"]] as const) {
   const twoPassThemeMarkup = renderToStaticMarkup(
@@ -269,10 +276,14 @@ for (const [themeId, themeLabel] of [["cloudy-dreamy", "Dreamy"], ["monochrome-c
       }),
     ),
   );
-  const themePassMarkers = twoPassThemeMarkup.match(/data-fanid-sticker-layer="([^"]+)"/g) ?? [];
-  assert.equal(themePassMarkers.length, 2, `${themeLabel} card should render exactly two named sticker passes`);
-  assert.match(twoPassThemeMarkup, /data-fanid-sticker-layer="under-content"/);
-  assert.match(twoPassThemeMarkup, /data-fanid-sticker-layer="over-portrait"/);
+  assert.match(twoPassThemeMarkup, /data-card-sticker-architecture="two-layer-frame"/);
+  assert.match(twoPassThemeMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
+  assert.match(twoPassThemeMarkup, new RegExp(`data-fanid-decoration-popout="${themeId}-popout"`));
+  assert.equal(
+    twoPassThemeMarkup.includes("data-fanid-sticker-layer="),
+    false,
+    `${themeLabel} card should not render legacy SVG sticker layers`,
+  );
 }
 
 const kawaiiDecoratedCardMarkup = renderToStaticMarkup(
@@ -288,10 +299,12 @@ const kawaiiDecoratedCardMarkup = renderToStaticMarkup(
   ),
 );
 assert.match(kawaiiDecoratedCardMarkup, /data-fanid-decoration-frame="kawaii-sleeve"/);
+assert.match(kawaiiDecoratedCardMarkup, /data-fanid-decoration-popout="kawaii-popout"/);
+assert.match(kawaiiDecoratedCardMarkup, /data-card-sticker-architecture="two-layer-frame"/);
 assert.equal(
   kawaiiDecoratedCardMarkup.includes("data-fanid-sticker-layer="),
   false,
-  "Kawaii cards should replace legacy SVG sticker layers with the sleeve",
+  "Kawaii cards should replace legacy SVG sticker layers with two raster layers",
 );
 assert.match(kawaiiDecoratedCardMarkup, /data-fanid-entry="hero"/);
 assert.match(kawaiiDecoratedCardMarkup, /data-fanid-archetype="true"/);

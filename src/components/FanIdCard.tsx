@@ -7,7 +7,6 @@
 import { forwardRef } from "react";
 import Thumb from "@/components/Thumb";
 import FanIdDecorationFrame from "@/components/FanIdDecorationFrame";
-import FanIdStickerLayer from "@/components/FanIdStickerLayer";
 import {
   ARCHETYPES,
   LAYER_COLOR,
@@ -141,7 +140,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
       data-card-stickers={stickersEnabled ? "true" : "false"}
-      data-card-sticker-architecture={stickersEnabled ? (theme.id === "kawaii" ? "frame" : "two-pass") : "disabled"}
+      data-card-sticker-architecture={stickersEnabled ? "two-layer-frame" : "disabled"}
       data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
@@ -154,12 +153,9 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
       <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
-        {/* Enabled Kawaii uses one frame asset; other enabled themes use two SVG
-            passes: one below protected card content and one constrained to the
-            portrait edge. Export must preserve each path's z-order. */}
+        {/* Decorated themes use a pre-composed sleeve behind content and a
+            clipped pop-out above it; both layers preserve the card's z-order. */}
         <FanIdDecorationFrame themeId={theme.id} enabled={stickersEnabled === true} />
-        {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="under-content" />}
-        {theme.id !== "kawaii" && <FanIdStickerLayer themeId={theme.id} enabled={stickersEnabled} layer="over-portrait" />}
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
           <div>
