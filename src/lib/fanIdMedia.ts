@@ -94,6 +94,10 @@ function isValidPreviewMap(value: unknown): value is Partial<Record<FanIdCropKin
   );
 }
 
+export function collectFanIdPreviewKinds(record: FanIdMediaRecord): FanIdCropKind[] {
+  return CROP_KINDS.filter((kind) => isBlob(record.previews[kind]));
+}
+
 export function makeFanIdMediaKey(cardSerial: string, role: FanIdMediaRole): string {
   if (!isValidCardSerial(cardSerial)) throw new Error("Invalid Fan ID card serial");
   if (!isFanIdMediaRole(role)) throw new Error("Invalid Fan ID media role");

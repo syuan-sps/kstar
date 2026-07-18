@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { indexedDB as fakeIndexedDB } from "fake-indexeddb";
 import {
+  collectFanIdPreviewKinds,
   cropAspect,
   classifyFanIdStorageError,
   isFanIdCropPreset,
@@ -105,6 +106,14 @@ async function runStoreChecks(): Promise<void> {
     previews: { "idol-portrait": new Blob(["preview"], { type: "image/webp" }) },
     updatedAt: 1,
   };
+
+  assert.deepEqual(
+    collectFanIdPreviewKinds({
+      ...idolRecord,
+      previews: { "idol-portrait": idolRecord.previews["idol-portrait"]! },
+    }),
+    ["idol-portrait"],
+  );
 
   await putFanIdMediaRecord(idolRecord, fakeIndexedDB);
   assert.equal((await getFanIdMediaRecord("8730", idolRole, fakeIndexedDB))?.sourceWidth, 1200);
