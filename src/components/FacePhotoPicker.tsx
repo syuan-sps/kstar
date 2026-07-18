@@ -2,7 +2,7 @@
 
 // Browser-only ID-photo cropper. The resulting data URL stays in caller state;
 // this component never uploads or writes the image to preferences.
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LocalPhotoEditor from "@/components/LocalPhotoEditor";
 import type { FanIdCropPreset } from "@/lib/fanIdMedia";
 import { useCopy } from "@/lib/i18n/LocaleProvider";
@@ -34,6 +34,7 @@ export default function FacePhotoPicker({
   const [raw, setRaw] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const cropRequestRef = useRef(0);
 
   function choose(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -47,13 +48,21 @@ export default function FacePhotoPicker({
 
   async function confirm(preset: FanIdCropPreset) {
     if (!raw || busy) return;
+    const requestId = cropRequestRef.current + 1;
+    cropRequestRef.current = requestId;
     setBusy(true);
     setError(null);
     try {
-      onChange(await cropImage(raw, preset.croppedAreaPixels));
+      const photo = await cropImage(raw, preset.croppedAreaPixels);
+      if (cropRequestRef.current !== requestId) return;
+      onChange(photo);
       setRaw(null);
-    } catch { setError(copy.photoProcessFailed); }
-    finally { setBusy(false); }
+    } catch {
+      if (cropRequestRef.current === requestId) setError(copy.photoProcessFailed);
+    }
+    finally {
+      if (cropRequestRef.current === requestId) setBusy(false);
+    }
   }
 
   if (raw) {
@@ -64,7 +73,12 @@ export default function FacePhotoPicker({
         busy={busy}
         label={copy.facePhotoChange}
         error={error}
-        onCancel={() => { setRaw(null); setError(null); }}
+        onCancel={() => {
+          cropRequestRef.current += 1;
+          setBusy(false);
+          setRaw(null);
+          setError(null);
+        }}
         onConfirm={confirm}
       />
     );

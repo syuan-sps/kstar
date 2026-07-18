@@ -53,6 +53,7 @@ export default function LocalPhotoEditor({
   const viewportClassName = avatar ? "h-[240px] w-[240px] rounded-full" : "h-[273px] w-[240px] rounded-xl";
 
   function reset() {
+    if (busy) return;
     setCrop(DEFAULT_CROP);
     setZoom(1);
     setArea(null);
@@ -93,8 +94,8 @@ export default function LocalPhotoEditor({
         className="w-full accent-[#b4302b]"
       />
       <div className="flex gap-2">
-        <button data-fanid-photo-reset type="button" onClick={reset} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold">Reset</button>
-        <button type="button" onClick={onCancel} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold">{copy.cancel}</button>
+        <button data-fanid-photo-reset type="button" disabled={busy} onClick={reset} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">Reset</button>
+        <button type="button" disabled={busy} onClick={onCancel} className="rounded-lg border border-[#c8ccd2] px-4 py-2 text-xs font-bold disabled:opacity-50">{copy.cancel}</button>
         <button
           data-fanid-photo-confirm
           type="button"
