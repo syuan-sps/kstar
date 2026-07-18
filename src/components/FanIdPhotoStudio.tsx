@@ -247,7 +247,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
         </div>
       </details>
 
-      <dialog ref={dialogRef} aria-labelledby="fanid-photo-editor-title" onCancel={(event) => { event.preventDefault(); clearDraft(); }} className="m-0 w-full max-w-lg rounded-t-2xl border border-[#c8ccd2] bg-white p-4 shadow-2xl backdrop:bg-black/40 max-sm:fixed max-sm:bottom-0 sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
+      <dialog ref={dialogRef} aria-labelledby="fanid-photo-editor-title" onCancel={(event) => { event.preventDefault(); if (!busy) clearDraft(); }} className="m-0 w-full max-w-lg rounded-t-2xl border border-[#c8ccd2] bg-white p-4 shadow-2xl backdrop:bg-black/40 max-sm:fixed max-sm:bottom-0 sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl">
         {draft?.sourceUrl && <><h2 id="fanid-photo-editor-title" data-fanid-photo-destination className="mb-3 text-sm font-bold text-[#1c1e24]">{dialogTitle}</h2><LocalPhotoEditor sourceUrl={draft.sourceUrl} cropKind={draft.cropKind} initialPreset={draft.sourceReplaced ? undefined : draft.existingRecord?.crops[draft.cropKind]} busy={busy} label={copy.fanIdPhotoUseFraming} error={error} onCancel={clearDraft} onConfirm={(preset) => void confirm(preset)} /></>}
       </dialog>
     </section>

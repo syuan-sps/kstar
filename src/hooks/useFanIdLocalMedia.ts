@@ -123,7 +123,7 @@ export function useFanIdLocalMedia(input: {
 }): UseFanIdLocalMediaResult {
   const { cardSerial } = input;
   const idolIdsKey = input.idolIds.slice(0, 4).join("\u0000");
-  const idolIds = useMemo(() => input.idolIds.slice(0, 4), [idolIdsKey]);
+  const idolIds = useMemo(() => idolIdsKey ? idolIdsKey.split("\u0000") : [], [idolIdsKey]);
   const [state, setState] = useState<LocalMediaState>(EMPTY_STATE);
   const lifecycleRef = useRef<FanIdMediaLifecycle>({ cardSerial, idolIdsKey, version: 0 });
 
