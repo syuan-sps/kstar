@@ -6,6 +6,9 @@
 
 import { forwardRef } from "react";
 import Thumb from "@/components/Thumb";
+import FanIdDecorationFrame, { hasFanIdDecorationFrame } from "@/components/FanIdDecorationFrame";
+import FanIdCustomStickerLayer from "@/components/FanIdCustomStickerLayer";
+import { FanIdStickerCanvasEditor, type CustomStickerCanvasEditorProps } from "@/components/FanIdStickerEditor";
 import {
   ARCHETYPES,
   LAYER_COLOR,
@@ -13,20 +16,29 @@ import {
   expandCode,
   type ArchetypeResult,
 } from "@/lib/archetypes";
-import { pickTheme } from "@/lib/cardTheme";
+import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import type { CardArtist } from "@/lib/lite";
 import { frameRarity } from "@/lib/rarityFrame";
-import { SCORE_LAYERS } from "@/lib/types";
+import { SCORE_LAYERS, type FanIdCardMode } from "@/lib/types";
+import type { PlacedCustomSticker } from "@/lib/fanIdCustomStickers";
 
 interface FanIdCardCommonProps {
+  themeId?: FanIdThemeId;
+  stickersEnabled?: boolean;
+  cardMode?: FanIdCardMode;
   fanName?: string;
   song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
   facePhoto?: string | null;
+  idolPhoto?: string | null;
+  userPortraitPhoto?: string | null;
+  userAvatarPhoto?: string | null;
+  customStickers?: readonly PlacedCustomSticker[];
+  customStickerEditor?: CustomStickerCanvasEditorProps;
 }
 
-export interface FanIdCardSampleProps {
+export interface FanIdCardSampleProps extends FanIdCardCommonProps {
   sample: true;
 }
 
@@ -42,6 +54,8 @@ export interface FanIdCardProductionProps extends FanIdCardCommonProps {
 export type FanIdCardProps = FanIdCardSampleProps | FanIdCardProductionProps;
 
 const INK = "#1c1e24";
+
+// flat, low-contrast brushed-metal tone — no dramatic banding across text
 
 // Deliberately illustrative, not catalog-backed. The labels make that status
 // visible in the poster itself, while deterministic metadata keeps snapshots
@@ -87,10 +101,43 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         fanName: locale === "en" ? SAMPLE_FAN_NAME_EN : SAMPLE_FAN_ID.fanName,
       }
     : props;
-  const { picks, heroId, result, fanName, song, showFace, facePhoto, issuedAt, serial } = card;
+  const {
+    picks,
+    heroId,
+    result,
+    fanName,
+    issuedAt,
+    serial,
+  } = card;
+  const {
+    song,
+    showFace,
+    facePhoto,
+    idolPhoto,
+    userPortraitPhoto,
+    userAvatarPhoto,
+    customStickers = [],
+    customStickerEditor,
+    stickersEnabled = false,
+    cardMode = "idol",
+  } = props;
   const hero = picks.find((p) => p.id === heroId) ?? picks[0];
-  const lineup = picks.filter((p) => p.id !== hero.id);
-  const theme = pickTheme(hero.id);
+  const theme = getFanIdTheme(props.themeId);
+  const decorationThemeId = props.themeId === undefined ? "chrome" : props.themeId;
+  const decorationsEnabled = stickersEnabled === true && hasFanIdDecorationFrame(decorationThemeId);
+  const isUserHero = cardMode === "user";
+  const showOwnerBadge = cardMode === "idol-user" || (cardMode === "idol" && showFace === true);
+  const effectiveUserPortrait = userPortraitPhoto ?? facePhoto ?? null;
+  const effectiveUserAvatar = userAvatarPhoto ?? facePhoto ?? null;
+  const portraitSrc = isUserHero
+    ? effectiveUserPortrait
+    : idolPhoto ?? hero.image_url ?? null;
+  const photoSource = portraitSrc === null
+    ? "missing"
+    : isUserHero || idolPhoto !== null && idolPhoto !== undefined ? "custom" : "catalog";
+  const avatarSource = effectiveUserAvatar ? "custom" : "missing";
+  const portraitLabel = isUserHero ? (fanName || copy.fanIdSelfLabel) : (hero.name_zh ?? hero.name);
+  const modeLabel = cardMode === "idol" ? "IDOL EDITION" : cardMode === "idol-user" ? "DUO EDITION" : "SELF EDITION";
   const rarity = frameRarity(result.code, locale);
   const complement = expandCode(result.code);
   const complementType = ARCHETYPES[complement];
@@ -100,139 +147,137 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     <div
       ref={ref}
       data-sample={sample ? "true" : undefined}
+      data-card-mode={cardMode}
+      data-card-stickers={decorationsEnabled ? "true" : "false"}
+      data-card-sticker-architecture={decorationsEnabled ? "sleeve-frame" : "disabled"}
+      data-theme={theme.id}
       aria-label={`${copy.fanIdName} ${result.code}`}
-      className="relative box-border w-[328px] overflow-hidden rounded-[14px] p-[14px] text-[#1c1e24]"
+      className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[7px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
       style={{
-        backgroundColor: "#f4f5f7",
-        backgroundImage: [
-          "repeating-linear-gradient(63deg,transparent 0 7px,rgba(124,128,136,0.055) 7px 8px)",
-          "radial-gradient(110% 80% at 100% 0%,rgba(167,192,220,0.18),transparent 58%)",
-          `radial-gradient(90% 55% at 0% 100%,${theme.accent}12,transparent 60%)`,
-          "linear-gradient(165deg,#ffffff 0%,#eceef2 55%,#dfe2e7 100%)",
-        ].join(","),
-        border: "1px solid #aeb3bb",
-        boxShadow: "inset 0 0 0 1px rgba(255,255,255,.85),6px 6px 0 rgba(74,74,74,.28),0 12px 34px rgba(124,128,136,.25)",
+        backgroundImage: `linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.28) 18%,${theme.accent}70 44%,rgba(28,30,36,.58) 72%,rgba(255,255,255,.9)),${theme.surface}`,
+        color: theme.text,
       }}
     >
-      <div className="flex items-center justify-between">
-        <span className="font-orbitron text-[11px] font-black tracking-[0.12em] text-[#4a4f57]">
-          ◆ {copy.fanIdName} · KSTAR FAN ID
-        </span>
-        <span className="text-right font-mono text-[8px] leading-[1.45] text-[#9aa0aa]">
-          {sample && <>{copy.fanIdSampleTag}<br /></>}
-          KS-{date.slice(0, 4)}<br />#{serial}
-        </span>
-      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-[2px] rounded-[26px] border border-white/80 shadow-[inset_0_0_0_1px_rgba(28,30,36,.18),inset_0_0_18px_rgba(255,255,255,.7)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[5px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
-      <div className="mt-2.5 grid grid-cols-[1.15fr_1fr] gap-2.5">
-        <div data-fanid-entry="hero" className="relative aspect-[3/3.4] overflow-hidden rounded-[10px] border border-[#c8ccd2] bg-[#e7eaef]">
-          <Thumb
-            src={hero.image_url}
-            seed={hero.id}
-            label={hero.name_zh ?? hero.name}
-            focusY={hero.image_focus}
-            rounded="rounded-none"
-          />
-          <span className="absolute left-1.5 top-1.5 text-sm">👑</span>
-          {showFace && facePhoto && (
-            <span className="absolute right-1.5 top-1.5 h-[46px] w-[34px] overflow-hidden rounded-[5px] border-2 border-white bg-white shadow-[0_2px_6px_rgba(28,30,36,.3)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={facePhoto} alt={copy.fanIdSelfLabel} className="h-[37px] w-full object-cover" />
-              <span className="absolute inset-x-0 bottom-0 bg-white/90 text-center text-[6.5px] font-bold tracking-[0.1em] text-[#5e636d]">{copy.fanIdSelfLabel}</span>
-            </span>
-          )}
-          <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1e24]/80 to-transparent px-2 pb-1.5 pt-5 text-[11px] font-bold text-white">
-            {copy.fanIdHeroPrefix} · {hero.name_zh ?? hero.name}
-          </span>
-        </div>
-
-        <div
-          data-fanid-archetype="true"
-          className="flex min-w-0 w-full flex-col items-center justify-center gap-1.5 text-center"
-        >
-          <span className="flex w-full justify-center font-orbitron text-[29px] font-black leading-none tracking-[0.06em]">
-            {result.code.split("").map((letter, index) => {
-              const high = letter === letter.toUpperCase();
-              return <span key={`${letter}-${index}`} style={{ color: high ? INK : "#9aa0aa", fontWeight: high ? 900 : 500 }}>{letter}</span>;
-            })}
-          </span>
-          <span className="w-full text-[13px] font-black leading-tight">{result.archetype.name[locale]}</span>
-          <span className="w-full font-orbitron text-[7.5px] font-bold leading-tight tracking-[0.08em] text-[#7c8088]">
-            {locale === "zh" ? result.archetype.enName : result.code}
-          </span>
-          <span className="max-w-full self-center whitespace-nowrap rounded-full border border-[#a8822f] bg-[#d8b45a]/10 px-2 py-0.5 font-mono text-[8px] font-bold text-[#a8822f]">
-            ✦ {rarity.label}
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-2 grid grid-cols-3 gap-1.5">
-        {lineup.slice(0, 3).map((artist) => (
-          <div key={artist.id} data-fanid-entry="lineup" className="overflow-hidden rounded-[7px] border border-[#c8ccd2] bg-white">
-            <div className="aspect-[3/4]">
-              <Thumb
-                src={artist.image_url}
-                seed={artist.id}
-                label={artist.name_zh ?? artist.name}
-                focusY={artist.image_focus}
-                rounded="rounded-none"
-              />
-            </div>
-            <p className="truncate px-1 py-0.5 text-center text-[7px] font-bold text-[#5e636d]">{artist.name_zh ?? artist.name}</p>
+      <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
+        {/* Decorated themes use one pre-composed sleeve behind live content. */}
+        <FanIdDecorationFrame themeId={decorationThemeId} enabled={decorationsEnabled} />
+        <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
+          <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: theme.accent }} />
+          <div>
+            <p className="font-orbitron text-[10px] font-black tracking-[0.14em] text-white">KSTAR · FAN ID</p>
+            <p className="mt-1 font-mono text-[6.5px] tracking-[0.18em] text-white/45">{modeLabel} · {theme.label.toUpperCase()}</p>
           </div>
-        ))}
-      </div>
-
-      <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-[#c8ccd2] pt-2">
-        {SCORE_LAYERS.map((layer) => (
-          <div key={layer}>
-            <div className="h-1.5 overflow-hidden rounded-full bg-[#c8ccd2]/50">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${Math.max(6, result.bars[layer])}%`, backgroundColor: LAYER_COLOR[layer] }}
-              />
-            </div>
-            <p className="mt-0.5 text-center text-[7px] font-bold text-[#7c8088]">{layerLabel(locale, layer)}</p>
+          <div className="text-right font-mono text-[7px] leading-[1.45] text-white/55">
+            {sample && <>{copy.fanIdSampleTag}<br /></>}
+            KS-{date.slice(0, 4)} · #{serial}
           </div>
-        ))}
+        </header>
+
+        <main className="relative z-10 p-3">
+          <div aria-hidden="true" className="pointer-events-none absolute left-1 top-8 flex flex-col gap-1.5 opacity-55">
+            {[0, 1, 2, 3].map((dot) => <span key={dot} className="h-1 w-1 rounded-full" style={{ backgroundColor: theme.accent }} />)}
+          </div>
+          <div aria-hidden="true" className="pointer-events-none absolute right-1 top-8 font-orbitron text-[10px]" style={{ color: theme.accent }}>✦</div>
+
+          <section data-fanid-entry="hero" data-photo-source={photoSource} className="relative aspect-[4/4.55] overflow-hidden rounded-[18px] border border-white/80 bg-[#dfe3e8] shadow-[0_0_0_1px_rgba(28,30,36,.32),0_12px_30px_rgba(28,30,36,.22)]">
+            {portraitSrc ? (
+              <Thumb src={portraitSrc} seed={hero.id} label={portraitLabel} focusY={isUserHero || idolPhoto !== null && idolPhoto !== undefined ? undefined : hero.image_focus} rounded="rounded-none" />
+            ) : (
+              <div className="grid h-full place-items-center bg-[linear-gradient(145deg,#dfe3e8,#f7f8fa)] px-8 text-center">
+                <div>
+                  <div className="mx-auto grid h-14 w-14 place-items-center rounded-full border border-dashed border-[#7c8088] font-orbitron text-lg text-[#7c8088]">+</div>
+                  <p className="mt-2 text-[10px] font-bold text-[#5e636d]">{locale === "zh" ? "加入本人照片" : "Add your photo"}</p>
+                </div>
+              </div>
+            )}
+            <div aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-[13px] border border-white/35" />
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#101217]/90 via-[#101217]/50 to-transparent px-3 pb-3 pt-12 text-white">
+              <div>
+                <p className="font-mono text-[6px] tracking-[0.2em] text-white/55">{isUserHero ? "CARD HOLDER" : "SELECTED IDOL"}</p>
+                <p className="mt-0.5 text-[13px] font-black">{portraitLabel}</p>
+              </div>
+              <span className="rounded-full border border-white/30 bg-black/25 px-2 py-1 font-orbitron text-[6px] tracking-[0.12em]">{modeLabel}</span>
+            </div>
+
+            {showOwnerBadge && (
+              <div data-avatar-source={avatarSource} className="absolute bottom-3 right-3 z-20 h-[64px] w-[64px] rounded-full border border-white/80 p-[3px] shadow-[0_8px_18px_rgba(0,0,0,.35)]" style={{ background: `linear-gradient(145deg,#fff,${theme.accent})` }}>
+                <div className="relative h-full w-full overflow-hidden rounded-full bg-[#dfe3e8]">
+                  {effectiveUserAvatar ? <img src={effectiveUserAvatar} alt={copy.fanIdSelfLabel} className="h-full w-full object-cover" /> : <span className="grid h-full place-items-center font-orbitron text-sm text-[#5e636d]">+</span>}
+                  <span className="absolute inset-x-0 bottom-0 bg-black/60 py-0.5 text-center font-orbitron text-[5px] tracking-[0.12em] text-white">OWNER</span>
+                </div>
+              </div>
+            )}
+          </section>
+
+          <section data-fanid-archetype="true" className="relative z-10 mt-2.5 rounded-[16px] border border-white/75 bg-white/[0.82] px-3 py-3 shadow-[0_0_0_1px_rgba(28,30,36,.16),0_8px_18px_rgba(28,30,36,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-sm">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p className="font-mono text-[6px] tracking-[0.18em] text-[#7c8088]">FAN SOUL · ARCHETYPE</p>
+                <div className="mt-1 flex items-end gap-2">
+                  <span className="flex font-orbitron text-[27px] font-black leading-none tracking-[0.04em]">
+                    {result.code.split("").map((letter, index) => {
+                      const high = letter === letter.toUpperCase();
+                      return <span key={`${letter}-${index}`} style={{ color: high ? INK : "#9aa0aa", fontWeight: high ? 900 : 500 }}>{letter}</span>;
+                    })}
+                  </span>
+                  <span className="pb-0.5 text-[12px] font-black leading-tight">{result.archetype.name[locale]}</span>
+                </div>
+                <p className="mt-1 font-orbitron text-[6.5px] tracking-[0.1em] text-[#7c8088]">{locale === "zh" ? result.archetype.enName : result.code}</p>
+              </div>
+              <span className="whitespace-nowrap rounded-full border px-2 py-1 font-mono text-[7px] font-bold" style={{ borderColor: `${theme.accent}88`, color: theme.accent, backgroundColor: `${theme.accent}12` }}>✦ {rarity.label}</span>
+            </div>
+
+            <div className="mt-3 rounded-xl border border-black/10 bg-black/[0.035] px-2.5 py-2">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="font-orbitron text-[6px] font-bold tracking-[0.18em] text-[#5e636d]">FAN SIGNAL</span>
+                <span className="font-mono text-[6px] text-[#9aa0aa]">4-AXIS PROFILE</span>
+              </div>
+              <div className="grid grid-cols-4 gap-2">
+                {SCORE_LAYERS.map((layer) => (
+                  <div key={layer}>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
+                      <div className="h-full rounded-full" style={{ width: `${Math.max(6, result.bars[layer])}%`, backgroundColor: LAYER_COLOR[layer] }} />
+                    </div>
+                    <p className="mt-1 text-center text-[6.5px] font-bold text-[#5a5a5a]">{layerLabel(locale, layer)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-2 flex items-center gap-2 text-[7px] text-[#5e636d]">
+              <span className="font-mono tracking-[0.12em]">{copy.fanIdComplementLabel}</span>
+              <b className="font-orbitron text-[9px] text-[#1c1e24]">{complement}</b>
+              <span className="truncate font-bold">{complementType?.name[locale] ?? complement}{locale === "zh" && complementType ? ` · ${complementType.enName}` : ""}</span>
+            </div>
+          </section>
+
+          <footer className="mt-2.5 grid grid-cols-[1fr_auto] gap-3 rounded-[13px] border border-black/10 bg-black/[0.045] px-3 py-2.5">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-[76px] opacity-75" style={{ backgroundImage: `repeating-linear-gradient(90deg,${INK} 0 1px,transparent 1px 2px,${INK} 2px 4px,transparent 4px 7px)` }} />
+                <span className="font-mono text-[6px] tracking-[0.1em] text-[#7c8088]">#{serial}</span>
+              </div>
+              <p className="mt-1.5 truncate text-[9px] text-[#4a4a4a]">{copy.fanIdHolder} · <b className="text-[#1a1a1a]">{fanName || "—"}</b></p>
+              <p className="mt-0.5 truncate text-[7px] text-[#7c8088]">BIAS · {hero.name_zh ?? hero.name}</p>
+              {song && <p className="mt-0.5 truncate text-[7px] text-[#7c8088]">♪ {song.title} — {song.artist}</p>}
+              <p className="mt-1 font-mono text-[6px] tracking-[0.04em] text-[#9aa0aa]">{copy.fanIdIssuedLine(date)}</p>
+            </div>
+            <div className="text-center">
+              <img src="/qr-start.svg" alt={copy.fanIdScanMe} className="h-[43px] w-[43px] rounded-[6px] border border-black/10 bg-white p-0.5" />
+              <p className="mt-0.5 text-[5.5px] text-[#7c8088]">{copy.fanIdScanMe}</p>
+            </div>
+          </footer>
+        </main>
+        {customStickerEditor
+          ? <FanIdStickerCanvasEditor {...customStickerEditor} stickers={customStickers} />
+          : <FanIdCustomStickerLayer stickers={customStickers} />}
       </div>
 
-      <div className="mt-1.5 flex items-baseline gap-1.5 rounded-md border border-[#c8ccd2]/80 bg-white/55 px-2 py-1">
-        <span className="shrink-0 text-[7px] font-bold tracking-[0.12em] text-[#9aa0aa]">{copy.fanIdComplementLabel}</span>
-        <span className="font-orbitron text-[9px] font-black text-[#4a4f57]">{complement}</span>
-        <span className="truncate text-[8px] font-bold text-[#5e636d]">
-          {complementType?.name[locale] ?? complement}
-          {locale === "zh" && complementType ? ` · ${complementType.enName}` : ""}
-        </span>
-      </div>
-
-      {fanName && (
-        <p className="mt-2 border-t border-dashed border-[#c8ccd2] pt-2 text-[10px] text-[#5e636d]">
-          {copy.fanIdHolder} · <b className="text-[#1c1e24]">{fanName}</b>
-        </p>
-      )}
-      {song && (
-        <p className={`${fanName ? "mt-1" : "mt-2 border-t border-dashed border-[#c8ccd2] pt-2"} flex items-center gap-1.5 text-[10px] text-[#5e636d]`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={song.artworkUrl} alt="" className="h-4 w-4 rounded-sm" />
-          <span className="truncate">{copy.fanIdSong} · <b className="text-[#1c1e24]">{song.title}</b> — {song.artist} ♪</span>
-        </p>
-      )}
-
-      <div className="mt-2.5 flex items-end justify-between border-t border-[#c8ccd2] pt-2.5">
-        <div>
-          <div
-            className="h-3.5 w-24 opacity-70"
-            style={{ backgroundImage: `repeating-linear-gradient(90deg,${INK} 0 1px,transparent 1px 2px,${INK} 2px 4px,transparent 4px 7px)` }}
-          />
-          <p className="mt-1.5 font-mono text-[7px] tracking-[0.04em] text-[#9aa0aa]">{copy.fanIdIssuedLine(date)}</p>
-        </div>
-        <div className="text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/qr-start.svg" alt={copy.fanIdScanMe} className="h-[46px] w-[46px] rounded-[5px] border border-[#c8ccd2] bg-white p-0.5" />
-          <p className="mt-0.5 text-[7px] text-[#9aa0aa]">{copy.fanIdScanMe}</p>
-        </div>
-      </div>
+      <span aria-hidden="true" className="pointer-events-none absolute left-[3px] top-[88px] font-orbitron text-[9px] text-white/80">✦</span>
+      <span aria-hidden="true" className="pointer-events-none absolute bottom-[54px] right-[3px] font-orbitron text-[10px]" style={{ color: theme.accent }}>✦</span>
     </div>
   );
 });

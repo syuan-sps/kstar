@@ -209,6 +209,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
           <StepReveal
             result={quizResult}
             reportAnswers={reportAnswers}
+            themeId={wiz.themeId}
           />
         ) : (
           <div className={`grid min-h-64 place-items-center text-center text-sm ${resultStatus === "error" ? "text-[#b4302b]" : "animate-pulse text-[#9aa0aa]"}`}>

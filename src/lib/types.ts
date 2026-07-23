@@ -1,3 +1,5 @@
+import type { FanIdThemeId } from "./fanIdThemes";
+
 // ── Idol profile sub-types ─────────────────────────────────────────────
 export interface IdolProfile {
   aesthetic:   {
@@ -119,6 +121,8 @@ export interface StoredArchetype {
   hiddenLayer: ScoreLayer;  // 隱藏面 (2nd-highest layer)
 }
 
+export type FanIdCardMode = "idol" | "idol-user" | "user";
+
 export interface UserPrefs {
   topIdols: string[];
   weights: Weights;
@@ -132,4 +136,7 @@ export interface UserPrefs {
   joinedAt?: string;                   // YYYY.MM.DD stamped once — 應援卡 "SINCE" date
   issuedAt?: string;                   // YYYY.MM.DD stamped once — 追星證 issue date
   serial?: string;                     // stable 追星證 ID (not a sequence)
+  themeId?: FanIdThemeId;              // restore selected visual edition on completed cards
+  cardMode?: FanIdCardMode;            // restore selected Fan ID layout on completed cards
+  stickersEnabled?: boolean;           // restore optional sticker-bomb overlay choice
 }
