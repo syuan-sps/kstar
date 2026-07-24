@@ -10,7 +10,9 @@ import Thumb from "@/components/Thumb";
 
 // Matches the CSS timeline: feed + development, a short completed-strip hold,
 // then a soft stage fade into the Step 2 reveal.
-const DONE_MS = 4200;
+// The four-cut reveal is the payoff for picking, so it stays — but at 4.2s it
+// was a wait rather than a moment.
+const DONE_MS = 1600;
 
 export default function DevelopFourCuts({
   artists,

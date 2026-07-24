@@ -251,7 +251,7 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
       ),
     );
     const label = `${themeId}:${cardMode}`;
-    assert.match(decoratedCardMarkup, /data-fanid-card-frame="true"/, `${label} should always render the card frame border`);
+    assert.equal(decoratedCardMarkup.includes("data-fanid-ornament="), false, `${label} should not render the removed ornament layer`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-frame="), false, `${label} should not render legacy decoration sleeves`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-popout="), false, `${label} should not render a foreground pop-out`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-sticker-layer="), false, `${label} should not render legacy SVG sticker layers`);
@@ -269,7 +269,7 @@ const defaultThemeMarkup = renderToStaticMarkup(
   ),
 );
 assert.match(defaultThemeMarkup, /data-theme="chrome"/, "omitted themes should retain the Chrome default");
-assert.match(defaultThemeMarkup, /data-fanid-card-frame="true"/, "omitted themes should render the default Chrome card frame");
+assert.equal(defaultThemeMarkup.includes("data-fanid-ornament="), false, "omitted themes should not render the removed ornament layer");
 assert.match(defaultThemeMarkup, new RegExp(FAN_ID_THEMES.chrome.accent), "omitted themes should carry the Chrome accent tint");
 assert.equal(defaultThemeMarkup.includes("data-fanid-decoration-popout="), false, "omitted themes should not render a foreground pop-out");
 
@@ -285,7 +285,7 @@ const invalidThemeMarkup = renderToStaticMarkup(
   ),
 );
 assert.match(invalidThemeMarkup, /data-theme="chrome"/, "invalid themes should retain the safe Chrome surface fallback");
-assert.match(invalidThemeMarkup, /data-fanid-card-frame="true"/, "invalid themes should still render the safe Chrome card frame");
+assert.equal(invalidThemeMarkup.includes("data-fanid-ornament="), false, "invalid themes should not render the removed ornament layer");
 assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-frame="), false, "invalid themes should not render decoration sleeves");
 
 const undecoratedSampleMarkup = renderToStaticMarkup(

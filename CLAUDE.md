@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 > **Important:** This is Next.js 16 with React 19. APIs differ from training data. Read `node_modules/next/dist/docs/` before writing unfamiliar Next.js code.
 
-> **Live site:** the canonical, user-confirmed Vercel URL for this project is **https://kstar-soulcuts.vercel.app/** (owner-stated 2026-07-15). Use this URL — not a `git ls-remote`/API-derived preview-deployment URL — whenever checking or comparing against "what's live."
+> **Live site:** the canonical, user-confirmed Vercel URL for this project is **https://kstar2026.vercel.app/** (owner-stated 2026-07-24). Use this URL — not a `git ls-remote`/API-derived preview-deployment URL — whenever checking or comparing against "what's live."
+>
+> The Vercel **project** is `kpop-discovery` (`prj_USGEWsFtBfopGyMdExcXfUWVAwM1`); `.vercel/project.json` must point at it. A stale, unrelated project named `kstar` (alias `kstar-six.vercel.app`) also exists — deploying to it silently misses the live site. The previous URL `kstar-soulcuts.vercel.app` was retired on 2026-07-24 and now returns `DEPLOYMENT_NOT_FOUND`.
 
 ---
 

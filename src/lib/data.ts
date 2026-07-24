@@ -50,7 +50,8 @@ export async function searchArtists(query: string): Promise<Artist[]> {
   return local.artists.filter(
     (a) =>
       a.name.toLowerCase().includes(q) ||
-      (a.name_zh ?? "").toLowerCase().includes(q),
+      (a.name_zh ?? "").toLowerCase().includes(q) ||
+      (a.group ?? "").toLowerCase().includes(q),
   );
 }
 

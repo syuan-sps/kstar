@@ -389,15 +389,17 @@ body {
 .dev-output { position: absolute; left: 50%; top: 104px; z-index: 1; width: 168px; height: 216px; transform: translateX(-50%); overflow: hidden; }
 .dev-strip { position: absolute; left: 50%; top: 2px; width: 150px; clip-path: inset(0 0 100% 0); transform: translate(-50%,-2px);
   background: linear-gradient(180deg, #fff, #eef0f3); border: 1px solid #d3d7dd; border-radius: 0 0 14px 14px; padding: 9px 9px 7px;
-  box-shadow: 5px 7px 0 rgba(124,128,136,.28), 0 10px 26px rgba(124,128,136,.26);
+  box-shadow: 0 10px 26px rgba(124,128,136,.26);
   animation: strip-feed 2.35s cubic-bezier(.22,.72,.2,1) .55s both; }
 .dev-mouth { position: absolute; left: 50%; top: 101px; z-index: 4; width: 132px; height: 9px; transform: translateX(-50%); border-radius: 0 0 8px 8px;
   background: linear-gradient(180deg, #5e636d, #1c1e24 55%, #9aa0aa); box-shadow: 0 2px 3px rgba(28,30,36,.35), inset 0 1px rgba(255,255,255,.3); }
 .dev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .dev-cut { position: relative; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
-  animation: cut-develop 1.15s var(--ease-out-expo) both; }
-.dev-cut0 { animation-delay: .85s; } .dev-cut1 { animation-delay: 1.05s; }
-.dev-cut2 { animation-delay: 1.35s; } .dev-cut3 { animation-delay: 1.55s; }
+  animation: cut-develop .5s var(--ease-out-expo) both; }
+/* Staggered reveal must finish inside DevelopFourCuts' DONE_MS (1600ms), or the
+   last cut is still developing when the screen is replaced. */
+.dev-cut0 { animation-delay: .28s; } .dev-cut1 { animation-delay: .42s; }
+.dev-cut2 { animation-delay: .56s; } .dev-cut3 { animation-delay: .70s; }
 .dev-cap { text-align: center; font-family: var(--font-orbitron), system-ui, sans-serif; font-size: 10px; letter-spacing: .24em; color: #6f747c; margin-top: 7px; }
 .dev-develop-sweep { position: absolute; inset: -4px; pointer-events: none;
   background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(238,243,249,.82) 42%, rgba(255,255,255,0) 68%); mix-blend-mode: screen;
@@ -628,7 +630,9 @@ html { scroll-behavior: smooth; }
 .pass-develop { animation: cut-develop .7s var(--ease-out-expo) both; }
 
 /* Wizard: soft develop for question cards & picker slot inserts (no flash) */
-.wiz-develop { animation: cut-develop 0.62s var(--ease-out-expo) both; }
+/* Replays on every quiz question, so it reads as latency rather than polish
+   past the first few. Short enough to feel like a transition, not a wait. */
+.wiz-develop { animation: cut-develop 0.25s var(--ease-out-expo) both; }
 /* Wizard: tentpole flash overlay — only rendered when kstar:flashOk === "1" */
 .wiz-flash::after {
   content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none;

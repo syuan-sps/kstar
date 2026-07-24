@@ -14,12 +14,23 @@ const FRAME_RIVETS: ReadonlyArray<readonly [number, number]> = [
   [5.5, 346.5], [322.5, 346.5], [164, 687.5],
 ];
 
-export default function FanIdCardFrame({ accent }: { accent: string }) {
+type BorderSkin = {
+  src: string;
+  alphaBounds: readonly [number, number, number, number];
+};
+
+export default function FanIdCardFrame({ accent, skin }: { accent: string; skin?: BorderSkin | null }) {
   // one gradient set per accent so several editions can render on the same page
   const key = accent.replace(/[^a-zA-Z0-9]/g, "") || "default";
   const metalId = `fanid-frame-metal-${key}`;
   const tintId = `fanid-frame-tint-${key}`;
   const rivetId = `fanid-frame-rivet-${key}`;
+  const skinMaskId = `fanid-frame-skin-mask-${key}`;
+  const [left, top, right, bottom] = skin?.alphaBounds ?? [0, 0, 1, 1];
+  const sourceWidth = 887;
+  const sourceHeight = 1774;
+  const scaleX = 328 / (right - left);
+  const scaleY = 693 / (bottom - top);
 
   return (
     <svg
@@ -53,11 +64,31 @@ export default function FanIdCardFrame({ accent }: { accent: string }) {
           <stop offset="42%" stopColor="#d3d7dd" />
           <stop offset="100%" stopColor="#7c8088" />
         </radialGradient>
+        {skin && (
+          <mask id={skinMaskId} maskUnits="userSpaceOnUse" x="0" y="0" width="328" height="693">
+            <rect width="328" height="693" fill="black" />
+            <path d={`${FRAME_OUTER} ${FRAME_OPENING}`} fill="white" fillRule="evenodd" />
+          </mask>
+        )}
       </defs>
 
-      {/* band = outer rounded rect minus the card opening */}
-      <path d={`${FRAME_OUTER} ${FRAME_OPENING}`} fillRule="evenodd" fill={`url(#${metalId})`} />
-      <path d={`${FRAME_OUTER} ${FRAME_OPENING}`} fillRule="evenodd" fill={`url(#${tintId})`} />
+      {skin ? (
+        <image
+          href={skin.src}
+          x={-left * scaleX}
+          y={-top * scaleY}
+          width={sourceWidth * scaleX}
+          height={sourceHeight * scaleY}
+          preserveAspectRatio="none"
+          mask={`url(#${skinMaskId})`}
+        />
+      ) : (
+        <>
+          {/* band = outer rounded rect minus the card opening */}
+          <path d={`${FRAME_OUTER} ${FRAME_OPENING}`} fillRule="evenodd" fill={`url(#${metalId})`} />
+          <path d={`${FRAME_OUTER} ${FRAME_OPENING}`} fillRule="evenodd" fill={`url(#${tintId})`} />
+        </>
+      )}
 
       {/* bevel: crisp dark edges with bright highlight rims */}
       <path d={FRAME_OUTER} fill="none" stroke="#5f636b" strokeOpacity="0.8" strokeWidth="1.4" />

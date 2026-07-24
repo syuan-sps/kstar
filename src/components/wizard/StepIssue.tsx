@@ -12,6 +12,7 @@ import { resolveFanIdCardPhotos } from "@/lib/fanIdMedia";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import { CARD_BTN_PRIMARY, CARD_BTN_SECONDARY, CARD_BTN_SECONDARY_STYLE } from "@/lib/cardActionStyles";
+import { onWheelHorizontal, useDragScroll } from "@/lib/hScroll";
 import type { CardArtist } from "@/lib/lite";
 import { finishWizard, saveWizard, type WizardState } from "@/lib/wizardState";
 import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
@@ -25,13 +26,17 @@ export default function StepIssue({
   wiz,
   picks,
   result,
+  onTakeQuiz,
   onWizardChange,
   onDone,
   skipIntro = false,
 }: {
   wiz: WizardState;
   picks: CardArtist[];
-  result: ArchetypeResult;
+  /** Absent until the visitor takes the quiz — the card then shows the unlock slot. */
+  result?: ArchetypeResult;
+  /** Shown as a nudge when there is no result yet; opens the quiz. */
+  onTakeQuiz?: () => void;
   onWizardChange: (state: WizardState) => void;
   /** When set (e.g. rendered inside the home decorate popup), the finish button
       calls this instead of finalising the wizard + navigating home. */
@@ -50,21 +55,21 @@ export default function StepIssue({
   const [customStickers, setCustomStickers] = useState<PlacedCustomSticker[]>(wiz.customStickers ?? []);
   const customStickersRef = useRef<PlacedCustomSticker[]>(wiz.customStickers ?? []);
   const [activeStickerPack, setActiveStickerPack] = useState<CustomStickerPackId>(wiz.themeId ?? "chrome");
+  const didSyncStickerPackToEdition = useRef(false);
   const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<CustomizeTab>("stickers");
   const [exporting, setExporting] = useState<ExportKind | null>(null);
   const [exportFailed, setExportFailed] = useState(false);
   const [completionFailed, setCompletionFailed] = useState(false);
+  const editionDrag = useDragScroll();
 
+  // The ceremony is charming once and an obstacle every time after, so it is
+  // short and tapping anywhere skips the rest of it.
   useEffect(() => {
     if (phase !== "printing") return;
-    const timer = setTimeout(() => setPhase("customize"), 2400);
+    const timer = setTimeout(() => setPhase("customize"), 1100);
     return () => clearTimeout(timer);
   }, [phase]);
-
-  useEffect(() => {
-    setActiveStickerPack(wiz.themeId ?? "chrome");
-  }, [wiz.themeId]);
 
   const heroId = picks.some((pick) => pick.id === wiz.heroId) ? wiz.heroId! : picks[0]?.id;
   const media = useFanIdLocalMedia({
@@ -128,7 +133,15 @@ export default function StepIssue({
 
   if (phase === "printing") {
     return (
-      <div className={`${flash ? "wiz-flash" : ""} flex min-h-[560px] flex-col items-center justify-center gap-5`} aria-live="polite">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={copy.wizPrinting}
+        onClick={() => setPhase("customize")}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setPhase("customize"); } }}
+        className={`${flash ? "wiz-flash" : ""} flex min-h-[560px] cursor-pointer flex-col items-center justify-center gap-5`}
+        aria-live="polite"
+      >
         <p className="font-orbitron text-sm font-bold tracking-[0.18em] text-[#7c8088]">{copy.wizPrinting}</p>
         <div className="wiz-develop relative">
           <div className="fanid-preview-shell">
@@ -179,6 +192,18 @@ export default function StepIssue({
       </div>
 
       <div className="w-full max-w-lg md:max-w-none">
+        {/* The quiz is an upgrade, not a gate: it only appears once there is a
+            card worth completing, and it disappears the moment it is earned. */}
+        {!result && onTakeQuiz && (
+          <button
+            type="button"
+            onClick={onTakeQuiz}
+            className="mb-2 flex w-full items-center justify-center gap-1 rounded-full bg-[#b4302b] px-4 py-3 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110"
+          >
+            {copy.issueQuizNudge}
+          </button>
+        )}
+
         {/* Tab bar */}
         <div role="tablist" aria-label={copy.customizeFanIdAria} className="flex gap-1 rounded-full border border-[#c8ccd2] bg-white/75 p-1">
           {(["stickers", "style", "photo", "name"] as const).map((tab) => {
@@ -202,11 +227,19 @@ export default function StepIssue({
             <>
               <div>
                 <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.cardEditionLabel}</p>
-                <div className="flex gap-2 overflow-x-auto pb-1" role="radiogroup" aria-label="Fan ID card edition">
+                <div className="flex cursor-grab touch-pan-x select-none gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" onWheel={onWheelHorizontal} {...editionDrag} role="radiogroup" aria-label="Fan ID card edition">
                   {Object.values(FAN_ID_THEMES).map((theme) => {
                     const selected = (wiz.themeId ?? "chrome") === theme.id;
                     return (
-                      <button key={theme.id} type="button" role="radio" aria-checked={selected} onClick={() => { setActiveStickerPack(theme.id as CustomStickerPackId); update({ themeId: theme.id as FanIdThemeId }); }}
+                      <button key={theme.id} type="button" role="radio" aria-checked={selected} onClick={() => {
+                        // Match the sticker shelf to the first version a person tries.
+                        // Afterwards their sticker choice is intentional and stays put.
+                        if (!selected && !didSyncStickerPackToEdition.current) {
+                          setActiveStickerPack(theme.id as CustomStickerPackId);
+                          didSyncStickerPackToEdition.current = true;
+                        }
+                        update({ themeId: theme.id as FanIdThemeId });
+                      }}
                         className={`min-w-[84px] rounded-xl border-2 p-1.5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b4302b] ${selected ? "border-[#b4302b] shadow-sm" : "border-transparent hover:border-[#c8ccd2]"}`}>
                         <span className="block h-9 rounded-lg border" style={{ backgroundImage: theme.surface, borderColor: theme.border }} />
                         <span className="mt-1 block truncate text-[10px] font-bold text-[#1c1e24]">{locale === "zh" ? theme.labelZh : theme.label}</span>
@@ -284,14 +317,24 @@ export default function StepIssue({
                 {copy.wizFanNameLabel}
                 <input value={wiz.fanName ?? ""} maxLength={30} onChange={(event) => update({ fanName: event.target.value })} placeholder={copy.passNamePlaceholder} className="mt-1.5 w-full rounded-xl border border-[#c8ccd2] bg-white px-3 py-2.5 text-sm font-normal text-[#1c1e24] outline-none focus:border-[#7c8088]" />
               </label>
-              {photoRequired && <p className="text-center text-[11px] font-medium text-[#b4302b]">{locale === "zh" ? "加入本人照片後即可匯出這個版式。" : "Add your photo to export this layout."}</p>}
-              <button type="button" disabled className="w-full rounded-xl border border-dashed border-[#c8ccd2] bg-[#f4f5f7] py-2 text-xs text-[#9aa0aa]">{copy.wizBiasSongComingSoon}</button>
             </>
           )}
         </section>
 
         {/* Persistent actions — always visible regardless of active tab */}
         <div className="mt-3 space-y-2">
+          {/* Lives with the buttons it explains, not inside a tab: this reason
+              used to render only in the 名稱 tab, so on every other tab the
+              export buttons were dead with nothing saying why. */}
+          {photoRequired && (
+            <button
+              type="button"
+              onClick={() => setActiveTab("photo")}
+              className="w-full rounded-xl border border-[#b4302b]/30 bg-[#b4302b]/[0.06] px-3 py-2 text-center text-[11px] font-medium text-[#b4302b] transition hover:bg-[#b4302b]/10"
+            >
+              {locale === "zh" ? "加入本人照片後即可匯出這個版式 →" : "Add your photo to export this layout →"}
+            </button>
+          )}
           <div className="flex flex-wrap items-center justify-center gap-2">
             <button type="button" disabled={Boolean(exporting) || photoRequired} onClick={() => void runExport("download")} className={CARD_BTN_PRIMARY}>
               {exporting === "download" ? copy.wizExporting : copy.fourCutDownload}

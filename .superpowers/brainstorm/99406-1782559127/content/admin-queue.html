@@ -1,0 +1,100 @@
+<h2>/admin — your review queue</h2>
+<p class="subtitle">Password-gated. Each pending submission shows the photo, who it's for, source + license, and any current photo for comparison. Approve → goes live instantly (served from Supabase). Does this cover what you need to judge?</p>
+
+<style>
+.kc{--ink:#1c1e24;--ink2:#5e636d;--ink3:#9aa0aa;--line:#c8ccd2;--steel:#7c8088;--cherry:#b4302b;--green:#2f7d4f;--frost:#f4f5f7;}
+.kc *{box-sizing:border-box;font-family:-apple-system,"Noto Sans TC",sans-serif;}
+.kc-shell{border:2px solid #aeb3bb;border-radius:8px;overflow:hidden;box-shadow:4px 4px 0 rgba(74,74,74,.25);background:var(--frost);}
+.kc-titlebar{display:flex;align-items:center;gap:6px;padding:5px 8px;background:linear-gradient(180deg,#f4f6f8,#c8ccd2 48%,#9aa0aa);font:700 10px/1 "Orbitron",monospace;letter-spacing:.12em;color:#1c1e24;}
+.kc-dot{width:11px;height:10px;border:1px solid #9aa0aa;border-radius:2px;background:linear-gradient(180deg,#fff,#c0c4ca);}
+.kc-dot.x{background:linear-gradient(180deg,#e0584f,#b4302b);}
+.kc-body{padding:14px;background-color:#f4f5f7;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(124,128,136,.06) 19px,rgba(124,128,136,.06) 20px),
+   repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(124,128,136,.06) 19px,rgba(124,128,136,.06) 20px),
+   linear-gradient(165deg,#fff,#f4f5f7 55%,#e6e9ed);}
+.kc-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.kc-eyebrow{font:700 9px/1 "Orbitron",monospace;letter-spacing:.24em;color:var(--steel);}
+.kc-filter{font-size:10px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
+.kc-filter.on{background:#1c1e24;color:#fff;border-color:#1c1e24;}
+.kc-count{margin-left:auto;font:700 9px "Orbitron";color:var(--cherry);}
+.kc-row{display:flex;gap:12px;align-items:stretch;background:#fff;border:2px solid var(--line);border-radius:14px;box-shadow:2px 2px 0 #aeb3bb;padding:11px;margin-bottom:11px;}
+.kc-pair{display:flex;gap:6px;}
+.kc-shot{width:74px;height:92px;border-radius:9px;border:2px solid var(--line);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;font:800 13px "Orbitron";color:#b6bcc4;background:linear-gradient(135deg,#dfe6ef,#cdd6e2);}
+.kc-shot.new{border-color:var(--cherry);}
+.kc-shot.cur{background:linear-gradient(135deg,#e9ebef,#dfe2e7);border-style:dashed;}
+.kc-shot .cap{position:absolute;bottom:0;left:0;right:0;font:700 7px "Orbitron";letter-spacing:.1em;text-align:center;padding:2px;color:#fff;background:rgba(28,30,36,.6);}
+.kc-shot.cur .cap{background:rgba(124,128,136,.55);}
+.kc-meta{flex:1;min-width:0;}
+.kc-nm{font-size:14px;font-weight:900;color:var(--ink);}
+.kc-nm small{font-size:9px;color:var(--ink3);font-weight:700;margin-left:6px;}
+.kc-line{font-size:10px;color:var(--ink2);margin-top:4px;display:flex;gap:5px;align-items:center;}
+.kc-lic{font:700 8px "Orbitron";letter-spacing:.06em;color:#fff;background:var(--green);border-radius:999px;padding:2px 7px;}
+.kc-lic.warn{background:#b88008;}
+.kc-src{color:#56789f;text-decoration:underline;word-break:break-all;}
+.kc-acts{display:flex;flex-direction:column;gap:6px;justify-content:center;}
+.kc-btn{border:none;border-radius:999px;font:800 10px/1 system-ui;padding:8px 12px;white-space:nowrap;}
+.kc-approve{background:var(--green);color:#fff;box-shadow:0 0 10px rgba(47,125,79,.3);}
+.kc-reject{background:#fff;color:var(--cherry);border:1px solid var(--cherry);}
+.kc-skip{background:#fff;color:var(--ink3);border:1px solid var(--line);}
+.kc-flag{font-size:9px;color:#b88008;margin-top:5px;}
+</style>
+
+<div class="kc">
+  <div class="kc-shell">
+    <div class="kc-titlebar"><span class="kc-dot"></span><span class="kc-dot"></span><span class="kc-dot x"></span><span style="margin-left:4px">KSTAR ▸ 審核台</span></div>
+    <div class="kc-body">
+      <div class="kc-toolbar">
+        <span class="kc-eyebrow">✦ 待審投稿</span>
+        <span class="kc-filter on">待審 12</span>
+        <span class="kc-filter">已通過</span>
+        <span class="kc-filter">已退回</span>
+        <span class="kc-count">12 PENDING</span>
+      </div>
+
+      <!-- row 1: fills a gap -->
+      <div class="kc-row">
+        <div class="kc-pair">
+          <div class="kc-shot new">RY<div class="cap">投稿</div></div>
+          <div class="kc-shot cur"><span style="font-size:9px;color:#9aa0aa">無</span><div class="cap">目前</div></div>
+        </div>
+        <div class="kc-meta">
+          <div class="kc-nm">Ryujin <small>ITZY · 留真 · 補缺照 ✦</small></div>
+          <div class="kc-line"><span class="kc-lic">CC BY 4.0</span> <span>署名：@fancc</span></div>
+          <div class="kc-line">出處：<a class="kc-src">commons.wikimedia.org/wiki/File:Ryujin_2024…</a></div>
+          <div class="kc-line" style="color:var(--ink3)">投稿時間 2026-06-27 · IP 受限流</div>
+        </div>
+        <div class="kc-acts">
+          <button class="kc-btn kc-approve">✓ 通過上線</button>
+          <button class="kc-btn kc-reject">✕ 退回</button>
+          <button class="kc-btn kc-skip">↧ 大圖</button>
+        </div>
+      </div>
+
+      <!-- row 2: replacement, license warn -->
+      <div class="kc-row">
+        <div class="kc-pair">
+          <div class="kc-shot new">KA<div class="cap">投稿</div></div>
+          <div class="kc-shot cur">KA<div class="cap">目前</div></div>
+        </div>
+        <div class="kc-meta">
+          <div class="kc-nm">Karina <small>aespa · 替換現有照</small></div>
+          <div class="kc-line"><span class="kc-lic warn">授權待查</span> <span>署名：（無）</span></div>
+          <div class="kc-line">出處：<a class="kc-src">instagram.com/p/Cxy…</a></div>
+          <div class="kc-flag">⚠ 出處像 IG／非自由授權 — 預設不通過</div>
+        </div>
+        <div class="kc-acts">
+          <button class="kc-btn kc-approve" style="opacity:.4">✓ 通過上線</button>
+          <button class="kc-btn kc-reject">✕ 退回</button>
+          <button class="kc-btn kc-skip">↧ 大圖</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;font:700 9px 'Orbitron';color:#9aa0aa;letter-spacing:.1em">▾ 還有 10 則 ▾</div>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:18px">
+  <div class="option" data-choice="ok" onclick="toggleSelect(this)"><div class="letter">✓</div><div class="content"><h3>This covers it</h3><p>Side-by-side new vs current, license badge, source link, credit, auto-flag on non-free sources, approve/reject/enlarge.</p></div></div>
+  <div class="option" data-choice="more" onclick="toggleSelect(this)"><div class="letter">+</div><div class="content"><h3>Add / change something</h3><p>e.g. set image_focus crop on approve, bulk actions, reject-with-reason, notify submitter…</p></div></div>
+</div>

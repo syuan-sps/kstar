@@ -14,6 +14,11 @@ type Variant = "flash" | "calm";
 const FADE_MS = 5200;
 const UNMOUNT_MS = 5700;
 
+// Disabled: the 5.7s splash (plus its flash-consent gate) sat between a first
+// visitor and any content, and the goal is to reach the sticker editor fast.
+// Everything below is intact — delete this flag to bring it back.
+const ENABLED = false;
+
 export default function IntroSplash() {
   const copy = useCopy();
   const locale = useLocale();
@@ -23,6 +28,7 @@ export default function IntroSplash() {
 
   // decide whether to run at all (first visit / ?intro), and whether to show the gate
   useEffect(() => {
+    if (!ENABLED) return;
     let run = false;
     let seen: string | null = null;
     let force = false;
@@ -74,7 +80,7 @@ export default function IntroSplash() {
     setPhase("play");
   }
 
-  if (phase === "idle") return null;
+  if (!ENABLED || phase === "idle") return null;
 
   if (phase === "gate") {
     return (
@@ -113,7 +119,7 @@ export default function IntroSplash() {
           <div className="ib-hex" dangerouslySetInnerHTML={{ __html: HEX_SVG }} />
         )}
         <div className="ib-scene">
-          <div className="ib-wordmark"><span className="ib-glint" /><span className="ib-mark">KSTAR</span>{locale === "zh" && <span className="ib-mark-zh">人生四格</span>}</div>
+          <div className="ib-wordmark"><span className="ib-glint" /><span className="ib-mark">KStar</span>{locale === "zh" && <span className="ib-mark-zh">人生四格</span>}</div>
           <div className="ib-slogan"><div className="ib-en">FOUR PICKS · ONE SOUL</div>{locale === "zh" && <div className="ib-zh">四格定格，靈魂顯影</div>}</div>
           <div className="ib-soulcard" dangerouslySetInnerHTML={{ __html: soulcardHtml(locale) }} />
         </div>

@@ -6,6 +6,10 @@
 // copy set skips Tailwind v4's --tw-*/@theme custom properties.
 export const EXPORT_STYLE_PROPS = [
   "display", "position", "top", "right", "bottom", "left", "box-sizing",
+  // Without "visibility" an element carrying Tailwind's `invisible` keeps its
+  // absolute position in the clone but loses the thing hiding it, so it renders
+  // on top of whatever it was parked over. Never drop it from this allowlist.
+  "visibility",
   "z-index",
   "width", "height", "min-width", "max-width", "min-height", "max-height",
   "margin-top", "margin-right", "margin-bottom", "margin-left",
@@ -22,6 +26,10 @@ export const EXPORT_STYLE_PROPS = [
   "font-family", "font-size", "font-weight", "font-style", "letter-spacing", "line-height",
   "text-align", "text-overflow", "white-space", "text-shadow", "text-transform",
   "object-fit", "object-position", "transform", "transform-origin",
+  // Tailwind v4 compiles translate/rotate/scale utilities to the STANDALONE CSS
+  // properties, not to `transform` — so copying only "transform" silently drops
+  // them. This is why `-translate-x-1/2` centring shifted in exported PNGs.
+  "translate", "rotate", "scale",
 ];
 
 const DEFAULT_SHARE_TITLE = { zh: "我的追星靈魂", en: "My fan soul" };
@@ -94,9 +102,25 @@ function cardFromFileName(fileName: string): string {
 // share never reaches here. Import is dynamic so a failed load never breaks export.
 function trackExport(action: "download" | "share", fileName: string): void {
   if (typeof window === "undefined") return;
+  const card = cardFromFileName(fileName);
   import("@vercel/analytics").then(({ track }) => {
-    track("export", { action, card: cardFromFileName(fileName) });
+    track("export", { action, card });
   }).catch(() => { /* analytics is best-effort, never block the export */ });
+
+  // Durable, queryable counterpart to the Vercel Analytics event above (see
+  // src/app/api/track-export/route.ts). keepalive lets the request survive a
+  // page navigation that happens right after the download/share click; the
+  // catch keeps this best-effort, exactly like the analytics call.
+  try {
+    fetch("/api/track-export", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ card, action, locale: document.documentElement.lang || null }),
+      keepalive: true,
+    }).catch(() => { /* tracking is best-effort, never block the export */ });
+  } catch {
+    /* best-effort, never block the export */
+  }
 }
 
 export async function completeExport(
@@ -152,6 +176,15 @@ export async function prepareExportBlobResult(
 export async function exportNode(node: HTMLElement, opts: ExportOptions): Promise<{ ok: boolean; error?: unknown }> {
   const { fileName, pixelRatio = 2, kind = "download", shareText = "", frame, locale = "zh" } = opts;
   const shareTitle = opts.shareTitle ?? DEFAULT_SHARE_TITLE[locale];
+  // Screen-only affordances (the "take the quiz" invitation on a quiz-free card,
+  // the parked archetype block in photo-only) are pulled from the LIVE node
+  // before anything is measured. Filtering them out of the clone alone left the
+  // canvas sized for the taller card, i.e. a blank gap where they had been.
+  // Restored in the finally below, so an export failure can't leave them hidden.
+  const screenOnly = [...node.querySelectorAll<HTMLElement>('[data-export-hide="true"]')];
+  const priorDisplay = screenOnly.map((el) => el.style.display);
+  screenOnly.forEach((el) => { el.style.display = "none"; });
+
   try {
     const htmlToImage = await import("html-to-image");
     // Transparent canvas so the rounded card exports with see-through corners
@@ -165,6 +198,10 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
       skipFonts: true,
       fontEmbedCSS: "",
       includeStyleProperties: EXPORT_STYLE_PROPS,
+      // Screen-only affordances (e.g. the "take the quiz" invitation on a
+      // quiz-free card) opt out of the export — nobody wants a pitch baked into
+      // the image they share. Text nodes have no dataset and must pass through.
+      filter: (domNode: HTMLElement) => domNode.dataset?.exportHide !== "true",
       // width/height enlarge the canvas; html-to-image also copies them onto the
       // cloned node as inline styles, so style{} (applied last) pins the clone
       // back to its true size and centres it with the margin.
@@ -224,5 +261,7 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
     return completeExport(blob, { fileName, kind, shareTitle, shareText });
   } catch (error) {
     return { ok: false, error };
+  } finally {
+    screenOnly.forEach((el, i) => { el.style.display = priorDisplay[i]; });
   }
 }

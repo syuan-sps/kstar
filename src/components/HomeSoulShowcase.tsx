@@ -48,12 +48,16 @@ export default function HomeSoulShowcase({ allArtists }: { allArtists: ArtistLit
   const picks = (prefs?.topIdols ?? [])
     .map((id) => allArtists.find((a) => a.id === id))
     .filter(Boolean) as ArtistLite[];
-  const ready = Boolean(prefs?.archetype) && picks.length === 4;
+  // Four picks are enough to own a card. The archetype only decides whether the
+  // 追星證 shows a result or its unlock slot — it is no longer the entry price,
+  // otherwise a quiz-free visitor finishes a card and finds it missing at home.
+  const ready = picks.length === 4;
+  const hasArchetype = Boolean(prefs?.archetype);
 
   // The archetype is recomputed from the same server summaries the quiz used,
   // so the inline card always matches what the wizard would show.
   useEffect(() => {
-    if (!ready || !prefs) { setResult(null); return; }
+    if (!ready || !hasArchetype || !prefs) { setResult(null); return; }
     let cancelled = false;
     (async () => {
       try {
@@ -71,14 +75,26 @@ export default function HomeSoulShowcase({ allArtists }: { allArtists: ArtistLit
       }
     })();
     return () => { cancelled = true; };
-  }, [ready, prefs]);
+  }, [ready, hasArchetype, prefs]);
 
-  // Until the visitor has a finished 追星證 (4 picks + archetype + loaded result),
-  // fall back to the standalone four-cut / start-CTA. MyFourCuts renders the
-  // landing prompt when there are no picks, and the plain four-cut strip when
-  // there are picks but no archetype yet — both correct pre-追星證 states.
-  if (!ready || !result || !prefs) {
+  // Only a visitor with no picks at all falls back to the standalone four-cut /
+  // start-CTA. With four picks the unified card renders either way — with a
+  // result once the quiz is done, with the unlock slot until then. Waiting on
+  // `result` here would blank a quiz-free visitor's card.
+  if (!ready || !prefs) {
     return <MyFourCuts allArtists={allArtists} frameClassName="w-full" />;
+  }
+
+  // An archetype exists but its /api/pick-scores refetch hasn't resolved yet:
+  // this used to fall through to the MyFourCuts fallback above, which briefly
+  // flashed real photo content before TastePortraitCard took over a moment
+  // later. A same-footprint skeleton avoids that flash of the wrong view.
+  if (hasArchetype && !result) {
+    return (
+      <div className="w-[360px] max-w-full shrink-0">
+        <div className="aspect-[3/4] w-full animate-pulse rounded-2xl bg-white/10" />
+      </div>
+    );
   }
 
   const answers: ResultAnswers = {
@@ -104,7 +120,7 @@ export default function HomeSoulShowcase({ allArtists }: { allArtists: ArtistLit
   return (
     <div className="w-[360px] max-w-full shrink-0">
       <TastePortraitCard
-        result={result}
+        result={result ?? undefined}
         picks={picks}
         answers={answers}
         defaultView="pass"

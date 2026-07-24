@@ -21,7 +21,6 @@ export interface WizardState {
   archetype?: StoredArchetype; // computed 追星靈魂, same shape as UserPrefs.archetype
   heroId?: string;            // spotlight 本命 (defaults to picks[0])
   fanName?: string;           // optional 持卡人
-  song?: { title: string; artist: string; artworkUrl: string } | null;
   issuedAt?: string;          // YYYY.MM.DD, stamped once for this identity
   serial?: string;            // stable ID (not a sequence or scarcity claim)
   themeId?: FanIdThemeId;     // curated visual edition
@@ -72,16 +71,6 @@ function validAnswers(value: unknown): Record<string, string> {
   ));
 }
 
-function validSong(value: unknown): WizardState["song"] {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
-  const song = value as Record<string, unknown>;
-  return boundedString(song.title, 120)
-    && boundedString(song.artist, 120)
-    && boundedString(song.artworkUrl, 2048)
-    ? { title: song.title, artist: song.artist, artworkUrl: song.artworkUrl }
-    : null;
-}
-
 export function normalizeThemeId(value: unknown): FanIdThemeId {
   return typeof value === "string" && Object.prototype.hasOwnProperty.call(FAN_ID_THEMES, value)
     ? value as FanIdThemeId
@@ -108,12 +97,12 @@ export function loadWizard(): WizardState {
       archetype: isStoredArchetype(p.archetype) ? p.archetype : undefined,
       heroId: boundedString(p.heroId, MAX_ID) ? p.heroId : undefined,
       fanName: boundedString(p.fanName, 30) ? p.fanName : undefined,
-      song: validSong(p.song),
       issuedAt: typeof p.issuedAt === "string" && /^\d{4}\.\d{2}\.\d{2}$/.test(p.issuedAt) ? p.issuedAt : undefined,
       serial: typeof p.serial === "string" && /^[A-Za-z0-9-]{1,32}$/.test(p.serial) ? p.serial : undefined,
       themeId: normalizeThemeId(p.themeId),
       customStickers: normalizePlacedStickers(p.customStickers),
       cardMode: normalizeCardMode(p.cardMode),
+      hideArchetype: p.hideArchetype === true,
     };
   } catch {
     return emptyWizard();

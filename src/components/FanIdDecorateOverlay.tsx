@@ -56,11 +56,15 @@ function mirrorToPrefs(w: WizardState) {
   }
 }
 
-export default function FanIdDecorateOverlay({ open, onClose, picks, result }: {
+export default function FanIdDecorateOverlay({ open, onClose, picks, result, onTakeQuiz }: {
   open: boolean;
   onClose: () => void;
   picks: CardArtist[];
-  result: ArchetypeResult;
+  /** Absent for a quiz-free card. Decorating must still work without it —
+      stickers are the whole point, and gating them on the quiz would put the
+      feature back behind the wall this redesign removed. */
+  result?: ArchetypeResult;
+  onTakeQuiz?: () => void;
 }) {
   const copy = useCopy();
   const [wiz, setWiz] = useState<WizardState | null>(null);
@@ -91,6 +95,7 @@ export default function FanIdDecorateOverlay({ open, onClose, picks, result }: {
           wiz={wiz}
           picks={picks}
           result={result}
+          onTakeQuiz={onTakeQuiz}
           skipIntro
           onWizardChange={(w) => { setWiz(w); mirrorToPrefs(w); }}
           onDone={close}

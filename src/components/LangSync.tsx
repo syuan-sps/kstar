@@ -17,9 +17,12 @@ export default function LangSync() {
   const locale = useLocale();
   const router = useRouter();
   const params = useSearchParams();
+  // The value, not the params object: useSearchParams returns a fresh identity
+  // every render, so depending on it re-runs this effect constantly.
+  const langParam = params.get("lang");
 
   useEffect(() => {
-    const fromQuery = params.get("lang");
+    const fromQuery = langParam;
     let desired: string | null = null;
     if (isLocale(fromQuery)) {
       desired = fromQuery;
@@ -34,7 +37,7 @@ export default function LangSync() {
       writeLocaleCookie(desired);
       router.refresh();
     }
-  }, [params, locale, router]);
+  }, [langParam, locale, router]);
 
   return null;
 }

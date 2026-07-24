@@ -12,11 +12,12 @@ import { CARD_BTN_PRIMARY, CARD_BTN_SECONDARY, CARD_BTN_SECONDARY_STYLE } from "
 import { getStoryCardDecor } from "@/lib/storyCardDecor";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
+import { getCardFrame, type CardFrameTreatmentId } from "@/lib/cardFrameAssets";
 
 const GHOST = "#8a8d93";
 // flat, low-contrast brushed-metal tone — no dramatic banding across text
 
-export default function SoulStoryCard({ result, themeId, hideActions = false, extraActions }: { result: ArchetypeResult; themeId?: FanIdThemeId; hideActions?: boolean; extraActions?: ReactNode }) {
+export default function SoulStoryCard({ result, themeId, frameTreatmentId, hideActions = false, extraActions }: { result: ArchetypeResult; themeId?: FanIdThemeId; frameTreatmentId?: CardFrameTreatmentId | null; hideActions?: boolean; extraActions?: ReactNode }) {
   const copy = useCopy();
   const locale = useLocale();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -25,6 +26,7 @@ export default function SoulStoryCard({ result, themeId, hideActions = false, ex
   const { code, archetype, bars, high } = result;
   const decor = getStoryCardDecor({ code, leadLayer: result.leadLayer, missing: archetype.missing });
   const theme = getFanIdTheme(themeId);
+  const collectorFrame = getCardFrame(frameTreatmentId, "story");
   const accent = theme.accent;
   const motifGlyph = {
     flare: "✦",
@@ -69,6 +71,14 @@ export default function SoulStoryCard({ result, themeId, hideActions = false, ex
       >
           {/* inset chrome bevel */}
           <div className="pointer-events-none absolute inset-0 rounded-[24px] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.92),inset_0_-1.5px_0_rgba(0,0,0,0.16),inset_1.5px_0_0_rgba(255,255,255,0.55),inset_-1.5px_0_0_rgba(0,0,0,0.1)]" />
+          {collectorFrame && (
+            <img
+              src={collectorFrame}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-30 h-full w-full select-none"
+            />
+          )}
           {/* corner ✦ stickers — chrome TL / accent BR */}
           <span className="absolute left-2.5 top-2 text-[11px] leading-none text-[#5a5a5a]">✦</span>
           <span className="absolute bottom-2 right-2.5 text-[10px] leading-none" style={{ color: accent }}>✦</span>
@@ -138,7 +148,7 @@ export default function SoulStoryCard({ result, themeId, hideActions = false, ex
               shared PNG, so it's export-only (hidden on the owner's own screen). */}
           <div className="shrink-0 text-center">
             <div data-export-only className="whitespace-nowrap font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent, display: "none" }}>{copy.storyCta}</div>
-            <div className="mt-1 whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;KSTAR&nbsp;·&nbsp;2026&nbsp;✦</div>
+            <div className="mt-1 whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;KStar&nbsp;·&nbsp;2026&nbsp;✦</div>
           </div>
         </div>
 

@@ -12,11 +12,15 @@ import type { PlacedCustomSticker } from "@/lib/fanIdCustomStickers";
 import FourCuts from "@/components/FourCuts";
 import FanIdCustomStickerLayer from "@/components/FanIdCustomStickerLayer";
 import MetalFrame from "@/components/MetalFrame";
+import FourCutCleanLining from "@/components/FourCutCharmLayer";
 import { FanIdStickerCanvasEditor, type CustomStickerCanvasEditorProps } from "@/components/FanIdStickerEditor";
+import { getCardFrame, getFourCutsFramePlacement, type CardFrameTreatmentId } from "@/lib/cardFrameAssets";
 
 type Props = {
   artists: CardArtist[];
   themeId?: FanIdThemeId;
+  /** Optional physical holder, independent from the visual card edition. */
+  frameTreatmentId?: CardFrameTreatmentId | null;
   caption?: string;
   stickers: readonly PlacedCustomSticker[];
   /** When present, stickers are interactive (drag/resize/rotate) instead of static. */
@@ -27,15 +31,13 @@ type Props = {
 };
 
 const DecoratedFourCuts = forwardRef<HTMLDivElement, Props>(function DecoratedFourCuts(
-  { artists, themeId, caption, stickers, editor, className = "", photoOverrides },
+  { artists, themeId, frameTreatmentId, caption, stickers, editor, className = "", photoOverrides },
   ref,
 ) {
   const theme = getFanIdTheme(themeId);
-  // First production-frame fit test. The PNG itself is transparent outside and
-  // through the photo window, while the Four Cuts grid is held fully inside the
-  // window's measured safe area. Keep this isolated to Chrome until the user
-  // approves the treatment for the remaining editions.
-  const useCollectorFrame = theme.id === "chrome";
+  const collectorFrame = getCardFrame(frameTreatmentId, "fourCuts");
+  const collectorPlacement = getFourCutsFramePlacement(frameTreatmentId);
+  const useCollectorFrame = collectorFrame !== null && collectorPlacement !== null;
   return (
     <div
       ref={ref}
@@ -49,13 +51,16 @@ const DecoratedFourCuts = forwardRef<HTMLDivElement, Props>(function DecoratedFo
     >
       {useCollectorFrame ? (
         <>
-          {/* 16.5% / 14.5% places the live grid within the asset's fully open
-              photo window, leaving every frame detail clear of the photos. */}
-          <div className="absolute left-[16.5%] top-[14.5%] z-0 w-[67%]">
-            <FourCuts artists={artists} className="w-full" linked={!editor} caption={caption} photoOverrides={photoOverrides} />
+          {/* Each production frame has a measured photo-safe opening. The bare
+              grid avoids a second grey card shell inside the holder. */}
+          <div
+            className="absolute z-0"
+            style={{ left: collectorPlacement.left, top: collectorPlacement.top, width: collectorPlacement.width }}
+          >
+            <FourCuts artists={artists} collector className="w-full" linked={!editor} caption={caption} photoOverrides={photoOverrides} />
           </div>
           <img
-            src="/four-cuts/frames/collector/chrome-alloy.png"
+            src={collectorFrame}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 z-20 h-full w-full select-none"
@@ -63,11 +68,14 @@ const DecoratedFourCuts = forwardRef<HTMLDivElement, Props>(function DecoratedFo
         </>
       ) : (
         <>
-          {/* The exact Fan ID metal band (rivets + edition-accent sheen), sized to the strip. */}
-          <MetalFrame accent={theme.accent} band={11} radius={26} rivets />
-          <FourCuts artists={artists} className="w-full" linked={!editor} caption={caption} photoOverrides={photoOverrides} />
+          {/* A quiet Fan ID-style collector sleeve: only corner hardware, so the
+              photos stay dominant while the edition colour lives in the rail. */}
+          <MetalFrame accent={theme.accent} band={11} radius={26} rivets="corners" />
+          <FourCuts artists={artists} className="relative z-10 w-full" linked={!editor} caption={caption} photoOverrides={photoOverrides} />
         </>
       )}
+
+      <FourCutCleanLining accent={theme.accent} />
 
       {/* Sticker layer spans the whole mat so decals can sit on the border too.
           The canvas editor derives % coords from this node's box (inset-0). */}

@@ -216,3 +216,57 @@ Exit code: 0.
 
 - The report itself is an existing untracked Task 2 artifact, so it will be committed separately from the three source/test files.
 - Task 2 still does not wire the sticker layer into `FanIdCard`; that remains outside this fix scope.
+
+## Fix 2
+
+### Finding addressed
+
+- Moved `useId()` above the `enabled` early return so the hook call order remains stable when `enabled` toggles. Disabled rendering still returns `null`, and existing renderer behavior is unchanged.
+
+### Verification
+
+Command:
+
+```text
+npx tsx scripts/test-fanid-stickers.ts
+```
+
+Output:
+
+```text
+fanid sticker composition checks passed
+```
+
+Exit code: 0.
+
+Command:
+
+```text
+npx tsc --noEmit
+```
+
+Output:
+
+```text
+[no output]
+```
+
+Exit code: 0.
+
+Command:
+
+```text
+git diff --check
+```
+
+Output:
+
+```text
+[no output]
+```
+
+Exit code: 0.
+
+### Commit
+
+The source fix is committed separately; this report remains uncommitted as requested.

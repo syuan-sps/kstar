@@ -1,0 +1,116 @@
+<h2>/submit — A → B, one flow</h2>
+<p class="subtitle">Step 1 is the gap wall. Click an idol → Step 2 slides in: the form, pre-bound to that idol (chip locked, with a ← back). Does this flow look right?</p>
+
+<style>
+.kc{--ink:#1c1e24;--ink2:#5e636d;--ink3:#9aa0aa;--line:#c8ccd2;--steel:#7c8088;--cherry:#b4302b;--frost:#f4f5f7;}
+.kc *{box-sizing:border-box;font-family:-apple-system,"Noto Sans TC",sans-serif;}
+.kc-shell{border:2px solid #aeb3bb;border-radius:8px;overflow:hidden;box-shadow:4px 4px 0 rgba(74,74,74,.25);background:var(--frost);}
+.kc-titlebar{display:flex;align-items:center;gap:6px;padding:5px 8px;background:linear-gradient(180deg,#f4f6f8,#c8ccd2 48%,#9aa0aa);font:700 10px/1 "Orbitron",monospace;letter-spacing:.12em;color:#1c1e24;}
+.kc-dot{width:11px;height:10px;border:1px solid #9aa0aa;border-radius:2px;background:linear-gradient(180deg,#fff,#c0c4ca);}
+.kc-dot.x{background:linear-gradient(180deg,#e0584f,#b4302b);}
+.kc-body{position:relative;padding:16px;min-height:460px;
+  background-color:#f4f5f7;
+  background-image:
+   repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(124,128,136,.06) 19px,rgba(124,128,136,.06) 20px),
+   repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(124,128,136,.06) 19px,rgba(124,128,136,.06) 20px),
+   radial-gradient(120% 70% at 50% 0%,rgba(255,255,255,.7),transparent 55%),
+   linear-gradient(165deg,#fff,#f4f5f7 55%,#e6e9ed);}
+.kc-eyebrow{font:700 9px/1 "Orbitron",monospace;letter-spacing:.3em;color:var(--steel);text-align:center;}
+.kc-h{font-size:21px;font-weight:900;color:var(--ink);text-align:center;margin:6px 0 2px;letter-spacing:-.01em;}
+.kc-sub{font-size:11px;color:var(--ink2);text-align:center;margin-bottom:14px;}
+.kc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.kc-card{position:relative;border:2px solid #c8ccd2;border-radius:12px;background:#fff;box-shadow:2px 2px 0 #aeb3bb;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.kc-card.need{background:linear-gradient(135deg,#e9ebef,#dfe2e7);border-style:dashed;border-color:#b9bec6;}
+.kc-card.sel{border-style:solid;border-color:var(--cherry);box-shadow:2px 2px 0 var(--cherry);}
+.kc-card .ini{font:800 18px "Orbitron";color:#b6bcc4;}
+.kc-name{font-size:8px;text-align:center;color:var(--ink2);margin-top:3px;font-weight:700;}
+.kc-cell{display:flex;flex-direction:column;}
+.kc-badge{position:absolute;top:-7px;left:-7px;font-size:11px;color:var(--steel);}
+.kc-badge.r{left:auto;right:-7px;top:auto;bottom:-7px;color:var(--cherry);font-size:9px;}
+.kc-search{display:flex;align-items:center;gap:6px;border:2px solid var(--line);border-radius:999px;background:#fff;padding:8px 12px;font-size:11px;color:var(--ink3);}
+.kc-divider{display:flex;align-items:center;gap:8px;margin:12px 0;}
+.kc-divider span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(124,128,136,.5),transparent);}
+.kc-divider b{font-size:9px;color:var(--steel);}
+.kc-mini{font-size:9px;color:var(--ink3);text-align:center;margin-top:8px;}
+.kc-steps{display:flex;justify-content:center;gap:6px;margin-bottom:4px;}
+.kc-step{font:700 8px "Orbitron";letter-spacing:.1em;color:var(--ink3);}
+.kc-step.on{color:var(--cherry);}
+/* step 2 */
+.kc-back{font:700 9px "Orbitron";letter-spacing:.1em;color:var(--steel);background:none;border:none;padding:0;cursor:default;}
+.kc-locked{display:flex;align-items:center;gap:10px;border:2px solid var(--cherry);border-radius:14px;background:#fff;box-shadow:2px 2px 0 var(--cherry);padding:8px 10px;margin:4px 0 2px;}
+.kc-locked .av{width:38px;height:46px;border-radius:8px;border:1px solid var(--line);background:linear-gradient(135deg,#e9ebef,#dfe2e7);display:flex;align-items:center;justify-content:center;font:800 13px "Orbitron";color:#b6bcc4;}
+.kc-locked .nm{font-size:13px;font-weight:900;color:var(--ink);}
+.kc-locked .tag{font-size:9px;color:var(--ink3);}
+.kc-locked .chk{margin-left:auto;font:700 9px "Orbitron";color:var(--cherry);}
+.kc-label{font:700 9px/1 "Orbitron";letter-spacing:.16em;color:var(--ink3);text-transform:uppercase;margin-top:11px;display:block;}
+.kc-drop{margin-top:6px;border:2px dashed #b9bec6;border-radius:12px;background:rgba(255,255,255,.5);padding:16px;text-align:center;color:var(--ink3);font-size:11px;}
+.kc-input{width:100%;border:2px solid var(--line);border-radius:10px;background:#fff;padding:8px 10px;font-size:11px;color:var(--ink);margin-top:6px;box-shadow:inset 1px 1px 0 rgba(124,128,136,.1);}
+.kc-chip{display:inline-block;font-size:10px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin:2px;}
+.kc-chip.on{color:#fff;background:var(--cherry);border-color:var(--cherry);}
+.kc-cta{margin-top:13px;width:100%;border:none;border-radius:999px;background:var(--cherry);color:#fff;font:800 12px/1 system-ui;padding:11px;box-shadow:0 0 12px rgba(180,48,43,.35);}
+.kc-arrow{display:flex;align-items:center;justify-content:center;font:800 26px "Orbitron";color:var(--cherry);}
+</style>
+
+<div class="split">
+  <!-- STEP 1 -->
+  <div class="mockup">
+    <div class="mockup-header">Step 1 · Gap wall (landing)</div>
+    <div class="mockup-body kc">
+      <div class="kc-shell">
+        <div class="kc-titlebar"><span class="kc-dot"></span><span class="kc-dot"></span><span class="kc-dot x"></span><span style="margin-left:4px">KSTAR ▸ 投稿</span></div>
+        <div class="kc-body">
+          <div class="kc-steps"><span class="kc-step on">① 選偶像</span><span class="kc-step">② 上傳</span></div>
+          <div class="kc-eyebrow">✦ 幫忙補上偶像照片 ✦</div>
+          <div class="kc-h">這些偶像還缺照片</div>
+          <div class="kc-sub">點一位開始投稿</div>
+          <div class="kc-grid">
+            <div class="kc-cell"><div class="kc-card need sel"><span class="kc-badge">✦</span><span class="ini">RY</span><span class="kc-badge r">✦</span></div><div class="kc-name" style="color:var(--cherry)">Ryujin ⤵</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">HU</span></div><div class="kc-name">Huening</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">YE</span></div><div class="kc-name">Yena</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">SO</span></div><div class="kc-name">Sohee</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">DA</span></div><div class="kc-name">Daniel</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">MI</span></div><div class="kc-name">Mina</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">EU</span></div><div class="kc-name">Eunwoo</div></div>
+            <div class="kc-cell"><div class="kc-card need"><span class="ini">+57</span></div><div class="kc-name">看全部</div></div>
+          </div>
+          <div class="kc-divider"><span></span><b>✦</b><span></span></div>
+          <div class="kc-search">🔍 找其他偶像（已有照片也能投替換）…</div>
+          <div class="kc-mini">64 位待補 · 已收到 128 則投稿</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="mockup">
+    <div class="mockup-header">Step 2 · Form (after click)</div>
+    <div class="mockup-body kc">
+      <div class="kc-shell">
+        <div class="kc-titlebar"><span class="kc-dot"></span><span class="kc-dot"></span><span class="kc-dot x"></span><span style="margin-left:4px">KSTAR ▸ 投稿 · Ryujin</span></div>
+        <div class="kc-body">
+          <div class="kc-steps"><span class="kc-step">① 選偶像</span><span class="kc-step on">② 上傳</span></div>
+          <button class="kc-back">← 換一位偶像</button>
+          <div class="kc-locked">
+            <div class="av">RY</div>
+            <div><div class="nm">Ryujin</div><div class="tag">ITZY · 繁中：留真</div></div>
+            <div class="chk">✓ 已選</div>
+          </div>
+          <span class="kc-label">照片</span>
+          <div class="kc-drop">⬆ 拖曳或點擊上傳<br><span style="font-size:9px">JPG／PNG · 單人正面為佳</span></div>
+          <span class="kc-label">出處連結（必填）</span>
+          <input class="kc-input" value="https://commons.wikimedia.org/…">
+          <span class="kc-label">授權</span>
+          <div><span class="kc-chip on">CC BY ✓</span><span class="kc-chip">CC BY-SA</span><span class="kc-chip">CC0／PD</span><span class="kc-chip">我本人拍攝</span></div>
+          <span class="kc-label">署名（選填）</span>
+          <input class="kc-input" placeholder="你的名字／IG，會顯示為 credit">
+          <button class="kc-cta">送出投稿 → 等待審核</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:18px">
+  <div class="option" data-choice="yes" onclick="toggleSelect(this)"><div class="letter">✓</div><div class="content"><h3>Yes, this flow</h3><p>Gap wall → click idol → focused form with idol locked + ← back. Search lets fans reach non-gap idols too.</p></div></div>
+  <div class="option" data-choice="tweak" onclick="toggleSelect(this)"><div class="letter">~</div><div class="content"><h3>Right idea, tweak it</h3><p>Tell me what to change — step indicator, where search lives, what fields, etc.</p></div></div>
+</div>

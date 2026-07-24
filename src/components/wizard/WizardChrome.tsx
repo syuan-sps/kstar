@@ -7,7 +7,7 @@ import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function WizardChrome({
   step, canNext, onBack, onNext, nextLabel, children, stickyActions = false, wide = false,
-  nodes, activeNode,
+  nodes, activeNode, actionsBeforeBack,
 }: {
   step: 1 | 2 | 3 | 4;
   canNext: boolean;
@@ -24,6 +24,8 @@ export default function WizardChrome({
       visual — it does not change the persisted wizard step. */
   nodes?: string[];
   activeNode?: number;
+  /** Contextual actions placed directly before the wizard's Back control. */
+  actionsBeforeBack?: React.ReactNode;
 }) {
   const copy = useCopy();
   const STEPS = nodes ?? [copy.wizStep1, copy.wizStep2, copy.wizStep3, copy.wizStep4];
@@ -60,6 +62,7 @@ export default function WizardChrome({
             : ""
         }`}
       >
+        {actionsBeforeBack}
         {onBack && (
           <button onClick={onBack} className="flex-1 rounded-xl border border-[#c8ccd2] py-3 font-bold">
             {copy.wizBack}

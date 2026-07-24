@@ -6,7 +6,6 @@ import type { ArtistLite } from "@/lib/lite";
 import { saveWizard } from "@/lib/wizardState";
 import { homeEntryMotionClass } from "@/lib/motionConsent";
 import FourCuts from "@/components/FourCuts";
-import FanIdCard from "@/components/FanIdCard";
 import { useCopy } from "@/lib/i18n/LocaleProvider";
 
 export default function MyFourCuts({
@@ -98,13 +97,19 @@ export default function MyFourCuts({
           </h2>
           <p className="mt-1 text-xs text-[#5e636d]/80">{copy.fanIdBrandSub}</p>
         </div>
-        <div className="fanid-preview-shell fanid-landing-preview relative py-1.5">
-          <div
-            className="fanid-preview-scale relative transition-transform duration-500 hover:rotate-[2deg]"
-            style={{ filter: "drop-shadow(0 16px 18px rgba(74,74,74,.2))" }}
-          >
-            <FanIdCard sample />
-          </div>
+        {/* A newcomer's 人生四格 starts empty. The sample card that used to sit
+            here printed a fabricated archetype ("3% 超稀有型別") before anyone had
+            done anything — it gave away the reward and was not their data. */}
+        <div className="grid w-full max-w-[280px] grid-cols-2 gap-2.5">
+          {[0, 1, 2, 3].map((slot) => (
+            <div
+              key={slot}
+              aria-hidden="true"
+              className="grid aspect-[3/4] place-items-center rounded-xl border-2 border-dashed border-[#c8ccd2] bg-white/40 font-orbitron text-lg text-[#c8ccd2]"
+            >
+              +
+            </div>
+          ))}
         </div>
         <button
           onClick={repick}

@@ -5,6 +5,8 @@
 // Keeps the original export name so SoulQuiz / SoulPortraitButton import it as-is.
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { saveWizard } from "@/lib/wizardState";
 import type { CardArtist } from "@/lib/lite";
 import type { ArchetypeResult } from "@/lib/archetypes";
 import type { FanIdThemeId } from "@/lib/fanIdThemes";
@@ -64,7 +66,9 @@ type View = "lead" | "story" | "report" | "pass";
 export default function TastePortraitCard({
   result, picks, answers, onRestart, defaultView = "story", leadTab, hidePhotoToggle = false, onRedoQuiz, allowDecorate = false,
 }: {
-  result: ArchetypeResult;
+  /** Absent for a quiz-free card: the 追星證 still renders (with its unlock slot)
+      but the 限動卡 / 完整報告 tabs are withheld, since both are pure archetype. */
+  result?: ArchetypeResult;
   picks: CardArtist[];
   answers?: ResultAnswers;
   onRestart?: () => void;
@@ -91,6 +95,22 @@ export default function TastePortraitCard({
   const [decorateOpen, setDecorateOpen] = useState(false);
   const [storyThemeId, setStoryThemeId] = useState(() => (typeof window === "undefined" ? "chrome" : readStoryThemeId()));
   const [colorOpen, setColorOpen] = useState(false);
+  const router = useRouter();
+
+  // A home visitor has prefs but usually no wizard blob, and the wizard refuses
+  // a URL step above the one it has stored — so seed it before navigating, or
+  // /start?step=2 silently drops back to the picker.
+  function takeQuiz() {
+    try {
+      const stored = JSON.parse(localStorage.getItem("kstar:prefs") ?? "{}");
+      saveWizard({
+        picks: Array.isArray(stored.topIdols) ? stored.topIdols : picks.map((p) => p.id),
+        heroId: stored.heroId,
+        step: 2,
+      });
+    } catch { /* navigate anyway; the wizard rebuilds from prefs */ }
+    router.push("/start?step=2");
+  }
 
   async function runFanIdExport(kind: "download" | "share") {
     if (!cardRef.current || exporting) return;
@@ -104,7 +124,10 @@ export default function TastePortraitCard({
   }
   const tabs: [View, string][] = [
     ...(leadTab ? [["lead", leadTab.label] as [View, string]] : []),
-    ["story", copy.viewStory], ["report", copy.viewReport], ["pass", copy.viewPass],
+    // Both of these render nothing but archetype content, so they only exist
+    // once the quiz has been taken.
+    ...(result ? ([["story", copy.viewStory], ["report", copy.viewReport]] as [View, string][]) : []),
+    ["pass", copy.viewPass],
   ];
 
   const readPrefs = useCallback(() => {
@@ -158,11 +181,25 @@ export default function TastePortraitCard({
         ))}
       </div>
 
+      {/* Sits above the card and outside the tab switch: the card defaults to the
+          人生四格 tab, so anything parked under the 追星證 was both on the wrong tab
+          and below the fold — i.e. never found. This is the only route into the
+          quiz from the home page, so it has to be the one thing you can't miss. */}
+      {!result && allowDecorate && (
+        <button
+          type="button"
+          onClick={takeQuiz}
+          className="flex w-full max-w-[328px] items-center justify-center rounded-full bg-[#b4302b] px-4 py-3 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110"
+        >
+          {copy.issueQuizNudge}
+        </button>
+      )}
+
       {view === "lead" && leadTab ? (
         leadTab.content
-      ) : view === "story" ? (
+      ) : view === "story" && result ? (
         <SoulStoryCard result={result} themeId={storyThemeId} extraActions={soulExtraActions} />
-      ) : view === "report" ? (
+      ) : view === "report" && result ? (
         <SoulReport result={result} answers={answers} themeId={storyThemeId} extraActions={soulExtraActions} />
       ) : (
         <div className="flex flex-col items-center gap-3">
@@ -212,9 +249,9 @@ export default function TastePortraitCard({
       )}
 
       {allowDecorate && (
-        <FanIdDecorateOverlay open={decorateOpen} onClose={() => setDecorateOpen(false)} picks={picks} result={result} />
+        <FanIdDecorateOverlay open={decorateOpen} onClose={() => setDecorateOpen(false)} picks={picks} result={result} onTakeQuiz={takeQuiz} />
       )}
-      {allowDecorate && (view === "story" || view === "report") && (
+      {allowDecorate && result && (view === "story" || view === "report") && (
         <SoulColorOverlay open={colorOpen} onClose={() => setColorOpen(false)} view={view} result={result} answers={answers} />
       )}
     </div>

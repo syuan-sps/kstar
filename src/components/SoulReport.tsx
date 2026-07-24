@@ -167,7 +167,7 @@ export default function SoulReport({
 
         {/* footer */}
         <div className="mt-4 flex items-center justify-center gap-1.5 whitespace-nowrap font-orbitron text-[9px] font-bold tracking-[0.28em] text-[#7c8088]">
-          <span>✦</span><span>{copy.storyCta}　KSTAR · 2026</span><span>✦</span>
+          <span>✦</span><span>{copy.storyCta}　KStar · 2026</span><span>✦</span>
         </div>
       </div>
 

@@ -88,7 +88,7 @@ export default function ReplacePickerModal({
               ))}
             </div>
             <div className="mt-2.5 flex items-center justify-center gap-1.5 font-orbitron text-[10px] font-bold tracking-[0.25em] text-[#7c8088]">
-              <span>✦</span><span>KSTAR · 2026</span><span>✦</span>
+              <span>✦</span><span>KStar · 2026</span><span>✦</span>
             </div>
           </div>
 

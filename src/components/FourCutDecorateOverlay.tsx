@@ -10,6 +10,7 @@ import type { CardArtist } from "@/lib/lite";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { exportNode } from "@/lib/exportImage";
 import { FAN_ID_THEMES, type FanIdThemeId } from "@/lib/fanIdThemes";
+import { onWheelHorizontal, useDragScroll } from "@/lib/hScroll";
 import {
   normalizePlacedStickers,
   type CustomStickerPackId,
@@ -56,6 +57,7 @@ export default function FourCutDecorateOverlay({ artists, open, onClose }: { art
   const [activeTab, setActiveTab] = useState<Tab>("stickers");
   const [exporting, setExporting] = useState<null | "download" | "share">(null);
   const [exportFailed, setExportFailed] = useState(false);
+  const editionDrag = useDragScroll();
   // Shared per-idol photo store (same one the Fan ID uses) so photos picked here
   // show on both the four-cut and the 追星證.
   const media = useFanIdLocalMedia({ cardSerial: readSerial(), idolIds: artists.map((a) => a.id) });
@@ -133,14 +135,14 @@ export default function FourCutDecorateOverlay({ artists, open, onClose }: { art
           <button type="button" aria-label={copy.fourCutDone} onClick={close} className="grid h-8 w-8 place-items-center rounded-full border border-[#c8ccd2] bg-white text-[#5e636d] hover:bg-[#7c8088]/10">×</button>
         </div>
 
-        <div className="flex flex-col items-center gap-4 lg:grid lg:grid-cols-[328px_minmax(0,1fr)] lg:items-start lg:gap-6">
+        <div className="flex flex-col items-center gap-4 md:grid md:grid-cols-[328px_minmax(0,1fr)] md:items-start md:gap-6">
           {/* Sticky strip + live sticker canvas */}
-          <div className="shrink-0 lg:sticky lg:top-6 lg:justify-self-center">
+          <div className="shrink-0 md:sticky md:top-6 md:justify-self-center">
             <DecoratedFourCuts ref={nodeRef} artists={artists} themeId={themeId} caption={caption} stickers={stickers} editor={editor} photoOverrides={media.idolPreviewSources} className="w-full max-w-[328px]" />
           </div>
 
           {/* Right panel — same shell/tabs as the Fan ID customize step */}
-          <div className="w-full max-w-lg lg:max-w-none">
+          <div className="w-full max-w-lg md:max-w-none">
             <div role="tablist" aria-label={copy.decorateFourCut} className="flex gap-1 rounded-full border border-[#c8ccd2] bg-white/75 p-1">
               {(["stickers", "photo", "caption"] as const).map((tab) => {
                 const selected = activeTab === tab;
@@ -161,7 +163,7 @@ export default function FourCutDecorateOverlay({ artists, open, onClose }: { art
                 <>
                   <div>
                     <p className="mb-2 text-xs font-bold text-[#5e636d]">{copy.fourCutFrameLabel}</p>
-                    <div className="flex gap-2 overflow-x-auto pb-1" role="radiogroup" aria-label={copy.fourCutFrameLabel}>
+                    <div className="flex cursor-grab gap-2 overflow-x-auto pb-1" onWheel={onWheelHorizontal} {...editionDrag} role="radiogroup" aria-label={copy.fourCutFrameLabel}>
                       {Object.values(FAN_ID_THEMES).map((theme) => {
                         const selected = themeId === theme.id;
                         return (

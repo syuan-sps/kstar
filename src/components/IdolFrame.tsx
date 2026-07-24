@@ -4,7 +4,7 @@
 
 import type { CardArtist } from "@/lib/lite";
 import { getGroupSymbol } from "@/lib/groupSymbols";
-import { getGroupBorderStops, tintTowardWhite } from "@/lib/groupColors";
+import { getGroupBorderStops } from "@/lib/groupColors";
 import Thumb from "./Thumb";
 import AddPhotoCTA from "./AddPhotoCTA";
 
@@ -30,22 +30,18 @@ export default function IdolFrame({
   // Every accent derives from the group's colour, so the card reads as that
   // group rather than as a random per-idol palette.
   const [borderFrom, borderTo] = getGroupBorderStops(artist.group);
-  const bodyTint = tintTowardWhite(borderFrom, 0.07);
   const topLabel = artist.group ?? "✦ SOLO ✦";
   const frameSymbol = getGroupSymbol(artist.group);
   const isLong = frameSymbol.length > 2;
 
   return (
     <div
-      className={`group/card relative rounded-[20px] border-2 p-2.5 pt-5 transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${className}`}
+      className={`group/card relative rounded-[20px] border border-[#7c8088] p-2.5 pt-5 transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${className}`}
       style={{
-        // Transparent border + two-layer background paints a rounded gradient
-        // edge; one-colour groups get identical stops so it reads as solid.
-        borderColor: "transparent",
-        background: `linear-gradient(180deg, #ffffff, ${bodyTint}) padding-box, linear-gradient(135deg, ${borderFrom}, ${borderTo}) border-box`,
-        // The neutral hairline keeps very pale official colours (EXO's Cosmic
-        // Latte, Girls' Generation's Pastel Rose) from vanishing on white.
-        boxShadow: `0 0 0 1px rgba(28,30,36,.10), 0 1px 2px rgba(28,30,36,.06), 0 10px 22px -8px ${borderFrom}66`,
+        // Match the Fan ID's subtle silver collector sleeve, while group
+        // colours remain visible in the banner, symbols, and photo outline.
+        background: `linear-gradient(145deg, #ffffff 0%, #e3e7ec 38%, #fbfcfd 65%, #cbd1d8 100%) padding-box, linear-gradient(135deg, ${borderFrom}, ${borderTo}) border-box`,
+        boxShadow: `0 0 0 1px rgba(28,30,36,.18), inset 0 0 0 1px rgba(255,255,255,.78), 0 10px 22px -8px ${borderFrom}66`,
       }}
     >
       {/* holographic sheen — the collectible-photocard signature */}

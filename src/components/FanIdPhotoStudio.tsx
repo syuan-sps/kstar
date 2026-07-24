@@ -42,7 +42,10 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const cropRenderRequestRef = useRef(0);
   const persistingCropRef = useRef(false);
-  const [open, setOpen] = useState(false);
+  // The Photo tab is itself an intentional destination; show its upload choices
+  // immediately instead of making people open a second disclosure first.
+  const [open, setOpen] = useState(true);
+  const [idolChooserOpen, setIdolChooserOpen] = useState(false);
   const [draft, setDraft] = useState<EditorDraft | null>(null);
   const [renderingCrop, setRenderingCrop] = useState(false);
   const [savingCrop, setSavingCrop] = useState(false);
@@ -195,9 +198,6 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
   }
 
   const primaryUserKind: FanIdCropKind = cardMode === "idol-user" ? "user-avatar" : "user-portrait";
-  const userCropKinds: readonly FanIdCropKind[] = cardMode === "idol-user"
-    ? ["user-avatar", "user-portrait"]
-    : ["user-portrait", "user-avatar"];
   const userSrc = primaryUserKind === "user-avatar"
     ? media.userAvatarSrc ?? media.userPortraitSrc
     : media.userPortraitSrc ?? media.userAvatarSrc;
@@ -206,10 +206,52 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
 
   return (
     <section data-fanid-photo-studio className="w-full max-w-lg rounded-2xl border border-[#c8ccd2] bg-white/75 p-4 shadow-sm">
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <div>
+          <p className="font-bold text-[#1c1e24]">{copy.fanIdPhotosTitle}</p>
+          <p className="mt-0.5 text-xs text-[#5e636d]">{copy.fanIdPhotoUploadOwnHint}</p>
+        </div>
+        <div className="flex shrink-0 flex-col gap-1.5 sm:flex-row">
+          <button
+            type="button"
+            onClick={(event) => launchChooser(`user:${primaryUserKind}`, event.currentTarget)}
+            className="rounded-xl bg-[#1c1e24] px-3 py-2 text-xs font-bold text-white shadow-sm hover:bg-[#34363c]"
+          >
+            + {copy.fanIdPhotoUploadOwn}
+          </button>
+          <button
+            type="button"
+            onClick={() => { setOpen(true); setIdolChooserOpen(true); }}
+            className="rounded-xl border border-[#1c1e24] bg-white px-3 py-2 text-xs font-bold text-[#1c1e24] hover:bg-[#f4f5f7]"
+          >
+            + {copy.fanIdPhotoUploadIdol}
+          </button>
+        </div>
+      </div>
+      {idolChooserOpen && (
+        <div className="mb-3 rounded-xl border border-[#c8ccd2] bg-white/70 p-2.5">
+          <p className="mb-2 text-xs font-bold text-[#4a4f57]">{copy.fanIdPhotoUploadIdol}</p>
+          <div className="grid grid-cols-2 gap-2">
+            {picks.slice(0, 4).map((pick) => (
+              <button
+                key={pick.id}
+                type="button"
+                onClick={(event) => { setIdolChooserOpen(false); launchChooser(`idol:${pick.id}`, event.currentTarget); }}
+                className="flex items-center gap-2 rounded-lg border border-[#c8ccd2] bg-white px-2 py-2 text-left text-xs font-bold text-[#1c1e24] hover:border-[#7c8088]"
+              >
+                <span className="h-8 w-7 shrink-0 overflow-hidden rounded bg-[#eef0f3]">
+                  <img src={media.idolPreviewSources[pick.id] ?? pick.image_url ?? ""} alt="" className="h-full w-full object-cover" />
+                </span>
+                <span className="truncate">{pick.name_zh ?? pick.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       <details open={open} onToggle={(event) => setOpen((event.currentTarget as HTMLDetailsElement).open)}>
-        <summary className="cursor-pointer list-none font-bold text-[#1c1e24]">
-          {copy.fanIdPhotosTitle}
-          <span className="ml-2 text-xs font-medium text-[#5e636d]">{hasCustom ? copy.fanIdPhotosSummaryCustom : copy.fanIdPhotosSummaryOriginal}</span>
+        <summary className="cursor-pointer list-none text-sm font-bold text-[#1c1e24]">
+          <span>{hasCustom ? copy.fanIdPhotosSummaryCustom : copy.fanIdPhotosSummaryOriginal}</span>
+          <span className="ml-2 text-xs font-medium text-[#5e636d]">⌄</span>
         </summary>
         <div className="mt-4 space-y-4">
           <p data-fanid-photo-local-note className="text-xs text-[#4a4f57]">{copy.fanIdPhotoStoredLocal}</p>
@@ -231,7 +273,7 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
                 <p className="truncate text-xs font-bold">{pick.name_zh ?? pick.name}</p>
                 <p className="text-[11px] text-[#5e636d]">{record ? copy.fanIdPhotoCustomLocal : copy.fanIdPhotoOriginal}</p>
                 <input ref={(node) => { if (node) fileInputs.current.set(key, node); else fileInputs.current.delete(key); }} className="hidden" type="file" accept=".jpg,.jpeg,.png,.webp" onChange={(event) => { const file = event.target.files?.[0]; event.currentTarget.value = ""; if (file && restoreFocusRef.current) void choose(role, "idol-portrait", file, restoreFocusRef.current); }} />
-                <button type="button" onClick={(event) => launchChooser(key, event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoReplace}</button>
+                <button type="button" onClick={(event) => launchChooser(key, event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{record ? copy.fanIdPhotoReplace : copy.fanIdPhotoUploadIdol}</button>
                 {record && <><button type="button" onClick={(event) => openExisting(role, "idol-portrait", event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoAdjust}</button><button type="button" onClick={() => void media.remove(role)} className="w-full text-xs text-[#b4302b]">{copy.fanIdPhotoUseOriginal}</button></>}
               </div>;
             })}
@@ -242,17 +284,16 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
               <div className="h-16 w-14 shrink-0 overflow-hidden rounded-lg bg-[#eef0f3]">{userSrc && <img className="h-full w-full object-cover" src={userSrc} alt={copy.fanIdUserPhoto} />}</div>
               <div className="min-w-0 flex-1"><p className="font-bold">{copy.fanIdUserPhoto}</p><p className="mt-1 text-xs text-[#5e636d]">{recordFor({ kind: "user" }) ? copy.fanIdPhotoCustomLocal : copy.fanIdPhotoOriginal}</p></div>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              {userCropKinds.map((kind) => {
-                const label = kind === "user-portrait" ? copy.fanIdUserPortrait : copy.fanIdUserAvatar;
-                const key = `user:${kind}`;
+            <div className="mt-3">
+              {(() => {
+                const key = `user:${primaryUserKind}`;
                 const record = recordFor({ kind: "user" });
-                return <div key={kind}>
-                  <input ref={(node) => { if (node) fileInputs.current.set(key, node); else fileInputs.current.delete(key); }} className="hidden" type="file" accept=".jpg,.jpeg,.png,.webp" onChange={(event) => { const file = event.target.files?.[0]; event.currentTarget.value = ""; if (file && restoreFocusRef.current) void choose({ kind: "user" }, kind, file, restoreFocusRef.current); }} />
-                  <button type="button" onClick={(event) => launchChooser(key, event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoReplace} {label}</button>
-                  {record?.crops[kind] && <button type="button" onClick={(event) => openExisting({ kind: "user" }, kind, event.currentTarget)} className="mt-2 w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoAdjust} {label}</button>}
-                </div>;
-              })}
+                return <>
+                  <input ref={(node) => { if (node) fileInputs.current.set(key, node); else fileInputs.current.delete(key); }} className="hidden" type="file" accept=".jpg,.jpeg,.png,.webp" onChange={(event) => { const file = event.target.files?.[0]; event.currentTarget.value = ""; if (file && restoreFocusRef.current) void choose({ kind: "user" }, primaryUserKind, file, restoreFocusRef.current); }} />
+                  <button type="button" onClick={(event) => launchChooser(key, event.currentTarget)} className="w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoUploadOwn}</button>
+                  {record?.crops[primaryUserKind] && <button type="button" onClick={(event) => openExisting({ kind: "user" }, primaryUserKind, event.currentTarget)} className="mt-2 w-full rounded-lg border border-[#c8ccd2] px-2 py-1 text-xs font-bold">{copy.fanIdPhotoAdjust}</button>}
+                </>;
+              })()}
             </div>
             {recordFor({ kind: "user" }) && <button type="button" onClick={() => void media.remove({ kind: "user" })} className="mt-3 text-xs text-[#b4302b]">{copy.fanIdPhotoRemove}</button>}
           </div>

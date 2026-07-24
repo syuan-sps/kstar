@@ -11,6 +11,7 @@ import { getAllArtistsLite } from "@/lib/data";
 import LangToggle from "@/components/LangToggle";
 import LangSync from "@/components/LangSync";
 import SearchBar from "@/components/SearchBar";
+import HideOnScrollHeader from "@/components/HideOnScrollHeader";
 import BgDecor from "@/components/BgDecor";
 import ChromeSparkle from "@/components/ChromeSparkle";
 import Taskbar from "@/components/Taskbar";
@@ -71,7 +72,7 @@ export default async function RootLayout({
         {/* Y2K Silvercore layer — silver ✦ floating above the pink world */}
         <ChromeSparkle density="low" zone="background" />
 
-        <header className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/20 bg-[#f4f5f7]/85 backdrop-blur">
+        <HideOnScrollHeader className="relative z-20 sticky top-0 border-b border-[#c8ccd2]/20 bg-[#f4f5f7]/85 backdrop-blur">
           <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-2 gap-y-2 px-3 py-2 md:flex-nowrap md:gap-4 md:px-4 md:py-3">
             <HomeLogoLink className="shrink-0 text-lg font-black tracking-tight">
               <span className="font-orbitron chrome-text">
@@ -103,10 +104,12 @@ export default async function RootLayout({
               <LangToggle />
             </nav>
           </div>
-        </header>
-        <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 py-6">{children}</main>
+        </HideOnScrollHeader>
+        {/* Tighter top gutter on mobile: the 95px header already separates the
+            content, so a full 24px on top of it just pushed the card down. */}
+        <main className="relative z-10 mx-auto w-full max-w-5xl flex-1 px-4 pb-6 pt-3 md:py-6">{children}</main>
         <footer className="relative z-10 border-t border-[#c8ccd2]/15 px-4 py-6 text-center text-xs text-[#9aa0aa]">
-          {copy.appName} · {copy.footerCredit}
+          {copy.appName}
           {" · "}
           <a href="/submit" className="font-orbitron text-[10px] font-bold tracking-widest text-[#7c8088] hover:text-[#b4302b]">{copy.footerSubmit}</a>
           {" · "}

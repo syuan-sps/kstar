@@ -24,7 +24,8 @@ export default function MetalFrame({
   accent: string;
   band?: number;
   radius?: number;
-  rivets?: boolean;
+  /** "corners" keeps the hardware quiet on compact collector cards. */
+  rivets?: boolean | "corners";
 }) {
   const ref = useRef<SVGSVGElement>(null);
   const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
@@ -43,7 +44,7 @@ export default function MetalFrame({
     return () => ro.disconnect();
   }, []);
 
-  const key = `${accent.replace(/[^a-zA-Z0-9]/g, "") || "d"}-${band}-${rivets ? "r" : "n"}`;
+  const key = `${accent.replace(/[^a-zA-Z0-9]/g, "") || "d"}-${band}-${rivets === "corners" ? "c" : rivets ? "r" : "n"}`;
   const metalId = `mf-metal-${key}`;
   const tintId = `mf-tint-${key}`;
   const rivetId = `mf-rivet-${key}`;
@@ -80,12 +81,14 @@ export default function MetalFrame({
         const inner = roundedRect(band, band, w - 2 * band, h - 2 * band, Math.max(3, radius - band * 0.6));
         const cInset = Math.max(band * 0.9, radius * 0.46);
         const rr = Math.max(1.6, band * 0.29);
-        const rivetPts: [number, number][] = rivets
-          ? [
-              [cInset, cInset], [w - cInset, cInset], [cInset, h - cInset], [w - cInset, h - cInset],
-              [band / 2, h / 2], [w - band / 2, h / 2], [w / 2, h - band / 2],
-            ]
-          : [];
+        const cornerRivets: [number, number][] = [
+          [cInset, cInset], [w - cInset, cInset], [cInset, h - cInset], [w - cInset, h - cInset],
+        ];
+        const rivetPts: [number, number][] = rivets === "corners"
+          ? cornerRivets
+          : rivets
+            ? [...cornerRivets, [band / 2, h / 2], [w - band / 2, h / 2], [w / 2, h - band / 2]]
+            : [];
         return (
           <>
             <path d={`${outer} ${inner}`} fillRule="evenodd" fill={`url(#${metalId})`} />

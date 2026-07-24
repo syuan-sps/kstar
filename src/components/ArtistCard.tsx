@@ -19,7 +19,7 @@ export default function ArtistCard({
       <IdolFrame artist={artist} />
 
       {/* favorite button overlay (below the group banner) */}
-      <div className="absolute right-2 top-7 z-20">
+      <div className="absolute right-3 top-8 z-20">
         <FavoriteButton id={artist.id} size="sm" />
       </div>
 

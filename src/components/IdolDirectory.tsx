@@ -281,7 +281,7 @@ export default function IdolDirectory({ artists }: { artists: ArtistLite[] }) {
               className="group relative block transition hover:-translate-y-0.5"
             >
               <IdolFrame artist={a} showAddCTA />
-              <div className="absolute right-2 top-7 z-20">
+              <div className="absolute right-3 top-8 z-20">
                 <FavoriteButton id={a.id} size="sm" />
               </div>
               <button

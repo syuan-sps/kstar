@@ -3,6 +3,7 @@
 import { useRef, type PointerEvent } from "react";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { getFanIdTheme } from "@/lib/fanIdThemes";
+import { onWheelHorizontal, useDragScroll } from "@/lib/hScroll";
 import {
   CUSTOM_STICKER_PACKS,
   getCustomStickerAsset,
@@ -47,7 +48,7 @@ export function FanIdStickerCanvasEditor({ stickers, selectedId, onSelect, onTra
   const interaction = useRef<{ id: string; mode: "drag" | "resize" | "rotate"; pointerId: number; origin: PlacedCustomSticker } | null>(null);
 
   function position(event: PointerEvent<HTMLElement>) {
-    const rect = event.currentTarget.parentElement?.parentElement?.getBoundingClientRect();
+    const rect = event.currentTarget.closest<HTMLElement>("[data-fanid-sticker-canvas]")?.getBoundingClientRect();
     if (!rect) return null;
     return {
       x: clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100),
@@ -140,6 +141,8 @@ export default function FanIdStickerEditor({ activePackId, stickers, onPackChang
   const locale = useLocale();
   const activePack = getCustomStickerPack(activePackId);
   const atLimit = stickers.length >= MAX_CUSTOM_STICKERS;
+  const packDrag = useDragScroll();
+  const shelfDrag = useDragScroll();
   const packLabel = (packId: string, fallback: string) => {
     const theme = getFanIdTheme(packId);
     return locale === "zh" ? theme.labelZh : (theme.label || fallback);
@@ -150,14 +153,14 @@ export default function FanIdStickerEditor({ activePackId, stickers, onPackChang
         <div><p className="text-xs font-bold text-[#1c1e24]">{copy.stickerTrayTitle}</p><p className="mt-0.5 text-[11px] text-[#5e636d]">{copy.stickerTraySubtitle}</p></div>
         <span className="rounded-full border border-[#c8ccd2] bg-white px-2 py-1 text-[10px] font-bold text-[#5e636d]">{stickers.length} / {MAX_CUSTOM_STICKERS}</span>
       </div>
-      <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist" aria-label={copy.stickerPacksAria}>
+      <div className="flex cursor-grab touch-pan-x select-none gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" onWheel={onWheelHorizontal} {...packDrag} role="tablist" aria-label={copy.stickerPacksAria}>
         {Object.entries(CUSTOM_STICKER_PACKS).map(([packId, pack]) => {
           const active = activePackId === packId;
           return <button key={packId} role="tab" aria-selected={active} type="button" onClick={() => onPackChange(packId as CustomStickerPackId)} className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1 text-[10px] font-bold transition ${active ? "border-[#1c1e24] bg-[#1c1e24] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>{packLabel(packId, pack.label)}</button>;
         })}
       </div>
       {/* Each decal is centred and fully contained — never cropped by its tile. */}
-      <div className="grid auto-cols-[64px] grid-flow-col grid-rows-2 gap-2 overflow-x-auto pb-1 sm:auto-cols-[72px]" data-fanid-sticker-shelf-scroll>
+      <div className="grid auto-cols-[64px] cursor-grab touch-pan-x select-none grid-flow-col grid-rows-2 gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[72px]" onWheel={onWheelHorizontal} {...shelfDrag} data-fanid-sticker-shelf-scroll>
         {activePack.assets.map((asset) => (
           <button key={asset.id} type="button" disabled={atLimit} onClick={() => onChange([...stickers, makePlacedSticker(asset, createId())])} title={asset.label} aria-label={copy.stickerAdd(asset.label)} className="flex aspect-square shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#d9dde2] bg-white p-1.5 transition hover:border-[#1c1e24] disabled:cursor-not-allowed disabled:opacity-35">
             <img alt="" src={asset.src} draggable={false} className="pointer-events-none h-full w-full object-contain" />

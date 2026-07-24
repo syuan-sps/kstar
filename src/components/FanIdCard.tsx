@@ -4,9 +4,8 @@
 // owns no controls and never reads the catalog; issuing flows pass CardArtist
 // records and may capture the forwarded node through its ref.
 
-import { forwardRef } from "react";
+import { forwardRef, useLayoutEffect, useRef, useState } from "react";
 import Thumb from "@/components/Thumb";
-import FanIdCardFrame from "@/components/FanIdCardFrame";
 import FanIdCustomStickerLayer from "@/components/FanIdCustomStickerLayer";
 import { FanIdStickerCanvasEditor, type CustomStickerCanvasEditorProps } from "@/components/FanIdStickerEditor";
 import {
@@ -27,7 +26,6 @@ interface FanIdCardCommonProps {
   themeId?: FanIdThemeId;
   cardMode?: FanIdCardMode;
   fanName?: string;
-  song?: { title: string; artist: string; artworkUrl: string } | null;
   showFace?: boolean;
   facePhoto?: string | null;
   idolPhoto?: string | null;
@@ -37,6 +35,7 @@ interface FanIdCardCommonProps {
   customStickerEditor?: CustomStickerCanvasEditorProps;
   /** "Photo only" layout — hides the 追星靈魂 / FAN SIGNAL block, keeping the photo + banners. */
   hideArchetype?: boolean;
+  /** Static details inside the card's structural rails; enabled by default. */
 }
 
 export interface FanIdCardSampleProps extends FanIdCardCommonProps {
@@ -47,7 +46,10 @@ export interface FanIdCardProductionProps extends FanIdCardCommonProps {
   sample?: false;
   picks: CardArtist[];
   heroId: string;
-  result: ArchetypeResult;
+  /** Absent until the visitor takes the quiz — the archetype slot then shows an
+      unlock invitation instead of a result. Never faked: a placeholder code
+      would leak into the aria-label and the rarity badge. */
+  result?: ArchetypeResult;
   issuedAt: string;
   serial: string;
 }
@@ -111,7 +113,6 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
     serial,
   } = card;
   const {
-    song,
     showFace,
     facePhoto,
     idolPhoto,
@@ -137,30 +138,65 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   const avatarSource = effectiveUserAvatar ? "custom" : "missing";
   const portraitLabel = isUserHero ? (fanName || copy.fanIdSelfLabel) : (hero.name_zh ?? hero.name);
   const modeLabel = cardMode === "idol" ? "IDOL EDITION" : cardMode === "idol-user" ? "DUO EDITION" : "SELF EDITION";
-  const rarity = frameRarity(result.code, locale);
-  const complement = expandCode(result.code);
-  const complementType = ARCHETYPES[complement];
+  const rarity = result ? frameRarity(result.code, locale) : null;
+  const complement = result ? expandCode(result.code) : null;
+  const complementType = complement ? ARCHETYPES[complement] : null;
   const date = issuedAt;
+  const rootRef = useRef<HTMLDivElement>(null);
+  const surfaceRef = useRef<HTMLDivElement>(null);
+  const archetypeRef = useRef<HTMLElement>(null);
+  const [stickerCanvasHeight, setStickerCanvasHeight] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    if (!hideArchetype) {
+      setStickerCanvasHeight(null);
+      return;
+    }
+    const surface = surfaceRef.current;
+    const archetype = archetypeRef.current;
+    if (!surface || !archetype) return;
+    const measure = () => {
+      // Photo-only intentionally shortens the visible card. Its sticker canvas
+      // still uses the normal-card height, then the card clips anything below.
+      const nextHeight = surface.getBoundingClientRect().height + archetype.getBoundingClientRect().height + 10;
+      setStickerCanvasHeight((current) => current !== null && Math.abs(current - nextHeight) < 0.5 ? current : nextHeight);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(surface);
+    observer.observe(archetype);
+    return () => observer.disconnect();
+  }, [hideArchetype, locale, result?.code, fanName]);
+
+  function attachRoot(node: HTMLDivElement | null) {
+    rootRef.current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) ref.current = node;
+  }
 
   return (
     <div
-      ref={ref}
+      ref={attachRoot}
       data-sample={sample ? "true" : undefined}
       data-card-mode={cardMode}
       data-theme={theme.id}
-      aria-label={`${copy.fanIdName} ${result.code}`}
+      aria-label={result ? `${copy.fanIdName} ${result.code}` : copy.fanIdName}
       className="relative box-border w-[328px] overflow-hidden rounded-[28px] p-[11px] text-[#1c1e24] shadow-[0_1px_0_rgba(255,255,255,.9),0_0_0_1px_rgba(28,30,36,.42),0_28px_64px_rgba(28,30,36,.34)]"
       style={{ backgroundImage: theme.surface, color: theme.text }}
     >
-      {/* the card's border itself — an 11px themed metal band, always on */}
-      <FanIdCardFrame accent={theme.accent} />
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[4px] z-30 h-[5px] w-16 -translate-x-1/2 rounded-full border border-black/20 bg-white/55 shadow-[inset_0_1px_2px_rgba(28,30,36,.2)]" />
 
-      <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]" style={{ backgroundImage: theme.surface }}>
+      <div
+        ref={surfaceRef}
+        className="relative overflow-hidden rounded-[22px] border border-white/70 bg-[#eef0f3] shadow-[0_0_0_1px_rgba(28,30,36,.26),inset_0_0_0_1px_rgba(255,255,255,.72)]"
+        style={{ backgroundImage: theme.surface }}
+      >
         <header className="relative z-10 flex h-[54px] items-center justify-between overflow-hidden border-b border-white/10 px-3.5" style={{ backgroundImage: theme.header }}>
           <div>
-            <p className="font-orbitron text-[10px] font-black tracking-[0.14em] text-white">KSTAR · FAN ID</p>
-            <p className="mt-1 font-mono text-[6.5px] tracking-[0.18em] text-white/45">{modeLabel} · {theme.label.toUpperCase()}</p>
+            {/* nowrap: exports skip font embedding, so the fallback face is wider
+                and these wrapped — "ID" dropped onto the edition line. */}
+            <p className="whitespace-nowrap font-orbitron text-[10px] font-black tracking-[0.14em] text-white">KStar · FAN ID</p>
+            <p className="mt-1 whitespace-nowrap font-mono text-[6.5px] tracking-[0.18em] text-white/45">{modeLabel} · {theme.label.toUpperCase()}</p>
           </div>
           <div className="text-right font-mono text-[7px] leading-[1.45] text-white/55">
             {sample && <>{copy.fanIdSampleTag}<br /></>}
@@ -203,8 +239,31 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             )}
           </section>
 
-          {!hideArchetype && (
-          <section data-fanid-archetype="true" className="relative z-10 mt-2.5 rounded-[16px] border border-white/75 bg-white/[0.82] px-3 py-3 shadow-[0_0_0_1px_rgba(28,30,36,.16),0_8px_18px_rgba(28,30,36,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-sm">
+          {/* One node either way: the sticker-canvas measurement above depends on
+              archetypeRef existing. Without a quiz result the slot becomes an
+              invitation, so the card reads as unfinished rather than as a card
+              with a section quietly missing. data-export-hide keeps the pitch
+              out of the downloaded PNG. */}
+          <section
+            ref={archetypeRef}
+            data-fanid-archetype={result ? "true" : "locked"}
+            // Hidden here means hidden in the PNG too: photo-only parks this
+            // block at absolute top-0 behind `invisible`, so if the export ever
+            // loses that style it would print straight over the photo.
+            data-export-hide={!result || hideArchetype ? "true" : undefined}
+            className={`${hideArchetype ? "invisible absolute left-3 right-3 top-0" : "relative z-10 mt-2.5"} rounded-[16px] ${result
+              ? "border border-white/75 bg-white/[0.82] px-3 py-3 shadow-[0_0_0_1px_rgba(28,30,36,.16),0_8px_18px_rgba(28,30,36,.12),inset_0_1px_0_rgba(255,255,255,.9)] backdrop-blur-sm"
+              : "border-2 border-dashed px-3 py-4 text-center"}`}
+            style={result ? undefined : { borderColor: "#b4302b", backgroundColor: "rgba(180,48,43,0.05)" }}
+          >
+            {!result && (
+              <>
+                <p className="font-mono text-[6px] tracking-[0.18em]" style={{ color: "#b4302b" }}>{copy.fanIdUnlockKicker}</p>
+                <p className="mt-1.5 text-[12px] font-black text-[#1c1e24]">{copy.fanIdUnlockTitle}</p>
+                <p className="mt-1 text-[8px] text-[#7c8088]">{copy.fanIdUnlockBody}</p>
+              </>
+            )}
+            {result && (<>
             <div className="flex items-start justify-between gap-2">
               <div>
                 <p className="font-mono text-[6px] tracking-[0.18em] text-[#7c8088]">FAN SOUL · ARCHETYPE</p>
@@ -219,7 +278,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
                 </div>
                 <p className="mt-1 font-orbitron text-[6.5px] tracking-[0.1em] text-[#7c8088]">{locale === "zh" ? result.archetype.enName : result.code}</p>
               </div>
-              <span className="whitespace-nowrap rounded-full border px-2 py-1 font-mono text-[7px] font-bold" style={{ borderColor: `${theme.accent}88`, color: theme.accent, backgroundColor: `${theme.accent}12` }}>✦ {rarity.label}</span>
+              <span className="whitespace-nowrap rounded-full border px-2 py-1 font-mono text-[7px] font-bold" style={{ borderColor: `${theme.accent}88`, color: theme.accent, backgroundColor: `${theme.accent}12` }}>✦ {rarity?.label}</span>
             </div>
 
             <div className="mt-3 rounded-xl border border-black/10 bg-black/[0.035] px-2.5 py-2">
@@ -244,8 +303,8 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
               <b className="font-orbitron text-[9px] text-[#1c1e24]">{complement}</b>
               <span className="truncate font-bold">{complementType?.name[locale] ?? complement}{locale === "zh" && complementType ? ` · ${complementType.enName}` : ""}</span>
             </div>
+            </>)}
           </section>
-          )}
 
           <footer className="mt-2.5 grid grid-cols-[1fr_auto] gap-3 rounded-[13px] border border-black/10 bg-black/[0.045] px-3 py-2.5">
             <div className="min-w-0">
@@ -255,7 +314,6 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
               </div>
               <p className="mt-1.5 truncate text-[9px] text-[#4a4a4a]">{copy.fanIdHolder} · <b className="text-[#1a1a1a]">{fanName || copy.fanIdHolderPlaceholder}</b></p>
               <p className="mt-0.5 truncate text-[7px] text-[#7c8088]">BIAS · {hero.name_zh ?? hero.name}</p>
-              {song && <p className="mt-0.5 truncate text-[7px] text-[#7c8088]">♪ {song.title} · {song.artist}</p>}
               <p className="mt-1 font-mono text-[6px] tracking-[0.04em] text-[#9aa0aa]">{copy.fanIdIssuedLine(date)}</p>
             </div>
             <div className="text-center">
@@ -264,11 +322,16 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
             </div>
           </footer>
         </main>
-        {customStickerEditor
-          ? <FanIdStickerCanvasEditor {...customStickerEditor} stickers={customStickers} />
-          : <FanIdCustomStickerLayer stickers={customStickers} />}
+        <div
+          data-fanid-sticker-canvas
+          className="absolute inset-x-0 top-0 z-40"
+          style={hideArchetype && stickerCanvasHeight ? { height: stickerCanvasHeight } : { height: "100%" }}
+        >
+          {customStickerEditor
+            ? <FanIdStickerCanvasEditor {...customStickerEditor} stickers={customStickers} />
+            : <FanIdCustomStickerLayer stickers={customStickers} />}
+        </div>
       </div>
-
     </div>
   );
 });
