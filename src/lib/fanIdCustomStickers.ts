@@ -92,9 +92,12 @@ export const CUSTOM_STICKER_PACKS: Readonly<Record<CustomStickerPackId, Readonly
       id: asset.id,
       packId: packId as CustomStickerPackId,
       label: asset.label,
-      src: asset.file.startsWith("../")
+      // Serve the 896px WebP built by scripts/optimize-stickers.mjs. The PNG
+      // names stay the source of truth above; only the delivered file differs.
+      // 896px still exceeds the largest render the scale cap (1.3) allows.
+      src: (asset.file.startsWith("../")
         ? `${pack.path.replace(/\/custom$/, "")}/${asset.file.slice(3)}`
-        : `${pack.path}/${asset.file}`,
+        : `${pack.path}/${asset.file}`).replace(/\.png$/i, ".webp"),
     }))),
   })])) as Record<CustomStickerPackId, Readonly<{ label: string; assets: readonly CustomStickerAsset[] }>>,
 );

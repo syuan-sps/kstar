@@ -43,3 +43,7 @@ next-env.d.ts
 # Raw design source for the card frames (111MB). The app ships from
 # public/card-frames/ — this folder is the working art, not a build input.
 /design/fanid-themes/
+
+# PNG masters for the stickers (140MB). Only the generated WebP in
+# public/fanid-themes/ ships — regenerate with scripts/optimize-stickers.mjs
+/design/sticker-src/

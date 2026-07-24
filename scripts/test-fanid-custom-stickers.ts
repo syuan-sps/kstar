@@ -27,7 +27,9 @@ for (const [packId, pack] of Object.entries(CUSTOM_STICKER_PACKS)) {
   // image in the tray), and no generated art may sit on disk unoffered.
   const declaredFiles = new Set(pack.assets.map((asset) => path.basename(asset.src)));
   const customDirectory = path.join(process.cwd(), "public", "fanid-themes", packId, "custom");
-  const onDisk = fs.existsSync(customDirectory) ? fs.readdirSync(customDirectory).filter((file) => file.endsWith(".png")) : [];
+  // .webp, not .png: the WebP built by scripts/optimize-stickers.mjs is what
+  // ships and what asset.src points at. The PNG masters live outside public/.
+  const onDisk = fs.existsSync(customDirectory) ? fs.readdirSync(customDirectory).filter((file) => file.endsWith(".webp")) : [];
   assert.deepEqual(
     onDisk.filter((file) => !declaredFiles.has(file)),
     [],
