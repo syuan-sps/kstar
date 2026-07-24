@@ -4,10 +4,11 @@
 // Text-light and archetype-only: code, hero name, one tagline, compact bars,
 // and CTA. Content is distributed top/middle/bottom so there's no empty middle.
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { SCORE_LAYERS } from "@/lib/types";
 import { type ArchetypeResult, layerLabel } from "@/lib/archetypes";
 import { exportNode } from "@/lib/exportImage";
+import { CARD_BTN_PRIMARY, CARD_BTN_SECONDARY, CARD_BTN_SECONDARY_STYLE } from "@/lib/cardActionStyles";
 import { getStoryCardDecor } from "@/lib/storyCardDecor";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
@@ -15,7 +16,7 @@ import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 const GHOST = "#8a8d93";
 // flat, low-contrast brushed-metal tone — no dramatic banding across text
 
-export default function SoulStoryCard({ result, themeId }: { result: ArchetypeResult; themeId?: FanIdThemeId }) {
+export default function SoulStoryCard({ result, themeId, hideActions = false, extraActions }: { result: ArchetypeResult; themeId?: FanIdThemeId; hideActions?: boolean; extraActions?: ReactNode }) {
   const copy = useCopy();
   const locale = useLocale();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -133,26 +134,27 @@ export default function SoulStoryCard({ result, themeId }: { result: ArchetypeRe
             </div>
           </div>
 
-          {/* bottom: CTA */}
+          {/* bottom: CTA. The "測你的追星靈魂 →" invite is for whoever receives the
+              shared PNG, so it's export-only (hidden on the owner's own screen). */}
           <div className="shrink-0 text-center">
-            <div className="whitespace-nowrap font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent }}>{copy.storyCta}</div>
+            <div data-export-only className="whitespace-nowrap font-orbitron text-[11px] font-black tracking-wide" style={{ color: accent, display: "none" }}>{copy.storyCta}</div>
             <div className="mt-1 whitespace-nowrap font-orbitron text-[8px] font-bold tracking-[0.3em] text-[#7c8088]">✦&nbsp;KSTAR&nbsp;·&nbsp;2026&nbsp;✦</div>
           </div>
         </div>
 
       {/* ── Actions (not exported) ──────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        <button onClick={() => run("download")} disabled={busy}
-          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110 disabled:opacity-50">
-          {busy ? copy.processing : copy.shareDownloadStory}
+      {!hideActions && (
+      <div className="flex flex-wrap items-center justify-center gap-1">
+        <button onClick={() => run("download")} disabled={busy} className={CARD_BTN_PRIMARY}>
+          {busy ? copy.wizExporting : copy.fourCutDownload}
         </button>
-        <button onClick={() => run("share")} disabled={busy}
-          className="rounded-full border border-white/[0.68] px-4 py-2 text-xs font-bold text-[#1a1a1a] shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)] transition hover:brightness-95 disabled:opacity-50"
-          style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.38))" }}>
-          {copy.shareShare}
+        <button onClick={() => run("share")} disabled={busy} className={CARD_BTN_SECONDARY} style={CARD_BTN_SECONDARY_STYLE}>
+          {copy.fourCutShare}
         </button>
+        {extraActions}
       </div>
-      {failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedStory}</p>}
+      )}
+      {!hideActions && failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedStory}</p>}
     </div>
   );
 }

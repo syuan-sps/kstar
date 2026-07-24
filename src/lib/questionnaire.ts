@@ -103,7 +103,7 @@ export interface Question {
 
 export const QUESTIONS: Question[] = [
   {
-    id: "q1", title: { zh: "老實說 — 你是被哪個「瞬間」圈粉的？", en: "Honestly — which moment made you a fan?" }, layer: "mixed", pickGrounded: true,
+    id: "q1", title: { zh: "老實說，你是被哪個「瞬間」圈粉的？", en: "Honestly, which moment made you a fan?" }, layer: "mixed", pickGrounded: true,
     options: [
       { id: "stage", label: { zh: "一支直拍／一段舞台", en: "A fancam / a stage" }, sub: { zh: "那個舞台炸到你", en: "That stage blew you away" }, layer: "performance" },
       { id: "visual", label: { zh: "一張照片／一身造型", en: "A photo / a look" }, sub: { zh: "顏值與造型直擊", en: "Face and styling, direct hit" }, layer: "aesthetic" },
@@ -140,7 +140,7 @@ export const QUESTIONS: Question[] = [
     ],
   },
   {
-    id: "q5", title: { zh: "他做什麼的時候，你會突然超驕傲、甚至鼻酸？", en: "What makes you suddenly proud of them — even teary?" }, layer: "content",
+    id: "q5", title: { zh: "他做什麼的時候，你會突然超驕傲、甚至鼻酸？", en: "What makes you suddenly proud of them, even teary?" }, layer: "content",
     options: [
       { id: "grind", label: { zh: "拼命練習、把舞台做到最好", en: "Practicing relentlessly to perfect the stage" }, layer: "content", tokens: [{ field: "value_topics", values: ["努力哲學", "專業職人精神"] }] },
       { id: "self", label: { zh: "做自己、不管別人眼光", en: "Being themselves, no matter what anyone thinks" }, layer: "content", tokens: [{ field: "value_topics", values: ["自我認同", "自由奔放"] }] },
@@ -149,7 +149,7 @@ export const QUESTIONS: Question[] = [
     ],
   },
   {
-    id: "q6", title: { zh: "深夜睡不著，你會點開他的什麼？", en: "Can't sleep at night — what of theirs do you open?" }, layer: "content",
+    id: "q6", title: { zh: "深夜睡不著，你會點開他的什麼？", en: "Can't sleep at night: what of theirs do you open?" }, layer: "content",
     options: [
       { id: "intimate", label: { zh: "他的 vlog／日常碎念", en: "Their vlog / daily rambles" }, layer: "content", tokens: [{ field: "content_tone", values: ["intimate"] }, { field: "lifestyle_topics", values: ["居家日常"] }] },
       { id: "hype", label: { zh: "他的舞台直拍", en: "Their stage fancams" }, layer: "performance", tokens: [{ field: "content_tone", values: ["hype"] }] },
@@ -357,22 +357,22 @@ export const FRAMING: Record<Locale, {
   outlierNo: string;
 }> = {
   zh: {
-    q1: (topName) => `先想想 ${topName} — 你是被哪個「瞬間」圈粉的？`,
-    confirmAgree: (label) => `你選的幾位氣場都偏「${label}」 — 想要更多這種，還是換個口味？`,
+    q1: (topName) => `先想想 ${topName}，你是被哪個「瞬間」圈粉的？`,
+    confirmAgree: (label) => `你選的幾位氣場都偏「${label}」，想要更多這種，還是換個口味？`,
     confirmMore: "更多這種",
     confirmDiverse: "換個口味試試",
     outlier: (_names, outlierName, energyLabel) =>
-      `你這四位大多走同一掛，只有 ${outlierName} 是${energyLabel} — 那份反差，也是你的菜嗎？`,
+      `你這四位大多走同一掛，只有 ${outlierName} 是${energyLabel}，那份反差也是你的菜嗎？`,
     outlierYes: "對，超愛",
     outlierNo: "還好，純屬意外",
   },
   en: {
-    q1: (topName) => `Think about ${topName} first — which "moment" made you a fan?`,
-    confirmAgree: (label) => `Your picks mostly lean "${label}" — want more of that, or a change of pace?`,
+    q1: (topName) => `Think about ${topName} first: which "moment" made you a fan?`,
+    confirmAgree: (label) => `Your picks mostly lean "${label}". Want more of that, or a change of pace?`,
     confirmMore: "More of that",
     confirmDiverse: "Mix it up",
     outlier: (_names, outlierName, energyLabel) =>
-      `Your four mostly run the same energy, except ${outlierName} — who's ${energyLabel}. Is that contrast your thing too?`,
+      `Your four mostly run the same energy, except ${outlierName}, who's ${energyLabel}. Is that contrast your thing too?`,
     outlierYes: "Yes, I love it",
     outlierNo: "Nah, just a coincidence",
   },

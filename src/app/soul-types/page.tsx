@@ -3,6 +3,7 @@ import { getLocale } from "@/lib/i18n/server";
 import { getCopy } from "@/lib/copy";
 import { SCORE_LAYERS } from "@/lib/types";
 import { ARCHETYPES, layerLabel, LAYER_COLOR, COLOR_STORIES, LEGEND_STORY } from "@/lib/archetypes";
+import SoulTypeHighlighter from "@/components/SoulTypeHighlighter";
 
 const GHOST = "#c8ccd2";
 
@@ -31,6 +32,7 @@ export default async function SoulTypesPage() {
 
   return (
     <div className="space-y-10">
+      <SoulTypeHighlighter />
       <div className="text-center">
         <h1 className="font-orbitron text-2xl font-black chrome-text">{copy.soulTypesTitle}</h1>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#5e636d]">{copy.soulTypesIntro}</p>
@@ -48,7 +50,8 @@ export default async function SoulTypesPage() {
               return (
                 <div
                   key={code}
-                  className="rounded-[16px] border-2 bg-white p-4 shadow-[2px_2px_0_rgba(124,128,136,0.2)]"
+                  data-soul-code={code}
+                  className="relative rounded-[16px] border-2 bg-white p-4 shadow-[2px_2px_0_rgba(124,128,136,0.2)]"
                   style={{ borderColor: `${accent}55` }}
                 >
                   <div className="flex justify-center gap-1 font-orbitron text-xl font-black leading-none">

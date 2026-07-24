@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 > **Important:** This is Next.js 16 with React 19. APIs differ from training data. Read `node_modules/next/dist/docs/` before writing unfamiliar Next.js code.
 
+> **Live site:** the canonical, user-confirmed Vercel URL for this project is **https://kstar-soulcuts.vercel.app/** (owner-stated 2026-07-15). Use this URL — not a `git ls-remote`/API-derived preview-deployment URL — whenever checking or comparing against "what's live."
+
 ---
 
 ## Commands

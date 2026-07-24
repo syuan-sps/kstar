@@ -1,4 +1,5 @@
 import type { FanIdThemeId } from "./fanIdThemes";
+import type { PlacedCustomSticker } from "./fanIdCustomStickers";
 
 // ── Idol profile sub-types ─────────────────────────────────────────────
 export interface IdolProfile {
@@ -137,6 +138,10 @@ export interface UserPrefs {
   issuedAt?: string;                   // YYYY.MM.DD stamped once — 追星證 issue date
   serial?: string;                     // stable 追星證 ID (not a sequence)
   themeId?: FanIdThemeId;              // restore selected visual edition on completed cards
+  storyThemeId?: FanIdThemeId;         // 限動卡 + 完整報告 shared colour (separate from the 追星證)
   cardMode?: FanIdCardMode;            // restore selected Fan ID layout on completed cards
-  stickersEnabled?: boolean;           // restore optional sticker-bomb overlay choice
+  hideArchetype?: boolean;             // "Photo only" — hide the 追星靈魂 block on the Fan ID
+  fourCutStickers?: PlacedCustomSticker[]; // decorations placed on the 人生四格 strip
+  fourCutThemeId?: FanIdThemeId;       // 人生四格 mat edition (same set as the Fan ID)
+  fourCutCaption?: string;             // 人生四格 caption / date stamp line
 }

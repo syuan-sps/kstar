@@ -126,8 +126,8 @@ export default function SoulQuiz({
         <div className="space-y-2.5">
           {rank.map((L, i) => (
             <div key={L} className="flex items-center gap-2 rounded-xl border border-[#c8ccd2]/40 bg-white px-3 py-2">
-              <span className="font-orbitron text-xs font-black text-[#9aa0aa]">#{i + 1}</span>
-              <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LAYER_COLOR[L] }} />
+              <span className="w-4 shrink-0 text-center font-orbitron text-xs font-black text-[#9aa0aa]">#{i + 1}</span>
+              <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: LAYER_COLOR[L] }} />
               <span className="flex-1 text-sm font-bold text-[#1c1e24]">{layerLabel(locale, L)}</span>
               <button onClick={() => move(i, -1)} disabled={i === 0}
                 className="rounded-md px-1.5 text-[#7c8088] hover:bg-[#7c8088]/10 disabled:opacity-25" aria-label={copy.moveUp}>▲</button>

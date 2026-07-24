@@ -217,7 +217,9 @@ export default function FanIdPhotoStudio({ cardSerial, picks, cardMode, media }:
           {(busy || media.status === "loading") && <p role="status" aria-live="polite" className="text-xs text-[#4a4f57]">{copy.processing}</p>}
           {(error ?? mediaError) && <p role="alert" className="text-xs text-[#b4302b]">{error ?? mediaError}</p>}
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {/* 2×2, not 4-across: the customize panel is a narrow column now, so four
+              columns crushed the cards (1-char names, wrapped buttons). */}
+          <div className="grid grid-cols-2 gap-3">
             {picks.slice(0, 4).map((pick) => {
               const role: FanIdMediaRole = { kind: "idol", idolId: pick.id };
               const record = recordFor(role);

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { searchArtists } from "@/lib/data";
 import { getCopy } from "@/lib/copy";
 import { getLocale } from "@/lib/i18n/server";
@@ -21,7 +22,16 @@ export default async function SearchPage({
       </h1>
 
       {artists.length === 0 && (
-        <p className="text-[#9aa0aa]">{copy.noResults}</p>
+        <div className="space-y-3">
+          <p className="text-[#9aa0aa]">{copy.noResults}</p>
+          <p className="text-sm text-[#5e636d]">{copy.noResultsHint}</p>
+          <Link
+            href="/#idols"
+            className="inline-block rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.35)] transition hover:brightness-110"
+          >
+            {copy.searchBrowseDirectory}
+          </Link>
+        </div>
       )}
 
       {artists.length > 0 && (

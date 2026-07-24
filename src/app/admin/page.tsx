@@ -41,7 +41,7 @@ export default async function AdminPage() {
                 <span className="text-[#5e636d]">署名：{r.credit ?? "（無）"}</span>
               </div>
               <a href={r.source_url} target="_blank" rel="noreferrer" className="mt-1 block truncate text-xs text-[#56789f] underline">{r.source_url}</a>
-              {flagged && <p className="mt-1 text-[10px] text-[#b88008]">⚠ 出處像非自由授權 — 請確認後再通過</p>}
+              {flagged && <p className="mt-1 text-[10px] text-[#b88008]">⚠ 出處像非自由授權，請確認後再通過</p>}
             </div>
             <div className="flex flex-col gap-2">
               <form action={approveAction}><input type="hidden" name="id" value={r.id} /><input type="hidden" name="imageFocus" value="0.3" />

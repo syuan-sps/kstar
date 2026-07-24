@@ -10,6 +10,7 @@ import { localizeArtist } from "@/lib/i18n/catalog";
 import Thumb from "@/components/Thumb";
 import AddPhotoCTA from "@/components/AddPhotoCTA";
 import FavoriteButton from "@/components/FavoriteButton";
+import AddToFourCutsButton from "@/components/AddToFourCutsButton";
 import ProfileExplorer from "@/components/ProfileExplorer";
 
 export default async function ArtistPage({
@@ -50,6 +51,10 @@ export default async function ArtistPage({
   // Localize LAST — similarity + personalReason above always run on raw zh
   // artists; only the render below (and the reason-API prompt SimilarSection
   // builds from sourceArtist) should ever see EN-translated profile text.
+  // id → romanized name, so the four-cut swap toast can name whoever gets
+  // rotated out. Just names (not the catalog), matching FourCuts' own labels.
+  const nameById: Record<string, string> = Object.fromEntries(allArtists.map((a) => [a.id, a.name]));
+
   const displayArtist = localizeArtist(artist, locale);
   const displayRecsByLayer = Object.fromEntries(
     LAYERS.map((l) => [l, recsByLayer[l].map((s) => ({ ...s, artist: localizeArtist(s.artist, locale) }))]),
@@ -98,8 +103,9 @@ export default async function ArtistPage({
               </span>
             ))}
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <FavoriteButton id={displayArtist.id} />
+            <AddToFourCutsButton id={displayArtist.id} name={displayArtist.name} nameById={nameById} />
           </div>
         </div>
       </section>

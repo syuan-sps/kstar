@@ -2,10 +2,10 @@ import { getAllArtistsLite } from "@/lib/data";
 import { getCopy } from "@/lib/copy";
 import { getLocale } from "@/lib/i18n/server";
 import { localizeLites } from "@/lib/i18n/catalog";
-import MyFourCuts from "@/components/MyFourCuts";
 import IdolDirectory from "@/components/IdolDirectory";
 import LandingGate from "@/components/LandingGate";
 import ClaimChip from "@/components/ClaimChip";
+import HomeSoulShowcase from "@/components/HomeSoulShowcase";
 
 export default async function Home() {
   const locale = await getLocale();
@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <LandingGate>
       {/* ── Desktop: 인생네컷 centerpiece — THE selling point ──── */}
-      <div className="hidden md:flex md:flex-col md:items-center md:justify-center md:gap-2 relative" style={{ height: "calc(100vh - 3.5rem - 2.5rem)" }}>
+      <div className="hidden md:flex md:flex-col md:items-center md:justify-center md:gap-2 relative py-6" style={{ minHeight: "calc(100vh - 3.5rem - 2.5rem)" }}>
         {/* Floating chrome objects — corners only, behind the four-cut (z-0) */}
         <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" className="pointer-events-none absolute bottom-8 left-8 z-0" style={{ opacity: 0.08 }}>
           <defs>
@@ -44,20 +44,12 @@ export default async function Home() {
           </g>
         </svg>
 
-        {/* Hero text — a normal flow sibling above the four-cut group, so it can
-            never overlap the "你的人生四格" heading regardless of screen size:
-            block stacking guarantees the gap, unlike two independently
-            percentage-positioned absolute elements. */}
-        <div className="relative z-0 shrink-0 pointer-events-none text-center" aria-hidden="true">
-          <div className="chrome-text font-orbitron text-3xl md:text-4xl lg:text-5xl font-black tracking-widest opacity-30 select-none uppercase whitespace-nowrap">
-            {copy.taglineEn}
-          </div>
-        </div>
-
-        {/* Personalized 인생네컷 */}
-        <div className="relative z-20 shrink-0 flex flex-col items-center">
-          <MyFourCuts allArtists={artists} frameClassName="w-[clamp(320px,38vh,480px)]" />
-          <div className="mt-3 flex justify-center"><ClaimChip /></div>
+        {/* One personalized card: 人生四格 / 限動卡 / 完整報告 / 追星證 as tabs
+            (opens on the 追星證). Falls back to the four-cut / start-CTA until the
+            visitor has a finished 追星證. */}
+        <div className="relative z-20 flex shrink-0 flex-col items-center gap-3">
+          <HomeSoulShowcase allArtists={artists} />
+          <div className="flex justify-center"><ClaimChip /></div>
         </div>
 
         {/* Scroll hint toward the directory */}
@@ -70,8 +62,8 @@ export default async function Home() {
       </div>
 
       {/* ── Mobile: hero + tagline ────────────────────────────── */}
-      <div className="space-y-8 md:hidden">
-        <MyFourCuts allArtists={artists} className="pt-2" />
+      <div className="space-y-6 md:hidden">
+        <div className="flex justify-center pt-2"><HomeSoulShowcase allArtists={artists} /></div>
         <div className="flex justify-center"><ClaimChip /></div>
       </div>
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, type PointerEvent } from "react";
+import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
+import { getFanIdTheme } from "@/lib/fanIdThemes";
 import {
   CUSTOM_STICKER_PACKS,
   getCustomStickerAsset,
@@ -41,6 +43,7 @@ function createId(): string {
 }
 
 export function FanIdStickerCanvasEditor({ stickers, selectedId, onSelect, onTransform, onRemove }: CustomStickerCanvasEditorProps) {
+  const copy = useCopy();
   const interaction = useRef<{ id: string; mode: "drag" | "resize" | "rotate"; pointerId: number; origin: PlacedCustomSticker } | null>(null);
 
   function position(event: PointerEvent<HTMLElement>) {
@@ -99,7 +102,7 @@ export function FanIdStickerCanvasEditor({ stickers, selectedId, onSelect, onTra
           <div key={sticker.id} className="absolute" style={common}>
             <button
               type="button"
-              aria-label={`Move ${asset.label}`}
+              aria-label={copy.stickerMove(asset.label)}
               aria-pressed={selected}
               data-fanid-custom-sticker={sticker.assetId}
               onPointerDown={(event) => begin(event, sticker, "drag")}
@@ -120,9 +123,9 @@ export function FanIdStickerCanvasEditor({ stickers, selectedId, onSelect, onTra
             </button>
             {selected && (
               <>
-                <button type="button" aria-label={`Resize ${asset.label}`} onClick={(event) => { if (event.detail === 0) onTransform(sticker.id, { scale: clamp(sticker.scale + .02, MIN_CUSTOM_STICKER_SCALE, MAX_CUSTOM_STICKER_SCALE) }); }} onPointerDown={(event) => begin(event, sticker, "resize")} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} className="absolute -bottom-2 -right-2 grid h-5 w-5 touch-none place-items-center rounded-full border border-white bg-[#1683ff] text-xs font-black text-white shadow">↗</button>
-                <button type="button" aria-label={`Rotate ${asset.label}`} onClick={(event) => { if (event.detail === 0) onTransform(sticker.id, { rotation: normalizeCustomStickerRotation(sticker.rotation + 15) }); }} onPointerDown={(event) => begin(event, sticker, "rotate")} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} className="absolute -top-2 left-1/2 grid h-5 w-5 -translate-x-1/2 touch-none place-items-center rounded-full border border-white bg-[#1c1e24] text-[10px] font-black text-white shadow">↻</button>
-                <button type="button" aria-label={`Remove ${asset.label}`} onClick={() => onRemove(sticker.id)} className="absolute -left-2 -top-2 grid h-5 w-5 place-items-center rounded-full border border-white bg-[#b4302b] text-xs font-black text-white shadow">×</button>
+                <button type="button" aria-label={copy.stickerResize(asset.label)} onClick={(event) => { if (event.detail === 0) onTransform(sticker.id, { scale: clamp(sticker.scale + .02, MIN_CUSTOM_STICKER_SCALE, MAX_CUSTOM_STICKER_SCALE) }); }} onPointerDown={(event) => begin(event, sticker, "resize")} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} className="absolute -bottom-2 -right-2 grid h-5 w-5 touch-none place-items-center rounded-full border border-white bg-[#1683ff] text-xs font-black text-white shadow">↗</button>
+                <button type="button" aria-label={copy.stickerRotate(asset.label)} onClick={(event) => { if (event.detail === 0) onTransform(sticker.id, { rotation: normalizeCustomStickerRotation(sticker.rotation + 15) }); }} onPointerDown={(event) => begin(event, sticker, "rotate")} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} className="absolute -top-2 left-1/2 grid h-5 w-5 -translate-x-1/2 touch-none place-items-center rounded-full border border-white bg-[#1c1e24] text-[10px] font-black text-white shadow">↻</button>
+                <button type="button" aria-label={copy.stickerRemove(asset.label)} onPointerDown={(event) => event.stopPropagation()} onClick={() => onRemove(sticker.id)} className="absolute -left-2 -top-2 grid h-5 w-5 place-items-center rounded-full border border-white bg-[#b4302b] text-xs font-black text-white shadow">×</button>
               </>
             )}
           </div>
@@ -132,25 +135,32 @@ export function FanIdStickerCanvasEditor({ stickers, selectedId, onSelect, onTra
   );
 }
 
-export default function FanIdStickerEditor({ selectedThemeId, activePackId, stickers, onPackChange, onChange }: CustomStickerEditorProps) {
+export default function FanIdStickerEditor({ activePackId, stickers, onPackChange, onChange }: CustomStickerEditorProps) {
+  const copy = useCopy();
+  const locale = useLocale();
   const activePack = getCustomStickerPack(activePackId);
   const atLimit = stickers.length >= MAX_CUSTOM_STICKERS;
+  const packLabel = (packId: string, fallback: string) => {
+    const theme = getFanIdTheme(packId);
+    return locale === "zh" ? theme.labelZh : (theme.label || fallback);
+  };
   return (
     <section data-fanid-sticker-shelf className="space-y-3 rounded-2xl border border-[#c8ccd2] bg-white/75 p-3">
       <div className="flex items-center justify-between gap-2">
-        <div><p className="text-xs font-bold text-[#1c1e24]">Custom stickers</p><p className="mt-0.5 text-[11px] text-[#5e636d]">Place them anywhere — overlap is part of the fun.</p></div>
+        <div><p className="text-xs font-bold text-[#1c1e24]">{copy.stickerTrayTitle}</p><p className="mt-0.5 text-[11px] text-[#5e636d]">{copy.stickerTraySubtitle}</p></div>
         <span className="rounded-full border border-[#c8ccd2] bg-white px-2 py-1 text-[10px] font-bold text-[#5e636d]">{stickers.length} / {MAX_CUSTOM_STICKERS}</span>
       </div>
-      <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist" aria-label="Sticker packs">
+      <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist" aria-label={copy.stickerPacksAria}>
         {Object.entries(CUSTOM_STICKER_PACKS).map(([packId, pack]) => {
           const active = activePackId === packId;
-          return <button key={packId} role="tab" aria-selected={active} type="button" onClick={() => onPackChange(packId as CustomStickerPackId)} className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold transition ${active ? "border-[#1c1e24] bg-[#1c1e24] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>{pack.label}{packId === selectedThemeId ? " · default" : ""}</button>;
+          return <button key={packId} role="tab" aria-selected={active} type="button" onClick={() => onPackChange(packId as CustomStickerPackId)} className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1 text-[10px] font-bold transition ${active ? "border-[#1c1e24] bg-[#1c1e24] text-white" : "border-[#c8ccd2] bg-white text-[#5e636d]"}`}>{packLabel(packId, pack.label)}</button>;
         })}
       </div>
-      <div className="grid grid-cols-5 gap-2 sm:grid-cols-10">
+      {/* Each decal is centred and fully contained — never cropped by its tile. */}
+      <div className="grid auto-cols-[64px] grid-flow-col grid-rows-2 gap-2 overflow-x-auto pb-1 sm:auto-cols-[72px]" data-fanid-sticker-shelf-scroll>
         {activePack.assets.map((asset) => (
-          <button key={asset.id} type="button" disabled={atLimit} onClick={() => onChange([...stickers, makePlacedSticker(asset, createId())])} title={asset.label} aria-label={`Add ${asset.label}`} className="aspect-square overflow-hidden rounded-lg border border-[#d9dde2] bg-white p-1 transition hover:border-[#1c1e24] disabled:cursor-not-allowed disabled:opacity-35">
-            <img alt="" src={asset.src} draggable={false} className="h-full w-full object-contain" />
+          <button key={asset.id} type="button" disabled={atLimit} onClick={() => onChange([...stickers, makePlacedSticker(asset, createId())])} title={asset.label} aria-label={copy.stickerAdd(asset.label)} className="flex aspect-square shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#d9dde2] bg-white p-1.5 transition hover:border-[#1c1e24] disabled:cursor-not-allowed disabled:opacity-35">
+            <img alt="" src={asset.src} draggable={false} className="pointer-events-none h-full w-full object-contain" />
           </button>
         ))}
       </div>

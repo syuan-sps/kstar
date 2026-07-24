@@ -4,8 +4,7 @@ import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import FanIdCard from "@/components/FanIdCard";
-import FanIdDecorationFrame, { FAN_ID_DECORATION_ASSETS } from "@/components/FanIdDecorationFrame";
-import { StickerBombPreview } from "@/components/wizard/StickerBombPreview";
+import FanIdCardFrame from "@/components/FanIdCardFrame";
 import { FAN_ID_THEMES, getFanIdTheme } from "@/lib/fanIdThemes";
 import {
   getStickerComposition,
@@ -18,16 +17,11 @@ import { EXPORT_STYLE_PROPS } from "@/lib/exportImage";
 import {
   finishWizard,
   normalizeCardMode,
-  normalizeStickersEnabled,
   normalizeThemeId,
 } from "@/lib/wizardState";
 import { SCORE_LAYERS } from "@/lib/types";
 import { CUSTOM_STICKER_PACKS } from "@/lib/fanIdCustomStickers";
 
-assert.equal(normalizeStickersEnabled(true), true);
-assert.equal(normalizeStickersEnabled(false), false);
-assert.equal(normalizeStickersEnabled("true"), false);
-assert.equal(normalizeStickersEnabled(undefined), false);
 assert.equal(normalizeThemeId("chrome"), "chrome");
 assert.equal(normalizeThemeId("missing-theme"), "chrome");
 assert.equal(normalizeThemeId("toString"), "chrome");
@@ -40,34 +34,22 @@ assert.equal(normalizeCardMode("user"), "user");
 assert.equal(normalizeCardMode("missing-mode"), "idol-user");
 assert.equal(EXPORT_STYLE_PROPS.includes("z-index"), true, "export should preserve z-order");
 
-for (const themeId of Object.keys(FAN_ID_DECORATION_ASSETS)) {
-  const decorationFrame = renderToStaticMarkup(
-    createElement(FanIdDecorationFrame, { enabled: true, themeId }),
-  );
-  assert.match(decorationFrame, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`));
-  assert.equal(decorationFrame.includes("data-fanid-decoration-popout="), false);
+// The card border is now a code-drawn metal band, always rendered and tinted
+// per edition. Every theme therefore gets its own version of the same frame.
+for (const theme of Object.values(FAN_ID_THEMES)) {
+  const frame = renderToStaticMarkup(createElement(FanIdCardFrame, { accent: theme.accent }));
+  assert.match(frame, /data-fanid-card-frame="true"/, `${theme.id} should render the card frame`);
+  assert.equal(frame.includes(theme.accent), true, `${theme.id} frame should carry its accent tint`);
+  assert.equal(frame.includes("data-fanid-decoration-popout="), false);
 }
 
-const decorationAssetPaths = Object.values(FAN_ID_DECORATION_ASSETS).map(({ sleeve }) => sleeve);
-assert.equal(decorationAssetPaths.length, 4, "the four original themes should map one sleeve asset");
-for (const assetPath of decorationAssetPaths) {
-  assert.equal(
-    fs.existsSync(path.join(process.cwd(), "public", assetPath.replace(/^\//, ""))),
-    true,
-    `mapped decoration asset should exist: ${assetPath}`,
-  );
-}
-
-assert.equal(
-  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: false, themeId: "kawaii" })),
-  "",
-  "disabled Kawaii should not render decoration layers",
+const frameAccents = new Set(
+  Object.values(FAN_ID_THEMES).map((theme) => {
+    const frame = renderToStaticMarkup(createElement(FanIdCardFrame, { accent: theme.accent }));
+    return /id="fanid-frame-tint-([^"]+)"/.exec(frame)?.[1];
+  }),
 );
-assert.equal(
-  renderToStaticMarkup(createElement(FanIdDecorationFrame, { enabled: true, themeId: "missing-theme" })),
-  "",
-  "unknown themes should not render decoration layers",
-);
+assert.equal(frameAccents.has(undefined), false, "every frame should declare a tint gradient");
 assert.equal(
   renderToStaticMarkup(createElement(FanIdStickerLayer, { enabled: true, themeId: "kawaii" })),
   "",
@@ -224,7 +206,7 @@ for (const layout of FAN_ID_RENDER_LAYOUTS) {
     createElement(
       LocaleProvider,
       { locale: "en" },
-      createElement(FanIdCard, { sample: true, ...layout, stickersEnabled: true }),
+      createElement(FanIdCard, { sample: true, ...layout }),
     ),
   );
   assert.match(markup, new RegExp(`data-card-mode="${layout.cardMode}"`), `${layout.name} should render its card mode`);
@@ -263,17 +245,14 @@ for (const themeId of Object.keys(FAN_ID_THEMES)) {
         { locale: "en" },
         createElement(FanIdCard, {
           sample: true,
-          stickersEnabled: true,
           themeId,
           cardMode,
         }),
       ),
     );
     const label = `${themeId}:${cardMode}`;
-    const hasSleeve = Object.prototype.hasOwnProperty.call(FAN_ID_DECORATION_ASSETS, themeId);
-    assert.match(decoratedCardMarkup, new RegExp(`data-card-sticker-architecture="${hasSleeve ? "sleeve-frame" : "disabled"}"`), label);
-    if (hasSleeve) assert.match(decoratedCardMarkup, new RegExp(`data-fanid-decoration-frame="${themeId}-sleeve"`), label);
-    else assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-frame="), false, label);
+    assert.match(decoratedCardMarkup, /data-fanid-card-frame="true"/, `${label} should always render the card frame border`);
+    assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-frame="), false, `${label} should not render legacy decoration sleeves`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-decoration-popout="), false, `${label} should not render a foreground pop-out`);
     assert.equal(decoratedCardMarkup.includes("data-fanid-sticker-layer="), false, `${label} should not render legacy SVG sticker layers`);
   }
@@ -285,14 +264,13 @@ const defaultThemeMarkup = renderToStaticMarkup(
     { locale: "en" },
     createElement(FanIdCard, {
       sample: true,
-      stickersEnabled: true,
       cardMode: "idol-user",
     }),
   ),
 );
 assert.match(defaultThemeMarkup, /data-theme="chrome"/, "omitted themes should retain the Chrome default");
-assert.match(defaultThemeMarkup, /data-card-sticker-architecture="sleeve-frame"/, "omitted themes should enable the Chrome decoration architecture");
-assert.match(defaultThemeMarkup, /data-fanid-decoration-frame="chrome-sleeve"/, "omitted themes should render the Chrome sleeve");
+assert.match(defaultThemeMarkup, /data-fanid-card-frame="true"/, "omitted themes should render the default Chrome card frame");
+assert.match(defaultThemeMarkup, new RegExp(FAN_ID_THEMES.chrome.accent), "omitted themes should carry the Chrome accent tint");
 assert.equal(defaultThemeMarkup.includes("data-fanid-decoration-popout="), false, "omitted themes should not render a foreground pop-out");
 
 const invalidThemeMarkup = renderToStaticMarkup(
@@ -301,14 +279,13 @@ const invalidThemeMarkup = renderToStaticMarkup(
     { locale: "en" },
     createElement(FanIdCard, {
       sample: true,
-      stickersEnabled: true,
       themeId: "missing-theme" as FanIdThemeId,
       cardMode: "idol-user",
     }),
   ),
 );
 assert.match(invalidThemeMarkup, /data-theme="chrome"/, "invalid themes should retain the safe Chrome surface fallback");
-assert.match(invalidThemeMarkup, /data-card-sticker-architecture="disabled"/, "invalid themes should disable decoration architecture");
+assert.match(invalidThemeMarkup, /data-fanid-card-frame="true"/, "invalid themes should still render the safe Chrome card frame");
 assert.equal(invalidThemeMarkup.includes("data-fanid-decoration-frame="), false, "invalid themes should not render decoration sleeves");
 
 const undecoratedSampleMarkup = renderToStaticMarkup(
@@ -317,7 +294,6 @@ const undecoratedSampleMarkup = renderToStaticMarkup(
     { locale: "en" },
     createElement(FanIdCard, {
       sample: true,
-      stickersEnabled: false,
       themeId: "chrome",
       cardMode: "idol-user",
     }),
@@ -370,7 +346,6 @@ assert.equal(
     issuedAt: "2026.07.15",
     serial: "TEST-1",
     themeId: "broken" as never,
-    stickersEnabled: "true" as never,
     cardMode: "broken" as never,
   }),
   true,
@@ -385,7 +360,6 @@ assert.equal(normalizedCompletedPrefs.themeId, "chrome");
 assert.equal(normalizedCompletedPrefs.cardMode, "idol-user");
 assert.equal(normalizedCompletedPrefs.issuedAt, "2026.07.15");
 assert.equal(normalizedCompletedPrefs.serial, "TEST-1");
-assert.equal(normalizedCompletedPrefs.stickersEnabled, false);
 assert.equal(normalizedCompletedPrefs.fanIdClaimed, true);
 
 localStorageMock.clear();
@@ -400,14 +374,12 @@ assert.equal(
     issuedAt: "2026.07.15",
     serial: "TEST-2",
     themeId: "kawaii" as never,
-    stickersEnabled: true,
     cardMode: "user",
   }),
   true,
 );
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").themeId, "kawaii");
 assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").cardMode, "user");
-assert.equal(JSON.parse(localStorageMock.getItem("kstar:prefs") ?? "{}").stickersEnabled, true);
 
 localStorageMock.clear();
 const exportDecal = CUSTOM_STICKER_PACKS.chrome.assets[0];
@@ -434,34 +406,4 @@ assert.match(
   /<SoulReport\s+result=\{result\}\s+answers=\{answers\}\s+themeId=\{prefs\.themeId\}\s*\/>/,
   "completed report card should receive the normalized saved themeId",
 );
-const disabledStickerPreview = renderToStaticMarkup(
-  createElement(StickerBombPreview, { enabled: false }),
-);
-assert.match(
-  disabledStickerPreview,
-  /aria-hidden="true"/,
-  "disabled Sticker bomb preview should stay decorative for assistive tech",
-);
-assert.match(disabledStickerPreview, /data-sticker-toggle-thumbnail="true"/);
-assert.equal(
-  disabledStickerPreview.includes("data-sticker-toggle-thumb-accent"),
-  false,
-  "disabled Sticker bomb preview should not render accents",
-);
-
-const enabledStickerPreview = renderToStaticMarkup(
-  createElement(StickerBombPreview, { enabled: true }),
-);
-assert.match(
-  enabledStickerPreview,
-  /aria-hidden="true"/,
-  "enabled Sticker bomb preview should stay decorative for assistive tech",
-);
-assert.match(enabledStickerPreview, /data-sticker-toggle-thumbnail="true"/);
-assert.equal(
-  (enabledStickerPreview.match(/data-sticker-toggle-thumb-accent/g) ?? []).length,
-  3,
-  "enabled Sticker bomb preview should render its three edge accents",
-);
-
 console.log("fanid sticker composition checks passed");

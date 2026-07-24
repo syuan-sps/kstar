@@ -15,7 +15,6 @@ import BgDecor from "@/components/BgDecor";
 import ChromeSparkle from "@/components/ChromeSparkle";
 import Taskbar from "@/components/Taskbar";
 import IntroSplash from "@/components/IntroSplash";
-import FanIdEntry, { HeaderFanIdButton } from "@/components/FanIdEntry";
 import HomeLogoLink from "@/components/HomeLogoLink";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -63,7 +62,6 @@ export default async function RootLayout({
         {/* Photobooth splash for first-time visitors — mounts before Onboarding so its
             effect runs first and can hold the picker until the handoff. */}
         <IntroSplash />
-        <FanIdEntry allArtists={liteArtists} />
         {/* Decorative background — fixed, behind everything */}
         <BgDecor />
         {/* Y2K Silvercore layer — silver ✦ floating above the pink world */}
@@ -78,7 +76,7 @@ export default async function RootLayout({
             </HomeLogoLink>
             <div className="order-3 w-full min-w-0 md:order-none md:w-auto md:flex-1">
               <Suspense fallback={null}>
-                <SearchBar />
+                <SearchBar artists={liteArtists.map((a) => ({ id: a.id, name: a.name, name_zh: a.name_zh ?? null, group: a.group ?? null }))} />
               </Suspense>
             </div>
             <nav aria-label={copy.navDirectory} className="order-2 ml-auto flex shrink-0 items-center gap-1 md:contents">
@@ -90,7 +88,6 @@ export default async function RootLayout({
               >
                 <span aria-hidden="true">✦</span><span className="hidden md:inline">{copy.navDirectory}</span>
               </Link>
-              <HeaderFanIdButton />
               <Link
                 href="/favorites"
                 aria-label={copy.myFavorites}

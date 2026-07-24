@@ -10,12 +10,18 @@ export default function FourCuts({
   className = "",
   linked = false,
   developId = null,
+  caption,
+  photoOverrides,
 }: {
   artists: CardArtist[];
   className?: string;
   linked?: boolean;
   /** id of a cut to play the single-cut re-develop animation on (e.g. after a swap) */
   developId?: string | null;
+  /** Overrides the footer stamp text (default "KSTAR · 2026"). */
+  caption?: string;
+  /** Per-idol custom photo (from the photo studio) shown instead of the catalog shot. */
+  photoOverrides?: Readonly<Record<string, string>>;
 }) {
   return (
     <div
@@ -26,7 +32,7 @@ export default function FourCuts({
           const sym = getGroupSymbol(a.group);
           const inner = (
             <>
-              <Thumb src={a.image_url} seed={a.id} label={a.name} rounded="rounded-lg" focusY={a.image_focus} />
+              <Thumb src={photoOverrides?.[a.id] ?? a.image_url} seed={a.id} label={a.name} rounded="rounded-lg" focusY={photoOverrides?.[a.id] ? undefined : a.image_focus} />
               {/* group symbol accent */}
               <span
                 className={`frame-symbol${sym.length > 2 ? " frame-symbol--long" : ""} pointer-events-none absolute right-1 top-1 text-white/80 drop-shadow`}
@@ -66,7 +72,7 @@ export default function FourCuts({
       {/* photobooth footer caption */}
       <div className="mt-2.5 flex items-center justify-center gap-1.5 font-orbitron text-[10px] font-bold tracking-[0.25em] text-[#7c8088]">
         <span>✦</span>
-        <span>KSTAR · 2026</span>
+        <span className="max-w-[220px] truncate">{caption || "KSTAR · 2026"}</span>
         <span>✦</span>
       </div>
     </div>

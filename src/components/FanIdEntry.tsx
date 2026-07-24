@@ -14,16 +14,48 @@ import type { ResultAnswers } from "@/components/SoulReport";
 
 export function HeaderFanIdButton() {
   const copy = useCopy();
+  const [loading, setLoading] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const stop = () => setLoading(false);
+    const fail = () => { setLoading(false); setFailed(true); };
+    window.addEventListener("kstar:fanid-opened", stop);
+    window.addEventListener("kstar:fanid-error", fail);
+    return () => {
+      window.removeEventListener("kstar:fanid-opened", stop);
+      window.removeEventListener("kstar:fanid-error", fail);
+    };
+  }, []);
+
+  // Auto-dismiss the retry hint so it never lingers.
+  useEffect(() => {
+    if (!failed) return;
+    const t = setTimeout(() => setFailed(false), 3200);
+    return () => clearTimeout(t);
+  }, [failed]);
+
   return (
-    <button
-      type="button"
-      aria-label={copy.myFanId}
-      title={copy.myFanId}
-      onClick={() => window.dispatchEvent(new Event("kstar:open-fanid"))}
-      className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#c8ccd2]/30 text-sm font-medium text-[#1c1e24] hover:bg-[#7c8088]/10 md:flex md:h-auto md:w-auto md:gap-1 md:px-3 md:py-1.5"
-    >
-      <span aria-hidden="true">🪪</span><span className="hidden md:inline">{copy.myFanId}</span>
-    </button>
+    <div className="relative shrink-0">
+      <button
+        type="button"
+        aria-label={copy.myFanId}
+        aria-busy={loading}
+        title={copy.myFanId}
+        onClick={() => { setFailed(false); setLoading(true); window.dispatchEvent(new Event("kstar:open-fanid")); }}
+        className="grid h-9 w-9 place-items-center rounded-full border border-[#c8ccd2]/30 text-sm font-medium text-[#1c1e24] hover:bg-[#7c8088]/10 md:flex md:h-auto md:w-auto md:gap-1 md:px-3 md:py-1.5"
+      >
+        <span aria-hidden="true" className={loading ? "inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-[#c8ccd2] border-t-[#1c1e24]" : ""}>
+          {loading ? "" : "🪪"}
+        </span>
+        <span className="hidden md:inline">{copy.myFanId}</span>
+      </button>
+      {failed && (
+        <span role="alert" className="absolute right-0 top-full z-50 mt-1 whitespace-nowrap rounded-lg bg-[#1c1e24] px-2.5 py-1.5 text-[11px] font-medium text-white shadow-lg">
+          {copy.fanIdOpenFailed}
+        </span>
+      )}
+    </div>
   );
 }
 
@@ -59,7 +91,10 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
       return;
     }
     const selected = next.topIdols.map((id) => allArtists.find((artist) => artist.id === id)).filter((artist): artist is ArtistLite => Boolean(artist));
-    if (selected.length !== 4) return;
+    if (selected.length !== 4) {
+      window.dispatchEvent(new Event("kstar:fanid-error"));
+      return;
+    }
     busy.current = true;
     try {
       const response = await fetch("/api/pick-scores", {
@@ -68,7 +103,7 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
         body: JSON.stringify({ pickIds: next.topIdols }),
       });
       const data = (await response.json()) as { summaries?: PickSummary[] };
-      if (!response.ok || !data.summaries?.length) return;
+      if (!response.ok || !data.summaries?.length) throw new Error("missing score summaries");
       setPrefs(next);
       setPicks(selected);
       setSummaries(data.summaries);
@@ -78,8 +113,11 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
       setMode("card");
       restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       setOpen(true);
+      window.dispatchEvent(new Event("kstar:fanid-opened"));
     } catch {
-      /* keep the global entry quiet when stored data or the score API is unavailable */
+      // Tell the header button to stop its spinner and surface a retry hint,
+      // instead of the click silently doing nothing.
+      window.dispatchEvent(new Event("kstar:fanid-error"));
     } finally {
       busy.current = false;
     }
@@ -143,7 +181,7 @@ export default function FanIdEntry({ allArtists }: { allArtists: ArtistLite[] })
         <div className="window-body max-h-[85vh] overflow-y-auto p-5">
           {mode === "quiz"
             ? <SoulQuiz picks={picks} summaries={summaries} onPersist={persist} onClose={closeModal} />
-            : <TastePortraitCard result={result} picks={picks} answers={answers} onRestart={() => setMode("quiz")} />}
+            : <TastePortraitCard result={result} picks={picks} answers={answers} defaultView="pass" onRestart={() => setMode("quiz")} />}
         </div>
       </div>
     </div>,

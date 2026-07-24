@@ -19,9 +19,9 @@ export type PlacedCustomSticker = Readonly<{
   rotation: number;
 }>;
 
-export const MAX_CUSTOM_STICKERS = 8;
+export const MAX_CUSTOM_STICKERS = 25;
 export const MIN_CUSTOM_STICKER_SCALE = 0.07;
-export const MAX_CUSTOM_STICKER_SCALE = 0.26;
+export const MAX_CUSTOM_STICKER_SCALE = 1.3;
 export const DEFAULT_CUSTOM_STICKER_SCALE = 0.13;
 
 type PackDefinition = Readonly<{

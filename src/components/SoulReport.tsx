@@ -4,7 +4,7 @@
 // the user's actual quiz answers, the 隱藏面, and the 追星宇宙. The whole card is
 // the export target (a tall downloadable PNG).
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { SCORE_LAYERS } from "@/lib/types";
 import {
   type ArchetypeResult, ARCHETYPES, LAYER_COLOR, LAYER_MEANINGS, barLabel, layerLabel,
@@ -13,6 +13,7 @@ import {
 import { MOODS } from "@/lib/questionnaire";
 import { displayTrait } from "@/lib/cardMeta";
 import { exportNode } from "@/lib/exportImage";
+import { CARD_BTN_PRIMARY, CARD_BTN_SECONDARY, CARD_BTN_SECONDARY_STYLE } from "@/lib/cardActionStyles";
 import { useCopy, useLocale } from "@/lib/i18n/LocaleProvider";
 import { getFanIdTheme, type FanIdThemeId } from "@/lib/fanIdThemes";
 
@@ -28,11 +29,13 @@ export interface ResultAnswers {
 }
 
 export default function SoulReport({
-  result, answers, themeId,
+  result, answers, themeId, hideActions = false, extraActions,
 }: {
   result: ArchetypeResult;
   answers?: ResultAnswers;
   themeId?: FanIdThemeId;
+  hideActions?: boolean;
+  extraActions?: ReactNode;
 }) {
   const copy = useCopy();
   const locale = useLocale();
@@ -73,7 +76,7 @@ export default function SoulReport({
       {/* export target — the card itself (the known-good export shape) */}
       <div
         ref={reportRef}
-        className="relative w-full max-w-[340px] overflow-hidden rounded-[24px] p-5"
+        className="relative w-full max-w-[340px] overflow-hidden rounded-[24px] p-5 text-left"
         style={{
           backgroundImage: theme.surface,
           color: theme.text,
@@ -169,18 +172,18 @@ export default function SoulReport({
       </div>
 
       {/* ── Actions (not exported) ──────────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        <button onClick={() => run("download")} disabled={busy}
-          className="rounded-full bg-[#b4302b] px-4 py-2 text-xs font-bold text-white shadow-[0_0_12px_rgba(180,48,43,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:brightness-110 disabled:opacity-50">
-          {busy ? copy.processing : copy.shareDownloadReport}
+      {!hideActions && (
+      <div className="flex flex-wrap items-center justify-center gap-1">
+        <button onClick={() => run("download")} disabled={busy} className={CARD_BTN_PRIMARY}>
+          {busy ? copy.wizExporting : copy.fourCutDownload}
         </button>
-        <button onClick={() => run("share")} disabled={busy}
-          className="rounded-full border border-white/[0.68] px-4 py-2 text-xs font-bold text-[#1a1a1a] shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)] transition hover:brightness-95 disabled:opacity-50"
-          style={{ backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.38))" }}>
-          {copy.shareShare}
+        <button onClick={() => run("share")} disabled={busy} className={CARD_BTN_SECONDARY} style={CARD_BTN_SECONDARY_STYLE}>
+          {copy.fourCutShare}
         </button>
+        {extraActions}
       </div>
-      {failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedReport}</p>}
+      )}
+      {!hideActions && failed && <p className="text-center text-[11px] text-[#b4302b]">{copy.exportFailedReport}</p>}
     </div>
   );
 }

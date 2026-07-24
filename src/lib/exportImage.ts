@@ -80,6 +80,25 @@ function isAbortError(error: unknown): boolean {
     || Boolean(error && typeof error === "object" && "name" in error && error.name === "AbortError");
 }
 
+// Which card an export came from, derived from its file name (one map, so the
+// analytics event is labelled without threading a prop through every call site).
+function cardFromFileName(fileName: string): string {
+  if (fileName.includes("fourcut")) return "fourcut";
+  if (fileName.includes("report")) return "report";
+  if (fileName.includes("fanid")) return "fanid";
+  return "story";
+}
+
+// Fire a Vercel Web Analytics custom event. Records the ACTUAL action taken
+// (a "share" that falls back to a download is counted as a download). A cancelled
+// share never reaches here. Import is dynamic so a failed load never breaks export.
+function trackExport(action: "download" | "share", fileName: string): void {
+  if (typeof window === "undefined") return;
+  import("@vercel/analytics").then(({ track }) => {
+    track("export", { action, card: cardFromFileName(fileName) });
+  }).catch(() => { /* analytics is best-effort, never block the export */ });
+}
+
 export async function completeExport(
   blob: Blob,
   opts: Pick<ExportOptions, "fileName" | "kind" | "shareTitle" | "shareText">,
@@ -92,6 +111,7 @@ export async function completeExport(
       && navigator.canShare?.({ files: [file] });
     if (canShareFiles) {
       await navigator.share({ files: [file], title: shareTitle, text: shareText });
+      trackExport("share", fileName); // only reached when the share wasn't cancelled
     } else {
       const url = URL.createObjectURL(blob);
       try {
@@ -102,6 +122,7 @@ export async function completeExport(
       } finally {
         URL.revokeObjectURL(url);
       }
+      trackExport("download", fileName);
     }
     return { ok: true };
   } catch (error) {
@@ -153,6 +174,13 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
         width: `${node.offsetWidth}px`,
         height: `${node.offsetHeight}px`,
         margin: `${PAD}px`,
+        // A transparent-background PNG must not carry the on-screen drop
+        // shadow: `0 28px 64px` bleeds a grey haze across the whole PAD ring,
+        // so the "transparent" margin lands at alpha 1-63 instead of 0 and
+        // shows as a halo on any coloured backdrop. Framed exports composite
+        // onto a filled canvas, so they keep the shadow. The crisp 1px ring is
+        // preserved either way so the card keeps its defined edge.
+        ...(frame ? {} : { boxShadow: "0 1px 0 rgba(255,255,255,.9), 0 0 0 1px rgba(28,30,36,.42)" }),
       },
     };
     // Ensure photos are decoded, else html-to-image grabs a blank frame.
@@ -163,19 +191,28 @@ export async function exportNode(node: HTMLElement, opts: ExportOptions): Promis
           : new Promise<void>((res) => { im.onload = () => res(); im.onerror = () => res(); }),
       ),
     );
+    // Reveal export-only content (e.g. the story card's "測你的追星靈魂 →" invite,
+    // which is aimed at whoever RECEIVES the shared PNG, not the owner viewing it
+    // on screen). Hidden with inline display:none normally; shown just for capture.
+    const exportOnly = [...node.querySelectorAll<HTMLElement>("[data-export-only]")];
+    exportOnly.forEach((el) => { el.style.display = el.dataset.exportDisplay ?? "block"; });
     // First render is often incomplete — retry a few times.
     let blob: Blob | null = null;
-    for (let attempt = 0; attempt < 3 && !blob; attempt++) {
-      try {
-        const dataUrl = await Promise.race([
-          htmlToImage.toPng(node, o),
-          new Promise<string>((_, rej) => setTimeout(() => rej(new Error("timeout")), 12000)),
-        ]);
-        const b = await (await fetch(dataUrl)).blob();
-        if (b && b.size > 5000) blob = b;
-      } catch {
-        /* retry */
+    try {
+      for (let attempt = 0; attempt < 3 && !blob; attempt++) {
+        try {
+          const dataUrl = await Promise.race([
+            htmlToImage.toPng(node, o),
+            new Promise<string>((_, rej) => setTimeout(() => rej(new Error("timeout")), 12000)),
+          ]);
+          const b = await (await fetch(dataUrl)).blob();
+          if (b && b.size > 5000) blob = b;
+        } catch {
+          /* retry */
+        }
       }
+    } finally {
+      exportOnly.forEach((el) => { el.style.display = "none"; });
     }
     if (!blob) return { ok: false };
     if (frame) {

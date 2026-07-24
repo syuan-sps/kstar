@@ -29,6 +29,9 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
   const [summaries, setSummaries] = useState<PickSummary[]>([]);
   const [quizResult, setQuizResult] = useState<ArchetypeResult | null>(null);
   const [resultStatus, setResultStatus] = useState<"idle" | "loading" | "error">("idle");
+  // Rank vs quiz sub-phase, reported by StepQuiz, only so the stepper can show
+  // the 8-question quiz as its own node instead of freezing on "2".
+  const [quizPhase, setQuizPhase] = useState<"rank" | "quiz">("rank");
   const validArtistIds = useMemo(() => new Set(allArtists.map((artist) => artist.id)), [allArtists]);
   const rememberSummaries = useCallback((next: PickSummary[]) => setSummaries(next), []);
 
@@ -104,10 +107,15 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
 
   if (wiz.step === 0) {
     return (
-      <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-xl flex-col items-center justify-center gap-6 px-4 text-center">
+      <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-xl flex-col items-center justify-center gap-4 px-4 text-center">
         <span className="font-orbitron text-2xl font-black chrome-text">{copy.appName} {copy.wizCenterSuffix}</span>
-        <div className="fanid-preview-shell fanid-landing-preview">
-          <div className="fanid-preview-scale"><FanIdCard sample /></div>
+        {/* Scale the 693px sample down and pin the wrapper to its rendered height
+            so the CTA below stays above the fold. Inline styles beat .fanid-preview-scale's
+            own transform-origin. 693 × 0.6 ≈ 416. */}
+        <div className="fanid-preview-shell flex justify-center" style={{ height: 416 }}>
+          <div className="fanid-preview-scale" style={{ transform: "rotate(-4deg) scale(.6)", transformOrigin: "top center" }}>
+            <FanIdCard sample />
+          </div>
         </div>
         <p className="text-sm text-[#5e636d]">{copy.wizLandingNote}</p>
         <button onClick={() => go(1)} className="w-full rounded-xl bg-[#1c1e24] py-3 font-bold text-white">
@@ -141,12 +149,22 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
     );
   }
 
+  // Display-only 5-node stepper: the persisted wizard still has 4 steps, but the
+  // rank + 8-question quiz (both persisted step 2) show as two nodes so progress
+  // never looks frozen. activeNode: 0 pick · 1 rank · 2 quiz · 3 result · 4 claim.
+  const stepperNodes = [copy.wizStep1, copy.wizNodeRank, copy.wizNodeQuiz, copy.wizStep3, copy.wizStep4];
+  const activeNodeFor = (step: 1 | 2 | 3 | 4) =>
+    step === 1 ? 0 : step === 2 ? (quizPhase === "quiz" ? 2 : 1) : step === 3 ? 3 : 4;
+
   if (wiz.step === 1) {
     return (
       <WizardChrome
         step={1}
         canNext={validPicks.length === 4}
         onNext={() => setDeveloping(true)}
+        stickyActions
+        nodes={stepperNodes}
+        activeNode={activeNodeFor(1)}
       >
         <StepPicker
           allArtists={allArtists}
@@ -162,11 +180,12 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
 
   if (wiz.step === 2) {
     return (
-      <WizardChrome step={2} canNext={false} onBack={() => go(1)}>
+      <WizardChrome step={2} canNext={false} onBack={() => go(1)} nodes={stepperNodes} activeNode={activeNodeFor(2)}>
         <StepQuiz
           picks={selectedArtists}
           summaries={summaries}
           rank={wiz.rank}
+          onPhase={setQuizPhase}
           onRank={(rank) => {
             setQuizResult(null);
             setWiz(saveWizard({ rank, answers: {}, archetype: undefined }));
@@ -204,6 +223,8 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
         onBack={() => go(2)}
         onNext={() => go(4)}
         nextLabel={copy.wizIssueCta}
+        nodes={stepperNodes}
+        activeNode={activeNodeFor(3)}
       >
         {quizResult ? (
           <StepReveal
@@ -222,7 +243,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
 
   if (wiz.step === 4) {
     return (
-      <WizardChrome step={4} canNext={false} onBack={() => go(3)}>
+      <WizardChrome step={4} wide canNext={false} onBack={() => go(3)} nodes={stepperNodes} activeNode={activeNodeFor(4)}>
         {quizResult && wiz.archetype && selectedArtists.length === 4 ? (
           <StepIssue wiz={wiz} picks={selectedArtists} result={quizResult} onWizardChange={setWiz} />
         ) : (
@@ -251,7 +272,7 @@ export default function StartFlow({ allArtists }: { allArtists: ArtistLite[] }) 
         className="grid h-64 place-items-center text-[#9aa0aa]"
         data-artist-count={allArtists.length}
       >
-        step {wiz.step} — {copy.wizUnderConstruction}
+        step {wiz.step} · {copy.wizUnderConstruction}
       </div>
     </WizardChrome>
   );
