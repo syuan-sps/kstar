@@ -4,7 +4,7 @@
 // owns no controls and never reads the catalog; issuing flows pass CardArtist
 // records and may capture the forwarded node through its ref.
 
-import { forwardRef, useLayoutEffect, useRef, useState } from "react";
+import { forwardRef, useRef } from "react";
 import Thumb from "@/components/Thumb";
 import FanIdCustomStickerLayer from "@/components/FanIdCustomStickerLayer";
 import { FanIdStickerCanvasEditor, type CustomStickerCanvasEditorProps } from "@/components/FanIdStickerEditor";
@@ -145,28 +145,12 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
   const rootRef = useRef<HTMLDivElement>(null);
   const surfaceRef = useRef<HTMLDivElement>(null);
   const archetypeRef = useRef<HTMLElement>(null);
-  const [stickerCanvasHeight, setStickerCanvasHeight] = useState<number | null>(null);
 
-  useLayoutEffect(() => {
-    if (!hideArchetype) {
-      setStickerCanvasHeight(null);
-      return;
-    }
-    const surface = surfaceRef.current;
-    const archetype = archetypeRef.current;
-    if (!surface || !archetype) return;
-    const measure = () => {
-      // Photo-only intentionally shortens the visible card. Its sticker canvas
-      // still uses the normal-card height, then the card clips anything below.
-      const nextHeight = surface.getBoundingClientRect().height + archetype.getBoundingClientRect().height + 10;
-      setStickerCanvasHeight((current) => current !== null && Math.abs(current - nextHeight) < 0.5 ? current : nextHeight);
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(surface);
-    observer.observe(archetype);
-    return () => observer.disconnect();
-  }, [hideArchetype, locale, result?.code, fanName]);
+  // The sticker canvas deliberately always spans the VISIBLE card. It used to
+  // keep the taller full-card height in photo-only mode and let the card clip
+  // the overflow, which silently deleted any sticker placed low on the card the
+  // moment you toggled. Sticker coordinates are percentages, so tracking the
+  // visible box keeps every sticker on the card and in the same relative spot.
 
   function attachRoot(node: HTMLDivElement | null) {
     rootRef.current = node;
@@ -325,7 +309,7 @@ const FanIdCard = forwardRef<HTMLDivElement, FanIdCardProps>(function FanIdCard(
         <div
           data-fanid-sticker-canvas
           className="absolute inset-x-0 top-0 z-40"
-          style={hideArchetype && stickerCanvasHeight ? { height: stickerCanvasHeight } : { height: "100%" }}
+          style={{ height: "100%" }}
         >
           {customStickerEditor
             ? <FanIdStickerCanvasEditor {...customStickerEditor} stickers={customStickers} />
